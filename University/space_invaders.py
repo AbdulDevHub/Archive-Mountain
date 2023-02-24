@@ -7,8 +7,8 @@ Last Modified: Feb 24, 2023
 import pygame
 import random
 
-WIDTH = 640
-HEIGHT = 480
+WIDTH = 840
+HEIGHT = 680
 screen = pygame.display.set_mode([WIDTH, HEIGHT])
 
 # --- Game Classes
@@ -22,10 +22,15 @@ class Player(pygame.sprite.Sprite):
         # Call the parent class (Sprite) constructor
         super().__init__()
 
-        self.image = pygame.Surface([20, 20])
-        self.image.fill(pygame.color.THECOLORS['red'])
-
+        self.activeBuffs = []
+        self.image = pygame.image.load("player_ship.png")
+        self.image = pygame.transform.scale(self.image, (80, 80))
         self.rect = self.image.get_rect()
+
+        self.bulletType = "normal"
+        self.shield = False
+        self.asteroid = 0
+        self.lives = 3
 
     def update(self):
         """ Update the player's position. """
@@ -35,6 +40,17 @@ class Player(pygame.sprite.Sprite):
 
         # Set the player x position to the mouse x position
         self.rect.x = pos[0]
+
+        # Give player buffs depending on packs collected
+        self.lives += self.activeBuffs.count("Health")
+        for _ in range(self.activeBuffs.count("Bullet")):
+            self.bulletType = random.randint(0,2)
+            if self.bulletType == 0: self.bulletType = "multi-shot"
+            elif self.bulletType == 1: self.bulletType = "scatter"
+            else: self.bulletType = "laser"
+        if "Shield" in self.activeBuffs: self.shield = True
+        self.asteroid = self.activeBuffs.count("Asteroid")
+        self.activeBuffs = []
 
 
 def game_over():
@@ -64,10 +80,16 @@ class Bullet(pygame.sprite.Sprite):
         # Call the parent class (Sprite) constructor
         super().__init__()
 
-        self.image = pygame.Surface([4, 10])
+        image = "normal_bullet.png"
+        image_width = 10
+        image_heigth = 25
+        if direction == -1:
+            image = "enemy_bullet.png"
+            image_width = 15
+            image_heigth = 15
 
-        self.image.fill(pygame.color.THECOLORS['black'])
-
+        self.image = pygame.image.load(image)
+        self.image = pygame.transform.scale(self.image, (image_width, image_heigth))
         self.rect = self.image.get_rect()
         self.direction = direction
 
@@ -114,83 +136,69 @@ class Asteroid(pygame.sprite.Sprite):
         self.rect.y -= self.direction * 3
 
 
-class HealthPack(pygame.sprite.Sprite):
-    """ This class represents the bullet . """
+class Pack(pygame.sprite.Sprite):
+    """
+    This class represents the 4 types of packs dropped
+    by enemies.
+    """
 
-    def __init__(self, direction = 1):
+    def __init__(self, type, x, y):
         # Call the parent class (Sprite) constructor
         super().__init__()
 
-        self.image = pygame.Surface([4, 10])
+        self.type = type
+        image = ""
+        if type == 0:
+            image = "health_pack.png"
+            self.type = "Health"
+        elif type == 1:
+            image = "bullet_pack.png"
+            self.type = "Bullet"
+        elif type == 2:
+            image = "shield_pack.png"
+            self.type = "Shield"
+        elif type == 3:
+            image = "asteroid_pack.png"
+            self.type = "Asteroid"
 
-        self.image.fill(pygame.color.THECOLORS['black'])
-
+        self.image = pygame.image.load(image)
+        self.image = pygame.transform.scale(self.image, (30, 30))
         self.rect = self.image.get_rect()
-        self.direction = direction
+
+        self.rect.x = x
+        self.rect.y = y
+        self.direction = -3
 
     def update(self):
-        """ Move the bullet. """
-        self.rect.y -= self.direction * 3
-
-
-class BulletPack(pygame.sprite.Sprite):
-    """ This class represents the bullet . """
-
-    def __init__(self, direction = 1):
-        # Call the parent class (Sprite) constructor
-        super().__init__()
-
-        self.image = pygame.Surface([4, 10])
-
-        self.image.fill(pygame.color.THECOLORS['black'])
-
-        self.rect = self.image.get_rect()
-        self.direction = direction
-
-    def update(self):
-        """ Move the bullet. """
-        self.rect.y -= self.direction * 3
-
-
-class SheildPack(pygame.sprite.Sprite):
-    """ This class represents the bullet . """
-
-    def __init__(self, direction = 1):
-        # Call the parent class (Sprite) constructor
-        super().__init__()
-
-        self.image = pygame.Surface([4, 10])
-
-        self.image.fill(pygame.color.THECOLORS['black'])
-
-        self.rect = self.image.get_rect()
-        self.direction = direction
-
-    def update(self):
-        """ Move the bullet. """
-        self.rect.y -= self.direction * 3
-
-
-class AsteroidPack(pygame.sprite.Sprite):
-    """ This class represents the bullet . """
-
-    def __init__(self, direction = 1):
-        # Call the parent class (Sprite) constructor
-        super().__init__()
-
-        self.image = pygame.Surface([4, 10])
-
-        self.image.fill(pygame.color.THECOLORS['black'])
-
-        self.rect = self.image.get_rect()
-        self.direction = direction
-
-    def update(self):
-        """ Move the bullet. """
-        self.rect.y -= self.direction * 3
+        """ Drop the pack. """
+        self.rect.y -= self.direction
 
 
 class PlayerHealth(pygame.sprite.Sprite):
+    """ This class represents the bullet . """
+
+    def __init__(self, player, direction = 1):
+        # Call the parent class (Sprite) constructor
+        super().__init__()
+
+        self.image = pygame.Surface([4, 10])
+
+        self.image.fill(pygame.color.THECOLORS['black'])
+
+        self.rect = self.image.get_rect()
+        self.direction = direction
+        self.player = player
+
+    def update(self):
+        """ Move the bullet. """
+        self.rect.y -= self.direction * 3
+
+        font = pygame.font.Font(None, 30)
+        text = font.render("Lives: " + str(self.player.lives), True, (255, 255, 255))
+        screen.blit(text, (screen.get_width() - 150, 30))
+
+
+class Timer(pygame.sprite.Sprite):
     """ This class represents the bullet . """
 
     def __init__(self, direction = 1):
@@ -272,8 +280,8 @@ class Enemy(pygame.sprite.Sprite):
     def __init__(self, color, screenMeasurment):
         # Call the parent class (Sprite) constructor
         super().__init__()
-        self.image = pygame.image.load("ship.png")
-        self.image = pygame.transform.scale(self.image, (30, 30))
+        self.image = pygame.image.load("enemy_ship.png")
+        self.image = pygame.transform.scale(self.image, (50, 40))
         self.rect = self.image.get_rect()
         self.movement = 3
         self.screenMeasurment = screenMeasurment
@@ -292,8 +300,8 @@ class EnemyBoss(pygame.sprite.Sprite):
     def __init__(self, color, screenMeasurment):
         # Call the parent class (Sprite) constructor
         super().__init__()
-        self.image = pygame.image.load("ship.png")
-        self.image = pygame.transform.scale(self.image, (30, 30))
+        self.image = pygame.image.load("boss_ship.png")
+        self.image = pygame.transform.scale(self.image, (120, 120))
         self.rect = self.image.get_rect()
         self.movement = 3
         self.screenMeasurment = screenMeasurment
@@ -321,11 +329,11 @@ class Game:
 
         self.num_blocks = 50
         self.running = False
-        self.shoot_chance = 5
+        self.shoot_chance = 1
 
         # --- Sprite lists
 
-        # This is a list of every sprite. All blocks and the player block as well.
+        # This is a list of every sprite
         self.all_sprites_list = pygame.sprite.Group()
 
         # List of each enemy in the game
@@ -336,6 +344,9 @@ class Game:
 
         # List of each enemy bullet
         self.enemy_bullet_list = pygame.sprite.Group()
+
+        # List of every pack
+        self.pack_list = pygame.sprite.Group()
 
         # --- Create the sprites
 
@@ -353,17 +364,14 @@ class Game:
             self.enemy_list.add(enemyBlock)
             self.all_sprites_list.add(enemyBlock)
 
-        # Create a red player block
+        # Create the player's ship
         self.player = Player()
         self.all_sprites_list.add(self.player)
 
         self.score = 0
-        # this number is fairly arbitrary - just move the player off the bottom of the screen a bit based on the height of the player
+        # this number is fairly arbitrary - just move the player off the bottom
+        # of the screen a bit based on the height of the player
         self.player.rect.y = self.screen_height - self.player.rect.height * 2
-
-        font = pygame.font.Font(None, 30)
-        text = font.render("Lives: " + str(player.lives), True, (255, 255, 255))
-        screen.blit(text, (screen.get_width() - 150, 30))
 
     def poll(self):
         for event in pygame.event.get():
@@ -374,8 +382,8 @@ class Game:
                 # Fire a bullet if the user clicks the mouse button
                 bullet = Bullet()
                 # Set the bullet so it is where the player is
-                bullet.rect.x = self.player.rect.x
-                bullet.rect.y = self.player.rect.y
+                bullet.rect.x = self.player.rect.x + 35
+                bullet.rect.y = self.player.rect.y - 20
                 # Add the bullet to the lists
                 self.all_sprites_list.add(bullet)
                 self.bullet_list.add(bullet)
@@ -388,8 +396,8 @@ class Game:
         for enemy in self.enemy_list:
             if random.randint(1,1000) <= self.shoot_chance:
                 bullet = Bullet(-1)
-                bullet.rect.x = enemy.rect.x + enemy.rect.width / 2
-                bullet.rect.y = enemy.rect.y + enemy.rect.height
+                bullet.rect.x = (enemy.rect.x + enemy.rect.width / 2) - 8
+                bullet.rect.y = (enemy.rect.y + enemy.rect.height) - 13
                 self.enemy_bullet_list.add(bullet)
                 self.all_sprites_list.add(bullet)
 
@@ -399,8 +407,7 @@ class Game:
         # Calculate mechanics for each bullet
         for bullet in self.bullet_list:
             # See if it hit a block
-            block_hit_list = pygame.sprite.spritecollide(
-                bullet, self.enemy_list, True)
+            block_hit_list = pygame.sprite.spritecollide(bullet, self.enemy_list, True)
 
             # For each block hit, remove the bullet and add to the score
             for block in block_hit_list:
@@ -409,10 +416,31 @@ class Game:
                 self.score += 1
                 print(self.score)
 
+                packChance = random.randint(0, 30)
+                if packChance <= 3:
+                    pack = Pack(packChance, block.rect.x, block.rect.y)
+                    self.pack_list.add(pack)
+                    self.all_sprites_list.add(pack)
+
             # Remove the bullet if it flies up off the screen
             if bullet.rect.y < (0 - bullet.rect.height):
                 self.bullet_list.remove(bullet)
                 self.all_sprites_list.remove(bullet)
+
+        # Calculate mechanics for each pack
+        block_hit_list = pygame.sprite.spritecollide(self.player, self.pack_list, True)
+
+        # For each block hit, remove the pack and enhance the player
+        for block in block_hit_list:
+            self.pack_list.remove(block)
+            self.all_sprites_list.remove(block)
+            self.player.activeBuffs.append(block.type)
+
+        # Remove the pack if it flies up off the screen
+        for pack in self.pack_list:
+            if pack.rect.y > (HEIGHT + pack.rect.height):
+                self.pack_list.remove(pack)
+                self.all_sprites_list.remove(pack)
 
         # Calculate mechanics for enemy bullet
         collided_bullets = pygame.sprite.spritecollide(self.player, self.enemy_bullet_list, True)
