@@ -1,28 +1,17 @@
 """
-    Space Invaders
-    Demo of Sprites and Class Structure for Pygame
-    CCT 211
-    Week 3 Lab
-    Prof. Michael Nixon
+Title: Space Invaders
+Description: Interactive and Enhanced Game of Space Invaders
+Authors: Abdul Khan & Uzair
+Last Modified: Feb 24, 2023
 """
 import pygame
 import random
 
+WIDTH = 640
+HEIGHT = 480
+screen = pygame.display.set_mode([WIDTH, HEIGHT])
 
 # --- Game Classes
-
-
-# class Block(pygame.sprite.Sprite):
-#     """ This class represents the blocks. """
-#
-#     def __init__(self, color):
-#         # Call the parent class (Sprite) constructor
-#         super().__init__()
-#
-#         self.image = pygame.Surface([20, 15])
-#         self.image.fill(color)
-#
-#         self.rect = self.image.get_rect()
 
 
 class Player(pygame.sprite.Sprite):
@@ -48,8 +37,218 @@ class Player(pygame.sprite.Sprite):
         self.rect.x = pos[0]
 
 
+def game_over():
+    screen.fill((0, 0, 0))
+    font = pygame.font.SysFont('arial', 40)
+    title = font.render('You Lose', True, (255, 255, 255))
+    screen.blit(title, (WIDTH/2 - title.get_width()/2, HEIGHT/2 - title.get_height()/3))
+    pygame.display.update()
+    pygame.time.wait(2000)
+    pygame.quit()
+
+
+def difficultyScreen():
+    screen.fill((0, 0, 0))
+    font = pygame.font.SysFont('arial', 40)
+    title = font.render('You Lose', True, (255, 255, 255))
+    screen.blit(title, (WIDTH/2 - title.get_width()/2, HEIGHT/2 - title.get_height()/3))
+    pygame.display.update()
+    pygame.time.wait(2000)
+    pygame.quit()
+
+
 class Bullet(pygame.sprite.Sprite):
     """ This class represents the bullet . """
+
+    def __init__(self, direction = 1):
+        # Call the parent class (Sprite) constructor
+        super().__init__()
+
+        self.image = pygame.Surface([4, 10])
+
+        self.image.fill(pygame.color.THECOLORS['black'])
+
+        self.rect = self.image.get_rect()
+        self.direction = direction
+
+    def update(self):
+        """ Move the bullet. """
+        self.rect.y -= self.direction * 3
+
+
+class Sheild(pygame.sprite.Sprite):
+    """ This class represents the bullet . """
+
+    def __init__(self, direction = 1):
+        # Call the parent class (Sprite) constructor
+        super().__init__()
+
+        self.image = pygame.Surface([4, 10])
+
+        self.image.fill(pygame.color.THECOLORS['black'])
+
+        self.rect = self.image.get_rect()
+        self.direction = direction
+
+    def update(self):
+        """ Move the bullet. """
+        self.rect.y -= self.direction * 3
+
+
+class Asteroid(pygame.sprite.Sprite):
+    """ This class represents the bullet . """
+
+    def __init__(self, direction = 1):
+        # Call the parent class (Sprite) constructor
+        super().__init__()
+
+        self.image = pygame.Surface([4, 10])
+
+        self.image.fill(pygame.color.THECOLORS['black'])
+
+        self.rect = self.image.get_rect()
+        self.direction = direction
+
+    def update(self):
+        """ Move the bullet. """
+        self.rect.y -= self.direction * 3
+
+
+class HealthPack(pygame.sprite.Sprite):
+    """ This class represents the bullet . """
+
+    def __init__(self, direction = 1):
+        # Call the parent class (Sprite) constructor
+        super().__init__()
+
+        self.image = pygame.Surface([4, 10])
+
+        self.image.fill(pygame.color.THECOLORS['black'])
+
+        self.rect = self.image.get_rect()
+        self.direction = direction
+
+    def update(self):
+        """ Move the bullet. """
+        self.rect.y -= self.direction * 3
+
+
+class BulletPack(pygame.sprite.Sprite):
+    """ This class represents the bullet . """
+
+    def __init__(self, direction = 1):
+        # Call the parent class (Sprite) constructor
+        super().__init__()
+
+        self.image = pygame.Surface([4, 10])
+
+        self.image.fill(pygame.color.THECOLORS['black'])
+
+        self.rect = self.image.get_rect()
+        self.direction = direction
+
+    def update(self):
+        """ Move the bullet. """
+        self.rect.y -= self.direction * 3
+
+
+class SheildPack(pygame.sprite.Sprite):
+    """ This class represents the bullet . """
+
+    def __init__(self, direction = 1):
+        # Call the parent class (Sprite) constructor
+        super().__init__()
+
+        self.image = pygame.Surface([4, 10])
+
+        self.image.fill(pygame.color.THECOLORS['black'])
+
+        self.rect = self.image.get_rect()
+        self.direction = direction
+
+    def update(self):
+        """ Move the bullet. """
+        self.rect.y -= self.direction * 3
+
+
+class AsteroidPack(pygame.sprite.Sprite):
+    """ This class represents the bullet . """
+
+    def __init__(self, direction = 1):
+        # Call the parent class (Sprite) constructor
+        super().__init__()
+
+        self.image = pygame.Surface([4, 10])
+
+        self.image.fill(pygame.color.THECOLORS['black'])
+
+        self.rect = self.image.get_rect()
+        self.direction = direction
+
+    def update(self):
+        """ Move the bullet. """
+        self.rect.y -= self.direction * 3
+
+
+class PlayerHealth(pygame.sprite.Sprite):
+    """ This class represents the bullet . """
+
+    def __init__(self, direction = 1):
+        # Call the parent class (Sprite) constructor
+        super().__init__()
+
+        self.image = pygame.Surface([4, 10])
+
+        self.image.fill(pygame.color.THECOLORS['black'])
+
+        self.rect = self.image.get_rect()
+        self.direction = direction
+
+    def update(self):
+        """ Move the bullet. """
+        self.rect.y -= self.direction * 3
+
+
+class EnemeyBossHealthBar(pygame.sprite.Sprite):
+    """ This class represents the bullet . """
+
+    def __init__(self, direction = 1):
+        # Call the parent class (Sprite) constructor
+        super().__init__()
+
+        self.image = pygame.Surface([4, 10])
+
+        self.image.fill(pygame.color.THECOLORS['black'])
+
+        self.rect = self.image.get_rect()
+        self.direction = direction
+
+    def update(self):
+        """ Move the bullet. """
+        self.rect.y -= self.direction * 3
+
+
+class SpecialPlayerBullets(pygame.sprite.Sprite):
+    """ 3 bullet attack, triangle bullets attack, laser bullet attack"""
+
+    def __init__(self, direction = 1):
+        # Call the parent class (Sprite) constructor
+        super().__init__()
+
+        self.image = pygame.Surface([4, 10])
+
+        self.image.fill(pygame.color.THECOLORS['black'])
+
+        self.rect = self.image.get_rect()
+        self.direction = direction
+
+    def update(self):
+        """ Move the bullet. """
+        self.rect.y -= self.direction * 3
+
+
+class SpecialEnemyBossBullets(pygame.sprite.Sprite):
+    """ enemy boss bullets x4 """
 
     def __init__(self, direction = 1):
         # Call the parent class (Sprite) constructor
@@ -87,6 +286,25 @@ class Enemy(pygame.sprite.Sprite):
         self.rect.x += self.movement
 
 
+class EnemyBoss(pygame.sprite.Sprite):
+    """ This class represents the enemy boss. """
+
+    def __init__(self, color, screenMeasurment):
+        # Call the parent class (Sprite) constructor
+        super().__init__()
+        self.image = pygame.image.load("ship.png")
+        self.image = pygame.transform.scale(self.image, (30, 30))
+        self.rect = self.image.get_rect()
+        self.movement = 3
+        self.screenMeasurment = screenMeasurment
+
+    def update(self):
+        """ Move the enemy bosss. """
+        if self.rect.x >= self.screenMeasurment[0] or self.rect.x <= 0:
+            self.movement *= -1
+        self.rect.x += self.movement
+
+
 class Game:
     """ This class represents the Game. It contains all the game objects. """
 
@@ -97,10 +315,9 @@ class Game:
         pygame.init()
         # --- Create the window
         # Set the height and width of the screen
-        self.screen_width = 640
-        self.screen_height = 480
-        self.screen = pygame.display.set_mode(
-            [self.screen_width, self.screen_height])
+        self.screen_width = WIDTH
+        self.screen_height = HEIGHT
+        self.screen = screen
 
         self.num_blocks = 50
         self.running = False
@@ -143,6 +360,10 @@ class Game:
         self.score = 0
         # this number is fairly arbitrary - just move the player off the bottom of the screen a bit based on the height of the player
         self.player.rect.y = self.screen_height - self.player.rect.height * 2
+
+        font = pygame.font.Font(None, 30)
+        text = font.render("Lives: " + str(player.lives), True, (255, 255, 255))
+        screen.blit(text, (screen.get_width() - 150, 30))
 
     def poll(self):
         for event in pygame.event.get():
