@@ -8,6 +8,7 @@ Last Modified: Feb 24, 2023
 import pygame
 import random
 import time
+import os
 
 WIDTH = 840
 HEIGHT = 680
@@ -17,6 +18,17 @@ multiBulletCoordinates = ((2, 17), (16, 8), (54, 8), (68, 17))
 start_time = None
 shield_start_time = None
 multi_shot_start_time = None
+background_image = pygame.image.load("galaxy.jpg")
+background_image = pygame.transform.scale(background_image, (840, 680))
+
+
+# code to play background music
+pygame.mixer.init()
+theme_song = "Wallpaper.mp3"
+# Play the music infinitely
+pygame.mixer.music.load(theme_song)
+pygame.mixer.music.play(-1)
+
 
 # --- Game Classes
 
@@ -237,23 +249,17 @@ class PlayerHealth(pygame.sprite.Sprite):
         self.rect.x = x
 
 
-class EnemeyBossHealthBar(pygame.sprite.Sprite):
+class BossHealth(pygame.sprite.Sprite):
     """ This class represents the bullet . """
 
-    def __init__(self, direction = 1):
+    def __init__(self, x):
         # Call the parent class (Sprite) constructor
         super().__init__()
-
-        self.image = pygame.Surface([4, 10])
-
-        self.image.fill(pygame.color.THECOLORS['black'])
-
+        self.image = pygame.image.load("player_health.png")
+        self.image = pygame.transform.scale(self.image, (20, 20))
         self.rect = self.image.get_rect()
-        self.direction = direction
-
-    def update(self):
-        """ Move the bullet. """
-        self.rect.y -= self.direction * 3
+        self.rect.y = 50
+        self.rect.x = x
 
 
 class SpecialEnemyBossBullets(pygame.sprite.Sprite):
@@ -298,20 +304,24 @@ class Enemy(pygame.sprite.Sprite):
 class EnemyBoss(pygame.sprite.Sprite):
     """ This class represents the enemy boss. """
 
-    def __init__(self, color, screenMeasurment):
+    def __init__(self, screenMeasurment):
         # Call the parent class (Sprite) constructor
         super().__init__()
         self.image = pygame.image.load("boss_ship.png")
         self.image = pygame.transform.scale(self.image, (120, 120))
         self.rect = self.image.get_rect()
         self.movement = 3
+        self.vertical_movement = 1
         self.screenMeasurment = screenMeasurment
+        self.health = 5
 
-    def update(self):
+    def update(self, player):
         """ Move the enemy bosss. """
-        if self.rect.x >= self.screenMeasurment[0] or self.rect.x <= 0:
-            self.movement *= -1
-        self.rect.x += self.movement
+        # seeking the player
+        if player.rect.x > self.rect.x:
+            self.rect.x += self.movement
+        elif player.rect.x < self.rect.x:
+            self.rect.x -= self.movement
 
 
 class Game:
@@ -323,13 +333,15 @@ class Game:
         # Initialize Pygame
         self.won = False
         pygame.init()
+        pygame.mixer.init()
         # --- Create the window
         # Set the height and width of the screen
         self.screen_width = WIDTH
         self.screen_height = HEIGHT
         self.screen = screen
 
-        self.num_blocks = 50
+        self.bring_boss = False
+        self.num_blocks = 1
         self.quit = False
         self.shoot_chance = 1
         self.score = 0
@@ -339,6 +351,11 @@ class Game:
         # Create the player's ship
         self.player = Player()
         self.player.rect.y = self.screen_height - self.player.rect.height * 2
+
+        # Create the final boss
+        self.enemy_boss = EnemyBoss((self.screen_width, self.screen_height))
+        self.enemy_boss.rect.x = self.screen_width / 2
+        self.enemy_boss.rect.y = 50
 
         # --- Sprite lists
 
@@ -360,6 +377,16 @@ class Game:
         # List of player health hearts
         self.player_health_list = pygame.sprite.Group()
 
+        # List of enemy boss health hearts
+        self.enemy_boss_health_list = pygame.sprite.Group()
+
+        # List for the player
+        self.player_list = pygame.sprite.Group()
+
+        # List for the final enemy boss
+        self.final_boss_list = pygame.sprite.Group()
+        self.final_boss_list.add(self.enemy_boss)
+
         # --- Create the sprites
 
         for i in range(self.num_blocks):
@@ -369,13 +396,14 @@ class Game:
 
             # Set a random location for the block
             enemyBlock.rect.x = random.randrange(self.screen_width)
-            enemyBlock.rect.y = random.randint(0, HEIGHT / 2)
+            enemyBlock.rect.y = random.randint(0, int(HEIGHT / 2))
 
             # Add the block to the list of objects
             self.enemy_list.add(enemyBlock)
             self.all_sprites_list.add(enemyBlock)
 
         self.all_sprites_list.add(self.player)
+        self.player_list.add(self.player)
 
     def poll(self):
         for event in pygame.event.get():
@@ -398,6 +426,15 @@ class Game:
             if random.randint(1,1000) <= self.shoot_chance:
                 x = (enemy.rect.x + enemy.rect.width / 2) - 8
                 y = (enemy.rect.y + enemy.rect.height) - 13
+                bullet = Bullet(x, y, -1)
+                self.enemy_bullet_list.add(bullet)
+                self.all_sprites_list.add(bullet)
+
+        # Shoot final boss bullet
+        for boss in self.final_boss_list:
+            if self.bring_boss and random.randint(1, 2) == self.shoot_chance:
+                x = (boss.rect.x + boss.rect.width / 2) - 8
+                y = (boss.rect.y + boss.rect.height) - 13
                 bullet = Bullet(x, y, -1)
                 self.enemy_bullet_list.add(bullet)
                 self.all_sprites_list.add(bullet)
@@ -444,6 +481,7 @@ class Game:
 
         # Call the update() method on all the sprites
         self.all_sprites_list.update()
+        self.final_boss_list.update(self.player)
 
         # Calculate mechanics for each bullet
         for bullet in self.bullet_list:
@@ -474,6 +512,12 @@ class Game:
             self.all_sprites_list.remove(block)
         if not self.player.shield: self.player.lives -= len(block_hit_list)
 
+        boss_hit_list = pygame.sprite.spritecollide(self.enemy_boss, self.player_list, False)
+        for attack in boss_hit_list:
+            self.enemy_boss.health -= len(boss_hit_list)
+            if self.enemy_boss.health <= 0:
+                self.final_boss_list.remove(attack)
+
         # Calculate mechanics for each pack
         block_hit_list = pygame.sprite.spritecollide(self.player, self.pack_list, True)
 
@@ -503,8 +547,13 @@ class Game:
         if self.player.lives <= 0: continueGame = False
         self.player_health_list.empty()
         for i in range(self.player.lives): self.player_health_list.add(PlayerHealth(100 + (50*i)))
+        for i in range(self.enemy_boss.health):
+            self.enemy_boss_health_list.add(BossHealth(100 + (50*i)))
 
-        if 0 == len(self.enemy_list):
+        if len(self.enemy_list) == 0:
+            self.bring_boss = True
+
+        if 0 == len(self.final_boss_list):
             self.won = True
             continueGame = False
 
@@ -519,11 +568,15 @@ class Game:
 
     def draw(self):
         # Clear the screen
-        self.screen.fill(pygame.color.THECOLORS['white'])
+        # self.screen.fill(pygame.color.THECOLORS['white'])
+        self.screen.blit(background_image, (0, 0))
 
         # Draw all the spites
         self.all_sprites_list.draw(self.screen)
         self.player_health_list.draw(self.screen)
+        if self.bring_boss:
+            self.final_boss_list.draw(self.screen)
+            self.enemy_boss_health_list.draw(self.screen)
 
         # Draw Shield
         if self.player.shield:
@@ -536,7 +589,9 @@ class Game:
         min, sec = divmod(elapsed_time, 60)
         timeText = font.render("Time | " + str(int(min)) + ":" + str(int(sec)), True, (0, 0, 255))
         livesText = font.render("Lives | ", True, (255, 0, 0))
-
+        enemylivesText = font.render("Lives | ", True, (255, 0, 0))
+        if self.bring_boss:
+            screen.blit(enemylivesText, (20, 50))
         screen.blit(livesText, (20, HEIGHT - 50))
         screen.blit(timeText, (20, HEIGHT - 80))
 
