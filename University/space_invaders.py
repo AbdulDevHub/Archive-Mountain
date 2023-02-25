@@ -10,6 +10,7 @@ import random
 WIDTH = 840
 HEIGHT = 680
 screen = pygame.display.set_mode([WIDTH, HEIGHT])
+specialBulletCoordinates = ((35,-20),(35,-20),(35,-20),(35,-20))
 
 # --- Game Classes
 
@@ -53,14 +54,30 @@ class Player(pygame.sprite.Sprite):
         self.activeBuffs = []
 
 
-def game_over():
-    screen.fill((0, 0, 0))
+def gameOver(won):
     font = pygame.font.SysFont('arial', 40)
-    title = font.render('You Lose', True, (255, 255, 255))
-    screen.blit(title, (WIDTH/2 - title.get_width()/2, HEIGHT/2 - title.get_height()/3))
+    endPhrase = "You Lost!"
+    color = (255,0,0)
+    if won:
+        endPhrase = "You Won!"
+        color = (124,252,0)
+
+    title = font.render("GAME OVER", True, (0, 0, 0))
+    endStatus = font.render(endPhrase, True, color)
+    screen.blit(title, (WIDTH/2 - title.get_width()/2, HEIGHT/2 - title.get_height()/3 - 20))
+    screen.blit(endStatus, (WIDTH/2 - endStatus.get_width()/2, HEIGHT/2 - endStatus.get_height()/3 + 20))
+
     pygame.display.update()
     pygame.time.wait(2000)
     pygame.quit()
+
+
+def playerHealth(lives, spriteList):
+    font = pygame.font.Font(None, 30)
+    text = font.render("Lives | " + str(lives), True, (255, 0, 0))
+    screen.blit(text, (10, HEIGHT - 50))
+    spriteList.empty()
+    for i in range(lives): spriteList.add(PlayerHealth(100 + (50*i)))
 
 
 def difficultyScreen():
@@ -76,14 +93,28 @@ def difficultyScreen():
 class Bullet(pygame.sprite.Sprite):
     """ This class represents the bullet . """
 
-    def __init__(self, direction = 1):
+    def __init__(self, x, y, direction=1, bullet_type="normal", scatter_dir=0):
         # Call the parent class (Sprite) constructor
         super().__init__()
 
+        # Player Bullet
         image = "normal_bullet.png"
         image_width = 10
         image_heigth = 25
-        if direction == -1:
+
+        # Special Player Bullet
+        if not bullet_type == "normal":
+            if bullet_type == "scatter":
+                image = "scatter_bullet.png"
+                image_width = 15
+                image_heigth = 15
+            elif bullet_type == "laser":
+                image = "laser_bullet.png"
+                image_width = 30
+                image_heigth = 40
+
+        # Enemy Bullet
+        elif direction == -1:
             image = "enemy_bullet.png"
             image_width = 15
             image_heigth = 15
@@ -91,11 +122,21 @@ class Bullet(pygame.sprite.Sprite):
         self.image = pygame.image.load(image)
         self.image = pygame.transform.scale(self.image, (image_width, image_heigth))
         self.rect = self.image.get_rect()
+
         self.direction = direction
+        self.rect.x = x
+        self.rect.y = y
+        self.bulletType = bullet_type
+        self.scatterDir = scatter_dir
 
     def update(self):
         """ Move the bullet. """
-        self.rect.y -= self.direction * 3
+        if self.bulletType == "normal": self.rect.y -= self.direction * 3
+        elif self.bulletType == "multi-shot": self.rect.y -= 3
+        elif self.bulletType == "laser": self.rect.y -= 1
+        elif self.bulletType == "scatter":
+            self.rect.y -= 3
+            self.rect.x += self.scatterDir
 
 
 class Sheild(pygame.sprite.Sprite):
@@ -117,7 +158,7 @@ class Sheild(pygame.sprite.Sprite):
         self.rect.y -= self.direction * 3
 
 
-class Asteroid(pygame.sprite.Sprite):
+class Asteroid(Bullet):
     """ This class represents the bullet . """
 
     def __init__(self, direction = 1):
@@ -177,25 +218,15 @@ class Pack(pygame.sprite.Sprite):
 class PlayerHealth(pygame.sprite.Sprite):
     """ This class represents the bullet . """
 
-    def __init__(self, player, direction = 1):
+    def __init__(self, x):
         # Call the parent class (Sprite) constructor
         super().__init__()
 
-        self.image = pygame.Surface([4, 10])
-
-        self.image.fill(pygame.color.THECOLORS['black'])
-
+        self.image = pygame.image.load("player_health.png")
+        self.image = pygame.transform.scale(self.image, (20, 20))
         self.rect = self.image.get_rect()
-        self.direction = direction
-        self.player = player
-
-    def update(self):
-        """ Move the bullet. """
-        self.rect.y -= self.direction * 3
-
-        font = pygame.font.Font(None, 30)
-        text = font.render("Lives: " + str(self.player.lives), True, (255, 255, 255))
-        screen.blit(text, (screen.get_width() - 150, 30))
+        self.rect.y = HEIGHT - 50
+        self.rect.x
 
 
 class Timer(pygame.sprite.Sprite):
@@ -320,6 +351,7 @@ class Game:
         """ Set up the game on creation. """
 
         # Initialize Pygame
+        self.won = False
         pygame.init()
         # --- Create the window
         # Set the height and width of the screen
@@ -329,6 +361,7 @@ class Game:
 
         self.num_blocks = 50
         self.running = False
+        self.quit = False
         self.shoot_chance = 1
 
         # --- Sprite lists
@@ -348,6 +381,9 @@ class Game:
         # List of every pack
         self.pack_list = pygame.sprite.Group()
 
+        # List of player health hearts
+        self.player_health__list = pygame.sprite.Group()
+
         # --- Create the sprites
 
         for i in range(self.num_blocks):
@@ -357,8 +393,7 @@ class Game:
 
             # Set a random location for the block
             enemyBlock.rect.x = random.randrange(self.screen_width)
-            enemyBlock.rect.y = random.randrange(
-                self.screen_height / 2)  # don't go all the way down
+            enemyBlock.rect.y = random.randint(0, HEIGHT / 2)
 
             # Add the block to the list of objects
             self.enemy_list.add(enemyBlock)
@@ -377,13 +412,11 @@ class Game:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 self.running = False
+                self.quit = True
 
             elif event.type == pygame.MOUSEBUTTONDOWN:
                 # Fire a bullet if the user clicks the mouse button
-                bullet = Bullet()
-                # Set the bullet so it is where the player is
-                bullet.rect.x = self.player.rect.x + 35
-                bullet.rect.y = self.player.rect.y - 20
+                bullet = Bullet(self.player.rect.x + 35, self.player.rect.y - 20)
                 # Add the bullet to the lists
                 self.all_sprites_list.add(bullet)
                 self.bullet_list.add(bullet)
@@ -395,11 +428,40 @@ class Game:
         # Shoot enemy bullet
         for enemy in self.enemy_list:
             if random.randint(1,1000) <= self.shoot_chance:
-                bullet = Bullet(-1)
-                bullet.rect.x = (enemy.rect.x + enemy.rect.width / 2) - 8
-                bullet.rect.y = (enemy.rect.y + enemy.rect.height) - 13
+                x = (enemy.rect.x + enemy.rect.width / 2) - 8
+                y = (enemy.rect.y + enemy.rect.height) - 13
+                bullet = Bullet(x, y, -1)
                 self.enemy_bullet_list.add(bullet)
                 self.all_sprites_list.add(bullet)
+
+        # Shoot special bullets
+        if not self.player.bulletType == "normal":
+            bullet = None
+            if self.player.bulletType == "multi-shot":
+                for coordinate in specialBulletCoordinates:
+                    x = self.player.rect.x + coordinate[0]
+                    y = self.player.rect.y + coordinate[1]
+                    bullet = Bullet(x, y, 1, "scatter")
+                    self.bullet_list.add(bullet)
+                    self.all_sprites_list.add(bullet)
+
+            elif self.player.bulletType == "scatter":
+                for coordinate in specialBulletCoordinates:
+                    x = self.player.rect.x + coordinate[0]
+                    y = self.player.rect.y + coordinate[1]
+                    bullet = Bullet(x, y, 1, "scatter")
+                    self.bullet_list.add(bullet)
+                    self.all_sprites_list.add(bullet)
+
+            elif self.player.bulletType == "laser":
+                x = self.player.rect.x + 35
+                y = self.player.rect.y - 20
+                bullet = Bullet(x, y, 1, "laser")
+                self.bullet_list.add(bullet)
+                self.all_sprites_list.add(bullet)
+
+            self.player.bulletType = "normal"
+
 
         # Call the update() method on all the sprites
         self.all_sprites_list.update()
@@ -430,11 +492,11 @@ class Game:
         # Calculate mechanics for each pack
         block_hit_list = pygame.sprite.spritecollide(self.player, self.pack_list, True)
 
-        # For each block hit, remove the pack and enhance the player
-        for block in block_hit_list:
-            self.pack_list.remove(block)
-            self.all_sprites_list.remove(block)
-            self.player.activeBuffs.append(block.type)
+        # For each pack collected, remove the pack and enhance the player
+        for pack in block_hit_list:
+            self.pack_list.remove(pack)
+            self.all_sprites_list.remove(pack)
+            self.player.activeBuffs.append(pack.type)
 
         # Remove the pack if it flies up off the screen
         for pack in self.pack_list:
@@ -442,22 +504,22 @@ class Game:
                 self.pack_list.remove(pack)
                 self.all_sprites_list.remove(pack)
 
-        # Calculate mechanics for enemy bullet
+        # Determine game sucess or failure
         collided_bullets = pygame.sprite.spritecollide(self.player, self.enemy_bullet_list, True)
-        if len(collided_bullets) > 0:
-            print("You Lose!!!")
-            continueGame = False
+        if len(collided_bullets) > 0: self.player.lives -= 1
 
-        # If enemy hits bottom, reduce score and/or fail player
+        # If enemy hits bottom, reduce life and score
         for enemy in self.enemy_list:
             if enemy.rect.y > self.screen_height:
-                self.score -= 1
-            if self.score < 0:
-                print("You Lose!!!")
-                continueGame = False
-                break
+                self.player.lives -= 1
+                print(collided_bullets, collided_bullets[0].rect.y)
+
+        playerHealth(self.player.lives, self.player_health__list)
+        if self.player.lives <= 0: continueGame = False
+
         if 0 == len(self.enemy_list):
             print(f"You Win!!! Your score is {self.score}!")
+            self.won = True
             continueGame = False
 
         return continueGame
@@ -468,6 +530,7 @@ class Game:
 
         # Draw all the spites
         self.all_sprites_list.draw(self.screen)
+        self.player_health__list.draw(self.screen)
 
     def run(self):
         self.running = True
@@ -491,10 +554,10 @@ class Game:
             # --- Limit the frames per second
             clock.tick(60)
 
+        if quit: pygame.quit()
+        else: gameOver(self.won)
+
 
 if __name__ == '__main__':
     g = Game()
-    print("starting...")
     g.run()
-    print("shuting down...")
-    pygame.quit()
