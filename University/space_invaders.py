@@ -2,33 +2,24 @@
 Title: Space Invaders
 Description: Interactive and Enhanced Game of Space Invaders
 Authors: Abdul Khan & Uzair
-Last Modified: Feb 24, 2023
+Last Modified: Feb 28, 2023
 """
 
 import pygame
 import random
 import time
-import os
+from tkinter import *
 
 WIDTH = 840
 HEIGHT = 680
 screen = pygame.display.set_mode([WIDTH, HEIGHT])
+
 scatterBulletCoordinates = ((-2, 20), (13, 10), (50, 10), (65, 20))
 multiBulletCoordinates = ((2, 17), (16, 8), (54, 8), (68, 17))
-start_time = None
-shield_start_time = None
-multi_shot_start_time = None
-background_image = pygame.image.load("galaxy.jpg")
-background_image = pygame.transform.scale(background_image, (840, 680))
+bossBulletCoordinates = ((10, 187), (57, 216), (100, 225), (166, 260), (233, 225), (277, 216), (325, 187))
 
-
-# code to play background music
-pygame.mixer.init()
-theme_song = "Wallpaper.mp3"
-# Play the music infinitely
-pygame.mixer.music.load(theme_song)
-pygame.mixer.music.play(-1)
-
+start_time = shield_start_time = multi_shot_start_time = None
+difficulty = 1
 
 # --- Game Classes
 
@@ -45,6 +36,7 @@ class Player(pygame.sprite.Sprite):
         self.image = pygame.image.load("player_ship.png")
         self.image = pygame.transform.scale(self.image, (80, 80))
         self.rect = self.image.get_rect()
+        self.rect.y = HEIGHT - self.rect.height * 2
 
         self.bulletType = ["normal"]
         self.asteroid = 0
@@ -61,6 +53,7 @@ class Player(pygame.sprite.Sprite):
 
         # Set the player x position to the mouse x position
         self.rect.x = pos[0]
+        if self.rect.x > WIDTH: self.rect.x = WIDTH
 
         # Give player buffs depending on packs collected
         self.lives += self.activeBuffs.count("Health")
@@ -97,18 +90,18 @@ def gameOver(won, score):
     scoreTime_font = pygame.font.SysFont('arial', 40)
 
     endPhrase = "You Lost!"
-    color = (255,0,0)
+    color = (255,70,70)
     if won:
         endPhrase = "You Won!"
-        color = (124,252,0)
+        color = (20,255,122)
 
-    title = title_font.render("GAME OVER", True, (0, 0, 255))
+    title = title_font.render("GAME OVER", True, (0, 255, 255))
     endStatus = endPhrase_font.render(endPhrase, True, color)
-    scoreOutput = scoreTime_font.render("Your Score | " + str(score), True, (0, 0, 0))
+    scoreOutput = scoreTime_font.render("Your Score | " + str(score), True, (255, 255, 255))
 
     elapsed_time = time.time() - start_time
     min, sec = divmod(elapsed_time, 60)
-    timeOutput = scoreTime_font.render("Your Time | " + str(int(min)) + ":" + str(int(sec)), True, (0, 0, 0))
+    timeOutput = scoreTime_font.render("Your Time | " + str(int(min)) + ":" + str(int(sec)), True, (255, 255, 255))
 
     screen.blit(title, (WIDTH/2 - title.get_width()/2, HEIGHT/2 - title.get_height()/3 - 160))
     screen.blit(endStatus, (WIDTH/2 - endStatus.get_width()/2, HEIGHT/2 - endStatus.get_height()/3 - 70))
@@ -121,13 +114,32 @@ def gameOver(won, score):
 
 
 def difficultyScreen():
-    screen.fill((0, 0, 0))
-    font = pygame.font.SysFont('arial', 40)
-    title = font.render('You Lose', True, (255, 255, 255))
-    screen.blit(title, (WIDTH/2 - title.get_width()/2, HEIGHT/2 - title.get_height()/3))
-    pygame.display.update()
-    pygame.time.wait(2000)
-    pygame.quit()
+    root = Tk()
+    root.title("Select Difficulty")
+    level = 1
+
+    def close_window(input):
+        nonlocal level
+        level = input
+        root.destroy()
+
+    easy_btn = Button(root, text="Easy", width=10, command=lambda: close_window(1), bg="green", fg="white")
+    easy_btn.pack(side=LEFT, padx=5, pady=10)
+
+    med_btn = Button(root, text="Medium", width=10, command=lambda: close_window(2), bg="yellow", fg="black")
+    med_btn.pack(side=LEFT, padx=5, pady=10)
+
+    hard_btn = Button(root, text="Hard", width=10, command=lambda: close_window(3), bg="red", fg="white")
+    hard_btn.pack(side=LEFT, padx=5, pady=10)
+
+    root.mainloop()
+    return level
+
+
+def playMusic():
+    pygame.mixer.init()
+    pygame.mixer.music.load("game_music.mp3")
+    pygame.mixer.music.play(-1)
 
 
 class Bullet(pygame.sprite.Sprite):
@@ -150,8 +162,8 @@ class Bullet(pygame.sprite.Sprite):
                 image_heigth = 15
             elif bullet_type == "laser":
                 image = "laser_bullet.png"
-                image_width = 15
-                image_heigth = 40
+                image_width = 10
+                image_heigth = 50
             elif bullet_type == "asteroid":
                 image = "asteroid.png"
                 image_width = 40
@@ -183,18 +195,20 @@ class Bullet(pygame.sprite.Sprite):
             self.rect.y -= 3
             self.rect.x += self.scatterDir
         elif self.bulletType == "asteroid":
+            x = random.randint(3,5)
+            y = random.randint(3,5)
             if self.rightAsteroid and self.rect.y <= HEIGHT/2:  # Top Right
-                self.rect.y -= random.randint(1,5)
-                self.rect.x -= random.randint(1,5)
+                self.rect.y -= y
+                self.rect.x -= x
             elif self.rightAsteroid and self.rect.y > HEIGHT/2:  # Bottom Right
-                self.rect.y += random.randint(1,5)
-                self.rect.x -= random.randint(1,5)
+                self.rect.y += y
+                self.rect.x -= x
             elif (not self.rightAsteroid) and self.rect.y <= HEIGHT/2:  # Top Left
-                self.rect.y += random.randint(1,5)
-                self.rect.x += random.randint(1,5)
+                self.rect.y += y
+                self.rect.x += x
             else:  # Bottom Left
-                self.rect.y -= random.randint(1,5)
-                self.rect.x += random.randint(1,5)
+                self.rect.y -= y
+                self.rect.x += x
 
 
 class Pack(pygame.sprite.Sprite):
@@ -249,53 +263,41 @@ class PlayerHealth(pygame.sprite.Sprite):
         self.rect.x = x
 
 
-class BossHealth(pygame.sprite.Sprite):
-    """ This class represents the bullet . """
+class EnemyBossHealthBar(pygame.sprite.Sprite):
 
-    def __init__(self, x):
-        # Call the parent class (Sprite) constructor
-        super().__init__()
-        self.image = pygame.image.load("player_health.png")
-        self.image = pygame.transform.scale(self.image, (20, 20))
-        self.rect = self.image.get_rect()
-        self.rect.y = 50
-        self.rect.x = x
-
-
-class SpecialEnemyBossBullets(pygame.sprite.Sprite):
-    """ enemy boss bullets x4 """
-
-    def __init__(self, direction = 1):
-        # Call the parent class (Sprite) constructor
+    def __init__(self, enemyBoss):
         super().__init__()
 
-        self.image = pygame.Surface([4, 10])
-
-        self.image.fill(pygame.color.THECOLORS['black'])
-
+        self.width, self.height = 33 * 15, 15
+        self.image = pygame.Surface([self.width, self.height])
+        self.image.fill(pygame.color.THECOLORS['red'])
         self.rect = self.image.get_rect()
-        self.direction = direction
+        self.rect.x = 222
+        self.rect.y = 52.5
+
+        self.enemyBoss = enemyBoss
 
     def update(self):
-        """ Move the bullet. """
-        self.rect.y -= self.direction * 3
+        # Shrink the red health bar
+        self.width = self.enemyBoss.health * 15 / difficulty
+        self.image = pygame.Surface([self.width, self.height])
+        self.image.fill(pygame.color.THECOLORS['red'])
 
 
 class Enemy(pygame.sprite.Sprite):
     """ This class represents the enemy. """
 
-    def __init__(self, color, screenMeasurment):
+    def __init__(self):
         # Call the parent class (Sprite) constructor
         super().__init__()
         self.image = pygame.image.load("enemy_ship.png")
         self.image = pygame.transform.scale(self.image, (50, 40))
         self.rect = self.image.get_rect()
         self.movement = 3
-        self.screenMeasurment = screenMeasurment
 
     def update(self):
         """ Move the enemy. """
-        if self.rect.x >= self.screenMeasurment[0] or self.rect.x <= 0:
+        if self.rect.x >= WIDTH or self.rect.x <= 0:
             self.rect.y += self.rect.height
             self.movement *= -1
         self.rect.x += self.movement
@@ -304,24 +306,34 @@ class Enemy(pygame.sprite.Sprite):
 class EnemyBoss(pygame.sprite.Sprite):
     """ This class represents the enemy boss. """
 
-    def __init__(self, screenMeasurment):
+    def __init__(self, player):
         # Call the parent class (Sprite) constructor
         super().__init__()
         self.image = pygame.image.load("boss_ship.png")
-        self.image = pygame.transform.scale(self.image, (120, 120))
+        self.image = pygame.transform.scale(self.image, (350, 300))
         self.rect = self.image.get_rect()
-        self.movement = 3
-        self.vertical_movement = 1
-        self.screenMeasurment = screenMeasurment
-        self.health = 5
 
-    def update(self, player):
-        """ Move the enemy bosss. """
-        # seeking the player
-        if player.rect.x > self.rect.x:
-            self.rect.x += self.movement
-        elif player.rect.x < self.rect.x:
-            self.rect.x -= self.movement
+        self.rect.x = WIDTH/2 - 175
+        self.rect.y = -300
+        self.rect.height = 200
+        self.rect.width = 350
+
+        self.movement = 3
+        self.player = player
+        self.health = 33 * difficulty
+        self.status = "Inactive"
+
+    def update(self):
+        """ Move the enemy boss. """
+        if self.status == "Descend": self.rect.y += 3
+        elif self.status == "Active":
+            # seeking the player
+            distance = abs(self.player.rect.x - self.rect.x - 135)
+
+            # Only move if the player is far enough away
+            if distance >= 3:
+                if self.player.rect.x - 135 > self.rect.x: self.rect.x += self.movement
+                elif self.player.rect.x - 135 < self.rect.x: self.rect.x -= self.movement
 
 
 class Game:
@@ -333,29 +345,24 @@ class Game:
         # Initialize Pygame
         self.won = False
         pygame.init()
-        pygame.mixer.init()
         # --- Create the window
         # Set the height and width of the screen
         self.screen_width = WIDTH
         self.screen_height = HEIGHT
         self.screen = screen
 
-        self.bring_boss = False
-        self.num_blocks = 1
+        background_image = pygame.image.load("galaxy_background.jpg")
+        self.background_image = pygame.transform.scale(background_image, (WIDTH, HEIGHT))
+
+        self.numEnemiesStart = 33
         self.quit = False
         self.shoot_chance = 1
         self.score = 0
+        self.totalEnimies = 33 * difficulty
         global start_time
         start_time = time.time()
-
-        # Create the player's ship
-        self.player = Player()
-        self.player.rect.y = self.screen_height - self.player.rect.height * 2
-
-        # Create the final boss
-        self.enemy_boss = EnemyBoss((self.screen_width, self.screen_height))
-        self.enemy_boss.rect.x = self.screen_width / 2
-        self.enemy_boss.rect.y = 50
+        self.player = Player()  # Create the player's ship
+        self.enemyBoss = EnemyBoss(self.player)
 
         # --- Sprite lists
 
@@ -377,33 +384,22 @@ class Game:
         # List of player health hearts
         self.player_health_list = pygame.sprite.Group()
 
-        # List of enemy boss health hearts
-        self.enemy_boss_health_list = pygame.sprite.Group()
-
-        # List for the player
-        self.player_list = pygame.sprite.Group()
-
-        # List for the final enemy boss
-        self.final_boss_list = pygame.sprite.Group()
-        self.final_boss_list.add(self.enemy_boss)
-
         # --- Create the sprites
-
-        for i in range(self.num_blocks):
+        self.totalEnimies -= self.numEnemiesStart
+        for i in range(self.numEnemiesStart):
             # This represents a block
-            enemyBlock = Enemy(pygame.color.THECOLORS['blue'],
-                               (self.screen_width, self.screen_height))
+            enemyBlock = Enemy()
 
             # Set a random location for the block
             enemyBlock.rect.x = random.randrange(self.screen_width)
-            enemyBlock.rect.y = random.randint(0, int(HEIGHT / 2))
+            enemyBlock.rect.y = random.randint(0, HEIGHT / 2)
 
             # Add the block to the list of objects
             self.enemy_list.add(enemyBlock)
             self.all_sprites_list.add(enemyBlock)
 
         self.all_sprites_list.add(self.player)
-        self.player_list.add(self.player)
+        self.all_sprites_list.add(self.enemyBoss)
 
     def poll(self):
         for event in pygame.event.get():
@@ -430,14 +426,32 @@ class Game:
                 self.enemy_bullet_list.add(bullet)
                 self.all_sprites_list.add(bullet)
 
-        # Shoot final boss bullet
-        for boss in self.final_boss_list:
-            if self.bring_boss and random.randint(1, 2) == self.shoot_chance:
-                x = (boss.rect.x + boss.rect.width / 2) - 8
-                y = (boss.rect.y + boss.rect.height) - 13
-                bullet = Bullet(x, y, -1)
-                self.enemy_bullet_list.add(bullet)
-                self.all_sprites_list.add(bullet)
+        # Activate boss and shoot his bullets
+        if len(self.enemy_list) == 0:
+            if self.enemyBoss.status != "Active":
+                self.enemyBoss.status = "Descend"
+                if self.enemyBoss.rect.y >= 75:
+                    self.enemyBoss.status = "Active"
+                    self.all_sprites_list.add(EnemyBossHealthBar(self.enemyBoss))
+            if self.enemyBoss.status == "Active":
+                for i, coordinate in enumerate(bossBulletCoordinates, start=1):
+                    x = self.enemyBoss.rect.x + coordinate[0]
+                    y = self.enemyBoss.rect.y + coordinate[1]
+                    bullet = Bullet(x, y, -1)
+                    firingChance = random.randint(0, 5000)
+
+                    if i == 4 and firingChance <= 75:  # Middle/Main Cannon - 1.5% firing chance
+                        self.all_sprites_list.add(bullet)
+                        self.enemy_bullet_list.add(bullet)
+                    elif (i == 3 or i == 5) and firingChance <= 50:  # Inner Cannons - 1% firing chance
+                        self.all_sprites_list.add(bullet)
+                        self.enemy_bullet_list.add(bullet)
+                    elif (i == 2 or i == 6) and firingChance <= 25:  # Secondary Cannons - 0.5% firing chance
+                        self.all_sprites_list.add(bullet)
+                        self.enemy_bullet_list.add(bullet)
+                    elif (i == 1 or i == 7) and firingChance <= 12:  # Outer Cannons - 0.24% firing chance
+                        self.all_sprites_list.add(bullet)
+                        self.enemy_bullet_list.add(bullet)
 
         # Shoot special bullets
         if not self.player.bulletType == ["normal"]:
@@ -481,7 +495,6 @@ class Game:
 
         # Call the update() method on all the sprites
         self.all_sprites_list.update()
-        self.final_boss_list.update(self.player)
 
         # Calculate mechanics for each bullet
         for bullet in self.bullet_list:
@@ -506,19 +519,25 @@ class Game:
                 self.bullet_list.remove(bullet)
                 self.all_sprites_list.remove(bullet)
 
+        # If enemy ship collides with player ship
         block_hit_list = pygame.sprite.spritecollide(self.player, self.enemy_list, False)
         for block in block_hit_list:
             self.enemy_list.remove(block)
             self.all_sprites_list.remove(block)
         if not self.player.shield: self.player.lives -= len(block_hit_list)
 
-        boss_hit_list = pygame.sprite.spritecollide(self.enemy_boss, self.player_list, False)
-        for attack in boss_hit_list:
-            self.enemy_boss.health -= len(boss_hit_list)
-            if self.enemy_boss.health <= 0:
-                self.final_boss_list.remove(attack)
+        boss_hit_list = pygame.sprite.spritecollide(self.enemyBoss, self.bullet_list, True)
+        if self.enemyBoss.status == "Active":
+            for block in boss_hit_list:
+                packChance = random.randint(0, 30)
+                if packChance <= 3:
+                    pack = Pack(packChance, block.rect.x, block.rect.y + 50)
+                    self.pack_list.add(pack)
+                    self.all_sprites_list.add(pack)
+            self.enemyBoss.health -= len(boss_hit_list)
+            print(self.enemyBoss.health)
 
-        # Calculate mechanics for each pack
+        # Remove all collected packs
         block_hit_list = pygame.sprite.spritecollide(self.player, self.pack_list, True)
 
         # For each pack collected, remove the pack and enhance the player
@@ -544,19 +563,19 @@ class Game:
         if not self.player.shield: self.player.lives -= len(collided_bullets)
         for bullet in collided_bullets: self.all_sprites_list.remove(bullet)
 
-        if self.player.lives <= 0: continueGame = False
+        if self.player.lives <= 0:
+            self.player.lives = 0
+            continueGame = False
         self.player_health_list.empty()
         for i in range(self.player.lives): self.player_health_list.add(PlayerHealth(100 + (50*i)))
-        for i in range(self.enemy_boss.health):
-            self.enemy_boss_health_list.add(BossHealth(100 + (50*i)))
 
-        if len(self.enemy_list) == 0:
-            self.bring_boss = True
-
-        if 0 == len(self.final_boss_list):
+        if len(self.enemy_list) == 0 and self.enemyBoss.health <= 0:
+            self.enemyBoss.status = "Dead"
+            self.enemyBoss.health = 0
             self.won = True
             continueGame = False
 
+        # Remove all sprites from the screen except the player and his health sprites
         if not continueGame:
             new_list = pygame.sprite.Group()
             for sprite in self.all_sprites_list:
@@ -569,14 +588,11 @@ class Game:
     def draw(self):
         # Clear the screen
         # self.screen.fill(pygame.color.THECOLORS['white'])
-        self.screen.blit(background_image, (0, 0))
+        self.screen.blit(self.background_image, (0, 0))
 
-        # Draw all the spites
+        # Draw all the sprites
         self.all_sprites_list.draw(self.screen)
         self.player_health_list.draw(self.screen)
-        if self.bring_boss:
-            self.final_boss_list.draw(self.screen)
-            self.enemy_boss_health_list.draw(self.screen)
 
         # Draw Shield
         if self.player.shield:
@@ -587,13 +603,13 @@ class Game:
         font = pygame.font.Font(None, 30)
         elapsed_time = time.time() - start_time
         min, sec = divmod(elapsed_time, 60)
-        timeText = font.render("Time | " + str(int(min)) + ":" + str(int(sec)), True, (0, 0, 255))
-        livesText = font.render("Lives | ", True, (255, 0, 0))
-        enemylivesText = font.render("Lives | ", True, (255, 0, 0))
-        if self.bring_boss:
-            screen.blit(enemylivesText, (20, 50))
+        timeText = font.render("Time | " + str(int(min)) + ":" + str(int(sec)), True, (0, 255, 255))
+        livesText = font.render("Lives | ", True, (255,70,70))
+        enemyLivesText = font.render("Imperial Destroyer | ", True, (255,70,70))
+
         screen.blit(livesText, (20, HEIGHT - 50))
         screen.blit(timeText, (20, HEIGHT - 80))
+        if self.enemyBoss.status == "Active": screen.blit(enemyLivesText, (20, 50))
 
     def run(self):
         # Used to manage how fast the screen updates
@@ -610,9 +626,13 @@ class Game:
             if self.quit: pygame.quit()
             if not resume: break
 
-        gameOver(self.won, self.score + (self.player.lives * 5))
+        bossScore = 0
+        if self.enemyBoss.status == "Active": bossScore = (33 * difficulty) - self.enemyBoss.health
+        gameOver(self.won, self.score + (self.player.lives * 5) + bossScore)
 
 
 if __name__ == '__main__':
+    difficulty = difficultyScreen()
+    playMusic()
     g = Game()
     g.run()
