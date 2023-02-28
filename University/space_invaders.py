@@ -10,15 +10,20 @@ import random
 import time
 from tkinter import *
 
+# Dimensions of the screen
 WIDTH = 840
 HEIGHT = 680
 screen = pygame.display.set_mode([WIDTH, HEIGHT])
 
+# Coordinates of special bullet patterns
 scatterBulletCoordinates = ((-2, 20), (13, 10), (50, 10), (65, 20))
 multiBulletCoordinates = ((2, 17), (16, 8), (54, 8), (68, 17))
 bossBulletCoordinates = ((10, 187), (57, 216), (100, 225), (166, 260), (233, 225), (277, 216), (325, 187))
 
+# Different time frames within the game
 start_time = shield_start_time = multi_shot_start_time = None
+
+# Difficulty level
 difficulty = 1
 
 # --- Game Classes
@@ -84,6 +89,7 @@ class Player(pygame.sprite.Sprite):
                 self.occurence += 1
 
 
+# Function for the end screen of the game
 def gameOver(won, score):
     title_font = pygame.font.SysFont('arial', 80)
     endPhrase_font = pygame.font.SysFont('arial', 60)
@@ -113,6 +119,7 @@ def gameOver(won, score):
     pygame.quit()
 
 
+# Function for the difficulty selector screen in the beginning
 def difficultyScreen():
     root = Tk()
     root.title("Select Difficulty")
@@ -136,9 +143,18 @@ def difficultyScreen():
     return level
 
 
+# Function to play music when the boss is not there
 def playMusic():
     pygame.mixer.init()
     pygame.mixer.music.load("game_music.mp3")
+    pygame.mixer.music.play(-1)
+
+
+# Function to play music when the boss appears
+def playBossMusic():
+    pygame.mixer.init()
+    pygame.mixer.music.stop()
+    pygame.mixer.music.load("Boss_music.mp3")
     pygame.mixer.music.play(-1)
 
 
@@ -263,6 +279,7 @@ class PlayerHealth(pygame.sprite.Sprite):
 
 
 class EnemyBossHealthBar(pygame.sprite.Sprite):
+    """ This class represents the health bar for the enemy boss """
 
     def __init__(self, enemyBoss):
         super().__init__()
@@ -284,7 +301,7 @@ class EnemyBossHealthBar(pygame.sprite.Sprite):
 
 
 class Enemy(pygame.sprite.Sprite):
-    """ This class represents the enemy. """
+    """ This class represents the smaller enemies in the game. """
 
     def __init__(self, spawnEnemy=False):
         # Call the parent class (Sprite) constructor
@@ -364,6 +381,8 @@ class Game:
         self.screen_width = WIDTH
         self.screen_height = HEIGHT
         self.screen = screen
+        self.boss_here = False
+        self.music_playing = False
 
         background_image = pygame.image.load("galaxy_background.jpg")
         self.background_image = pygame.transform.scale(background_image, (WIDTH, HEIGHT))
@@ -440,6 +459,8 @@ class Game:
         if len(self.enemy_list) == 0:
             if self.enemyBoss.status != "Active":
                 self.enemyBoss.status = "Descend"
+                self.boss_here = True
+                self.music_playing = False
                 if self.enemyBoss.rect.y >= 75:
                     self.enemyBoss.status = "Active"
                     self.all_sprites_list.add(EnemyBossHealthBar(self.enemyBoss))
@@ -636,6 +657,12 @@ class Game:
 
         # -------- Main Program Loop -----------
         while True:
+            if self.boss_here and not self.music_playing:
+                playBossMusic()
+                self.music_playing = True
+            elif not self.boss_here and not self.music_playing:
+                playMusic()
+                self.music_playing = True
             self.poll()  # Event processing
             resume = self.update()  # Handle game logic
             self.draw()  # Draw a frame
@@ -651,7 +678,7 @@ class Game:
 
 
 if __name__ == '__main__':
-    difficulty = difficultyScreen()
-    playMusic()
+    # difficulty = difficultyScreen()
     g = Game()
     g.run()
+
