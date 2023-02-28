@@ -168,7 +168,7 @@ class Bullet(pygame.sprite.Sprite):
                 image = "asteroid.png"
                 image_width = 40
                 image_heigth = 30
-                self.rightAsteroid = direction  # 1 Represents True
+                self.rightSpawnAsteroid = direction  # 1 Represents True
 
         # Enemy Bullet
         elif direction == -1:
@@ -186,6 +186,8 @@ class Bullet(pygame.sprite.Sprite):
         self.bulletType = bullet_type
         self.scatterDir = scatter_dir
 
+        if bullet_type == "asteroid": self.asteroidStarty = y
+
     def update(self):
         """ Move the bullet. """
         if self.bulletType == "normal": self.rect.y -= self.direction * 3
@@ -195,20 +197,17 @@ class Bullet(pygame.sprite.Sprite):
             self.rect.y -= 3
             self.rect.x += self.scatterDir
         elif self.bulletType == "asteroid":
-            x = random.randint(3,5)
-            y = random.randint(3,5)
-            if self.rightAsteroid and self.rect.y <= HEIGHT/2:  # Top Right
-                self.rect.y -= y
+            x = random.randint(1,5)
+            y = random.randint(1,5)
+            if self.rightSpawnAsteroid:  # Appears right side - Move Left
                 self.rect.x -= x
-            elif self.rightAsteroid and self.rect.y > HEIGHT/2:  # Bottom Right
-                self.rect.y += y
-                self.rect.x -= x
-            elif (not self.rightAsteroid) and self.rect.y <= HEIGHT/2:  # Top Left
-                self.rect.y += y
+            else:  # Move right
                 self.rect.x += x
-            else:  # Bottom Left
+
+            if self.asteroidStarty <= HEIGHT/2:  # Appears Top - Move down
+                self.rect.y += y
+            else:  # Move up
                 self.rect.y -= y
-                self.rect.x += x
 
 
 class Pack(pygame.sprite.Sprite):
@@ -287,20 +286,35 @@ class EnemyBossHealthBar(pygame.sprite.Sprite):
 class Enemy(pygame.sprite.Sprite):
     """ This class represents the enemy. """
 
-    def __init__(self):
+    def __init__(self, spawnEnemy=False):
         # Call the parent class (Sprite) constructor
         super().__init__()
         self.image = pygame.image.load("enemy_ship.png")
         self.image = pygame.transform.scale(self.image, (50, 40))
         self.rect = self.image.get_rect()
+
+        self.rect.x = random.randrange(WIDTH)
+        self.rect.y = random.randint(0, HEIGHT / 2)
+
+        self.spawnEnemy = False
+        if spawnEnemy:
+            self.spawnEnemy = True
+            self.destination = self.rect.y
+            self.rect.y = -21
+
         self.movement = 3
 
     def update(self):
         """ Move the enemy. """
-        if self.rect.x >= WIDTH or self.rect.x <= 0:
-            self.rect.y += self.rect.height
-            self.movement *= -1
-        self.rect.x += self.movement
+        if self.spawnEnemy:
+            self.rect.y += 3
+            if self.rect.y >= self.destination: self.spawnEnemy = False
+
+        if not self.spawnEnemy:
+            if self.rect.x >= WIDTH or self.rect.x <= 0:
+                self.rect.y += self.rect.height
+                self.movement *= -1
+            self.rect.x += self.movement
 
 
 class EnemyBoss(pygame.sprite.Sprite):
@@ -358,7 +372,7 @@ class Game:
         self.quit = False
         self.shoot_chance = 1
         self.score = 0
-        self.totalEnimies = 33 * difficulty
+        self.totalEnimies = 50 * difficulty
         global start_time
         start_time = time.time()
         self.player = Player()  # Create the player's ship
@@ -387,12 +401,8 @@ class Game:
         # --- Create the sprites
         self.totalEnimies -= self.numEnemiesStart
         for i in range(self.numEnemiesStart):
-            # This represents a block
+            # Place the enemy
             enemyBlock = Enemy()
-
-            # Set a random location for the block
-            enemyBlock.rect.x = random.randrange(self.screen_width)
-            enemyBlock.rect.y = random.randint(0, HEIGHT / 2)
 
             # Add the block to the list of objects
             self.enemy_list.add(enemyBlock)
@@ -484,7 +494,7 @@ class Game:
                 elif bullet == "asteroid":
                     rightAsteroid = random.randint(0, 1)
                     x = -20
-                    y = random.randint(10, HEIGHT - 10)
+                    y = random.randint(40, HEIGHT - 40)
                     if rightAsteroid: x = WIDTH + 20
                     bullet = Bullet(x, y, rightAsteroid, "asteroid")
                     self.bullet_list.add(bullet)
@@ -496,21 +506,31 @@ class Game:
         # Call the update() method on all the sprites
         self.all_sprites_list.update()
 
-        # Calculate mechanics for each bullet
+        # Calculate mechanics for player bullets
         for bullet in self.bullet_list:
-            # See if it hit a block
-            block_hit_list = pygame.sprite.spritecollide(bullet, self.enemy_list, True)
+            # Remove enemies hit by bullet
+            enemy_hit_list = pygame.sprite.spritecollide(bullet, self.enemy_list, True)
 
-            # If block hit, remove the bullet and add to the score
-            if len(block_hit_list) > 0 and not (bullet.bulletType == "laser" or bullet.bulletType == "asteroid"):
-                self.bullet_list.remove(bullet)
-                self.all_sprites_list.remove(bullet)
-                self.score += 1
+            # If enemy hit, remove the bullet and add to the score
+            if len(enemy_hit_list) > 0:
+                self.score += len(enemy_hit_list)
+                print(self.score)
+                if not (bullet.bulletType == "laser" or bullet.bulletType == "asteroid"):
+                    self.bullet_list.remove(bullet)
+                    self.all_sprites_list.remove(bullet)
 
-            for block in block_hit_list:
+            deadEnimies = len(enemy_hit_list)
+            while deadEnimies > 0 and self.totalEnimies > 0:
+                enemy = Enemy(spawnEnemy=True)
+                self.enemy_list.add(enemy)
+                self.all_sprites_list.add(enemy)
+                self.totalEnimies -= 1
+                deadEnimies -= 1
+
+            for enemy in enemy_hit_list:
                 packChance = random.randint(0, 30)
                 if packChance <= 3:
-                    pack = Pack(packChance, block.rect.x, block.rect.y)
+                    pack = Pack(packChance, enemy.rect.x, enemy.rect.y)
                     self.pack_list.add(pack)
                     self.all_sprites_list.add(pack)
 
@@ -528,21 +548,20 @@ class Game:
 
         boss_hit_list = pygame.sprite.spritecollide(self.enemyBoss, self.bullet_list, True)
         if self.enemyBoss.status == "Active":
-            for block in boss_hit_list:
+            for bullet in boss_hit_list:
+                self.all_sprites_list.remove(bullet)
                 packChance = random.randint(0, 30)
                 if packChance <= 3:
-                    pack = Pack(packChance, block.rect.x, block.rect.y + 50)
+                    pack = Pack(packChance, bullet.rect.x, bullet.rect.y + 50)
                     self.pack_list.add(pack)
                     self.all_sprites_list.add(pack)
             self.enemyBoss.health -= len(boss_hit_list)
-            print(self.enemyBoss.health)
 
         # Remove all collected packs
         block_hit_list = pygame.sprite.spritecollide(self.player, self.pack_list, True)
 
         # For each pack collected, remove the pack and enhance the player
         for pack in block_hit_list:
-            self.pack_list.remove(pack)
             self.all_sprites_list.remove(pack)
             self.player.activeBuffs.append(pack.type)
 
@@ -626,9 +645,9 @@ class Game:
             if self.quit: pygame.quit()
             if not resume: break
 
-        bossScore = 0
-        if self.enemyBoss.status == "Active": bossScore = (33 * difficulty) - self.enemyBoss.health
-        gameOver(self.won, self.score + (self.player.lives * 5) + bossScore)
+        bossScore = (33 * difficulty) - self.enemyBoss.health
+        self.score += (self.player.lives * 5) + bossScore
+        gameOver(self.won, self.score)
 
 
 if __name__ == '__main__':
