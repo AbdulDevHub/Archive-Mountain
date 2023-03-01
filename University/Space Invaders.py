@@ -39,7 +39,7 @@ class Player(pygame.sprite.Sprite):
         """ Set up the player on creation. """
         # Call constructor and load image
         super().__init__()
-        self.image = pygame.image.load("playerShip.png")
+        self.image = pygame.image.load("gameAssets/playerShip.png")
         self.image = pygame.transform.scale(self.image, (80, 80))
         self.rect = self.image.get_rect()
 
@@ -136,7 +136,7 @@ class Bullet(pygame.sprite.Sprite):
             imageHeight = 15
 
         # Load bullet image
-        self.image = pygame.image.load(image)
+        self.image = pygame.image.load("gameAssets/" + image)
         self.image = pygame.transform.scale(self.image, (imageWidth, imageHeight))
         self.rect = self.image.get_rect()
 
@@ -200,7 +200,7 @@ class PowerUp(pygame.sprite.Sprite):
             self.type = "Asteroid"
 
         # Load selected image
-        self.image = pygame.image.load(image)
+        self.image = pygame.image.load("gameAssets/" + image)
         self.image = pygame.transform.scale(self.image, (30, 30))
         self.rect = self.image.get_rect()
 
@@ -220,7 +220,7 @@ class PlayerHealth(pygame.sprite.Sprite):
     def __init__(self, x):
         # Call constructor and load image
         super().__init__()
-        self.image = pygame.image.load("playerHearts.png")
+        self.image = pygame.image.load("gameAssets/playerHearts.png")
         self.image = pygame.transform.scale(self.image, (20, 20))
         self.rect = self.image.get_rect()
 
@@ -260,7 +260,7 @@ class Enemy(pygame.sprite.Sprite):
     def __init__(self, spawnEnemy=False):
         # Call constructor and load image
         super().__init__()
-        self.image = pygame.image.load("enemyShip.png")
+        self.image = pygame.image.load("gameAssets/enemyShip.png")
         self.image = pygame.transform.scale(self.image, (50, 40))
         self.rect = self.image.get_rect()
 
@@ -298,7 +298,7 @@ class EnemyBoss(pygame.sprite.Sprite):
     def __init__(self, player):
         # Call constructor and load image
         super().__init__()
-        self.image = pygame.image.load("bossShip.png")
+        self.image = pygame.image.load("gameAssets/bossShip.png")
         self.image = pygame.transform.scale(self.image, (350, 300))
         self.rect = self.image.get_rect()
 
@@ -344,7 +344,7 @@ class Game:
         self.screen = screen
 
         # Set up game background
-        backgroundImage = pygame.image.load("galaxyBackground.jpg")
+        backgroundImage = pygame.image.load("gameAssets/galaxyBackground.jpg")
         self.backgroundImage = pygame.transform.scale(backgroundImage, (WIDTH, HEIGHT))
 
         # Set up starting game values
@@ -740,18 +740,18 @@ def playMusic(finalStage=False):
     # Final Boss Stage
     if finalStage and not bossMusicPlaying:
         pygame.mixer.music.stop()
-        pygame.mixer.music.load("bossMusic.mp3")
+        pygame.mixer.music.load("gameAssets/bossMusic.mp3")
         pygame.mixer.music.play(-1)
 
     # Main Game Stage
     elif not finalStage:
         pygame.mixer.init()
-        pygame.mixer.music.load("gameMusic.mp3")
+        pygame.mixer.music.load("gameAssets/gameMusic.mp3")
         pygame.mixer.music.play(-1)
 
 
 if __name__ == '__main__':
-    difficulty = difficultyScreen()
+    difficulty = difficultyScreen()  # Comment out this line if getting tkinter errors
     playMusic()
     g = Game()
     g.run()
