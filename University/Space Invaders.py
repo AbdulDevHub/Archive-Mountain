@@ -266,7 +266,7 @@ class Enemy(pygame.sprite.Sprite):
 
         # Set enemy's in-game location randomly on screen
         self.rect.x = random.randint(20, WIDTH - 20)
-        self.rect.y = random.randint(0, HEIGHT / 2)
+        self.rect.y = random.randint(0, HEIGHT // 2)
 
         # Determine if its a newly spawned type of enemy
         self.spawnEnemy = False
