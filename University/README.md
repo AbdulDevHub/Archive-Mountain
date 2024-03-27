@@ -25,8 +25,6 @@ To run this game locally, follow these steps:
 3. Install the required libraries
 4. Run the game
 
-Remember to replace "yourusername" with your actual GitHub username.
-
 ## Contributing
 
 While this is a personal project, I'm open to collaboration. If you have suggestions for improvements, please open an issue.
