@@ -1,5 +1,7 @@
 # Space Invaders
 
+<img height="400" src="https://static.javatpoint.com/python/images/huffman-coding-using-python.png">
+
 ## Overview
 
 This repository contains the code for an advanced version of the classic Space Invaders game. The game is implemented using the Pygame library and features spawning enemies, a giant final boss, dynamic music, and various power-ups.
