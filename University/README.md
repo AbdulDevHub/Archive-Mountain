@@ -1,6 +1,6 @@
 # Space Invaders
 
-<img height="400" src="https://static.javatpoint.com/python/images/huffman-coding-using-python.png">
+<img height="400" src="https://github.com/AbdulDevHub/Space-Invaders/blob/main/Screenshot.png?raw=true">
 
 ## Overview
 
