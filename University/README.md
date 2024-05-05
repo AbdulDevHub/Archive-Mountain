@@ -2,6 +2,8 @@
 
 Welcome to my repository! This project is a portfolio of my work on data scraping from Reddit using Python. 
 
+<img height="400" src="./Cover Image.png">
+
 ## Project Overview
 
 This project involves scraping data from Reddit using the Python Reddit API Wrapper (PRAW), performing data analysis, and visualizing the results. The repository contains 2 Jupyter notebooks with all the utilized code, a PDF and PowerPoint of the findings, and a folder with the produced images/figures.
