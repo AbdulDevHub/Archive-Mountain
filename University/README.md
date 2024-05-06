@@ -2,7 +2,7 @@
 
 Welcome to my repository! This project is a portfolio of my work on data scraping from Reddit using Python. 
 
-<img height="400" src="./Cover Image.png">
+<img height="400" src="./Banner.png">
 
 ## Project Overview
 
