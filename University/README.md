@@ -1,6 +1,6 @@
 # Space Invaders
 
-<img height="400" src="https://github.com/AbdulDevHub/Space-Invaders/blob/main/Screenshot.png?raw=true">
+<img height="400" src="Screenshot.png">
 
 ## Overview
 
