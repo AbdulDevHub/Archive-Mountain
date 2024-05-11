@@ -2,49 +2,49 @@
 
 A repository containing all of the simple web projects I made to test and learn new Frontend concepts. Each project resides in its own dedicated folder. Here's a brief overview of each project:
 
-## CSS Theme Switcher
+## [CSS Theme Switcher](./CSS%20Theme%20Switcher)
 A project demonstrating how to switch themes using CSS.
 
 <a href="https://github.com/AbdulDevHub/Simple-Web-Projects/" target="_blank" rel="noreferrer">
   <img height="400" src="Screenshots/Screenshot 1.png">
 </a>
 
-## Drum Kit
+## [Drum Kit](./Drum%20Kit)
 A virtual drum kit.
 
 <a href="https://github.com/AbdulDevHub/Simple-Web-Projects/" target="_blank" rel="noreferrer">
   <img height="400" src="Screenshots/Screenshot 1.png">
 </a>
 
-## Face Bomp
+## [Face Bomp](./Face%20Bomp)
 A project involving face recognition.
 
 <a href="https://github.com/AbdulDevHub/Simple-Web-Projects/" target="_blank" rel="noreferrer">
   <img height="400" src="Screenshots/Screenshot 1.png">
 </a>
 
-## Shopping Cart Math
+## [Shopping Cart Math](./Shopping%20Cart%20Math)
 A shopping cart application with a focus on calculating totals.
 
 <a href="https://github.com/AbdulDevHub/Simple-Web-Projects/" target="_blank" rel="noreferrer">
   <img height="400" src="Screenshots/Screenshot 1.png">
 </a>
 
-## Snap Stash
+## [Snap Stash](./Snap%20Stash)
 A project for storing and categorizing images.
 
 <a href="https://github.com/AbdulDevHub/Simple-Web-Projects/" target="_blank" rel="noreferrer">
   <img height="400" src="Screenshots/Screenshot 1.png">
 </a>
 
-## Temp Control UI
+## [Temp Control UI](./Temp%20Control%20UI)
 A user interface for controlling temperature.
 
 <a href="https://github.com/AbdulDevHub/Simple-Web-Projects/" target="_blank" rel="noreferrer">
   <img height="400" src="Screenshots/Screenshot 1.png">
 </a>
 
-## Twitter Clone
+## [Twitter Clone](./Twitter%20Clone)
 A simplified clone of Twitter.
 
 <a href="https://github.com/AbdulDevHub/Simple-Web-Projects/" target="_blank" rel="noreferrer">
