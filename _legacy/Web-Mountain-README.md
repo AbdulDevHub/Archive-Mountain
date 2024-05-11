@@ -9,6 +9,13 @@ A project demonstrating how to switch themes using CSS.
   <img height="400" src="Screenshots/Screenshot 1.png">
 </a>
 
+## [Diamond Photo Gallery](./Diamond%20Photo%20Gallery)
+A diamond-shaped photo gallery that shows the image in greater size on hover.
+
+<a href="https://github.com/AbdulDevHub/Simple-Web-Projects/" target="_blank" rel="noreferrer">
+  <img height="400" src="Screenshots/Screenshot 1.png">
+</a>
+
 ## [Drum Kit](./Drum%20Kit)
 A virtual drum kit.
 
@@ -17,7 +24,21 @@ A virtual drum kit.
 </a>
 
 ## [Face Bomp](./Face%20Bomp)
-A project involving face recognition.
+A fun game to smash in popping heads.
+
+<a href="https://github.com/AbdulDevHub/Simple-Web-Projects/" target="_blank" rel="noreferrer">
+  <img height="400" src="Screenshots/Screenshot 1.png">
+</a>
+
+## [Fire Alarm Simulation](./Fire%20Alarm%20Simulation)
+A fire alarm simulation to simulate a fake fire alarm situation.
+
+<a href="https://github.com/AbdulDevHub/Simple-Web-Projects/" target="_blank" rel="noreferrer">
+  <img height="400" src="Screenshots/Screenshot 1.png">
+</a>
+
+## [Product Splash Page](./Product%20Splash%20Page)
+A simple product splash page.
 
 <a href="https://github.com/AbdulDevHub/Simple-Web-Projects/" target="_blank" rel="noreferrer">
   <img height="400" src="Screenshots/Screenshot 1.png">
