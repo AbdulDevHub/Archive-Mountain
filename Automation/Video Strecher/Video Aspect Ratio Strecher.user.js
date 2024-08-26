@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Video Aspect Ratio Stretcher
 // @namespace    http://tampermonkey.net/
-// @version      1.1
+// @version      1.2
 // @description  Stretch video to fill a 16:10 screen in fullscreen automatically or when 'u' key is pressed (with special handling for YouTube)
 // @author       You
 // @match        *://*/*
@@ -55,6 +55,19 @@
             const fullscreenElement = document.fullscreenElement || document.mozFullScreenElement || document.webkitFullscreenElement;
             if (fullscreenElement) {
                 toggleStretchVideo();
+            } else {
+                // Toggle stretch for 4:3 video when not in fullscreen
+                if (stretchingMode === 0) {
+                    stretchingMode = 2;
+                    scaleX = 1.36;
+                    scaleY = 1;
+                    video.style.transform = `scaleX(${scaleX}) scaleY(${scaleY})`;
+                    console.log('Video stretching enabled for 4:3 video outside of fullscreen.');
+                } else {
+                    stretchingMode = 0;
+                    video.style.transform = ''; // Reset to original
+                    console.log('Video stretching disabled outside of fullscreen.');
+                }
             }
         }
 
