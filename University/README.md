@@ -13,11 +13,6 @@ This repository contains the code for an advanced version of the classic Space I
 - **Dynamic Music**: The music changes dynamically based on the game state.
 - **Power Ups**: Players can collect various power-ups to enhance their spaceship.
 
-## Technologies Used
-
-- Python
-- Pygame
-
 ## Setup
 
 To run this game locally, follow these steps:
