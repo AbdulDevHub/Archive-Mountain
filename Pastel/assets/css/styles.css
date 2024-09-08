@@ -1,0 +1,260 @@
+/* Forked from https://codepen.io/tin-fung-hk/pen/jOWXLQj */
+
+/* ------------- */
+
+/* Basic Setting */
+
+/* ------------- */
+
+:root {
+  --theme-color-light: hsl(1deg, 0%, 20%);
+  --fonts-color: #003223;
+  --light-theme: #f7fffd;
+  --fonts-style-x: 'bc-alphapipe', sans-serif;
+  --fonts-style-y: 'bc-alphapipe', sans-serif;
+  --thin: 200;
+  --light: 300;
+  --regular: 400;
+  --semi-bold: 600;
+  --bold: 700;
+}
+
+html, body {
+  box-sizing: border-box;
+  max-width: 2560px;
+  margin: auto;
+  padding: 0;
+  font-family: var(--fonts-style-y);
+  font-weight: var(--semi-bold);
+  font-style: normal;
+  font-size: 1em;
+  line-height: 1.5;
+  color: var(--fonts-color);
+  scroll-behavior: smooth;
+}
+
+*, *::before, *::after {
+  box-sizing: inherit;
+}
+
+.noselect {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+a {
+  text-decoration: none;
+  color: hsl(1deg, 0%, 20%);
+  -webkit-transition: all 1s ease;
+  -moz-transition: all 1s ease;
+  -ms-transition: all 1s ease;
+  -o-transition: all 1s ease;
+  transition: all 1s ease;
+  font-size: 25px;
+}
+
+a:hover {
+  opacity: 0.3;
+  color: initial;
+  -webkit-transition: all 1s ease;
+  -moz-transition: all 1s ease;
+  -ms-transition: all 1s ease;
+  -o-transition: all 1s ease;
+  transition: all 1s ease;
+}
+
+h1 {
+  font-family: var(--fonts-style-x);
+  font-size: 4.5em;
+  font-weight: 600;
+}
+
+h5 {
+  font-family: var(--fonts-style-x);
+  font-size: 1.5em;
+  font-weight: 700;
+  /*margin: 2em 0em;*/
+}
+
+p {
+  font-size: 1em;
+}
+
+button {
+  appearance: none;
+  background: transparent;
+}
+
+button:focus {
+  outline: transparent;
+}
+
+button:hover {
+  cursor: pointer;
+}
+
+input, button, select, textarea {
+  font-family: var(--fonts-style-y);
+  font-weight: var(--light);
+  font-style: normal;
+  font-size: 1em;
+}
+
+::selection {
+  color: #fff;
+  background-color: var(--theme-color-light);
+}
+
+/* ---------- */
+
+/* Main Frame */
+
+/* ---------- */
+
+main {
+  position: relative;
+  width: inherit;
+  background-color: #fff;
+  box-sizing: border-box;
+  max-width: 2560px;
+  margin: auto;
+  padding: 0;
+  font-family: var(--fonts-style-y);
+  font-weight: var(--semi-bold);
+  font-style: normal;
+  font-size: 1em;
+  line-height: 1.5;
+  color: var(--fonts-color);
+  scroll-behavior: smooth;
+}
+
+section.full {
+  /*position: relative;*/
+  /*width: 80%;*/
+  /*height: 100vh;*/
+  /*min-height: max(568px, 100vh);*/
+  margin-left: 20%;
+  justify-content: left;
+}
+
+/* ------ */
+
+/* UI Kit */
+
+/* ------ */
+
+button {
+  float: none;
+  width: 300px;
+  height: 75px;
+  margin: 5px;
+  border: none;
+  border-radius: 15px;
+  font-size: 1.5em;
+  font-weight: var(--semi-bold);
+  color: var(--fonts-color);
+  transition: 300ms;
+}
+
+button:hover {
+  background-color: var(--theme-color-light);
+}
+
+button:active {
+  background-color: var(--light-theme);
+}
+
+/* ------------- */
+
+/* For Project 2 */
+
+/* ------------- */
+
+body {
+  -webkit-transition: all 1s ease;
+  -moz-transition: all 1s ease;
+  -ms-transition: all 1s ease;
+  -o-transition: all 1s ease;
+  transition: all 1s ease;
+  cursor: pointer;
+}
+
+.main-content {
+  /*position: relative;*/
+  /*top: 50%;*/
+  /*transform: translateY(-50%);*/
+  color: hsl(1deg, 0%, 20%);
+  -webkit-transition: all 1s ease;
+  -moz-transition: all 1s ease;
+  -ms-transition: all 1s ease;
+  -o-transition: all 1s ease;
+  transition: all 1s ease;
+}
+
+h1.hex-value {
+  letter-spacing: .25em;
+  font-size: 5.5em;
+  font-weight: var(--semi-bold);
+}
+
+h5 {
+  letter-spacing: .125em;
+}
+
+button {
+  margin: 0;
+  color: hsl(1deg, 0%, 100%);
+  background-color: hsl(1deg, 0%, 20%);
+}
+
+@media (hover: hover) {
+  button:hover {
+    background-color: hsl(1deg, 0%, 33%);
+  }
+}
+
+button:active {
+  color: hsl(1deg, 0%, 20%);
+  background-color: hsl(1deg, 0%, 100%);
+}
+
+/* Display this style when screen-width is lower than 1440px */
+
+/* Display this style when screen-width is lower than 1200px */
+
+@media only screen and (max-width: 1200px) {
+  section.full {
+    margin-left: 0;
+    justify-content: center;
+  }
+}
+
+@media only screen and (max-width: 1200px) {
+  h1.hex-value {
+    letter-spacing: .25em;
+    font-size: 3em;
+    font-weight: var(--semi-bold);
+  }
+}
+
+#icon {
+  margin-top: 1em;
+}
+
+@media only screen and (max-width: 1200px) {
+  a {
+    /*position: relative;*/
+    font-size: 40px;
+  }
+}
+
+@media only screen and (max-width: 1200px) {
+  a:hover {
+    /*font-size: 70px;*/
+  }
+}
+
