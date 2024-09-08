@@ -1,0 +1,136 @@
+Java is an object oriented programming language. OOP is a programming model that
+cetners around real world objects. In the case of this code, the real world
+objects would be Cakes. Objects store info about themselves or their attributes
+into variables called instance variables which can be found at the beginning of
+the class (Example). Objects can also respond to queries about their attributes
+or modify their attributes in response to a given command. Both of these are 
+called a service and are done using methods (Example).
+
+The purpose for using objects in our code is because...Object can be used in 
+anyway you want such as rectangle and home area...Creating real world objects, 
+events and concepts digitaly to more effiecetly and quickly solve real world 
+problems, such is the purpose of programs and computers.
+
+Before objects are used in other classes, they must be created. Objects however,
+can not be created directly, thus, a class is needed. A class is like the
+blueprint or the template for creating an object. Its defines all of the
+attributes and services of an object. Once a class is written, it can be used
+to create as many instances of an object as required (Example). Each created
+object has its own set of unique attribute values that are stored.
+
+*Create instantiation or an instance of an object: new Rectangle(); -> use 
+keyword new followed by the constructor.
+
+For other classes to use objects, the objects must first be instantiated or
+created using constructors. Constructors not only create the requested object,
+but also set the intial values of an object's attributes by providing arguments
+to the constructors's parameters. The keyword new tells the program you are
+creating an object and not just calling a method found in the current class. 
+Once, the object is created, to use it further in the future, it must be stored 
+in a variable with the data type of the object similar to how you need to store
+a integer in a int variable. The variable name of the created objects must be 
+different to easily differiante between them. The part where you create the
+variable that stores the object is called variable declaration and the part 
+where you create the object is called a constructor service. The way this
+constructor works is that it goes into the class that represents and creates
+the object and then looks for the code that allows you to make the object. 
+(Example: when enter see two constructors, can have many constructors, same name
+as class, knows which one through parameters, & explain concept of default 
+constructor = doesn't have parameter list, if want to create object but not set 
+values just yet, can use this to assign default values to instance variables ->
+example ++ automatic default constructors = if no constructor manually made,
+a default constructor is automatically made by the class with noting inside of 
+it. As soon as you create a constructor, wheter it be a default constructor or
+not automatic default constructor is gone, thus leaving the class without a 
+default constructor). One thing to note is that constructors don't have a return
+type b/c their not a method even though they act like one.
+
+Once the object has been created, you can use it through the methods provided
+by the object class. (Example: name of object being commanded -> method being
+requested with the proper arguments that will be passed to any parameters that
+are required -> dot seperating the two).
+
+An important concept when creating a class is encapsulation. Then is when you 
+create a class for an object and ensure that all of the attributes of that class
+should be private so that no class outside the object class can directly acess
+them without the use of public methods provided by the object class. The reason
+for making the attributes private is incase the value they represent is 
+something confidental like your bank balance, ensuring the only way to acess 
+that value is throught a safe method that you provide. Even though these
+attributes can't be accessed by outside classes, they can be easily accessed 
+throughout the object class that creates them so that any method in that object
+class can make use of them. The object class provided methods that allow you to 
+acess and modify the attributes are called accessor and mutator methods. Acessor
+methods, also known as get methods or getters, allow you to get the values of
+each instance variable from outside the class while mutator methods, also known
+as set methods or setters, allow a way to change the values of the instance
+variables. Get methods are written with the method signarture: Public 
+typeReturned "getNameofVariable”(){return this.instanceVariable} while set
+methods are written with the method signature: public void 
+setVarName(typeOfVar newValue){varName = newValue;}.
+
+When creating another object that is similar to another object, you can create
+that object using a class that uses inheritance to prevent writing code from 
+scratch. When you use inheritance, one class becomes an extension of another 
+class, thus, all of the methods and attributes from the origianl class, also 
+known as the parent or superclass, are inherieted and still exist inside of the
+inheriting class, also known as the child or subclass. While at the same time 
+new methods and attributes can be added to the inheriting class, and existing
+methods from the superclass can be changed by the subclass. Important to note
+that superclass constructors and private methods and fields are not inherited.
+And while final methods are inherited, their values can't be changed. An object
+of the subclass is an object of the superclass while the reverse is not true -> 
+all wedding cakes are cake but not all cakes are wedding cakes. An heritance 
+relationship is known as a is a relationship, a employee is a person, and being
+a subclass an employee is specialized type of person b/c Subclasses should be a 
+more specialized form of the superclasses they inherit from such as a person and
+an employee -> name, age, gender -> skills -> pay -> howLongEmployed -> 
+programmer can focus on defining things specific to employee class instead of 
+defining things all over again. To use inheritance all you need to do is type
+extends next to the current class name and the name of the class you want to 
+inheriet from. From this, if you want to inheriet form multiple classes, you 
+can use the concept of chain of inheritance. B/c java classes can only directly
+inherit from one super class however, a super class can also inherit from 
+another class, thus forming a chain of inheritance -> person to woman to mother
+-> employee also inherites from person but has no connection with woman.
+
+The constructors for subclasses are a little different from superclasses as
+the constructor for a subclass must first call the constructor for the
+superclass so that an instance of the original object is created for it to be
+then modified by the subclass constructor. The code that calls the superclass 
+constructor is super(argument). Super being the keyword indicating to get the
+constructor from the superclass that matches the arguments provided by this 
+line of code. This line of code also has to be first line in the subclasses 
+constructor b/c the original object has to be created first before it can be
+modified. In case you don't write super(), automatically calls the default
+constructor of the class your inheriting from. But if no default constructor b/c
+automatic default constructor destroyed and forgot to make your own, need 
+super() if calling default constructor, need it regardless for any other
+constructor.
+
+The keywords this and super are used in many places for different reasons in
+which this represents methods and attributes in the current class your in, 
+which in this case is the subclass and super represents the class your
+inheriting from, if you are indeed inheriting from a super class:
+1)super(flavor) or this("almond")
+2)this.candles = candles; or super.tiers = tiers
+3)this.method or super.method
+
+When a method from the superclass is modified, it is called method overriding.
+This can be done if the behaviour of the method from the super class is not
+what you want. This is easily done by creating a new method in the subclass with
+the same name, return type and parameters (same method signature) as the method
+in the superclass.
+
+A similar concept to method overriding is method overloading. This is when more
+than one method in the same class have the same name but different parameters. 
+The programs figures out which of the methods to run by looking at the entered
+arguments and matching them with the parameters.
+
+Another benifit of creating an object class is that it causes data types to
+no longer be limited to the one provided by java such as int and double. You can
+now use them in variable declaration, method return types and arguments by 
+assinging the data type as the desired object -> Cake varName -> Cake refreces
+cake class -> Rectangle kitchen = getRoom(); - returns a rectangle object.
+
+And that's all their is to the basics of OOP.
