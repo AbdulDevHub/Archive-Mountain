@@ -163,7 +163,14 @@ li {
   flex-direction: column;
   max-height: calc(100vh - 240px);
   overflow-y: auto;
-  padding-right: 15px;
+  padding-right: 2em;
+}
+
+.artifact-right p {
+  text-align: justify;
+  text-justify: inter-word;
+  margin-bottom: 1em;
+  line-height: 1.6;
 }
 
 .artifact-right::-webkit-scrollbar {
@@ -268,7 +275,7 @@ li {
   padding: 20px;
   border-radius: 10px;
   border-left: 4px solid #00d4ff;
-  margin-top: 30px;
+  margin-top: 20px;
 }
 
 .citations h3 {
@@ -298,11 +305,7 @@ li {
   justify-content: space-between;
   align-items: center;
   padding: 20px 40px;
-  background: linear-gradient(
-    to top,
-    #1a1a2e 0%,
-    rgba(26, 26, 46, 0.95) 100%
-  );
+  background: linear-gradient(to top, #1a1a2e 0%, rgba(26, 26, 46, 0.95) 100%);
   border-top: 1px solid rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(10px);
   z-index: 1000;

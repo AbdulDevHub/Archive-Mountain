@@ -29,11 +29,6 @@ button {
   cursor: url("../assets/cursors/Pointer.svg"), pointer !important;
 }
 
-input,
-textarea {
-  cursor: url("../assets/cursors/IBeam.svg"), text !important;
-}
-
 /*---------------- Materialize CSS ------------*/
 /*!
    * Waves v0.6.0
