@@ -10,6 +10,7 @@
       href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap"
       rel="stylesheet"
     />
+    <script src="https://unpkg.com/lucide@latest"></script>
 
     <style>
       * {
@@ -38,12 +39,19 @@
       .container {
         max-width: 1400px;
         margin: 0 auto;
-        padding: 40px 20px 120px 20px;
+        padding: 20px 20px 120px 20px;
         min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center; /* centers vertically */
       }
 
       #slides-container {
-        position: relative;
+        flex-grow: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
       }
 
       .slide {
@@ -129,7 +137,7 @@
       .intro-slide p {
         font-size: 1.1em;
         line-height: 1.8;
-        color: #c0c0c0;
+        color: #eaeaea;
         margin-bottom: 20px;
       }
 
@@ -191,10 +199,18 @@
       }
 
       .artifact-number {
+        display: inline-block; /* ensures it only wraps around the text */
         font-size: 1em;
-        color: #00d4ff;
-        margin-bottom: 10px;
+        color: #ffd700; /* gold text */
+        background: rgba(255, 215, 0, 0.1); /* subtle gold background */
+        border: 1px solid #ffd700; /* gold border */
+        padding: 6px 16px;
+        border-radius: 9999px; /* perfect pill shape */
         font-weight: bold;
+        margin-bottom: 15px;
+        letter-spacing: 0.5px;
+        box-shadow: 0 0 10px rgba(255, 215, 0, 0.3); /* soft golden glow */
+        width: fit-content;
       }
 
       .artifact-slide h2 {
@@ -207,20 +223,53 @@
       .artifact-slide p {
         font-size: 1.1em;
         line-height: 1.8;
-        color: #c0c0c0;
+        color: #eaeaea;
+      }
+
+      @keyframes royalShine {
+        0% {
+          background-position: 0% 50%;
+        }
+        50% {
+          background-position: 100% 50%;
+        }
+        100% {
+          background-position: 0% 50%;
+        }
       }
 
       .artifact-media {
         display: flex;
         align-items: center;
         justify-content: center;
-        background: rgba(0, 0, 0, 0.2);
-        border-radius: 15px;
         padding: 20px;
+        border-radius: 15px;
+        position: relative;
+        background: linear-gradient(
+          135deg,
+          #00d4ff,
+          #0099cc,
+          #ffd700,
+          #ffb400,
+          #00b8e6
+        );
+        background-size: 300% 300%;
+        animation: royalShine 10s ease-in-out infinite;
+      }
+
+      .artifact-media::before {
+        content: "";
+        position: absolute;
+        inset: 2px;
+        background: rgba(0, 0, 0, 0.3);
+        border-radius: 13px;
+        z-index: 0;
       }
 
       .artifact-media img,
       .artifact-media video {
+        position: relative;
+        z-index: 1;
         width: 100%;
         max-height: 500px;
         object-fit: contain;
@@ -233,6 +282,7 @@
         padding: 20px;
         border-radius: 10px;
         border-left: 4px solid #00d4ff;
+        margin-top: 30px;
       }
 
       .citations h3 {
@@ -262,7 +312,11 @@
         justify-content: space-between;
         align-items: center;
         padding: 20px 40px;
-        background: linear-gradient(to top, #1a1a2e 0%, rgba(26, 26, 46, 0.95) 100%);
+        background: linear-gradient(
+          to top,
+          #1a1a2e 0%,
+          rgba(26, 26, 46, 0.95) 100%
+        );
         border-top: 1px solid rgba(255, 255, 255, 0.1);
         backdrop-filter: blur(10px);
         z-index: 1000;
@@ -296,6 +350,59 @@
         background: #333;
         cursor: not-allowed;
         opacity: 0.5;
+      }
+
+      /* Make first and last buttons circular */
+      #firstBtn,
+      #lastBtn {
+        width: 55px;
+        height: 55px;
+        border-radius: 50%;
+        padding: 0;
+        font-size: 1.3em; /* slightly larger for the icon */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .pagination {
+        display: flex;
+        gap: 8px;
+      }
+
+      .pagination-dot {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.3);
+        cursor: pointer;
+        transition: background 0.3s, transform 0.3s;
+      }
+
+      .pagination-dot.active {
+        background: #00d4ff;
+        transform: scale(1.3);
+      }
+
+      .pagination-number {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.2);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 0.9em;
+        color: #fff;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        font-weight: bold;
+      }
+
+      .pagination-number.active {
+        background: #00d4ff;
+        color: #000;
+        transform: scale(1.1);
       }
 
       .slide-counter {
@@ -370,6 +477,11 @@
           font-size: 0.9em;
         }
 
+        .pagination-dot {
+          width: 8px;
+          height: 8px;
+        }
+
         .intro-image {
           height: 250px;
         }
@@ -385,16 +497,14 @@
       <div class="navigation">
         <div class="nav-group">
           <button class="nav-button" id="firstBtn" onclick="goToSlide(0)">
-            ⏮
+            <i data-lucide="skip-back"></i>
           </button>
           <button class="nav-button" id="prevBtn" onclick="changeSlide(-1)">
             Previous
           </button>
         </div>
 
-        <div class="slide-counter">
-          <span id="currentSlide">1</span> / <span id="totalSlides">1</span>
-        </div>
+        <div class="pagination" id="pagination"></div>
 
         <div class="nav-group">
           <button class="nav-button" id="nextBtn" onclick="changeSlide(1)">
@@ -405,7 +515,7 @@
             id="lastBtn"
             onclick="goToSlide(totalSlides - 1)"
           >
-            ⏭
+            <i data-lucide="skip-forward"></i>
           </button>
         </div>
       </div>
@@ -497,7 +607,7 @@
         })
 
         totalSlides = contentData.artifacts.length + 1
-        document.getElementById("totalSlides").textContent = totalSlides
+        updatePagination()
         updateNavigation()
       }
 
@@ -519,8 +629,8 @@
         if (currentSlide < 0) currentSlide = totalSlides - 1
 
         slides[currentSlide].classList.add("active")
-        document.getElementById("currentSlide").textContent = currentSlide + 1
         updateNavigation()
+        updatePagination()
 
         window.scrollTo({ top: 0, behavior: "smooth" })
       }
@@ -532,9 +642,8 @@
         slides[currentSlide].classList.remove("active")
         currentSlide = index
         slides[currentSlide].classList.add("active")
-
-        document.getElementById("currentSlide").textContent = currentSlide + 1
         updateNavigation()
+        updatePagination()
 
         window.scrollTo({ top: 0, behavior: "smooth" })
       }
@@ -551,6 +660,20 @@
         lastBtn.disabled = currentSlide === totalSlides - 1
       }
 
+      function updatePagination() {
+        const pagination = document.getElementById("pagination")
+        pagination.innerHTML = ""
+
+        for (let i = 0; i < totalSlides; i++) {
+          const num = document.createElement("div")
+          num.className =
+            "pagination-number" + (i === currentSlide ? " active" : "")
+          num.textContent = i + 1
+          num.addEventListener("click", () => goToSlide(i))
+          pagination.appendChild(num)
+        }
+      }
+
       // Keyboard navigation
       document.addEventListener("keydown", (e) => {
         if (e.key === "ArrowLeft" && currentSlide > 0) {
@@ -562,6 +685,7 @@
 
       // Load content on page load
       loadContent()
+      lucide.createIcons()
     </script>
   </body>
 </html>
