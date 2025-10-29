@@ -11,6 +11,8 @@
       rel="stylesheet"
     />
     <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="stylesheet" href="https://cdn.plyr.io/3.7.8/plyr.css" />
+    <script src="https://cdn.plyr.io/3.7.8/plyr.polyfilled.js"></script>
 
     <style>
       * {
@@ -418,6 +420,70 @@
         color: #00d4ff;
       }
 
+      .plyr--video {
+        border-radius: 16px;
+        overflow: hidden;
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+      }
+
+      /* Giant central play button */
+      .plyr__control--overlaid {
+        background: rgba(0, 212, 255, 0.25);
+        border: 2px solid #00d4ff;
+        backdrop-filter: blur(8px);
+        box-shadow: 0 0 25px rgba(0, 212, 255, 0.4);
+        transition: all 0.3s ease;
+      }
+
+      /* Make the button itself a bit larger */
+      .plyr__control--overlaid svg {
+        width: 40px;
+        height: 40px;
+      }
+
+      /* Image Lightbox */
+      .image-lightbox {
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.85);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 2000;
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.3s ease;
+      }
+
+      .image-lightbox.active {
+        opacity: 1;
+        visibility: visible;
+      }
+
+      .image-lightbox img {
+        max-width: 90%;
+        max-height: 90%;
+        border-radius: 12px;
+        box-shadow: 0 0 40px rgba(0, 0, 0, 0.6);
+      }
+
+      .image-lightbox .close-btn {
+        position: absolute;
+        top: 30px;
+        right: 40px;
+        font-size: 2em;
+        color: white;
+        cursor: pointer;
+        background: rgba(0, 0, 0, 0.4);
+        border-radius: 50%;
+        padding: 8px 14px;
+        transition: background 0.3s;
+      }
+
+      .image-lightbox .close-btn:hover {
+        background: rgba(255, 255, 255, 0.2);
+      }
+
       /* Responsive */
       @media (max-width: 968px) {
         .container {
@@ -521,6 +587,12 @@
       </div>
     </div>
 
+    <!-- Image Lightbox Overlay -->
+    <div class="image-lightbox" id="imageLightbox">
+      <span class="close-btn" id="closeLightbox">&times;</span>
+      <img src="" alt="Enlarged view" id="lightboxImage" />
+    </div>
+
     <script>
       let currentSlide = 0
       let totalSlides = 0
@@ -609,6 +681,25 @@
         totalSlides = contentData.artifacts.length + 1
         updatePagination()
         updateNavigation()
+
+        // ✅ Initialize Plyr *after* slides have been added
+        setTimeout(() => {
+          const players = Array.from(document.querySelectorAll("video")).map(
+            (p) =>
+              new Plyr(p, {
+                controls: [
+                  "play-large",
+                  "play",
+                  "progress",
+                  "current-time",
+                  "mute",
+                  "volume",
+                  "fullscreen",
+                ],
+                theme: "dark",
+              })
+          )
+        }, 0)
       }
 
       function changeSlide(direction) {
@@ -686,6 +777,36 @@
       // Load content on page load
       loadContent()
       lucide.createIcons()
+
+      // ===== Image Enlargement Feature =====
+      document.addEventListener("click", (event) => {
+        const target = event.target
+        if (target.tagName === "IMG" && target.closest(".artifact-media")) {
+          const lightbox = document.getElementById("imageLightbox")
+          const lightboxImg = document.getElementById("lightboxImage")
+          lightboxImg.src = target.src
+          lightbox.classList.add("active")
+        }
+      })
+
+      document.getElementById("closeLightbox").addEventListener("click", () => {
+        document.getElementById("imageLightbox").classList.remove("active")
+      })
+
+      // Allow closing by clicking the dark area or pressing Escape
+      document
+        .getElementById("imageLightbox")
+        .addEventListener("click", (e) => {
+          if (e.target.id === "imageLightbox") {
+            e.currentTarget.classList.remove("active")
+          }
+        })
+
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") {
+          document.getElementById("imageLightbox").classList.remove("active")
+        }
+      })
     </script>
   </body>
 </html>
