@@ -5,13 +5,13 @@ let contentData = null;
 // Load JSON file
 async function loadContent() {
   try {
-    const response = await fetch("Content.json");
+    const response = await fetch("../content.json");
     contentData = await response.json();
     initializeSlides();
   } catch (error) {
-    console.error("Error loading Content.json:", error);
+    console.error("Error loading content.json:", error);
     document.getElementById("slides-container").innerHTML =
-      '<div class="loading">Error loading content. Please ensure Content.json is in the same directory.</div>';
+      '<div class="loading">Error loading content. Please ensure content.json is in the same directory.</div>';
   }
 }
 

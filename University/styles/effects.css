@@ -26,12 +26,12 @@
 .close-btn,
 img,
 button {
-  cursor: url("../cursors/Pointer.svg"), pointer !important;
+  cursor: url("../assets/cursors/Pointer.svg"), pointer !important;
 }
 
 input,
 textarea {
-  cursor: url("../cursors/IBeam.svg"), text !important;
+  cursor: url("../assets/cursors/IBeam.svg"), text !important;
 }
 
 /*---------------- Materialize CSS ------------*/
@@ -45,7 +45,7 @@ textarea {
    */
 .waves-effect {
   position: relative;
-  cursor: url("../cursors/Pointer.svg"), pointer;
+  cursor: url("../assets/cursors/Pointer.svg"), pointer;
   overflow: hidden;
   -webkit-user-select: none;
   -moz-user-select: none;
