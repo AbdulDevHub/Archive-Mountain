@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+      Console Wars: Sega, Nintendo, and Sony Battle for the Future of Gaming
+    </title>
+    
+    <link
+      href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="stylesheet" href="https://cdn.plyr.io/3.7.8/plyr.css" />
+    <script src="https://cdn.plyr.io/3.7.8/plyr.polyfilled.js"></script>
+
+    <link rel="stylesheet" href="styles/main.css" />
+    <link rel="stylesheet" href="styles/effects.css" />
+
+    <script src="scripts/main.js"></script>
+    <script src="scripts/materialize.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      <div id="slides-container">
+        <div class="loading">Loading exhibit...</div>
+      </div>
+
+      <div class="navigation">
+        <div class="nav-group">
+          <button class="nav-button" id="firstBtn" onclick="goToSlide(0)">
+            <i data-lucide="skip-back"></i>
+          </button>
+          <button class="nav-button" id="prevBtn" onclick="changeSlide(-1)">
+            Previous
+          </button>
+        </div>
+
+        <div class="pagination" id="pagination"></div>
+
+        <div class="nav-group">
+          <button class="nav-button" id="nextBtn" onclick="changeSlide(1)">
+            Next
+          </button>
+          <button
+            class="nav-button"
+            id="lastBtn"
+            onclick="goToSlide(totalSlides - 1)"
+          >
+            <i data-lucide="skip-forward"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Image Lightbox Overlay -->
+    <div class="image-lightbox" id="imageLightbox">
+      <span class="close-btn" id="closeLightbox">&times;</span>
+      <img src="" alt="Enlarged view" id="lightboxImage" />
+    </div>
+  </body>
+</html>

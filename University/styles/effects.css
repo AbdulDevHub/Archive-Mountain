@@ -14,6 +14,26 @@
   color: #ffffff;
 }
 
+/*----------------Cursor----------*/
+.cursor-pointer,
+.cursor-pointer a,
+.cursor-pointer span,
+.cursor-pointer img,
+.cursor-pointer h3,
+.cursor-pointer p,
+.cursor-pointer div,
+.cursor-pointer div div canvas,
+.close-btn,
+img,
+button {
+  cursor: url("../cursors/Pointer.svg"), pointer !important;
+}
+
+input,
+textarea {
+  cursor: url("../cursors/IBeam.svg"), text !important;
+}
+
 /*---------------- Materialize CSS ------------*/
 /*!
    * Waves v0.6.0
@@ -25,7 +45,7 @@
    */
 .waves-effect {
   position: relative;
-  cursor: pointer;
+  cursor: url("../cursors/Pointer.svg"), pointer;
   overflow: hidden;
   -webkit-user-select: none;
   -moz-user-select: none;

@@ -168,7 +168,7 @@ function updatePagination() {
   for (let i = 0; i < totalSlides; i++) {
     const num = document.createElement("div");
     num.className =
-      "pagination-number" + (i === currentSlide ? " active" : "");
+      "pagination-number waves-effect waves-light" + (i === currentSlide ? " active" : "");
     num.textContent = i + 1;
     num.addEventListener("click", () => goToSlide(i));
     pagination.appendChild(num);
