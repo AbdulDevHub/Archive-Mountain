@@ -1,5 +1,5 @@
 // ==UserScript==
-// @name         Enhanced Video Aspect Ratio Stretcher
+// @name         Video Aspect Ratio Stretcher
 // @namespace    http://tampermonkey.net/
 // @version      2.0
 // @description  Dynamically stretch videos to fill a 16:10 screen with improved aspect ratio detection
