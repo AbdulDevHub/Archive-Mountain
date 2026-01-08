@@ -134,7 +134,7 @@ All programs were written and tested using [**CPU-Lator**](https://cpulator.01xz
 
 ## 🎮 Shadow In The Dark (RISC-V Assembly Game)
 
-📁 `Project - Shadow In The Dark/`
+📁 `Shadow In The Dark/`
 
 A **full-featured survival horror game** written entirely in RISC-V assembly (~1000 lines). This project showcases advanced assembly programming techniques and demonstrates mastery of low-level system design.
 
