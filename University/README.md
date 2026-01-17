@@ -1,7 +1,6 @@
 # Exceptional University Projects 🎓💻
 
-This repository is a curated collection of **notable software projects, labs, and assignments** completed during my time at the **University of Toronto Mississauga**.  
-It highlights my work across **Java, Python, RISC-V Assembly, object-oriented design, software architecture, data structures, algorithms, and interactive media**.
+This repository is a curated collection of **notable software projects, labs, and assignments** completed during my time at the **University of Toronto Mississauga**. It highlights my work across **Java, Python, RISC-V Assembly, object-oriented design, software architecture, data structures, algorithms, and interactive media**.
 
 Rather than serving as a single application, this repo acts as a **portfolio of academic and technical growth**, showcasing both small foundational exercises and larger, system-level projects.
 
@@ -135,6 +134,8 @@ All programs were written and tested using [**CPU-Lator**](https://cpulator.01xz
 ## 🎮 Shadow In The Dark (RISC-V Assembly Game)
 
 📁 `Shadow In The Dark/`
+
+![Shadow In The Dark Banner](./Shadow%20In%20The%20Dark/Banner.png)
 
 A **full-featured survival horror game** written entirely in RISC-V assembly (~1000 lines). This project showcases advanced assembly programming techniques and demonstrates mastery of low-level system design.
 
