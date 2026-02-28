@@ -1,0 +1,37 @@
+// Step 1: Copy
+// Copy Tape 1 to Tape 2.
+// While there is input on Tape 1, write it to Tape 2.
+start   ($x, BLANK)     start    ($x, $x)       (RIGHT, RIGHT)
+
+// When we hit the end (BLANK), step back one cell to the last char.
+// Switch to 'rewind' mode.
+start   (BLANK, BLANK)  rewind   (BLANK, BLANK) (LEFT, LEFT)
+
+
+// Step 2: Rewind Head 1
+// We want Head 1 at the start of Tape 1, but Head 2 must stay at 
+// the end of Tape 2.
+// As long as Head 1 reads a symbol, move it LEFT.
+// Keep Tape 2 where it is (STAY).
+rewind  ($x, $y)        rewind   ($x, $y)       (LEFT, STAY)
+
+// When Tape 1 hits the BLANK at the start, move it RIGHT once
+// to land on the first character. Switch to 'compare'.
+rewind  (BLANK, $y)     compare  (BLANK, $y)    (RIGHT, STAY)
+
+
+// Step 3: Compare
+// Tape 1 scans forward (RIGHT), Tape 2 scans backward (LEFT).
+
+// Case A: Match ($x, $x). 
+// The symbols are the same. Continue checking.
+compare ($x, $x)        compare  ($x, $x)       (RIGHT, LEFT)
+
+// Case B: Success.
+// If both hit BLANK, we finished the whole string successfully.
+compare (BLANK, BLANK)  accept   (BLANK, BLANK) (STAY, STAY)
+
+// Case C: Mismatch ($x, $y).
+// Because ($x, $x) is more specific, this rule only runs if 
+// symbols differ.
+compare ($x, $y)        reject   ($x, $y)       (STAY, STAY)

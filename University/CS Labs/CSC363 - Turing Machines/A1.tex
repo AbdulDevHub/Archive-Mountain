@@ -1,0 +1,136 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm,enumerate,nicefrac,fancyhdr,hyperref,graphicx,adjustbox}
+\hypersetup{colorlinks=true,urlcolor=blue,citecolor=blue,linkcolor=blue}
+\usepackage[left=2.6cm, right=2.6cm, top=1.5cm, includehead, includefoot]{geometry}
+\usepackage[dvipsnames]{xcolor}
+\usepackage[d]{esvect}
+
+%% commands
+%\include{commands.tex}
+
+%% header
+\pagestyle{fancy}
+\fancyhead[L]{\bf\large CSC363 UTM \\ Assignment 1}
+\fancyhead[R]{\bf\large Winter 2026 \\ Due Jan 27}
+%\fancyfoot[C]{Page \thepage\ of 2}
+\setlength{\headheight}{35pt}
+
+\begin{document}
+
+You are allowed to use AI, consult friends, TAs, but just do yourself a favor and understand what you are writing.  You are not allowed to post the assignment questions on any forums other than our Piazza.  
+
+\vspace{0.2cm}
+
+Throughout the assignment, unless otherwise is specified, Turing machines:
+1) work with a single tape, 
+2) take input $n$ as $n+1$ contiguous $1$s with the reading head starting at the leftmost nonempty cell given state $q_0$,
+%3) and the output value is the number of $1$s left on the tape after the machine halts.
+3) and the state symbols we can use are $q_i,$ where $i$ is a natural number. 
+
+\begin{enumerate}[{\bf Q1.}]
+
+    \item Consider the following Turing machine:
+
+    $$q_0\; 1 \; q_1 \; b \; L$$
+    $$q_1\; b \; q_2 \; 1 \; R$$
+    $$q_2\; b \; q_3 \; b \; R$$
+    $$q_3\; 1 \; q_3 \; 1\; R$$
+    $$q_3\; b \; q_4 \; b\; R$$
+    $$q_4\; 1 \; q_4 \; 1\; R$$
+    $$q_4\; b \; q_5 \; 1\; L$$
+    $$q_5\; 1 \; q_5 \; 1\; L$$
+    $$q_5\; b \; q_6 \; b\; L$$
+    $$q_6\; 1 \; q_6 \; 1\; L$$
+    $$q_6\; b \; q_0 \; b\; R$$
+    $$q_0\; b \; q_7 \; b\; R$$
+
+    \begin{enumerate}
+        \item What function does this machine compute? Assume the output is the number of 1s left on the tape.
+        \item Describe the tape, state, and head position after halting on input $n$. 
+        \item Describe the numbers of steps and cells used as a function in input size, then give asymptotic descriptions.
+    \end{enumerate}
+    
+ \newpage
+
+    \item Let $A$ and $B$ be decidable subsets of $\mathbb{N}$, and assume that $M_A$ and $M_B$ are Turing machines which compute the corresponding characteristic functions. These machines give an empty tape if the input is not in the set, and a tape with exactly a single 1 on it if the input is in the set. 
+    
+    Assume these machines use only the cells used by the input (i.e., they do not need more space than the one already occupied by the input). Suppose these two machines always halt in state $q_{16}$, and if the output tape is not empty, the head ends up positioned on the nonempty cell. 
+
+    Let $M$ denote the Turing machine in Question 1 above.
+    
+    Consider the following Turing machine:
+
+    $$M$$
+    $$\tilde{M}_A$$
+    $$q_{23} \; 1 \; q_{24} \; b \; L$$
+    $$q_{23} \; b \; q_{25} \; b \; L$$
+    $$q_{25} \; b \; q_{25} \; b \; L$$
+    $$q_{25} \; 1 \; q_{26} \; b \; L$$
+    $$q_{26} \; 1 \; q_{26} \; b \; L$$
+    $$q_{24} \; b \; q_{24} \; b \; L$$
+    $$q_{24} \; 1 \; q_{27} \; 1 \; L$$
+    $$q_{27} \; 1 \; q_{27} \; 1 \; L$$
+    $$q_{27} \; b \; q_{28} \; b \; R$$
+    $$\tilde{M}_B$$
+    
+    where $\tilde{M}_A$ is the machine we obtain from $M_A$  by replacing every $q_i$ with $q_{i+7}$, and  $\tilde{M}_B$ is the machine we obtain from $M_B$  by replacing every $q_i$ with $q_{i+28}$. 
+
+    This Turing machine computes the characteristic function of some set, find that set.  
+    
+
+    
+\newpage
+    
+
+     \item Recall that a polynomial in $\mathbb{Z}$ with one variable $x$ is an expression of the form $\sum_{i=0}^m a_ix^i$ where, for all $i$, $a_i\in\mathbb{Z}$. The $a_i$'s are known as the \emph{coefficients}.
+
+        The same concept can be extended to include more than one variable. A polynomial in   $\mathbb{Z}$ with $k$ variables $x_1,\ldots, x_k$ is an expression of the form $$\sum_{i_1, i_2, \ldots, i_k\in\{0,\ldots, m\}}a_{i_1,i_2,\ldots, i_k} x_1^{i_1}\ldots x_k^{i_k}$$ where all the coefficients  $a_{i_1,i_2,\ldots, i_k}$ are integers. \\
+
+        If the above description is confusing to you, solve the following exercise and do not submit it (just for you to see an example).
+        
+        Exercise: Consider the polynomial $x_1^2 - 2 y_1^3 + y_1 y_2^3$. Complete the following:
+        
+        $a_{2,0,0,0} = 1$, $a_{0,0,3,0}=-2$, $a_{0,0,1,3} = ??$, $a_{0,0,0,0} = ??$, $a_{1,1,1,1} = ??$.\\
+
+
+
+
+        Let $j$ be a positive natural number, and let $A$ be a subset of $\mathbb{N}^j$. We say that $A$ is a \emph{Diophantine subset} of $\mathbb{N}$ if there exists a polynomial equation in $\mathbb{Z}$ with at least $j$ variables, say, $P(x_1,\ldots, x_j, y_1,\ldots, y_k) = 0 $ (it is possible that there might be no $y_i$'s) such that
+        
+        For all $x_1,\ldots,x_j\in\mathbb{N}$, $$(x_1,\ldots,x_j)\in A \Longleftrightarrow (\exists y_1,\ldots, y_k\in\mathbb{N}) [P(x_1,\ldots, x_j, y_1,\ldots, y_k) = 0 ].$$
+        
+        \begin{enumerate}
+            \item Prove that the set of even numbers is a Diophantine subset of $\mathbb{N}$.
+            \item Prove that the relation $<$ is a Diophantine subset of $\mathbb{N}^2$.
+            \item Prove that every Diophantine subset of $\mathbb{N}$ is Turing recognizable (i.e., computably enumerable). 
+        \end{enumerate} 
+
+\newpage
+ 
+  
+    %Q4
+    \item Let $f\colon \mathbb{N}\to\mathbb{N}$ be a computable function. Suppose that $f$ is bijective. Prove that the inverse function of $f$ is also computable. 
+  
+    %Q5
+    \item  Let $f\colon \mathbb{N}\to\mathbb{N}$ be a computable function. Prove that, for every $x\in\mathbb{N}$, the set $f^{-1}(x)$ is decidable.
+
+    %Q6
+    \item Let $A$ be a set of natural numbers that happens to be the range of some computable function. Prove that there exists a Turing machine which halts exactly on the elements of $A$. 
+
+    %Q7
+    \item Let $A$ be the set of values on which a Turing machine $M$ halts. Assume that $A$ is not empty. Prove that $A$ is the range of some computable function. Notice that this is the converse of the statement in Question 6.
+
+    %Q8
+    \item Let $A$ and $B$ be two decidable sets. Prove that $A\cap B$ and $A\cup B$ are also decidable sets.
+
+    %Q9
+    \item Let $A$ and $B$ be two semi-decidable (i.e., computably enumerable) sets. Prove that $A\cap B$ and $A\cup B$ are also semi-decidable sets.
+
+\end{enumerate}
+
+\end{document}
+
+
+
+
+    
