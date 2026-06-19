@@ -1,0 +1,83 @@
+# docker-compose.yml
+#
+# This file describes two "services" (not our microservices — Docker's word for containers).
+# Running `docker compose up -d` reads this file and starts both containers.
+# The -d flag means "detached" — they run in the background so your terminal stays free.
+#
+# Think of each entry under `services:` as a mini-machine Docker manages for you.
+
+services:
+
+  # ── PostgreSQL ─────────────────────────────────────────────────────────────
+  postgres:
+    image: postgres:16-alpine
+    #       ↑ "alpine" is a tiny Linux distribution. Same PostgreSQL, ~50MB smaller image.
+    #         Docker pulls this from the internet the first time, then caches it locally.
+
+    container_name: inventory_postgres
+    #                ↑ Just a friendly name so `docker ps` is readable.
+
+    environment:
+      # These are environment variables passed into the container at startup.
+      # PostgreSQL reads them to create the initial database and user.
+      POSTGRES_USER: inventory
+      POSTGRES_PASSWORD: inventory_pass
+      POSTGRES_DB: inventory
+      #            ↑ Three separate databases would be cleaner, but one DB with
+      #              separate tables is fine for our scale.
+
+    ports:
+      - "5432:5432"
+      # Format: "HOST_PORT:CONTAINER_PORT"
+      # PostgreSQL inside the container listens on 5432.
+      # We map it to 5432 on your laptop too, so our Python code can reach it
+      # at localhost:5432 — exactly like a locally installed PostgreSQL would be.
+
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      #   ↑ This is the persistence trick. By default, when a container stops,
+      #     its filesystem is wiped. A "volume" is a folder Docker keeps alive
+      #     outside the container. PostgreSQL writes data here, so it survives
+      #     `docker compose down` and `docker compose up` cycles.
+      #     "postgres_data" is a named volume defined at the bottom of this file.
+
+    healthcheck:
+      # Docker will run this command inside the container every 5 seconds.
+      # Our other services can wait for postgres to be "healthy" before starting.
+      test: ["CMD-SHELL", "pg_isready -U inventory -d inventory"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  # ── Redis ──────────────────────────────────────────────────────────────────
+  redis:
+    image: redis:7-alpine
+    #       ↑ Redis 7 is the current stable version.
+
+    container_name: inventory_redis
+
+    ports:
+      - "6379:6379"
+      # Redis default port. Same idea as PostgreSQL — mapped so localhost:6379 works.
+
+    command: redis-server --maxmemory 256mb --maxmemory-policy allkeys-lru
+    #         ↑ Two important settings:
+    #           --maxmemory 256mb  → Redis won't grow past 256MB of RAM.
+    #           --maxmemory-policy allkeys-lru → If Redis hits the limit, it evicts
+    #             the Least Recently Used keys first. This is safe for a cache —
+    #             we can always re-fetch from PostgreSQL if a key was evicted.
+    #             Without this, Redis would refuse new writes when full.
+
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+# ── Named volumes ────────────────────────────────────────────────────────────
+volumes:
+  postgres_data:
+    # Declaring it here tells Docker to create and manage this volume.
+    # You can inspect it with: docker volume inspect inventory-server_postgres_data
+    # You can wipe it with:    docker volume rm inventory-server_postgres_data
+    # (This is how you satisfy the assignment's "wipe all records" requirement.)

@@ -1,22 +1,29 @@
 {
   "UserService": {
-    "port": 14002,
-    "ip": "127.0.0.1"
-  },
-  "OrderService": {
-    "port": 14001,
-    "ip": "127.0.0.1"
+    "ip": "127.0.0.1",
+    "port": 8001
   },
   "ProductService": {
-    "port": 15000,
-    "ip": "127.0.0.1"
+    "ip": "127.0.0.1",
+    "port": 8002
+  },
+  "OrderService": {
+    "ip": "127.0.0.1",
+    "port": 8000
   },
   "InterServiceCommunication": {
-    "port": 14003,
-    "ip": "127.0.0.1"
+    "ip": "127.0.0.1",
+    "port": 8080
   },
-  "LoadBalancer": {
-    "port": 5000,
-    "ip": "127.0.0.1"
+  "PostgreSQL": {
+    "host": "127.0.0.1",
+    "port": 5432,
+    "user": "inventory",
+    "password": "inventory_pass",
+    "database": "inventory"
+  },
+  "Redis": {
+    "host": "127.0.0.1",
+    "port": 6379
   }
 }
