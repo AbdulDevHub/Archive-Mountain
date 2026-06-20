@@ -181,8 +181,10 @@ def main():
     concurrent    = "--concurrent" in flags
     verbose       = "--verbose" in flags
 
-    order    = config["OrderService"]
-    base_url = f"http://{order['ip']}:{order['port']}"
+    # Prefer nginx (public port 8000) over OrderService directly.
+    # Falls back to OrderService if no nginx entry exists.
+    entry    = config.get("nginx") or config["OrderService"]
+    base_url = f"http://{entry['ip']}:{entry['port']}"
 
     print(f"Workload parser")
     print(f"  Target:   {base_url}")

@@ -56,15 +56,19 @@ async def lifespan(app: FastAPI):
     )
 
     async with db_pool.acquire() as conn:
-        await conn.execute("""
-            CREATE TABLE IF NOT EXISTS orders (
-                id         SERIAL PRIMARY KEY,
-                user_id    INTEGER     NOT NULL,
-                product_id INTEGER     NOT NULL,
-                quantity   INTEGER     NOT NULL,
-                order_date TIMESTAMPTZ NOT NULL DEFAULT NOW()
-            )
-        """)
+        try:
+            await conn.execute("""
+                CREATE TABLE IF NOT EXISTS orders (
+                    id         SERIAL PRIMARY KEY,
+                    user_id    INTEGER     NOT NULL,
+                    product_id INTEGER     NOT NULL,
+                    quantity   INTEGER     NOT NULL,
+                    order_date TIMESTAMPTZ NOT NULL DEFAULT NOW()
+                )
+            """)
+        except asyncpg.UniqueViolationError:
+            # Another worker created the table a millisecond earlier — that's fine.
+            pass
 
     print("OrderService: database ready")
     yield

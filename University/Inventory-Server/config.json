@@ -9,7 +9,13 @@
   },
   "OrderService": {
     "ip": "127.0.0.1",
-    "port": 8010
+    "port": 8010,
+    "comment": "internal base port — workers run on 8010-8013. External traffic uses nginx below."
+  },
+  "nginx": {
+    "ip": "127.0.0.1",
+    "port": 8000,
+    "comment": "public entry point — this is what clients and the workload parser hit"
   },
   "InterServiceCommunication": {
     "ip": "127.0.0.1",

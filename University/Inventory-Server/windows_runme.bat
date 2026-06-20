@@ -77,20 +77,13 @@ echo Starting 4 OrderService workers on ports 8010-8013...
 echo (nginx on port 8000 load balances across them)
 echo.
 
-REM Write a temporary config for each worker with its own port,
-REM then launch each in a new terminal window with `start`.
-REM
-REM `start "title" cmd /k command` opens a new Command Prompt window
-REM and keeps it open after the command finishes (/k = keep open).
-REM The title is what appears in the window's title bar.
-
+REM Use write_worker_config.py to patch the port — avoids backslash/unicode
+REM issues that break Python inline -c strings on Windows paths.
 for %%P in (8010 8011 8012 8013) do (
-    set WORKER_CONFIG=%TEMP%\order_worker_%%P.json
-    %PYTHON% -c "import json; cfg=json.load(open('%CONFIG%')); cfg['OrderService']['port']=%%P; json.dump(cfg, open(r'%TEMP%\order_worker_%%P.json','w'))"
-    start "OrderService :%%P" cmd /k "%PYTHON% src\OrderService\order_service.py %TEMP%\order_worker_%%P.json"
+    %PYTHON% write_worker_config.py "%CONFIG%" "%TEMP%\order_worker_%%P.json" %%P
+    start "OrderService :%%P" cmd /k "%PYTHON% src\OrderService\order_service.py "%TEMP%\order_worker_%%P.json""
 )
 
-echo.
 echo All 4 workers launched in separate windows.
 echo nginx on port 8000 distributes requests across them.
 echo Close those windows to stop the workers.

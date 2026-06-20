@@ -283,36 +283,43 @@ This project showcases:
 
 📁 `Inventory Server/`
 
-A large-scale **inventory management backend system** built with multiple services communicating together.
+A large-scale **inventory management backend** built as a distributed microservices system, rebuilt from scratch with a focus on correctness, scalability, and persistence.
 
 ### Architecture
 
-- Order Service
-- Product Service
-- User Service
-- Load Balancer
-- Java-based services with Python utilities
+- **OrderService** — public-facing entry point, orchestrates orders
+- **UserService** — manages users with full CRUD
+- **ProductService** — manages products with full CRUD
+- **ISCS** (Inter-Service Communication Service) — internal router with Redis caching
+- **nginx** — load balancer distributing traffic across OrderService workers
+- **PostgreSQL** — persistent storage surviving restarts
+- **Redis** — in-memory cache layer reducing database load
 
 ### Features
 
-- REST-style service handlers
-- Load testing tools
-- Workload parsing
-- Configuration-driven execution
-- Extensive documentation (JavaDocs + PDF writeup)
+- Fully async REST APIs (FastAPI + asyncpg)
+- Redis caching with automatic cache invalidation on writes
+- nginx load balancing across multiple OrderService workers
+- Race condition protection via PostgreSQL row-level locking (`SELECT FOR UPDATE`)
+- Data persistence across restarts via PostgreSQL Docker volume
+- System-wide wipe endpoint for clean test runs
+- Workload parser with sequential and concurrent modes
+- Multi-machine LAN deployment support via config-driven IPs/ports
+- Config supports multiple instances per service for horizontal scaling
 
 ### Technologies & Concepts
 
-- Java
-- Python
-- Microservice-style architecture
-- Load testing
-- System design
-- Client-server communication
+- Python (FastAPI, asyncpg, aiohttp, redis)
+- PostgreSQL, Redis
+- Docker + Docker Compose
+- nginx reverse proxy / load balancing
+- Async I/O and connection pooling
+- Microservice architecture
+- Distributed systems (race conditions, caching, persistence, fault tolerance)
 
 ### Architecture Diagram
 
-![Inventory Server Architecture](./Inventory%20Server/instructions/architecture.png)
+![Inventory Server Architecture](./Inventory-Server/instructions/inventory_system_architecture.png)
 
 ---
 

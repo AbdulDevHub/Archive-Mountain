@@ -85,24 +85,15 @@ case "$1" in
     echo ""
 
     for PORT in 8010 8011 8012 8013; do
-        # Create a temporary config with this worker's port
         WORKER_CONFIG="/tmp/order_worker_${PORT}.json"
-        # Use Python to patch the port rather than fragile sed
-        $PYTHON - << PYEOF
-import json
-with open("$CONFIG") as f:
-    cfg = json.load(f)
-cfg["OrderService"]["port"] = ${PORT}
-with open("$WORKER_CONFIG", "w") as f:
-    json.dump(cfg, f)
-PYEOF
-        echo "  Starting worker on port $PORT..."
+        # Use the helper script — avoids shell quoting issues with paths
+        $PYTHON write_worker_config.py "$CONFIG" "$WORKER_CONFIG" "$PORT"
         $PYTHON src/OrderService/order_service.py "$WORKER_CONFIG" &
+        echo "  Started worker on port $PORT (PID $!)"
     done
 
     echo ""
-    echo "All workers started. nginx distributes requests from port 8000."
-    echo "Press Ctrl+C to stop all workers."
+    echo "All workers started. Press Ctrl+C to stop."
     wait  # keep the shell alive until Ctrl+C
     ;;
 
