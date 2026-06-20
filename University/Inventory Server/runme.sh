@@ -1,14 +1,14 @@
 #!/usr/bin/env bash
-# runme.sh
+# runme.sh — controls all services.
+# Run from the project root directory.
 #
-# Controls all services. Must be run from the project root directory.
 # Usage:
-#   ./runme.sh -c          compile (sets up Python environment)
+#   ./runme.sh -c          set up Python environment
 #   ./runme.sh -u          start UserService
 #   ./runme.sh -p          start ProductService
 #   ./runme.sh -i          start ISCS
-#   ./runme.sh -o          start OrderService
-#   ./runme.sh -w <file>   run workload parser against <file>
+#   ./runme.sh -o          start OrderService (4 workers behind nginx)
+#   ./runme.sh -w <file>   run workload parser
 
 # ── Locate project root ───────────────────────────────────────────────────────
 # This makes the script work regardless of which directory you run it from,
@@ -55,29 +55,57 @@ case "$1" in
 
   # ── -u : start UserService ─────────────────────────────────────────────────
   -u)
-    echo "Starting UserService..."
+    echo "Starting UserService on port 8001..."
     $PYTHON src/UserService/user_service.py "$CONFIG"
     ;;
 
   # ── -p : start ProductService ──────────────────────────────────────────────
   -p)
-    echo "Starting ProductService..."
+    echo "Starting ProductService on port 8002..."
     $PYTHON src/ProductService/product_service.py "$CONFIG"
     ;;
 
   # ── -i : start ISCS ────────────────────────────────────────────────────────
   -i)
-    echo "Starting ISCS..."
+    echo "Starting ISCS on port 8080..."
     $PYTHON src/ISCS/iscs.py "$CONFIG"
     ;;
 
-  # ── -o : start OrderService ────────────────────────────────────────────────
+  # ── -o : start 4 OrderService workers ───────────────────────────────────────
   -o)
-    echo "Starting OrderService..."
-    $PYTHON src/OrderService/order_service.py "$CONFIG"
+    # Start 4 OrderService workers on ports 8010-8013.
+    # nginx (running in Docker on port 8000) round-robins across them.
+    #
+    # Why 4? Each Python process uses one CPU core. A modern laptop has 4-8 cores,
+    # so 4 workers saturates the CPU without over-subscribing it.
+    # Each worker has its own connection pool (5-20 DB connections).
+    # 4 workers × 20 connections = up to 80 parallel DB queries.
+    echo "Starting 4 OrderService workers on ports 8010-8013..."
+    echo "(nginx on port 8000 load balances across them)"
+    echo ""
+
+    for PORT in 8010 8011 8012 8013; do
+        # Create a temporary config with this worker's port
+        WORKER_CONFIG="/tmp/order_worker_${PORT}.json"
+        # Use Python to patch the port rather than fragile sed
+        $PYTHON - << PYEOF
+import json
+with open("$CONFIG") as f:
+    cfg = json.load(f)
+cfg["OrderService"]["port"] = ${PORT}
+with open("$WORKER_CONFIG", "w") as f:
+    json.dump(cfg, f)
+PYEOF
+        echo "  Starting worker on port $PORT..."
+        $PYTHON src/OrderService/order_service.py "$WORKER_CONFIG" &
+    done
+
+    echo ""
+    echo "All workers started. nginx distributes requests from port 8000."
+    echo "Press Ctrl+C to stop all workers."
+    wait  # keep the shell alive until Ctrl+C
     ;;
 
-  # ── -w : run workload parser ───────────────────────────────────────────────
   -w)
     if [ -z "$2" ]; then
         echo "Usage: ./runme.sh -w <workload_file>"
@@ -94,7 +122,7 @@ case "$1" in
     echo "  ./runme.sh -u          Start UserService"
     echo "  ./runme.sh -p          Start ProductService"
     echo "  ./runme.sh -i          Start ISCS"
-    echo "  ./runme.sh -o          Start OrderService"
+    echo "  ./runme.sh -o          Start 4 OrderService workers (nginx on :8000)"
     echo "  ./runme.sh -w <file>   Run workload parser"
     exit 1
     ;;

@@ -1,10 +1,15 @@
 # docker-compose.yml
 #
-# This file describes two "services" (not our microservices — Docker's word for containers).
-# Running `docker compose up -d` reads this file and starts both containers.
+# This file describes three "services" (not our microservices — Docker's word for containers).
+# Running `docker compose up -d` reads this file and starts all three containers.
 # The -d flag means "detached" — they run in the background so your terminal stays free.
 #
 # Think of each entry under `services:` as a mini-machine Docker manages for you.
+#
+# Runs three infrastructure containers:
+#   postgres  — persistent database
+#   redis     — cache layer
+#   nginx     — load balancer in front of OrderService
 
 services:
 
@@ -74,10 +79,31 @@ services:
       timeout: 3s
       retries: 10
 
-# ── Named volumes ────────────────────────────────────────────────────────────
+  # ── nginx (load balancer for OrderService) ────────────────────────────────
+  nginx:
+    image: nginx:alpine
+    container_name: inventory_nginx
+
+    ports:
+      - "8000:80"
+      # nginx listens on port 80 inside the container.
+      # We expose it as port 8000 on your laptop — the same port OrderService
+      # used to be on. Everything hitting localhost:8000 now hits nginx first,
+      # which distributes load across OrderService instances on ports 8010-8013.
+
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+      # Mount our nginx config into the container. :ro = read-only.
+
+    depends_on:
+      - postgres
+      - redis
+
+    restart: unless-stopped
+
+# ── Named volumes ─────────────────────────────────────────────────────────────
 volumes:
   postgres_data:
-    # Declaring it here tells Docker to create and manage this volume.
-    # You can inspect it with: docker volume inspect inventory-server_postgres_data
-    # You can wipe it with:    docker volume rm inventory-server_postgres_data
-    # (This is how you satisfy the assignment's "wipe all records" requirement.)
+    # A named volume persists outside the container lifecycle.
+    # PostgreSQL data survives `docker compose down` and `docker compose up`.
+    # Wipe it with: docker volume rm inventory-server_postgres_data
