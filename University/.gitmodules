@@ -1,0 +1,44 @@
+[submodule "Opal-Labs-Frontend"]
+	path = Opal-Labs-Frontend
+	url = https://github.com/AbdulDevHub/Opal-Labs-Frontend
+	branch = main
+[submodule "Opal-Labs-Backend"]
+	path = Opal-Labs-Backend
+	url = https://github.com/AbdulDevHub/Opal-Labs-Backend
+	branch = main
+[submodule "Space-Invaders"]
+	path = Space-Invaders
+	url = https://github.com/AbdulDevHub/Space-Invaders
+	branch = main
+[submodule "Huffman-Zip"]
+	path = Huffman-Zip
+	url = https://github.com/AbdulDevHub/Huffman-Zip
+	branch = main
+[submodule "UTM-Student-Portal"]
+	path = UTM-Student-Portal
+	url = https://github.com/AbdulDevHub/UTM-Student-Portal
+	branch = main
+[submodule "Shadow-of-a-Doubt"]
+	path = Shadow-of-a-Doubt
+	url = https://github.com/AbdulDevHub/Shadow-of-a-Doubt
+	branch = main
+[submodule "Console-Wars"]
+	path = Console-Wars
+	url = https://github.com/AbdulDevHub/Console-Wars
+	branch = main
+[submodule "Reddit-Data-Scrapping"]
+	path = Reddit-Data-Scrapping
+	url = https://github.com/AbdulDevHub/Reddit-Data-Scrapping
+	branch = main
+[submodule "SurfNTurf"]
+	path = SurfNTurf
+	url = https://github.com/AbdulDevHub/SurfNTurf
+	branch = main
+[submodule "Sunken-Secrets"]
+	path = Sunken-Secrets
+	url = https://github.com/AbdulDevHub/Sunken-Secrets
+	branch = main
+[submodule "Todoist"]
+	path = Todoist
+	url = https://github.com/AbdulDevHub/Todoist
+	branch = main
