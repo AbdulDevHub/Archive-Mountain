@@ -1,6 +1,6 @@
 # Exceptional University Projects 🎓💻
 
-This repository is a curated collection of **notable software projects, labs, and assignments** completed during my time at the **University of Toronto Mississauga**. It highlights my work across **Java, Python, RISC-V Assembly, object-oriented design, software architecture, data structures, algorithms, machine learning, theory of computation, and interactive media**.
+This repository is a curated collection of **notable software projects, labs, and assignments** completed during my time at the **University of Toronto Mississauga**. It highlights my work across **Java, Python, C#, C++, RISC-V Assembly, Next.js, Go, object-oriented design, software architecture, data structures, algorithms, machine learning, theory of computation, and interactive media**.
 
 Rather than serving as a single application, this repo acts as a **portfolio of academic and technical growth**, showcasing both small foundational exercises and larger, system-level projects.
 
@@ -8,7 +8,7 @@ Rather than serving as a single application, this repo acts as a **portfolio of 
 
 ## 📂 Repository Overview
 
-The repository is organized into several major projects and collections:
+The repository is organized into several major projects, external repositories, and collections:
 
 - **Boggle Game** — Full Java implementation of the Boggle word game  
 - **Computer Science Labs & Assignments** — Java, Python, and RISC-V Assembly labs covering OOP, design patterns, algorithms, data structures, computer architecture, machine learning, and theory of computation  
@@ -16,8 +16,27 @@ The repository is organized into several major projects and collections:
 - **Inventory Server** — Distributed microservice-style backend system  
 - **Map Plotting & Search** — Python-based data visualization and filtering system  
 - **The Twine Interview** — Interactive narrative game exploring bias and decision-making
+- **External Submodules** — Highlights across full-stack applications, game development in Unity & Pygame, data scraping, and systems utility tools
 
-Each section below links directly to its folder and explains its technical focus.
+Each section below links directly to its folder or submodule and explains its technical focus.
+
+---
+
+## 🔗 External Repositories & Submodules
+
+This repository aggregates several standalone projects as submodules:
+
+- **[Opal-Labs-Frontend](https://github.com/AbdulDevHub/Opal-Labs-Frontend)** — Frontend for a Notion-like productivity platform built using Next.js, TypeScript, and Google OAuth.
+- **[Opal-Labs-Backend](https://github.com/AbdulDevHub/Opal-Labs-Backend)** — Backend microservices for the Opal Labs productivity platform built with Go, PostgreSQL, and Redis.
+- **[UTM-Student-Portal](https://github.com/AbdulDevHub/UTM-Student-Portal)** — A centralized portal designed to streamline academic access and resources for UTM students.
+- **[Space-Invaders](https://github.com/AbdulDevHub/Space-Invaders)** — An enhanced Python/Pygame arcade shooter with dynamic music, boss fights, and power-ups.
+- **[Shadow-of-a-Doubt](https://github.com/AbdulDevHub/Shadow-of-a-Doubt)** — A first-person magic shooter created in Unity featuring elemental spells and wave survival.
+- **[SurfNTurf](https://github.com/AbdulDevHub/SurfNTurf)** — Strategic tower defense game created in Unity centered around defending water sources from radioactive fish.
+- **[Sunken-Secrets](https://github.com/AbdulDevHub/Sunken-Secrets)** — Immersive 3D underwater treasure hunting game built with Unity, C#, Maya, and Adobe Audition.
+- **[Console-Wars](https://github.com/AbdulDevHub/Console-Wars)** — Interactive digital exhibition exploring the historic video game console competition (1989–2005).
+- **[Huffman-Zip](https://github.com/AbdulDevHub/Huffman-Zip)** — CLI file compression tool implementing Huffman binary trees for lossless file compression/decompression in Python.
+- **[Reddit-Data-Scrapping](https://github.com/AbdulDevHub/Reddit-Data-Scrapping)** — Data analysis pipeline extracting Reddit data via PRAW with Jupyter notebook visualizations and findings.
+- **[Todoist](https://github.com/AbdulDevHub/Todoist)** — Python task management tool with CRUD capabilities, reminders, and activity tracking graphs.
 
 ---
 
@@ -298,17 +317,19 @@ An **interactive narrative game** built with Twine and HTML that explores **bias
 
 ## 🛠️ Skills Demonstrated Across This Repository
 
-- **Languages:** Java, Python, RISC-V Assembly
+- **Languages:** Java, Python, C#, C++, Go, TypeScript, RISC-V Assembly
+- **Web & Frameworks:** Next.js, FastAPI, Unity, Pygame, HTML
+- **Databases & Caching:** PostgreSQL, Redis
 - **Paradigms:** Object-Oriented Design, Procedural Programming, Low-Level Programming
 - **Design Patterns:** Observer, Decorator, Adapter, Visitor
-- **Data Structures:** Trees, BSTs, Linked Lists, Stacks, Arrays
-- **Algorithms:** Sorting, Pathfinding, Recursion, Cache Optimization
+- **Data Structures & Data Science:** Trees, BSTs, Linked Lists, Stacks, Arrays, PRAW, Pandas, NumPy
+- **Algorithms:** Sorting, Pathfinding, Huffman Binary Trees, Recursion, Cache Optimization
 - **Machine Learning:** k-NN, Regression, Decision Trees, SVMs, Ensemble Methods, Clustering, PCA
 - **Computer Architecture:** Pipelining, Memory Management, Cache Performance
 - **Theory of Computation:** Turing Machines (single- and multi-tape), State-Transition Design
-- **Software Engineering:** Testing, Debugging, Documentation, Version Control
-- **System Design:** Microservices, Distributed Systems, Load Balancing
-- **Interactive Media:** Game Design, Narrative Development
+- **Software Engineering:** Testing, Debugging, Documentation, Version Control (Git Submodules)
+- **System Design:** Microservices, Distributed Systems, Load Balancing, Docker
+- **Interactive Media:** Game Design, Narrative Development, Audio Engineering
 
 ---
 
@@ -328,6 +349,7 @@ Contains reference materials used throughout coursework:
 ## 📌 Notes
 
 - Each project folder contains its **own README** with implementation-specific details.
+- External projects are linked via Git submodules tracking their respective default branches.
 - This repository is intended for **academic, learning, and portfolio** purposes.
 - Code reflects iterative learning and increasing complexity over time.
 
