@@ -1,6 +1,6 @@
 # Exceptional University Projects 🎓💻
 
-This repository is a curated collection of **notable software projects, labs, and assignments** completed during my time at the **University of Toronto Mississauga**. It highlights my work across **Java, Python, RISC-V Assembly, object-oriented design, software architecture, data structures, algorithms, and interactive media**.
+This repository is a curated collection of **notable software projects, labs, and assignments** completed during my time at the **University of Toronto Mississauga**. It highlights my work across **Java, Python, RISC-V Assembly, object-oriented design, software architecture, data structures, algorithms, machine learning, theory of computation, and interactive media**.
 
 Rather than serving as a single application, this repo acts as a **portfolio of academic and technical growth**, showcasing both small foundational exercises and larger, system-level projects.
 
@@ -11,7 +11,7 @@ Rather than serving as a single application, this repo acts as a **portfolio of 
 The repository is organized into several major projects and collections:
 
 - **Boggle Game** — Full Java implementation of the Boggle word game  
-- **Computer Science Labs & Assignments** — Java, Python, and RISC-V Assembly labs covering OOP, design patterns, algorithms, data structures, and computer architecture  
+- **Computer Science Labs & Assignments** — Java, Python, and RISC-V Assembly labs covering OOP, design patterns, algorithms, data structures, computer architecture, machine learning, and theory of computation  
 - **Shadow In The Dark** — Full-featured survival game written entirely in RISC-V assembly  
 - **Inventory Server** — Distributed microservice-style backend system  
 - **Map Plotting & Search** — Python-based data visualization and filtering system  
@@ -53,7 +53,7 @@ A complete **Java-based implementation of the Boggle word game**, including game
 
 📁 `CS Labs/`
 
-A comprehensive collection of labs across **three core computer science courses**, covering programming fundamentals, data structures, algorithms, and computer architecture.
+A comprehensive collection of labs across **core computer science courses**, covering programming fundamentals, data structures, algorithms, computer architecture, machine learning, and theory of computation.
 
 ---
 
@@ -128,6 +128,49 @@ All programs were written and tested using [**CPU-Lator**](https://cpulator.01xz
 - Data hazards and forwarding
 - Cache locality and memory optimization
 - Syscall interface and I/O operations
+
+---
+
+### 📁 CSC311 - Machine Learning
+
+Python labs applying core machine learning algorithms to real-world data (including the NHANES heart-disease dataset), using NumPy, Pandas, Scikit-Learn, and Matplotlib in Jupyter notebooks. Each lab pairs a starter notebook with a fully solved reference notebook.
+
+#### Topics Covered
+
+- NumPy/Pandas fundamentals, vectorization, and data preprocessing
+- Supervised learning: k-Nearest Neighbors, Linear & Logistic Regression, Decision Trees, SVMs
+- Ensemble methods: Random Forests, Bagging, Boosting
+- Unsupervised learning: K-Means clustering, PCA / dimensionality reduction
+- Model evaluation (accuracy, precision, recall, train/validation/test splits)
+
+#### Notable Highlights
+
+- **k-NN Classification & EDA** (Lab02) — exploratory data analysis and distance-based classification on the NHANES heart-disease dataset
+- **Linear & Logistic Regression** (Lab03, Lab04) — closed-form and gradient-descent regression, plus binary classification with cross-entropy loss
+- **Decision Trees & SVMs** (Lab06, Lab07) — information gain/entropy-based splitting and margin-maximizing classifiers with the kernel trick
+- **Ensemble Learning** (Lab08) — Random Forests, bagging, and boosting on a train/validation/test pipeline
+- **Unsupervised Learning** (Lab10) — K-Means clustering and PCA for dimensionality reduction
+
+---
+
+### 📁 CSC363 - Turing Machines
+
+Theory of computation labs implementing single-tape and multi-tape **Turing machines** as explicit state-transition tables written in [**Varphi**](https://docs.varphi-lang.com/) (`.vp` format), covering deterministic computation, tape symbol manipulation, and multi-tape coordination.
+
+#### Topics Covered
+
+- Turing machine design via state-transition tables
+- Single-tape and multi-tape (dual read/write head) machines
+- Binary arithmetic (carry propagation) on a tape
+- String comparison across tapes
+- Tracing and reverse-engineering machine behavior from transition tables alone
+
+#### Notable Highlights
+
+- **Binary Incrementer** (`binaryIncrementar.vp`) — scans to the end of a binary string, then propagates a carry leftward to increment the value by one, including the overflow case (e.g. `11 + 1 = 100`)
+- **Two-Tape Palindrome Checker** (`mystery2.vp`) — copies the input from tape 1 onto tape 2, rewinds tape 1 to the start, then simultaneously scans tape 1 forward and tape 2 backward to verify the input is a palindrome
+- **Mystery Machines** (`mystery.vp`, `a1q1.vp`) — larger, undocumented single-tape machines (up to 17 states) used to practice tracing and deducing computed behavior directly from the transition table
+- **Hello World Machine** (`hello.vp`) — minimal one-state halting machine used as a baseline sanity check
 
 ---
 
@@ -260,7 +303,9 @@ An **interactive narrative game** built with Twine and HTML that explores **bias
 - **Design Patterns:** Observer, Decorator, Adapter, Visitor
 - **Data Structures:** Trees, BSTs, Linked Lists, Stacks, Arrays
 - **Algorithms:** Sorting, Pathfinding, Recursion, Cache Optimization
+- **Machine Learning:** k-NN, Regression, Decision Trees, SVMs, Ensemble Methods, Clustering, PCA
 - **Computer Architecture:** Pipelining, Memory Management, Cache Performance
+- **Theory of Computation:** Turing Machines (single- and multi-tape), State-Transition Design
 - **Software Engineering:** Testing, Debugging, Documentation, Version Control
 - **System Design:** Microservices, Distributed Systems, Load Balancing
 - **Interactive Media:** Game Design, Narrative Development
