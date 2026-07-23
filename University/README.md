@@ -38,6 +38,32 @@ This repository aggregates several standalone projects as submodules:
 - **[Reddit-Data-Scrapping](https://github.com/AbdulDevHub/Reddit-Data-Scrapping)** — Data analysis pipeline extracting Reddit data via PRAW with Jupyter notebook visualizations and findings.
 - **[Todoist](https://github.com/AbdulDevHub/Todoist)** — Python task management tool with CRUD capabilities, reminders, and activity tracking graphs.
 
+### ⚙️ Cloning & Updating Submodules
+
+To add a submodule configured to track its `main` branch (e.g., for `Reddit-Data-Scrapping`):
+
+```bash
+git submodule add -b main https://github.com/AbdulDevHub/Repository-Name
+```
+
+To clone this repository alongside all submodules in a single command:
+
+```bash
+git clone --recurse-submodules <your-main-repo-url>
+```
+
+If you already cloned the repository without submodules, initialize them using:
+
+```bash
+git submodule update --init --recursive
+```
+
+To fetch and pull the latest updates from the tracked `main` branches of all submodules:
+
+```bash
+git submodule update --remote --merge
+```
+
 ---
 
 ## 🎲 Boggle Game (Java)
