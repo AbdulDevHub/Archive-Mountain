@@ -1,0 +1,284 @@
+% ============================================================
+%  CSC343H5 Sprint 4: Normalization
+%  Student Submission Template
+% ============================================================
+\documentclass[11pt, letterpaper]{article}
+
+% -- Packages ------------------------------------------------
+\usepackage[margin=1in, top=0.9in, bottom=0.85in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage[expansion=false]{microtype}
+\usepackage{xcolor}
+\usepackage{enumitem}
+\usepackage{parskip}
+\usepackage{titlesec}
+\usepackage{fancyhdr}
+\usepackage{hyperref}
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+% -- Colours (text only, no fills) ---------------------------
+\definecolor{dark}{HTML}{1A2A3A}
+\definecolor{mid}{HTML}{2D5F8A}
+\definecolor{muted}{HTML}{6B7A8D}
+
+\hypersetup{colorlinks=true, linkcolor=mid, urlcolor=mid,
+  pdftitle={CSC343 Sprint 4 Submission}}
+
+% -- Section styling -----------------------------------------
+\titleformat{\section}
+  {\large\bfseries\color{mid}}
+  {\thesection.}{0.5em}{}[\vspace{-4pt}\textcolor{mid}{\rule{\linewidth}{0.4pt}}]
+\titleformat{\subsection}
+  {\normalsize\bfseries\color{dark}}
+  {\thesubsection}{0.5em}{}
+\titlespacing{\section}{0pt}{14pt}{6pt}
+\titlespacing{\subsection}{0pt}{8pt}{3pt}
+
+% -- Header / footer -----------------------------------------
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0.4pt}
+\fancyhead[L]{\small\color{muted}CSC343  Sprint 4 Submission}
+\fancyhead[R]{\small\color{muted}Due: Jul 25, 5\,PM ET}
+\fancyfoot[C]{\small\color{muted}\thepage}
+
+% -- Helpers -------------------------------------------------
+\newcommand{\attr}[1]{\texttt{#1}}
+\newcommand{\fd}{\ensuremath{\rightarrow}}
+\newcommand{\clo}[1]{\ensuremath{\{#1\}^{+}}}
+\newcommand{\pk}[1]{\underline{\texttt{#1}}}          % underline a PK attribute
+\newcommand{\todo}[1]{{\color{muted}\textit{[#1]}}}    % placeholder prompt
+
+\setlist[itemize]{leftmargin=1.4em, itemsep=2pt, topsep=3pt}
+\setlist[enumerate]{leftmargin=1.4em, itemsep=2pt, topsep=3pt}
+\setlength{\emergencystretch}{3em}
+
+% ============================================================
+\begin{document}
+
+% -- Title block ---------------------------------------------
+\begin{center}
+  {\small\color{muted}CSC343H5 Introduction to Databases}\\[4pt]
+  {\LARGE\bfseries\color{dark}Sprint 4: Normalization}\\[4pt]
+  {\small\color{muted}Student Submission Template}
+\end{center}
+\vspace{6pt}
+
+% -- Student information --------------------------------------
+\begin{tabular}{@{}ll@{}}
+  \textbf{Full name:}      & {Abdul Hadi Khan} \\
+  \textbf{Student number:} & {1007984736} \\
+  \textbf{UTORid:}         & {khanab72} \\
+  \textbf{Course:}         & CSC343H5 Introduction to Databases \\
+  \textbf{Sprint:}         & 4: Normalization \\
+  \textbf{Submission:}     & First submission \\
+\end{tabular}
+
+\vspace{8pt}
+
+\textbf{How to use this template.} Write each answer beneath its prompt, replacing the grey \todo{placeholder} text. Use \verb|\fd| for the arrow (\attr{A} \fd{} \attr{B}), \verb|\clo{...}| for a closure ($\clo{\attr{A}}$), and \verb|\pk{...}| to underline a primary-key attribute. Show every step; closures and decomposition steps are where the marks are.
+
+\medskip
+\textbf{Reference: \attr{research\_flat}.} Key
+$(\attr{grant\_code},\ \attr{project\_id},\ \attr{researcher\_id})$. Attributes:
+\attr{grant\_code}, \attr{grant\_title}, \attr{funding\_body}, \attr{funding\_sector},
+\attr{project\_id}, \attr{project\_title}, \attr{budget}, \attr{researcher\_id},
+\attr{researcher\_name}, \attr{institution}, \attr{role\_on\_project}. Given FDs:
+
+\begin{itemize}[itemsep=1pt, topsep=2pt]
+  \item FD1: \attr{grant\_code} \fd{} \attr{grant\_title}, \attr{funding\_body}
+  \item FD2: \attr{project\_id} \fd{} \attr{project\_title}, \attr{budget}
+  \item FD3: \attr{researcher\_id} \fd{} \attr{researcher\_name}, \attr{institution}
+  \item FD4: \attr{funding\_body} \fd{} \attr{funding\_sector}
+  \item FD5: \attr{grant\_code}, \attr{project\_id}, \attr{researcher\_id} \fd{} \attr{role\_on\_project}
+\end{itemize}
+
+% ============================================================
+\section{Task 1: Closure \& Candidate Key}
+
+\subsection*{(a) Closure of the composite key}
+Let \(K = \{\attr{grant\_code}, \attr{project\_id}, \attr{researcher\_id}\}\). Show each step; the final set must contain every attribute.
+\[
+\begin{aligned}
+K^{+} &= \{\attr{grant\_code}, \attr{project\_id}, \attr{researcher\_id}\} \qquad \text{(start)}\\[2pt]
+      &= K^{+} \cup \{\attr{grant\_title}, \attr{funding\_body}\}\\
+      &\qquad \text{(by FD1: } \attr{grant\_code} \fd \attr{grant\_title}, \attr{funding\_body}\text{)}\\[2pt]
+      &= K^{+} \cup \{\attr{project\_title}, \attr{budget}\}\\
+      &\qquad \text{(by FD2: } \attr{project\_id} \fd \attr{project\_title}, \attr{budget}\text{)}\\[2pt]
+      &= K^{+} \cup \{\attr{researcher\_name}, \attr{institution}\}\\
+      &\qquad \text{(by FD3: } \attr{researcher\_id} \fd \attr{researcher\_name}, \attr{institution}\text{)}\\[2pt]
+      &= K^{+} \cup \{\attr{funding\_sector}\}\\
+      &\qquad \text{(by FD4: } \attr{funding\_body} \fd \attr{funding\_sector}\text{, since \attr{funding\_body} is now in the set)}\\[2pt]
+      &= K^{+} \cup \{\attr{role\_on\_project}\}\\
+      &\qquad \text{(by FD5: } K \fd \attr{role\_on\_project}\text{)}\\[2pt]
+      &= \text{all 11 attributes} \qquad \text{(done)}
+\end{aligned}
+\]
+
+\subsection*{(b) Candidate key}
+$K = \{\attr{grant\_code}, \attr{project\_id}, \attr{researcher\_id}\}$ is the only candidate key. None of the other eight attributes (\attr{grant\_title}, \attr{funding\_body}, \attr{funding\_sector}, \attr{project\_title}, \attr{budget}, \attr{researcher\_name}, \attr{institution}, \attr{role\_on\_project}) ever appears on the left-hand side of an FD, so no key can be built using them, and dropping any one of \attr{grant\_code}, \attr{project\_id}, \attr{researcher\_id} from $K$ leaves the closure missing the attributes owned by the id that was dropped (e.g.\ $\{\attr{project\_id}, \attr{researcher\_id}\}^{+}$ never reaches \attr{grant\_title} or \attr{funding\_body}), so all three are required.
+
+\subsection*{(c) Prime and non-prime attributes}
+\textbf{Prime:} \attr{grant\_code}, \attr{project\_id}, \attr{researcher\_id} \qquad \textbf{Non-prime:} \attr{grant\_title}, \attr{funding\_body}, \attr{funding\_sector}, \attr{project\_title}, \attr{budget}, \attr{researcher\_name}, \attr{institution}, \attr{role\_on\_project}
+
+% ============================================================
+\section{Task 2: Minimal Cover}
+
+\subsection*{Step 1: Single-attribute right-hand sides}
+Splitting each FD's right-hand side into single attributes gives 8 FDs:
+\begin{itemize}
+  \item \attr{grant\_code} \fd{} \attr{grant\_title} \qquad \attr{grant\_code} \fd{} \attr{funding\_body}
+  \item \attr{project\_id} \fd{} \attr{project\_title} \qquad \attr{project\_id} \fd{} \attr{budget}
+  \item \attr{researcher\_id} \fd{} \attr{researcher\_name} \qquad \attr{researcher\_id} \fd{} \attr{institution}
+  \item \attr{funding\_body} \fd{} \attr{funding\_sector}
+  \item \attr{grant\_code}, \attr{project\_id}, \attr{researcher\_id} \fd{} \attr{role\_on\_project}
+\end{itemize}
+
+\subsection*{Step 2: Remove redundant left-hand-side attributes}
+Only FD5 (\attr{grant\_code}, \attr{project\_id}, \attr{researcher\_id} \fd{} \attr{role\_on\_project}) has more than one attribute on the left. We test whether each attribute can be dropped by computing the closure of the \emph{other two} using the full FD set from Step 1:
+\[
+\clo{\attr{project\_id}, \attr{researcher\_id}}
+\]
+reaches \attr{project\_title}, \attr{budget}, \attr{researcher\_name}, and \attr{institution}, but never \attr{role\_on\_project} $\Rightarrow$ \attr{grant\_code} is \textbf{not} redundant.
+
+\[
+\clo{\attr{grant\_code}, \attr{researcher\_id}}
+\]
+reaches \attr{grant\_title}, \attr{funding\_body}, \attr{funding\_sector}, \attr{researcher\_name}, and \attr{institution}, but never \attr{role\_on\_project} $\Rightarrow$ \attr{project\_id} is \textbf{not} redundant.
+
+\[
+\clo{\attr{grant\_code}, \attr{project\_id}}
+\]
+reaches \attr{grant\_title}, \attr{funding\_body}, \attr{funding\_sector}, \attr{project\_title}, and \attr{budget}, but never \attr{role\_on\_project} $\Rightarrow$ \attr{researcher\_id} is \textbf{not} redundant.
+All three attributes are needed on the left of FD5, so nothing is removed in this step.
+
+\subsection*{Step 3: Remove redundant FDs}
+For each FD $X \fd Y$ from Step 1, we compute $\clo{X}$ using the \emph{other seven} FDs and check whether $Y$ is still reached:
+\begin{itemize}
+  \item Drop \attr{grant\_code} \fd{} \attr{grant\_title}: $\clo{\attr{grant\_code}}$ reaches only \attr{funding\_body} and \attr{funding\_sector} $\Rightarrow$ \attr{grant\_title} not reached, \textbf{keep}.
+  \item Drop \attr{grant\_code} \fd{} \attr{funding\_body}: $\clo{\attr{grant\_code}}$ reaches only \attr{grant\_title} $\Rightarrow$ \attr{funding\_body} not reached, \textbf{keep}.
+  \item Drop \attr{project\_id} \fd{} \attr{project\_title}: $\clo{\attr{project\_id}}$ reaches only \attr{budget} $\Rightarrow$ \attr{project\_title} not reached, \textbf{keep}.
+  \item Drop \attr{project\_id} \fd{} \attr{budget}: $\clo{\attr{project\_id}}$ reaches only \attr{project\_title} $\Rightarrow$ \attr{budget} not reached, \textbf{keep}.
+  \item Drop \attr{researcher\_id} \fd{} \attr{researcher\_name}: $\clo{\attr{researcher\_id}}$ reaches only \attr{institution} $\Rightarrow$ \attr{researcher\_name} not reached, \textbf{keep}.
+  \item Drop \attr{researcher\_id} \fd{} \attr{institution}: $\clo{\attr{researcher\_id}}$ reaches only \attr{researcher\_name} $\Rightarrow$ \attr{institution} not reached, \textbf{keep}.
+  \item Drop \attr{funding\_body} \fd{} \attr{funding\_sector}: $\clo{\attr{funding\_body}}$ reaches nothing new $\Rightarrow$ \attr{funding\_sector} not reached, \textbf{keep}.
+  \item Drop FD5: without \attr{grant\_code}, \attr{project\_id}, \attr{researcher\_id} \fd{} \attr{role\_on\_project}, the closure of that same set still reaches every other attribute through FD1--FD4, but never \attr{role\_on\_project} $\Rightarrow$ \textbf{keep}.
+\end{itemize}
+No FD is redundant, so all 8 survive.
+
+\subsection*{Resulting minimal cover}
+The minimal cover turns out to contain the same information as the original FD set in \S3 (grouping same-left-hand-side FDs back together for readability):
+\[
+\text{Minimal cover} = \left\{
+\begin{aligned}
+&\attr{grant\_code} \fd{} \attr{grant\_title}, \attr{funding\_body}\\
+&\attr{project\_id} \fd{} \attr{project\_title}, \attr{budget}\\
+&\attr{researcher\_id} \fd{} \attr{researcher\_name}, \attr{institution}\\
+&\attr{funding\_body} \fd{} \attr{funding\_sector}\\
+&\attr{grant\_code}, \attr{project\_id}, \attr{researcher\_id} \fd{} \attr{role\_on\_project}
+\end{aligned}
+\right\}
+\]
+
+% ============================================================
+\section{Task 3: BCNF Decomposition}
+
+For each step, name the violating FD, give the two resulting relations with their keys, and show the lossless check. Add as many steps as you need.
+
+\subsection*{Decomposition steps}
+\textbf{Step 1.} Decompose \attr{research\_flat} on \ \attr{grant\_code} \fd{} \attr{grant\_title}, \attr{funding\_body}.
+\begin{itemize}
+  \item \textbf{Violation:} \attr{grant\_code} is not a superkey of \attr{research\_flat}. $\clo{\attr{grant\_code}}$ reaches only \attr{grant\_title}, \attr{funding\_body}, and (via FD4) \attr{funding\_sector} - it never reaches \attr{project\_id} or \attr{researcher\_id}, so it does not reach all 11 attributes.
+  \item \textbf{Resulting relations:}
+    \attr{R1(grant\_code, grant\_title, funding\_body, funding\_sector)} with key \pk{grant\_code} (\attr{funding\_sector} is included because \attr{grant\_code}'s closure reaches it transitively through \attr{funding\_body}); \quad
+    \attr{R2(grant\_code, project\_id, project\_title, budget, researcher\_id, researcher\_name, institution, role\_on\_project)} with key \pk{grant\_code, project\_id, researcher\_id}.
+  \item \textbf{Lossless check:} shared attributes $=$ \{\attr{grant\_code}\}; \attr{grant\_code} is a key of R1, so the split is lossless.
+\end{itemize}
+
+\textbf{Step 2.} Decompose \attr{R1} on \ \attr{funding\_body} \fd{} \attr{funding\_sector}.
+\begin{itemize}
+  \item \textbf{Violation:} \attr{funding\_body} is not a superkey of \attr{R1}. $\clo{\attr{funding\_body}}$ reaches only \attr{funding\_sector} - it never reaches \attr{grant\_code}, the key of R1.
+  \item \textbf{Resulting relations:}
+    \attr{funder(funding\_body, funding\_sector)} with key \pk{funding\_body}; \quad
+    \attr{grant(grant\_code, grant\_title, funding\_body)} with key \pk{grant\_code}.
+  \item \textbf{Lossless check:} shared attributes $=$ \{\attr{funding\_body}\}; \attr{funding\_body} is a key of \attr{funder}, so the split is lossless.
+\end{itemize}
+
+\textbf{Step 3.} Decompose \attr{R2} on \ \attr{project\_id} \fd{} \attr{project\_title}, \attr{budget}.
+\begin{itemize}
+  \item \textbf{Violation:} \attr{project\_id} is not a superkey of \attr{R2}. $\clo{\attr{project\_id}}$ reaches only \attr{project\_title} and \attr{budget} - it never reaches \attr{grant\_code} or \attr{researcher\_id}, part of R2's key.
+  \item \textbf{Resulting relations:}
+    \attr{project(project\_id, project\_title, budget)} with key \pk{project\_id}; \quad
+    \attr{R2b(grant\_code, project\_id, researcher\_id, researcher\_name, institution, role\_on\_project)} with key \pk{grant\_code, project\_id, researcher\_id}.
+  \item \textbf{Lossless check:} shared attributes $=$ \{\attr{project\_id}\}; \attr{project\_id} is a key of \attr{project}, so the split is lossless.
+\end{itemize}
+
+\textbf{Step 4.} Decompose \attr{R2b} on \ \attr{researcher\_id} \fd{} \attr{researcher\_name}, \attr{institution}.
+\begin{itemize}
+  \item \textbf{Violation:} \attr{researcher\_id} is not a superkey of \attr{R2b}. $\clo{\attr{researcher\_id}}$ reaches only \attr{researcher\_name} and \attr{institution} - it never reaches \attr{grant\_code} or \attr{project\_id}, part of R2b's key.
+  \item \textbf{Resulting relations:}
+    \attr{researcher(researcher\_id, researcher\_name, institution)} with key \pk{researcher\_id}; \quad
+    \attr{participation(grant\_code, project\_id, researcher\_id, role\_on\_project)} with key \pk{grant\_code, project\_id, researcher\_id}.
+  \item \textbf{Lossless check:} shared attributes $=$ \{\attr{researcher\_id}\}; \attr{researcher\_id} is a key of \attr{researcher}, so the split is lossless.
+\end{itemize}
+
+No further FDs are violated in any of the five relations below, so the decomposition is complete.
+
+\subsection*{Final BCNF schema}
+\begin{itemize}
+  \item \attr{funder(}\pk{funding\_body}\attr{, funding\_sector)}
+  \item \attr{grant(}\pk{grant\_code}\attr{, grant\_title, funding\_body)}
+  \item \attr{project(}\pk{project\_id}\attr{, project\_title, budget)}
+  \item \attr{researcher(}\pk{researcher\_id}\attr{, researcher\_name, institution)}
+  \item \attr{participation(}\pk{grant\_code, project\_id, researcher\_id}\attr{, role\_on\_project)}
+\end{itemize}
+(\attr{grant.funding\_body} is a foreign key into \attr{funder}; \attr{participation}'s three key columns are foreign keys into \attr{grant}, \attr{project}, and \attr{researcher} respectively.)
+
+\subsection*{BCNF verification}
+In each relation, the left-hand side of the only non-trivial FD that applies is exactly that relation's primary key, so every non-trivial FD has a superkey left-hand side:
+\begin{itemize}
+  \item \attr{funder}: \attr{funding\_body} \fd{} \attr{funding\_sector}, and \attr{funding\_body} is the key.
+  \item \attr{grant}: \attr{grant\_code} \fd{} \attr{grant\_title}, \attr{funding\_body}, and \attr{grant\_code} is the key.
+  \item \attr{project}: \attr{project\_id} \fd{} \attr{project\_title}, \attr{budget}, and \attr{project\_id} is the key.
+  \item \attr{researcher}: \attr{researcher\_id} \fd{} \attr{researcher\_name}, \attr{institution}, and \attr{researcher\_id} is the key.
+  \item \attr{participation}: \attr{grant\_code}, \attr{project\_id}, \attr{researcher\_id} \fd{} \attr{role\_on\_project}, and this combination is the whole key.
+\end{itemize}
+All five relations are in BCNF.
+
+% ============================================================
+\section{Task 4: 3NF Check \& Justification}
+
+\subsection*{(a) Dependency preservation}
+Each FD in the minimal cover can be checked entirely inside one of the five final relations, with no join required:
+\begin{itemize}
+  \item \attr{grant\_code} \fd{} \attr{grant\_title}, \attr{funding\_body} - this is checkable in \attr{grant}.
+  \item \attr{project\_id} \fd{} \attr{project\_title}, \attr{budget} - this is checkable in \attr{project}.
+  \item \attr{researcher\_id} \fd{} \attr{researcher\_name}, \attr{institution} - this is checkable in \attr{researcher}.
+  \item \attr{funding\_body} \fd{} \attr{funding\_sector} - this is checkable in \attr{funder}.
+  \item \attr{grant\_code}, \attr{project\_id}, \attr{researcher\_id} \fd{} \attr{role\_on\_project} - checkable in \attr{participation}.
+\end{itemize}
+Since every FD lands cleanly in exactly one relation, this BCNF decomposition \textbf{is dependency-preserving}. A 3NF synthesis is not needed here; the BCNF schema above can be used directly, since it gives both no redundancy (BCNF) and dependency preservation, which is not always possible together but happens to hold for this FD set.
+
+\subsection*{(b) Anomaly example}
+\textbf{Update anomaly.} In \attr{research\_flat}, grant \attr{NSERC-4471} appears on two rows: (\attr{NSERC-4471}, \attr{EcoForecast}, Amara Osei, PI) and (\attr{NSERC-4471}, \attr{EcoForecast}, Priya Sharma, Postdoc). The value of \attr{grant\_title} is copied onto both rows. If the grant is renamed, both rows must be updated; if only one is changed, the table now claims \attr{NSERC-4471} has two different titles at once, an inconsistency that cannot happen in the decomposed schema, where \attr{grant\_title} is stored exactly once, in the \attr{grant} table, keyed by \attr{grant\_code}.
+
+% ============================================================
+\section{AI Usage Declaration}
+
+I used an AI tool while completing this sprint, as declared below.
+
+\begin{itemize}
+  \item \textbf{Tool:} Claude Sonnet 5
+\end{itemize}
+
+\textbf{Interactions:}
+\begin{enumerate}
+  \item I gave Claude the sprint handout and asked it to guide me step by step since I was new/confused about this topic.
+  \item I asked it to re-explain closure and candidate-key computation from scratch in simpler terms, since I didn't follow the reasoning the first time.
+  \item I gave it several lines and formulas which were running past the page margin in the compiled PDF and asked Claude to fix the LaTeX formatting.
+  \item I asked Claude to check the compiled PDF, both for correctness of the answers and for formatting, before I did my own final manual review.
+\end{enumerate}
+
+\textbf{How I verified / applied it:} After the above, I reviewed the entire compiled PDF manually myself, re-checking the closure, the minimal-cover redundancy tests, and the BCNF decomposition steps against the FDs in \S3 to confirm each step and result before including it here.
+\end{document}

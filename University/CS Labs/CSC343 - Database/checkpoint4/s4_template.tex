@@ -1,0 +1,202 @@
+% ============================================================
+%  CSC343H5 Sprint 4: Normalisation
+%  Student Submission Template
+% ============================================================
+\documentclass[11pt, letterpaper]{article}
+
+% -- Packages ------------------------------------------------
+\usepackage[margin=1in, top=0.9in, bottom=0.85in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage[expansion=false]{microtype}
+\usepackage{xcolor}
+\usepackage{enumitem}
+\usepackage{parskip}
+\usepackage{titlesec}
+\usepackage{fancyhdr}
+\usepackage{hyperref}
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+% -- Colours (text only, no fills) ---------------------------
+\definecolor{dark}{HTML}{1A2A3A}
+\definecolor{mid}{HTML}{2D5F8A}
+\definecolor{muted}{HTML}{6B7A8D}
+
+\hypersetup{colorlinks=true, linkcolor=mid, urlcolor=mid,
+  pdftitle={CSC343 Sprint 4 Submission}}
+
+% -- Section styling -----------------------------------------
+\titleformat{\section}
+  {\large\bfseries\color{mid}}
+  {\thesection.}{0.5em}{}[\vspace{-4pt}\textcolor{mid}{\rule{\linewidth}{0.4pt}}]
+\titleformat{\subsection}
+  {\normalsize\bfseries\color{dark}}
+  {\thesubsection}{0.5em}{}
+\titlespacing{\section}{0pt}{14pt}{6pt}
+\titlespacing{\subsection}{0pt}{8pt}{3pt}
+
+% -- Header / footer -----------------------------------------
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0.4pt}
+\fancyhead[L]{\small\color{muted}CSC343  Sprint 4 Submission}
+\fancyhead[R]{\small\color{muted}Due: Jul 25, 5\,PM ET}
+\fancyfoot[C]{\small\color{muted}\thepage}
+
+% -- Helpers -------------------------------------------------
+\newcommand{\attr}[1]{\texttt{#1}}
+\newcommand{\fd}{\ensuremath{\rightarrow}}
+\newcommand{\clo}[1]{\ensuremath{\{#1\}^{+}}}
+\newcommand{\pk}[1]{\underline{\texttt{#1}}}          % underline a PK attribute
+\newcommand{\todo}[1]{{\color{muted}\textit{[#1]}}}    % placeholder prompt
+
+\setlist[itemize]{leftmargin=1.4em, itemsep=2pt, topsep=3pt}
+\setlist[enumerate]{leftmargin=1.4em, itemsep=2pt, topsep=3pt}
+\setlength{\emergencystretch}{3em}
+
+% ============================================================
+\begin{document}
+
+% -- Title block ---------------------------------------------
+\begin{center}
+  {\small\color{muted}CSC343H5 Introduction to Databases}\\[4pt]
+  {\LARGE\bfseries\color{dark}Sprint 4: Normalisation}\\[4pt]
+  {\small\color{muted}Student Submission Template}
+\end{center}
+\vspace{6pt}
+
+% -- Student information --------------------------------------
+\begin{tabular}{@{}ll@{}}
+  \textbf{Full name:}      & \todo{your full name} \\
+  \textbf{Student number:} & \todo{your student number} \\
+  \textbf{UTORid:}         & \todo{your UTORid} \\
+  \textbf{Course:}         & CSC343H5 Introduction to Databases \\
+  \textbf{Sprint:}         & 4: Normalisation \\
+  \textbf{Submission:}     & First submission \\
+\end{tabular}
+
+\vspace{8pt}
+
+\textbf{How to use this template.} Write each answer beneath its prompt, replacing the grey \todo{placeholder} text. Use \verb|\fd| for the arrow (\attr{A} \fd{} \attr{B}), \verb|\clo{...}| for a closure ($\clo{\attr{A}}$), and \verb|\pk{...}| to underline a primary-key attribute. Show every step; closures and decomposition steps are where the marks are.
+
+\medskip
+\textbf{Reference: \attr{research\_flat}.} Key
+$(\attr{grant\_code},\ \attr{project\_id},\ \attr{researcher\_id})$. Attributes:
+\attr{grant\_code}, \attr{grant\_title}, \attr{funding\_body}, \attr{funding\_sector},
+\attr{project\_id}, \attr{project\_title}, \attr{budget}, \attr{researcher\_id},
+\attr{researcher\_name}, \attr{institution}, \attr{role\_on\_project}. Given FDs:
+
+\begin{itemize}[itemsep=1pt, topsep=2pt]
+  \item FD1: \attr{grant\_code} \fd{} \attr{grant\_title}, \attr{funding\_body}
+  \item FD2: \attr{project\_id} \fd{} \attr{project\_title}, \attr{budget}
+  \item FD3: \attr{researcher\_id} \fd{} \attr{researcher\_name}, \attr{institution}
+  \item FD4: \attr{funding\_body} \fd{} \attr{funding\_sector}
+  \item FD5: \attr{grant\_code}, \attr{project\_id}, \attr{researcher\_id} \fd{} \attr{role\_on\_project}
+\end{itemize}
+
+% ============================================================
+\section{Task 1: Closure \& Candidate Key}
+
+\subsection*{(a) Closure of the composite key}
+Let \(K = \{\attr{grant\_code}, \attr{project\_id}, \attr{researcher\_id}\}\). Show each step; the final set must contain every attribute.
+\[
+\begin{aligned}
+K^{+} &= K && \text{(start)}\\
+      &= \todo{add attributes} && \text{(by \todo{FD?})}\\
+      &\ \ \ \vdots && \\
+      &= \todo{all attributes} && \text{(done)}
+\end{aligned}
+\]
+
+\subsection*{(b) Candidate key}
+\todo{State whether the composite key is the only candidate key (or list any others), and justify in one sentence, e.g.\ which attributes never appear on a right-hand side and so must be in every key.}
+
+\subsection*{(c) Prime and non-prime attributes}
+\textbf{Prime:} \todo{...} \qquad \textbf{Non-prime:} \todo{...}
+
+% ============================================================
+\section{Task 2: Minimal Cover}
+
+\subsection*{Step 1: Single-attribute right-hand sides}
+\todo{Rewrite every FD so each has one attribute on the right.}
+
+\subsection*{Step 2: Remove redundant left-hand-side attributes}
+Only FDs with more than one attribute on the left need checking. For each, show the closure test.
+\[
+\clo{\todo{subset of the LHS}} = \{\,\todo{...}\,\}
+\quad\Rightarrow\quad \todo{attribute is / is not redundant}
+\]
+\todo{Repeat as needed.}
+
+\subsection*{Step 3: Remove redundant FDs}
+For each FD $X \fd Y$, compute $\clo{X}$ \emph{without} that FD; if $Y$ is still reached, the FD is redundant.
+\[
+\clo{\todo{X}}\ \text{(without \todo{FD?})} = \{\,\todo{...}\,\}
+\quad\Rightarrow\quad \todo{keep / drop}
+\]
+\todo{Repeat as needed.}
+
+\subsection*{Resulting minimal cover}
+\[ \text{Minimal cover} = \{\ \todo{list your final FDs}\ \} \]
+
+% ============================================================
+\section{Task 3: BCNF Decomposition}
+
+For each step, name the violating FD, give the two resulting relations with their keys, and show the lossless check. Add as many steps as you need.
+
+\subsection*{Decomposition steps}
+\textbf{Step 1.} Decompose \attr{\todo{relation}} on \ \todo{$X$} \fd{} \todo{$Y$}.
+\begin{itemize}
+  \item \textbf{Violation:} \todo{$X$} is not a superkey of \attr{\todo{relation}} because \todo{...}.
+  \item \textbf{Resulting relations:}
+    \attr{\todo{R1(attrs)}} with key \pk{\todo{...}}; \quad
+    \attr{\todo{R2(attrs)}} with key \pk{\todo{...}}.
+  \item \textbf{Lossless check:} shared attributes $=$ \todo{...}; these form a key of \todo{which side}, so the split is lossless.
+\end{itemize}
+
+\textbf{Step 2.} \todo{...}
+
+\textbf{Step 3.} \todo{...}
+
+\subsection*{Final BCNF schema}
+List every relation in schema notation with primary keys underlined, for example:
+\begin{itemize}
+  \item \attr{grant(}\pk{grant\_code}\attr{, grant\_title, funding\_body)}
+  \item \todo{...}
+\end{itemize}
+
+\subsection*{BCNF verification}
+\todo{For each final relation, state that every non-trivial FD in it has a superkey left-hand side.}
+
+% ============================================================
+\section{Task 4: 3NF Check \& Justification}
+
+\subsection*{(a) Dependency preservation}
+\todo{For each FD in your minimal cover, say which single relation can check it. State whether the BCNF schema is dependency-preserving. If not, give the 3NF synthesis result and say which schema you would use and why.}
+
+\subsection*{(b) Anomaly example}
+\todo{Pick one anomaly type (update, insertion, or deletion) and give a concrete example using the sample rows: which rows are involved and what goes wrong.}
+
+% ============================================================
+\section{AI Usage Declaration}
+
+\todo{Declare any AI tool use per the course policy. If none, write: ``I did not use any AI tools in completing this sprint.''}
+
+\begin{itemize}
+  \item \textbf{Tool:} \todo{e.g.\ ChatGPT} \\
+        \textbf{What I asked:} \todo{...} \\
+        \textbf{How I verified / applied it:} \todo{...}
+\end{itemize}
+
+% ============================================================
+\section{Self-Check (optional)}
+
+\begin{itemize}[itemsep=1pt]
+  \item[$\square$] Closure reaches all 11 attributes.
+  \item[$\square$] Every minimal-cover step shows a closure test.
+  \item[$\square$] Each BCNF step has a violation, two relations with keys, and a lossless check.
+  \item[$\square$] Every final relation is verified BCNF.
+  \item[$\square$] Name, student number, and UTORid filled in above.
+\end{itemize}
+
+\end{document}
