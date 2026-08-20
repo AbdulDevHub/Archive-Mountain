@@ -98,7 +98,7 @@ A complete **Java-based implementation of the Boggle word game**, including game
 
 📁 `CS Labs/`
 
-A comprehensive collection of labs across **core computer science courses**, covering programming fundamentals, data structures, algorithms, computer architecture, machine learning, and theory of computation.
+A comprehensive collection of labs across **core computer science courses**, covering programming fundamentals, data structures, algorithms, computer architecture, databases, machine learning, and theory of computation.
 
 ---
 
@@ -195,6 +195,27 @@ Python labs applying core machine learning algorithms to real-world data (includ
 - **Decision Trees & SVMs** (Lab06, Lab07) — information gain/entropy-based splitting and margin-maximizing classifiers with the kernel trick
 - **Ensemble Learning** (Lab08) — Random Forests, bagging, and boosting on a train/validation/test pipeline
 - **Unsupervised Learning** (Lab10) — K-Means clustering and PCA for dimensionality reduction
+
+---
+
+### 📁 CSC343 - Database
+
+Relational database design, implementation, and query execution using **PostgreSQL**, focusing on the full database lifecycle—from ER modeling and schema constraints to complex SQL queries, transaction logic, and query visualization.
+
+#### Topics Covered
+
+- Entity-Relationship (ER) modeling and converting ER diagrams to relational schemas
+- Data Definition Language (DDL) design with integrity constraints, primary/foreign keys, and `CHECK` conditions
+- Structured Query Language (SQL): complex multi-table joins, aggregations, subqueries, and window functions
+- Database testing methodologies using bash automation scripts and test data validation
+- Schema normalization, query optimization, and structural database refinement
+
+#### Notable Highlights
+
+- **Schema Design & ER Modeling** (Checkpoints 1 & 2) — Built and refined ER diagrams (`.drawio`/PDF) alongside corresponding DDL scripts (`s1.ddl`, `s2.ddl`) enforce domain constraints and relational integrity.
+- **SQL Query & Data Analysis** (Checkpoint 3) — Developed non-trivial relational queries (`s3.sql`) and implemented a custom Python query execution visualizer (`visualizer.py`) to trace data flow.
+- **Automated Verification Suite** — Executed comprehensive test suites (`run_tests.sh`, `test_constraints.sql`, `test_data.sql`, `test_structure.sql`) across all iterations to validate schema correctness and data integrity.
+- **Coursework & Exam Archive** — Comprehensive reference repository featuring lecture slides, tutorial exercises, practical assignments, and legacy final exams (Fall 2019, Winter 2019, Winter 2023).
 
 ---
 
