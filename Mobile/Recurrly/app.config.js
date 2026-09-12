@@ -1,4 +1,4 @@
-const appJson = require('./app.json')
+const appJson = require("./app.json")
 
 export default {
   expo: {
@@ -7,6 +7,14 @@ export default {
       ...(appJson.expo?.extra || {}),
       posthogProjectToken: process.env.POSTHOG_PROJECT_TOKEN,
       posthogHost: process.env.POSTHOG_HOST,
+      eas: {
+        projectId: process.env.EAS_PROJECT_ID,
+      },
+    },
+  },
+  ios: {
+    infoPlist: {
+      ITSAppUsesNonExemptEncryption: false,
     },
   },
 }
