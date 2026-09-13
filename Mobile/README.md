@@ -1,5 +1,7 @@
 # 🏔️ Mobile Mountain
 
+<img src="./Banner.jpg" alt="Banner Image" width="500" style="border-radius: 20px; margin-bottom: 15px" />
+
 **Mobile Mountain** is a collection of mobile development projects — spanning tutorials, codelabs, and more fully-featured builds — created while learning and exploring mobile app development.
 The repo started as a Kotlin/Jetpack Compose learning log following [developer.android.com](https://developer.android.com), and has since grown to include any mobile-type project, including cross-platform apps built with React Native and Expo.
 
@@ -89,6 +91,8 @@ A utility app that calculates tip amounts based on user input.
 ---
 
 ### 7. **Recurrly**
+
+<img src="./Recurrly/Screenshot.jpg" alt="Recurrly Banner" width="300" style="border-radius: 20px" />
 
 A full-stack subscription management app built with React Native and Expo. Recurrly helps users track recurring expenses in one centralized hub, with active/inactive subscription tracking and automated email reminders so users never miss a billing date.
 

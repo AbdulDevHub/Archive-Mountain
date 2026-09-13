@@ -1,13 +1,8 @@
 # Recurrly
 
-<div align="center">
-  <br />
-    <a href="https://youtu.be/4nVoLX2taFg" target="_blank">
-      <img src="assets/readme/readme-hero.webp" alt="Project Banner">
-    </a>
-  <br />
+<img src="./Screenshot.jpg" alt="Recurrly Banner" width="400" style="border-radius: 20px" />
 
-  <div>
+<div style="margin-top: 20px">
     <img src="https://img.shields.io/badge/-React_Native-61DAFB?style=for-the-badge&logo=react&logoColor=white" />
     <img src="https://img.shields.io/badge/-NativeWind-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white" />
     <img src="https://img.shields.io/badge/-Expo-000020?style=for-the-badge&logo=expo&logoColor=white" /><br/>
@@ -17,7 +12,6 @@
     <img src="https://img.shields.io/badge/-Clerk-6C47FF?style=for-the-badge&logo=clerk&logoColor=white" />
     <img src="https://img.shields.io/badge/-PostHog-F0AD4E?style=for-the-badge&logo=posthog&logoColor=white" />
     <img src="https://img.shields.io/badge/-CodeRabbit-FF5100?style=for-the-badge&logo=coderabbit&logoColor=white" />
-  </div>
 </div>
 
 ## 🚨 Tutorial
