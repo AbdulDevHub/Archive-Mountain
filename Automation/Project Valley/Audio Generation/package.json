@@ -1,0 +1,7 @@
+{
+  "name": "fiery-passages-generation",
+  "type": "module",
+  "dependencies": {
+    "kokoro-js": "^1.2.1"
+  }
+}
