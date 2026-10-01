@@ -6,7 +6,9 @@ import { parseStoryFile } from "./scripts/story-parser.js"
 import { chunkText } from "./scripts/chunker.js"
 import { encodeWav, trimSilence } from "./scripts/wav.js"
 
-const DEFAULT_TARGET_PATHS = ["./stories"]
+// Stories always live in ./stories, generated audio goes to ./audio
+const DEFAULT_TARGET_DIR = "./stories"
+const DEFAULT_OUTPUT_DIR = "./audio"
 
 function cleanTextForTTS(text) {
   return String(text || "")
@@ -18,6 +20,7 @@ function cleanTextForTTS(text) {
 function parseCliArgs() {
   const args = process.argv.slice(2)
   let targetDir = null
+  let outputDir = null
   let voice = "af_bella"
   let force = false
   let limit = Infinity
@@ -26,6 +29,8 @@ function parseCliArgs() {
     const a = args[i]
     if (a === "--voice" && args[i + 1]) {
       voice = args[++i]
+    } else if (a === "--out" && args[i + 1]) {
+      outputDir = args[++i]
     } else if (a === "--force") {
       force = true
     } else if (a === "--limit" && args[i + 1]) {
@@ -35,33 +40,33 @@ function parseCliArgs() {
     }
   }
 
-  if (!targetDir) {
-    for (const candidate of DEFAULT_TARGET_PATHS) {
-      if (existsSync(candidate)) {
-        targetDir = candidate
-        break
-      }
-    }
+  return {
+    targetDir: targetDir || DEFAULT_TARGET_DIR,
+    outputDir: outputDir || DEFAULT_OUTPUT_DIR,
+    voice,
+    force,
+    limit,
   }
-
-  return { targetDir, voice, force, limit }
 }
 
 async function main() {
-  const { targetDir, voice, force, limit } = parseCliArgs()
+  const { targetDir, outputDir, voice, force, limit } = parseCliArgs()
 
   console.log("==================================================")
   console.log(" Fiery Passages - Batch Audio Generator")
   console.log("==================================================")
 
   if (!targetDir || !existsSync(targetDir)) {
-    console.error(`\nError: Target directory not found: "${targetDir}"`)
+    console.error(`\nError: Stories directory not found: "${targetDir}"`)
     console.log("Usage:")
-    console.log('  node generation/generate.mjs "C:\\path\\to\\stories" [--voice af_bella] [--force] [--limit 5]\n')
+    console.log('  node generate.mjs ["C:\\path\\to\\stories"] [--out "C:\\path\\to\\audio"] [--voice af_bella] [--force] [--limit 5]\n')
     process.exit(1)
   }
 
-  console.log(`Directory: ${path.resolve(targetDir)}`)
+  await fs.mkdir(outputDir, { recursive: true })
+
+  console.log(`Stories:   ${path.resolve(targetDir)}`)
+  console.log(`Output:    ${path.resolve(outputDir)}`)
   console.log(`Voice:     ${voice} (Bella default)`)
   console.log(`Force:     ${force}`)
   console.log("--------------------------------------------------")
@@ -82,8 +87,8 @@ async function main() {
   const tasks = []
   for (const fileName of txtFiles) {
     const baseName = path.parse(fileName).name
-    const wavPath = path.join(targetDir, `${baseName}.wav`)
-    const mp3Path = path.join(targetDir, `${baseName}.mp3`)
+    const wavPath = path.join(outputDir, `${baseName}.wav`)
+    const mp3Path = path.join(outputDir, `${baseName}.mp3`)
 
     const hasAudio = existsSync(wavPath) || existsSync(mp3Path)
     if (hasAudio && !force) {
