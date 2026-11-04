@@ -163,7 +163,7 @@ async function main() {
           sampleRate = out.sampling_rate || 24000
           let samples = new Float32Array(out.audio)
           samples = trimSilence(samples, sampleRate)
-          audioChunks.push({ samples, pauseSecs: chunk.pauseSecs || 0.08 })
+          audioChunks.push({ samples, pauseSecs: chunk.pause || 0.08 })
 
           const chunkDur = ((performance.now() - t0) / 1000).toFixed(2)
           process.stdout.write(`\r  Synthesizing chunk ${cIdx + 1}/${chunks.length} (${chunkDur}s)...`)
