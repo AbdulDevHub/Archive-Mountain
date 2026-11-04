@@ -2,8 +2,8 @@
 // @name         Hide Scrollbar
 // @namespace    http://tampermonkey.net/
 // @version      0.1
-// @description  Hide active scrollbar
-// @author       You
+// @description  Hide the page scrollbar for distraction-free viewing
+// @author       Abdul Khan
 // @match        http://*/*
 // @match        https://*/*
 // @match        file:///C:/Users/kokok/*

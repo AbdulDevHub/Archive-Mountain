@@ -3,7 +3,7 @@
 // @namespace    http://tampermonkey.net/
 // @version      1.1
 // @description  Redirect YouTube Shorts to regular watch URL, including when navigating within site (SPA support)
-// @author       OpenAI
+// @author       Abdul Khan
 // @match        https://www.youtube.com/*
 // @run-at       document-start
 // @grant        none

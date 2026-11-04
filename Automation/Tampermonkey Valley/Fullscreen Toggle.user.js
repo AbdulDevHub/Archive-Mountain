@@ -3,7 +3,7 @@
 // @namespace    http://tampermonkey.net/
 // @version      1.0
 // @description  Press Shift + Alt + F to toggle fullscreen mode on any website
-// @author       Your Name
+// @author       Abdul Khan
 // @match        *://*/*
 // @grant        none
 // ==/UserScript==

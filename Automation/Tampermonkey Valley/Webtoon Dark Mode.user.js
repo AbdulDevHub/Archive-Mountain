@@ -2,8 +2,8 @@
 // @name         Webtoon Dark Mode
 // @namespace    http://tampermonkey.net/
 // @version      0.1
-// @description  Change the background color of the div with id content
-// @author       You
+// @description  Dark background for Webtoon pages for easier long-form reading
+// @author       Abdul Khan
 // @match        https://www.webtoons.com/*
 // @grant        none
 // ==/UserScript==
