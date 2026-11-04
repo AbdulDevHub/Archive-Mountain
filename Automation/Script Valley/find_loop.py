@@ -1,111 +1,141 @@
-# /// script
-# dependencies = [
-#   "opencv-python",
-# ]
-# ///
+#!/usr/bin/env python3
+"""
+find_loop.py
+------------
+Find the best seamless loop point in a video and export the loop with audio.
 
-import os
+How it works:
+  1. Grab an anchor frame `--skip` seconds in (skips intros/fade-ins).
+  2. Scan every frame at least `--min-length` seconds later and pick the one
+     most visually similar to the anchor (grayscale 256x256, lowest MSE).
+  3. Cut anchor -> best match with ffmpeg stream copy (no re-encode, audio kept).
+
+Usage:
+  uv run find_loop.py "assets/Brown Noise.webm" "assets/Cozy Cottage.webm"
+  uv run find_loop.py video.webm --skip 30 --min-length 10 --ffmpeg C:/tools/ffmpeg.exe
+
+Output: loop_<name>.<ext> next to each input (or in --out).
+"""
+
+from __future__ import annotations
+
+import argparse
+import shutil
+import subprocess
+import sys
+from pathlib import Path
+
 import cv2
 import numpy as np
-import subprocess
 
-def find_and_extract_loop_with_audio(video_name, skip_seconds=45.0):
-    video_path = os.path.join("assets", video_name)
-    
-    if not os.path.exists(video_path):
-        print(f"❌ Could not find video at: {video_path}")
-        return
+SIZE = (256, 256)
 
-    # Point to the ffmpeg.exe located one folder up in Automation-Mountain
-    ffmpeg_path = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "ffmpeg.exe"))
-    
-    if not os.path.exists(ffmpeg_path):
-        print(f"❌ Could not find ffmpeg.exe executable at: {ffmpeg_path}")
-        return
 
-    print(f"🎬 Processing: {video_name}...")
-    cap = cv2.VideoCapture(video_path)
-    
-    fps = cap.get(cv2.CAP_PROP_FPS)
-    total_frames = int(cap.get(cv2.CAP_PROP_FRAME_COUNT))
-    
-    skip_frames = int(fps * skip_seconds)
-    if skip_frames >= total_frames:
-        print(f"❌ Error: Video is shorter than the skip duration of {skip_seconds} seconds.")
+def resolve_ffmpeg(explicit: str | None) -> str | None:
+    """--ffmpeg flag, then PATH, then ffmpeg(.exe) at the repo root."""
+    if explicit:
+        return explicit if Path(explicit).exists() else None
+    on_path = shutil.which("ffmpeg")
+    if on_path:
+        return on_path
+    repo_root = Path(__file__).resolve().parent.parent
+    for name in ("ffmpeg.exe", "ffmpeg"):
+        if (repo_root / name).exists():
+            return str(repo_root / name)
+    return None
+
+
+def _gray(frame: np.ndarray) -> np.ndarray:
+    return cv2.resize(cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY), SIZE).astype(np.float32)
+
+
+def find_loop_end(video: Path, skip: float, min_length: float) -> tuple[float, float] | None:
+    """Return (loop_end_seconds, mse) for the frame most similar to the anchor."""
+    cap = cv2.VideoCapture(str(video))
+    fps = cap.get(cv2.CAP_PROP_FPS) or 0
+    total = int(cap.get(cv2.CAP_PROP_FRAME_COUNT))
+    if fps <= 0:
+        print("  ! could not read FPS")
+        return None
+
+    anchor_idx = int(fps * skip)
+    search_start = anchor_idx + int(fps * min_length)
+    if search_start >= total:
+        print(f"  ! video too short for --skip {skip}s + --min-length {min_length}s")
         cap.release()
-        return
+        return None
 
-    # Grab anchor frame at 45.0s
-    cap.set(cv2.CAP_PROP_POS_FRAMES, skip_frames)
-    ret, initial_frame = cap.read()
-    if not ret:
-        print("❌ Error reading the loop anchor frame.")
+    cap.set(cv2.CAP_PROP_POS_FRAMES, anchor_idx)
+    ok, anchor = cap.read()
+    if not ok:
+        print("  ! could not read anchor frame")
         cap.release()
-        return
-        
-    # Process anchor frame
-    target_gray = cv2.cvtColor(initial_frame, cv2.COLOR_BGR2GRAY)
-    target_gray = cv2.resize(target_gray, (256, 256))
-    
-    best_frame_idx = None
-    min_mse = float('inf')
-    
-    search_start_frame = skip_frames + int(fps * 5)
-    cap.set(cv2.CAP_PROP_POS_FRAMES, search_start_frame)
-    
-    print(f"🔍 Analyzing frames...")
-    for frame_idx in range(search_start_frame, total_frames):
-        ret, frame = cap.read()
-        if not ret:
+        return None
+    target = _gray(anchor)
+
+    cap.set(cv2.CAP_PROP_POS_FRAMES, search_start)
+    best_idx, best_mse = None, float("inf")
+    for idx in range(search_start, total):
+        ok, frame = cap.read()
+        if not ok:
             break
-            
-        gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
-        gray = cv2.resize(gray, (256, 256))
-        mse = np.mean((target_gray - gray) ** 2)
-        
-        if mse < min_mse:
-            min_mse = mse
-            best_frame_idx = frame_idx
-
+        mse = float(np.mean((target - _gray(frame)) ** 2))
+        if mse < best_mse:
+            best_idx, best_mse = idx, mse
     cap.release()
 
-    if best_frame_idx:
-        loop_end_secs = best_frame_idx / fps
-        loop_duration = loop_end_secs - skip_seconds
-        
-        print(f"✨ Found optimal loop point at {loop_end_secs:.2f} seconds.")
-        
-        # Keep original webm formatting intact
-        base_name = os.path.splitext(video_name)[0]
-        output_path = os.path.join("assets", f"loop_{base_name}.webm")
-        
-        start_time_str = f"{skip_seconds:.3f}"
-        duration_str = f"{loop_duration:.3f}"
-        
-        print(f"💾 Calling localized FFmpeg to extract slice with audio...")
-        
-        # Execute lossyless stream copying via explicit path
-        cmd = [
-            ffmpeg_path, "-y",
-            "-ss", start_time_str,
-            "-t", duration_str,
-            "-i", video_path,
-            "-c", "copy",
-            output_path
-        ]
-        
-        result = subprocess.run(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
-        
-        if result.returncode == 0:
-            print(f"✅ Successfully exported seamless loop with audio: {output_path}\n")
+    return (best_idx / fps, best_mse) if best_idx is not None else None
+
+
+def export_loop(ffmpeg: str, video: Path, out: Path, start: float, end: float) -> bool:
+    cmd = [
+        ffmpeg, "-y", "-loglevel", "error",
+        "-ss", f"{start:.3f}", "-t", f"{end - start:.3f}",
+        "-i", str(video), "-c", "copy", str(out),
+    ]
+    result = subprocess.run(cmd, check=False, capture_output=True, text=True)
+    if result.returncode != 0:
+        print(f"  ! ffmpeg failed:\n{result.stderr}")
+    return result.returncode == 0
+
+
+def main() -> int:
+    parser = argparse.ArgumentParser(description="Find a seamless loop point and export it with audio.")
+    parser.add_argument("videos", nargs="+", type=Path, help="video files to process")
+    parser.add_argument("--skip", type=float, default=45.0, help="anchor time in seconds (default: 45)")
+    parser.add_argument("--min-length", type=float, default=5.0, help="shortest loop in seconds (default: 5)")
+    parser.add_argument("--out", type=Path, help="output folder (default: next to each input)")
+    parser.add_argument("--ffmpeg", help="path to ffmpeg (default: PATH, then repo root)")
+    args = parser.parse_args()
+
+    ffmpeg = resolve_ffmpeg(args.ffmpeg)
+    if not ffmpeg:
+        print("Error: ffmpeg not found. Install it, put ffmpeg.exe at the repo root, or pass --ffmpeg.")
+        return 1
+
+    failures = 0
+    for video in args.videos:
+        print(f"Processing {video} ...")
+        if not video.exists():
+            print("  ! file not found")
+            failures += 1
+            continue
+        found = find_loop_end(video, args.skip, args.min_length)
+        if not found:
+            failures += 1
+            continue
+        end, mse = found
+        print(f"  loop {args.skip:.2f}s -> {end:.2f}s (MSE {mse:.1f})")
+        out_dir = args.out or video.parent
+        out_dir.mkdir(parents=True, exist_ok=True)
+        out = out_dir / f"loop_{video.stem}{video.suffix}"
+        if export_loop(ffmpeg, video, out, args.skip, end):
+            print(f"  saved {out}")
         else:
-            print("❌ FFmpeg error details:")
-            print(result.stderr)
-    else:
-        print("❌ Failed to automatically detect a loop point.")
+            failures += 1
+
+    return 1 if failures else 0
+
 
 if __name__ == "__main__":
-    video_files = ["Brown Noise.webm", "Cozy Cottage.webm"] 
-    
-    for video in video_files:
-        find_and_extract_loop_with_audio(video, skip_seconds=45.0)
+    sys.exit(main())

@@ -1,0 +1,38 @@
+# Python / Virtual Environments
+.venv/
+venv/
+ENV/
+env/
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Byte-compiled / optimized / DLL files
+*.so
+*.pyd
+
+# Testing & Coverage
+.pytest_cache/
+.coverage
+htmlcov/
+
+# IDEs and Editors
+.vscode/
+.idea/
+*.swp
+*~
+
+# Operating System Files
+.DS_Store
+Thumbs.db
+
+# Project-specific / Temporary logs
+*.log
+stories.txt
+# Script inputs/outputs
+Stories/
+Downloaded_Stories/
+assets/
+*.pdf
+*.mp3
+*.wav
