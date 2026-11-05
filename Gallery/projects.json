@@ -1,0 +1,987 @@
+[
+  {
+    "name": "Pokedex",
+    "category": "websites",
+    "description": "Searchable Pokemon encyclopedia with stats and sprites pulled from a public API",
+    "tags": [
+      "JavaScript",
+      "CSS",
+      "REST API"
+    ],
+    "href": "Awesome Websites/Pokedex/index.html",
+    "image": "Awesome Websites/Pokedex/Screenshot.png"
+  },
+  {
+    "name": "Pastel",
+    "category": "websites",
+    "description": "Soft-colored Bootstrap portfolio template with responsive sections",
+    "tags": [
+      "Bootstrap",
+      "HTML",
+      "CSS"
+    ],
+    "href": "Awesome Websites/Pastel/index.html",
+    "image": "Awesome Websites/Pastel/Screenshot.png"
+  },
+  {
+    "name": "Bulk File Renamer",
+    "category": "websites",
+    "description": "Batch rename files in the browser with live previews of new names",
+    "tags": [
+      "React",
+      "TypeScript",
+      "Vite"
+    ],
+    "href": "Awesome Websites/Bulk File Renamer/file-renamer/index.html",
+    "image": "Awesome Websites/Bulk File Renamer/Screenshot.png"
+  },
+  {
+    "name": "Gallery Viewer",
+    "category": "extensions",
+    "description": "Offline-first Chrome extension for browsing large image and video folders",
+    "tags": [
+      "Chrome API",
+      "JavaScript"
+    ],
+    "href": "Chrome Extensions/Gallery-Viewer/index.html",
+    "image": "Chrome Extensions/Gallery-Viewer/Screenshots/Screenshot 1.png"
+  },
+  {
+    "name": "Local Video Player",
+    "category": "extensions",
+    "description": "Chrome extension player with 500% volume boost, 16x speed and Picture-in-Picture",
+    "tags": [
+      "Chrome API",
+      "JavaScript",
+      "Web Audio"
+    ],
+    "href": "Chrome Extensions/Local-Video-Player/index.html",
+    "image": "Chrome Extensions/Local-Video-Player/Screenshot.png"
+  },
+  {
+    "name": "DupeHunt",
+    "category": "websites",
+    "description": "Finds duplicate lines in pasted text with a monospaced, animated interface",
+    "tags": [
+      "JavaScript",
+      "CSS"
+    ],
+    "href": "Awesome Websites/DupeHunt/duplicate-finder.html",
+    "image": "Awesome Websites/DupeHunt/Screenshot.png"
+  },
+  {
+    "name": "Link To Google Bookmarks",
+    "category": "websites",
+    "description": "Generates a bookmarks HTML file from a list of links for Google import",
+    "tags": [
+      "Bootstrap",
+      "JavaScript",
+      "jQuery"
+    ],
+    "href": "Awesome Websites/Link To Google Bookmarks Generator/index.html",
+    "image": "Awesome Websites/Link To Google Bookmarks Generator/Screenshot.png"
+  },
+  {
+    "name": "Discord Thread Extractor",
+    "category": "websites",
+    "description": "Formats exported Discord JSON threads into clean readable text",
+    "tags": [
+      "JavaScript",
+      "JSON"
+    ],
+    "href": "Awesome Websites/Oneshot/discord-thread-extraction.html",
+    "image": "Awesome Websites/Oneshot/Screenshot.png"
+  },
+  {
+    "name": "Gitmoji Helper",
+    "category": "websites",
+    "description": "Matches plain English to Gitmoji and commit types using local ONNX embeddings",
+    "tags": [
+      "React",
+      "TypeScript",
+      "Transformers.js",
+      "ONNX"
+    ],
+    "href": "Awesome Websites/Gitmoji-Helper/gitmoji-helper/index.html",
+    "image": "Awesome Websites/Gitmoji-Helper/Screenshot.png"
+  },
+  {
+    "name": "Midnight Passages",
+    "category": "websites",
+    "description": "On-device story narrator that voices .txt stories with the Kokoro neural TTS model",
+    "tags": [
+      "React",
+      "Vite",
+      "WebGPU",
+      "IndexedDB"
+    ],
+    "href": "Awesome Websites/Midnight Passages/midnight-passages/index.html",
+    "image": "Awesome Websites/Midnight Passages/Screenshot.png"
+  },
+  {
+    "name": "File Redownloader",
+    "category": "websites",
+    "description": "Batch re-downloads files from a list of URLs in the browser",
+    "tags": [
+      "JavaScript",
+      "Fetch API",
+      "CSS"
+    ],
+    "href": "Awesome Websites/File Redownloader/index.html",
+    "image": "Awesome Websites/File Redownloader/Screenshot.png"
+  },
+  {
+    "name": "QR Code Generator",
+    "category": "websites",
+    "description": "Generates QR codes from text or links with a Tailwind-styled interface",
+    "tags": [
+      "Tailwind CSS",
+      "JavaScript",
+      "SVG"
+    ],
+    "href": "Awesome Websites/QR Code Generator/index.html",
+    "image": "Awesome Websites/QR Code Generator/Screenshot.png"
+  },
+  {
+    "name": "Mock Email Generator",
+    "category": "websites",
+    "description": "Writes mock emails in Markdown and exports them as polished PDFs",
+    "tags": [
+      "JavaScript",
+      "Marked",
+      "html2pdf.js"
+    ],
+    "href": "Awesome Websites/Mock Email Generator/mock-email-generator.html",
+    "image": "Awesome Websites/Mock Email Generator/Screenshot.png"
+  },
+  {
+    "name": "Rename Files",
+    "category": "websites",
+    "description": "Minimal tool for renaming a batch of files locally",
+    "tags": [
+      "JavaScript",
+      "HTML",
+      "CSS"
+    ],
+    "href": "Awesome Websites/Rename Files/index.html",
+    "image": "Awesome Websites/Rename Files/Screenshot.png"
+  },
+  {
+    "name": "Face Bomp",
+    "category": "websites",
+    "description": "Whack-a-mole style reaction game where you click faces as they pop up",
+    "tags": [
+      "JavaScript",
+      "CSS",
+      "Game"
+    ],
+    "href": "Awesome Websites/Face Bomp/index.html",
+    "image": "Awesome Websites/Face Bomp/Screenshot.png"
+  },
+  {
+    "name": "UNO",
+    "category": "websites",
+    "description": "Playable UNO card game against computer opponents",
+    "tags": [
+      "React",
+      "JSX",
+      "CSS"
+    ],
+    "href": "Awesome Websites/UNO/uno-game.html",
+    "image": "Awesome Websites/UNO/Screenshot.png"
+  },
+  {
+    "name": "War",
+    "category": "websites",
+    "description": "Classic War card game with a Playfair-styled table and score tracking",
+    "tags": [
+      "JavaScript",
+      "CSS",
+      "Game"
+    ],
+    "href": "Awesome Websites/War/index.html",
+    "image": "Awesome Websites/War/Screenshot.png"
+  },
+  {
+    "name": "DhikrForest",
+    "category": "websites",
+    "description": "Offline-first dhikr counter that grows a forest as you recite",
+    "tags": [
+      "JavaScript",
+      "Canvas",
+      "PWA",
+      "localStorage"
+    ],
+    "href": "https://dhikrforest.netlify.app/",
+    "image": "Awesome Websites/DhikrForest/Screenshot.png"
+  },
+  {
+    "name": "Skynet Eats",
+    "category": "ui",
+    "description": "Food delivery app UI concept with a bold, dark visual style",
+    "tags": [
+      "HTML",
+      "CSS",
+      "JavaScript"
+    ],
+    "href": "UI Experiments/Skynet Eats/index.html",
+    "image": "UI Experiments/Skynet Eats/Screenshot.png",
+    "featured": true
+  },
+  {
+    "name": "Drone Series",
+    "category": "ui",
+    "description": "Drone product showcase page with bold typography and responsive layout",
+    "tags": [
+      "HTML",
+      "CSS",
+      "JavaScript"
+    ],
+    "href": "UI Experiments/Drone Series/index.html",
+    "image": "UI Experiments/Drone Series/Screenshot.png"
+  },
+  {
+    "name": "Scenic Forests",
+    "category": "ui",
+    "description": "Nature photo gallery interface with GSAP-driven scroll animations",
+    "tags": [
+      "GSAP",
+      "CSS",
+      "JavaScript"
+    ],
+    "href": "UI Experiments/Scenic Forests/index.html",
+    "image": "UI Experiments/Scenic Forests/Screenshot.png"
+  },
+  {
+    "name": "Momentum",
+    "category": "ui",
+    "description": "Minimal personal dashboard page for daily focus",
+    "tags": [
+      "HTML",
+      "CSS",
+      "JavaScript"
+    ],
+    "href": "UI Experiments/Momentum/index.html",
+    "image": "UI Experiments/Momentum/Screenshot.png"
+  },
+  {
+    "name": "Video Background Website",
+    "category": "ui",
+    "description": "Landing page with a full-screen looping video background",
+    "tags": [
+      "HTML",
+      "CSS",
+      "Video"
+    ],
+    "href": "UI Experiments/Video Background Website/index.html",
+    "image": "UI Experiments/Video Background Website/Screenshot.png"
+  },
+  {
+    "name": "Ghost Eyes",
+    "category": "effects",
+    "description": "Pairs of cartoon eyes that follow your cursor across the screen",
+    "tags": [
+      "CSS",
+      "JavaScript",
+      "SVG"
+    ],
+    "href": "Awesome Effects/Ghost Eyes.html",
+    "image": "Awesome Effects/GhostEyes.png"
+  },
+  {
+    "name": "Grid Spotlight Effect",
+    "category": "effects",
+    "description": "Grid of cells lit up by a spotlight that follows the cursor",
+    "tags": [
+      "CSS",
+      "JavaScript"
+    ],
+    "href": "Awesome Effects/GridSpotlightEffect.html",
+    "image": "Awesome Effects/GridSpotlightEffect.png"
+  },
+  {
+    "name": "Anime.js Sphere",
+    "category": "effects",
+    "description": "Rotating 3D sphere of points animated with Anime.js",
+    "tags": [
+      "Anime.js",
+      "JavaScript",
+      "SVG"
+    ],
+    "href": "Awesome Effects/Anime.js Sphere/index.html",
+    "image": "Awesome Effects/Anime.js Sphere/Animation.gif"
+  },
+  {
+    "name": "Anthony V1 Website Effects",
+    "category": "effects",
+    "description": "Custom cursor and mouse-follow effects recreated from a personal site",
+    "tags": [
+      "JavaScript",
+      "CSS"
+    ],
+    "href": "Awesome Effects/Anthony V1 Website Effects/index.html",
+    "image": "Awesome Effects/Anthony V1 Website Effects/Screenshot.png"
+  },
+  {
+    "name": "Blue Techno Fluid",
+    "category": "effects",
+    "description": "Blue WebGL fluid simulation that swirls with mouse movement",
+    "tags": [
+      "WebGL",
+      "JavaScript",
+      "GLSL"
+    ],
+    "href": "Awesome Effects/Blue Techno Fluid/index.html",
+    "image": "Awesome Effects/Blue Techno Fluid/Screenshot.png",
+    "featured": true
+  },
+  {
+    "name": "Diamond Photo Gallery",
+    "category": "effects",
+    "description": "Photo gallery arranged in a diamond-shaped layout using CSS clip-path",
+    "tags": [
+      "CSS",
+      "HTML"
+    ],
+    "href": "Awesome Effects/Diamond Photo Gallery/index.html",
+    "image": "Awesome Effects/Diamond Photo Gallery/Screenshot.png"
+  },
+  {
+    "name": "Fluid Flame Effect",
+    "category": "effects",
+    "description": "Interactive WebGL fluid simulation rendered as flowing flames",
+    "tags": [
+      "WebGL",
+      "Canvas",
+      "JavaScript"
+    ],
+    "href": "Awesome Effects/Fluid Flame Effect/index.html",
+    "image": "Awesome Effects/Fluid Flame Effect/Screenshot.png"
+  },
+  {
+    "name": "Button Gallery",
+    "category": "effects",
+    "description": "Collection of creative button hover effects built in pure CSS",
+    "tags": [
+      "CSS",
+      "HTML"
+    ],
+    "href": "Awesome Effects/Button Gallery/index.html",
+    "image": "Awesome Effects/Button Gallery/Screenshot.png"
+  },
+  {
+    "name": "Ink Fluid",
+    "category": "effects",
+    "description": "GPU-accelerated ink dispersion simulation that reacts to your cursor",
+    "tags": [
+      "WebGL",
+      "Canvas",
+      "GLSL"
+    ],
+    "href": "Awesome Effects/Ink Fluid/index.html",
+    "image": "Awesome Effects/Ink Fluid/Screenshot.png"
+  },
+  {
+    "name": "Loading Animation 2",
+    "category": "effects",
+    "description": "Looping CSS loading spinner animation",
+    "tags": [
+      "CSS",
+      "HTML"
+    ],
+    "href": "Awesome Effects/Loading Animation 2/index.html",
+    "image": "Awesome Effects/Loading Animation 2/Screenshot.png"
+  },
+  {
+    "name": "Moving Squares Animation",
+    "category": "effects",
+    "description": "Squares that slide and rotate in sequence using CSS transforms",
+    "tags": [
+      "CSS",
+      "HTML"
+    ],
+    "href": "Awesome Effects/Moving Squrares Animation/index.html",
+    "image": "Awesome Effects/Moving Squrares Animation/Screenshot.png"
+  },
+  {
+    "name": "Particles",
+    "category": "effects",
+    "description": "Interactive particle system drawn on an HTML canvas",
+    "tags": [
+      "Canvas",
+      "JavaScript"
+    ],
+    "href": "Awesome Effects/Particles/index.html",
+    "image": "Awesome Effects/Particles/Screenshot.png"
+  },
+  {
+    "name": "Split Screen Slider",
+    "category": "effects",
+    "description": "Two-panel split screen slider that expands on hover",
+    "tags": [
+      "CSS",
+      "JavaScript"
+    ],
+    "href": "Awesome Effects/Split Screen Slider/index.html",
+    "image": "Awesome Effects/Split Screen Slider/Screenshot.png"
+  },
+  {
+    "name": "Spotlight Effect",
+    "category": "effects",
+    "description": "Mouse-tracking spotlight that reveals a background image",
+    "tags": [
+      "CSS",
+      "JavaScript"
+    ],
+    "href": "Awesome Effects/Spotlight Effect/index.html",
+    "image": "Awesome Effects/Spotlight Effect/Screenshot.png"
+  },
+  {
+    "name": "Touch Slider",
+    "category": "effects",
+    "description": "Vanilla JavaScript image slider with touch and drag support",
+    "tags": [
+      "JavaScript",
+      "CSS",
+      "Touch Events"
+    ],
+    "href": "Awesome Effects/Touch Slider/index.html",
+    "image": "Awesome Effects/Touch Slider/Screenshot.png"
+  },
+  {
+    "name": "Video.js",
+    "category": "effects",
+    "description": "Customized HTML5 video player themed with Video.js",
+    "tags": [
+      "Video.js",
+      "JavaScript",
+      "CSS"
+    ],
+    "href": "Awesome Effects/Video.js/index.html",
+    "image": "Awesome Effects/Video.js/Screenshot.png"
+  },
+  {
+    "name": "3D Cube Loader",
+    "category": "effects",
+    "description": "Pure CSS loader of rotating 3D cubes",
+    "tags": [
+      "CSS",
+      "HTML"
+    ],
+    "href": "Awesome Effects/3D Cube Loader.html",
+    "image": "Awesome Effects/3D Cube Loader.png"
+  },
+  {
+    "name": "3D Image Transition",
+    "category": "effects",
+    "description": "WebGL image transitions with 3D perspective driven by GSAP",
+    "tags": [
+      "Three.js",
+      "WebGL",
+      "GSAP"
+    ],
+    "href": "Awesome Effects/3D Image Transition.html",
+    "image": "Awesome Effects/3D Image Transition.png"
+  },
+  {
+    "name": "Animated Input Border",
+    "category": "effects",
+    "description": "Input field whose border animates on focus, styled with Tailwind",
+    "tags": [
+      "Tailwind CSS",
+      "CSS"
+    ],
+    "href": "Awesome Effects/Animated Input Border.html",
+    "image": "Awesome Effects/Animated Input Border.png"
+  },
+  {
+    "name": "Escalade Loader",
+    "category": "effects",
+    "description": "Loader with squares climbing a staircase in SVG and CSS",
+    "tags": [
+      "CSS",
+      "SVG"
+    ],
+    "href": "Awesome Effects/Escalade Loader.html",
+    "image": "Awesome Effects/Escalade Loader.png"
+  },
+  {
+    "name": "Fire Cursor",
+    "category": "effects",
+    "description": "Cursor trail that emits fire-like particles as you move",
+    "tags": [
+      "JavaScript",
+      "Canvas",
+      "CSS"
+    ],
+    "href": "Awesome Effects/Fire Cursor.html",
+    "image": "Awesome Effects/Fire Cursor.png"
+  },
+  {
+    "name": "Gemini Loader",
+    "category": "effects",
+    "description": "Loading animation inspired by the Google Gemini gradient sparkle",
+    "tags": [
+      "CSS",
+      "Three.js",
+      "JavaScript"
+    ],
+    "href": "Awesome Effects/Gemini Loader.html",
+    "image": "Awesome Effects/Gemini Loader.png"
+  },
+  {
+    "name": "Hover Shine Effect",
+    "category": "effects",
+    "description": "Metallic shine sweeping across elements on hover",
+    "tags": [
+      "CSS",
+      "HTML"
+    ],
+    "href": "Awesome Effects/Hover Shine Effect.html",
+    "image": "Awesome Effects/Hover Shine Effect.png"
+  },
+  {
+    "name": "Jump And Slide",
+    "category": "effects",
+    "description": "Playful bouncing and sliding text animation",
+    "tags": [
+      "CSS",
+      "HTML"
+    ],
+    "href": "Awesome Effects/Jump And Slide.html",
+    "image": "Awesome Effects/Jump And Slide.png"
+  },
+  {
+    "name": "Magic Card",
+    "category": "effects",
+    "description": "Card with a glowing hover effect that follows the cursor",
+    "tags": [
+      "CSS",
+      "JavaScript"
+    ],
+    "href": "Awesome Effects/Magic Card.html",
+    "image": "Awesome Effects/Magic Card.png"
+  },
+  {
+    "name": "MagicalHoverEffect",
+    "category": "effects",
+    "description": "Hover interaction that spawns glowing particles around elements",
+    "tags": [
+      "JavaScript",
+      "CSS"
+    ],
+    "href": "Awesome Effects/MagicalHoverEffect.html",
+    "image": "Awesome Effects/MagicalHoverEffect.png"
+  },
+  {
+    "name": "Navigation Bar",
+    "category": "effects",
+    "description": "Animated navigation bar with hover indicator effects",
+    "tags": [
+      "CSS",
+      "JavaScript"
+    ],
+    "href": "Awesome Effects/Navigation Bar.html",
+    "image": "Awesome Effects/Navigation Bar.png"
+  },
+  {
+    "name": "Redirecting Loader",
+    "category": "effects",
+    "description": "Animated loading screen shown before a page redirect",
+    "tags": [
+      "CSS",
+      "JavaScript"
+    ],
+    "href": "Awesome Effects/Redirecting Loader.html",
+    "image": "Awesome Effects/Redirecting Loader.png"
+  },
+  {
+    "name": "Shine Animation",
+    "category": "effects",
+    "description": "Shine sweep animation across an image or button",
+    "tags": [
+      "CSS",
+      "HTML"
+    ],
+    "href": "Awesome Effects/Shine Animation.html",
+    "image": "Awesome Effects/Shine Animation.png"
+  },
+  {
+    "name": "Shine Effect",
+    "category": "effects",
+    "description": "Glossy shine overlay passing over a logo image",
+    "tags": [
+      "CSS",
+      "HTML"
+    ],
+    "href": "Awesome Effects/Shine Effect.html",
+    "image": "Awesome Effects/Shine Effect.png"
+  },
+  {
+    "name": "Balloon Spawn Effect",
+    "category": "effects",
+    "description": "Click to spawn rising balloons in a p5.js sketch",
+    "tags": [
+      "p5.js",
+      "JavaScript",
+      "Canvas"
+    ],
+    "href": "Awesome Effects/Balloon Spawn Effect/index.html",
+    "image": "Awesome Effects/Balloon Spawn Effect/Screenshot.png"
+  },
+  {
+    "name": "Linkest",
+    "category": "extensions",
+    "description": "Chrome extension for saving tabs, links and notes with batch operations",
+    "tags": [
+      "Chrome API",
+      "JavaScript"
+    ],
+    "href": "https://github.com/AbdulDevHub/Linkest",
+    "image": "Chrome Extensions/Linkest/Screenshot.png"
+  },
+  {
+    "name": "Hydration Hero",
+    "category": "extensions",
+    "description": "Privacy-first water intake tracker with daily goals and history",
+    "tags": [
+      "React",
+      "Vite",
+      "Tailwind CSS",
+      "Chrome API"
+    ],
+    "href": "https://github.com/AbdulDevHub/Hydration-Hero",
+    "image": "Chrome Extensions/Hydration-Hero/Demo.gif"
+  },
+  {
+    "name": "Gallery Bookmark Viewer",
+    "category": "extensions",
+    "description": "Chrome extension showing bookmarks as a visual, customizable gallery",
+    "tags": [
+      "Chrome API",
+      "JavaScript"
+    ],
+    "href": "https://github.com/AbdulDevHub/Web-Mountain/tree/main/Chrome%20Extensions/Gallery%20Bookmark%20Viewer",
+    "image": "Chrome Extensions/Gallery Bookmark Viewer/images/Screenshot%201.png"
+  },
+  {
+    "name": "Lingua",
+    "category": "ai",
+    "description": "Translator for 20 languages using Chrome on-device Translator API with cloud fallback",
+    "tags": [
+      "Chrome API",
+      "LLM",
+      "Web Speech"
+    ],
+    "href": "AI Valley/apps/translator/index.html",
+    "image": "AI Valley/src/translator/Screenshot.png"
+  },
+  {
+    "name": "ReAct Agent",
+    "category": "ai",
+    "description": "Tool-calling LLM agent that shows each reasoning step as it works",
+    "tags": [
+      "LLM",
+      "JavaScript",
+      "OpenRouter"
+    ],
+    "href": "AI Valley/apps/agent/index.html",
+    "image": "AI Valley/src/agent/Screenshot.png"
+  },
+  {
+    "name": "ReelRecs",
+    "category": "ai",
+    "description": "RAG movie chatbot using in-browser embeddings and conversation memory",
+    "tags": [
+      "Transformers.js",
+      "LLM",
+      "RAG"
+    ],
+    "href": "AI Valley/apps/movies/index.html",
+    "image": "AI Valley/src/movies/Screenshot.png"
+  },
+  {
+    "name": "Vision Lab",
+    "category": "ai",
+    "description": "In-browser object detection on photos or webcam, plus vision model Q&A",
+    "tags": [
+      "Transformers.js",
+      "ONNX",
+      "LLM"
+    ],
+    "href": "AI Valley/apps/vision/index.html",
+    "image": "AI Valley/src/vision/Screenshot.png"
+  },
+  {
+    "name": "Market Pulse",
+    "category": "ai",
+    "description": "AI-written stock reports with SVG sparklines and server-side API keys",
+    "tags": [
+      "LLM",
+      "SVG",
+      "Netlify Functions"
+    ],
+    "href": "AI Valley/apps/stocks/index.html",
+    "image": "AI Valley/src/stocks/Screenshot.png"
+  },
+  {
+    "name": "Image Studio",
+    "category": "ai",
+    "description": "Text-to-image, movie poster and photo remix tools using free models",
+    "tags": [
+      "LLM",
+      "Canvas",
+      "OpenRouter"
+    ],
+    "href": "AI Valley/apps/images/index.html",
+    "image": "AI Valley/src/images/Screenshot.png"
+  },
+  {
+    "name": "Face Emotion Detection",
+    "category": "ai",
+    "description": "Real-time face, landmark and emotion detection from webcam using face-api.js",
+    "tags": [
+      "face-api.js",
+      "Canvas",
+      "JavaScript"
+    ],
+    "href": "AI Valley/Face-Detection/index.html",
+    "image": "AI Valley/Face-Detection/images/Cover.png"
+  },
+  {
+    "name": "Filmverse",
+    "category": "apps",
+    "description": "Movie and TV discovery app with TMDB data, voice navigation, watchlists and a Firestore watch tracker",
+    "tags": [
+      "React",
+      "TypeScript",
+      "Redux Toolkit",
+      "Firebase"
+    ],
+    "href": "https://filmverse-azure.vercel.app",
+    "image": "App Valley/Filmverse/Screenshot.png"
+  },
+  {
+    "name": "CaseCobra",
+    "category": "apps",
+    "description": "Full-stack shop for designing and ordering custom phone cases",
+    "tags": [
+      "Next.js",
+      "TypeScript",
+      "Prisma",
+      "Stripe"
+    ],
+    "href": "https://mycasecobra.vercel.app",
+    "image": "App Valley/CaseCobra/Screenshot.png"
+  },
+  {
+    "name": "Modern AliExpress",
+    "category": "apps",
+    "description": "E-commerce store with Google and GitHub sign-in, a cart and Stripe checkout",
+    "tags": [
+      "Nuxt",
+      "Vue",
+      "Prisma",
+      "Supabase"
+    ],
+    "href": "https://modern-aliexpress.vercel.app",
+    "image": "App Valley/Modern AliExpress/Screenshot.png"
+  },
+  {
+    "name": "Anime Vault",
+    "category": "apps",
+    "description": "Infinite-scrolling anime catalogue with staggered card animations",
+    "tags": [
+      "Next.js",
+      "TypeScript",
+      "Framer Motion",
+      "Tailwind CSS"
+    ],
+    "href": "/projects/anime-vault/",
+    "image": "App Valley/Anime Vault/Screenshot.png"
+  },
+  {
+    "name": "Job Board",
+    "category": "apps",
+    "description": "Job listings app with add, edit and delete flows, saved in the browser",
+    "tags": [
+      "Vue",
+      "Vue Router",
+      "Tailwind CSS",
+      "Axios"
+    ],
+    "href": "/projects/job-board/",
+    "image": "App Valley/Job Board/Screenshot.png"
+  },
+  {
+    "name": "Angular Webshop",
+    "category": "apps",
+    "description": "Product store with categories, sorting and a cart built on Angular services",
+    "tags": [
+      "Angular",
+      "Angular Material",
+      "RxJS",
+      "Tailwind CSS"
+    ],
+    "href": "/projects/angular-webshop/",
+    "image": "App Valley/Angular Webshop/Screenshot1.png"
+  },
+  {
+    "name": "Glisten AI",
+    "category": "ui",
+    "description": "Dark, Linear-style SaaS landing page with GSAP animations and Prismic content",
+    "tags": [
+      "Next.js",
+      "GSAP",
+      "Prismic",
+      "Tailwind CSS"
+    ],
+    "href": "https://glisten-ai-dark.vercel.app",
+    "image": "UI Experiments/Glisten AI/Screenshot.png"
+  },
+  {
+    "name": "MacBook Homepage",
+    "category": "ui",
+    "description": "Apple-style product page with a 3D MacBook and scroll-driven GSAP animations",
+    "tags": [
+      "React",
+      "Three.js",
+      "GSAP",
+      "Tailwind CSS"
+    ],
+    "href": "/projects/macbook-homepage/",
+    "image": "UI Experiments/MacBook Homepage/Screenshot.png"
+  },
+  {
+    "name": "GSAP Drinks",
+    "category": "ui",
+    "description": "Cocktail bar landing page with scroll-triggered GSAP animations and video",
+    "tags": [
+      "React",
+      "GSAP",
+      "Tailwind CSS"
+    ],
+    "href": "/projects/gsap-drinks/",
+    "image": "UI Experiments/GSAP Drinks/Screenshot.png"
+  },
+  {
+    "name": "Black Hole",
+    "category": "ui",
+    "description": "Space-themed portfolio with a black hole video hero, motion and 3D stars",
+    "tags": [
+      "Next.js",
+      "Three.js",
+      "Framer Motion",
+      "Tailwind CSS"
+    ],
+    "href": "/projects/black-hole/",
+    "image": "UI Experiments/Black Hole/Screenshot.png"
+  },
+  {
+    "name": "Techno Explosion",
+    "category": "ui",
+    "description": "Multi-page animated portfolio with page transitions and testimonial sliders",
+    "tags": [
+      "Next.js",
+      "Framer Motion",
+      "Swiper",
+      "Tailwind CSS"
+    ],
+    "href": "/projects/techno-explosion/",
+    "image": "UI Experiments/Techno Explosion/Screenshot.png"
+  },
+  {
+    "name": "Fancy Green",
+    "category": "ui",
+    "description": "Green one-page portfolio with scroll animations, counters and a project carousel",
+    "tags": [
+      "React",
+      "Vite",
+      "AOS"
+    ],
+    "href": "/projects/fancy-green/",
+    "image": "UI Experiments/Fancy Green/Screenshot.png"
+  },
+  {
+    "name": "3D Solar Portfolio",
+    "category": "ui",
+    "description": "Scroll-driven portfolio template orbiting a Three.js solar system",
+    "tags": [
+      "Three.js",
+      "JavaScript",
+      "Vite"
+    ],
+    "href": "/projects/3d-solar-portfolio/",
+    "image": "UI Experiments/3D Solar Portfolio/Screenshot.png"
+  },
+  {
+    "name": "Pay Card",
+    "category": "ui",
+    "description": "Credit card form with a live card preview, card type detection and flip animations",
+    "tags": [
+      "React",
+      "Sass"
+    ],
+    "href": "/projects/pay-card/",
+    "image": "UI Experiments/Pay Card Component/demo.gif"
+  },
+  {
+    "name": "Vuetify Image Gallery",
+    "category": "ui",
+    "description": "Responsive image gallery with sidebar navigation built on Vuetify components",
+    "tags": [
+      "Vue",
+      "Vuetify"
+    ],
+    "href": "/projects/vuetify-image-gallery/",
+    "image": "UI Experiments/Vuetify Image Gallery/Screenshot.png"
+  },
+  {
+    "name": "Animated CSS Login Form",
+    "category": "ui",
+    "description": "Login form with floating labels and underlines that sweep in on focus",
+    "tags": [
+      "Svelte",
+      "CSS",
+      "Rollup"
+    ],
+    "href": "UI Experiments/Animated CSS Login Form/public/index.html",
+    "image": "UI Experiments/Animated CSS Login Form/Screenshot.png"
+  },
+  {
+    "name": "Sky Diving Parallax Cat",
+    "category": "effects",
+    "description": "Layered parallax scene of a cat skydiving through the sky as you scroll",
+    "tags": [
+      "React",
+      "React Spring",
+      "Vite"
+    ],
+    "href": "/projects/sky-diving-parallax-cat/",
+    "image": "Awesome Effects/Sky Diving Parallax Cat/Screenshot.png"
+  },
+  {
+    "name": "Flappy Bird",
+    "category": "websites",
+    "description": "Flappy-style arcade game with sprites and sound effects, made with Kaboom",
+    "tags": [
+      "JavaScript",
+      "Kaboom",
+      "esbuild"
+    ],
+    "href": "Awesome Websites/Flappy Bird/www/index.html",
+    "image": "Awesome Websites/Flappy Bird/Screenshot.png"
+  },
+  {
+    "name": "PWA Notes",
+    "category": "websites",
+    "description": "Installable offline notes app that caches its shell with a service worker",
+    "tags": [
+      "JavaScript",
+      "PWA",
+      "Service Worker"
+    ],
+    "href": "Awesome Websites/PWA Notes/index.html",
+    "image": "Awesome Websites/PWA Notes/Screenshot.png"
+  }
+]

@@ -1,0 +1,430 @@
+/* Everything layered over the 3D canvas: top bar, labels, dock, hint, tooltip, intro */
+.scene-ui {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+}
+
+.no-3d .scene-ui {
+  display: none;
+}
+
+/* Own stacking context: CSS2DRenderer gives labels z-indexes, which must not escape above the panel */
+.scene {
+  isolation: isolate;
+  z-index: 0;
+}
+
+.scene,
+.scene canvas {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  touch-action: none;
+}
+
+.label-layer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+/* ---------- Floating valley labels ---------- */
+.valley-label {
+  pointer-events: auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 12px 7px 10px;
+  border-radius: 999px;
+  border: 1px solid var(--glass-border);
+  background: var(--glass);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: var(--shadow-sm);
+  color: var(--ink);
+  font: 600 0.86rem/1 var(--font-display);
+  white-space: nowrap;
+  cursor: pointer;
+  transition:
+    transform 0.3s var(--ease-out),
+    opacity 0.3s,
+    background 0.3s;
+}
+
+.valley-label__count {
+  font: 600 0.72rem/1 var(--font-body);
+  padding: 3px 7px;
+  border-radius: 999px;
+  color: #fff;
+  background: var(--accent);
+}
+
+.valley-label:hover,
+.valley-label.is-hovered,
+.valley-label.is-active {
+  background: var(--glass-strong);
+  transform: translateY(-3px) scale(1.06);
+}
+
+.valley-label.is-dimmed {
+  opacity: 0.45;
+}
+
+.valley-label--summit {
+  font-size: 0.8rem;
+}
+
+/* ---------- Top bar ---------- */
+.topbar {
+  position: absolute;
+  top: var(--gutter);
+  left: var(--gutter);
+  right: var(--gutter);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  pointer-events: none;
+}
+
+.topbar > * {
+  pointer-events: auto;
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 16px 8px 10px;
+  border-radius: 999px;
+  text-decoration: none;
+  background: var(--glass);
+  border: 1px solid var(--glass-border);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  box-shadow: var(--shadow-sm);
+}
+
+.brand__mark {
+  width: 28px;
+  height: 28px;
+}
+
+.brand__text {
+  font: 700 1.12rem/1 var(--font-display);
+  letter-spacing: -0.01em;
+}
+
+.topbar__actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.icon-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-width: 44px;
+  height: 44px;
+  padding: 0 12px;
+  border-radius: 999px;
+  border: 1px solid var(--glass-border);
+  background: var(--glass);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  box-shadow: var(--shadow-sm);
+  color: var(--ink);
+  font: 500 0.88rem/1 var(--font-body);
+  text-decoration: none;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.2s var(--ease-out);
+}
+
+.icon-btn:hover {
+  background: var(--glass-strong);
+  transform: translateY(-1px);
+}
+
+.icon-btn svg {
+  width: 20px;
+  height: 20px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.icon-btn svg.filled {
+  fill: currentColor;
+  stroke: none;
+}
+
+.search-trigger {
+  min-width: 230px;
+  justify-content: flex-start;
+  color: var(--ink-soft);
+}
+
+.search-trigger kbd {
+  margin-left: auto;
+}
+
+#sound-toggle .icon-sound-on,
+#sound-toggle[aria-pressed="true"] .icon-sound-off {
+  display: none;
+}
+
+#sound-toggle[aria-pressed="true"] .icon-sound-on {
+  display: block;
+}
+
+#sound-toggle[aria-pressed="true"] {
+  color: #0b7fb3;
+}
+
+/* ---------- Dock ---------- */
+.dock {
+  position: absolute;
+  left: 50%;
+  bottom: calc(var(--gutter) + env(safe-area-inset-bottom));
+  transform: translateX(-50%);
+  display: flex;
+  gap: 4px;
+  max-width: calc(100vw - 2 * var(--gutter));
+  padding: 6px;
+  overflow-x: auto;
+  scrollbar-width: none;
+  border-radius: 999px;
+  background: var(--glass);
+  border: 1px solid var(--glass-border);
+  backdrop-filter: blur(14px) saturate(1.3);
+  -webkit-backdrop-filter: blur(14px) saturate(1.3);
+  box-shadow: var(--shadow);
+  transition:
+    left 0.6s var(--ease-out),
+    opacity 0.3s,
+    transform 0.4s var(--ease-out);
+}
+
+.dock::-webkit-scrollbar {
+  display: none;
+}
+
+.dock__item {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 14px;
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+  color: var(--ink);
+  font: 600 0.86rem/1 var(--font-display);
+  white-space: nowrap;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+
+.dock__item:hover {
+  background: rgba(255, 255, 255, 0.75);
+}
+
+.dock__item.is-active {
+  background: var(--accent);
+  color: #fff;
+}
+
+.dock__item.is-active .dot {
+  background: #fff;
+  box-shadow: none;
+}
+
+.dock__count {
+  font: 600 0.72rem/1 var(--font-body);
+  color: var(--ink-faint);
+}
+
+.dock__item.is-active .dock__count {
+  color: rgba(255, 255, 255, 0.85);
+}
+
+/* With the side panel open, centre the dock in the part of the screen left over */
+.has-panel .dock {
+  left: calc((100vw - var(--panel-w) - var(--gutter)) / 2);
+  max-width: calc(100vw - var(--panel-w) - 3 * var(--gutter));
+}
+
+/* ---------- Hint ---------- */
+.hint {
+  position: absolute;
+  left: 50%;
+  bottom: calc(var(--gutter) + 72px + env(safe-area-inset-bottom));
+  transform: translateX(-50%);
+  margin: 0;
+  padding: 7px 14px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.55);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  color: var(--ink-soft);
+  font-size: 0.8rem;
+  white-space: nowrap;
+  pointer-events: none;
+  transition: opacity 0.4s;
+}
+
+.hint.is-hidden {
+  opacity: 0;
+}
+
+/* ---------- Tooltip ---------- */
+.tooltip {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 300px;
+  padding: 14px;
+  border-radius: var(--radius);
+  background: var(--glass-strong);
+  border: 1px solid var(--glass-border);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  box-shadow: var(--shadow);
+  cursor: pointer;
+  z-index: 5;
+  animation: tooltip-in 0.18s var(--ease-out);
+  transition: box-shadow 0.2s, border-color 0.2s;
+}
+
+.tooltip:hover {
+  border-color: color-mix(in srgb, var(--accent) 50%, white);
+  box-shadow: 0 16px 40px color-mix(in srgb, var(--accent) 28%, transparent);
+}
+
+@keyframes tooltip-in {
+  from {
+    opacity: 0;
+  }
+}
+
+.tooltip[hidden] {
+  display: none;
+}
+
+.tooltip p {
+  margin: 0;
+}
+
+.tooltip__title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font: 700 1.05rem/1.2 var(--font-display);
+}
+
+.tooltip__count {
+  margin-left: auto;
+  font: 600 0.75rem/1 var(--font-body);
+  padding: 4px 8px;
+  border-radius: 999px;
+  color: #fff;
+  background: var(--accent);
+}
+
+.tooltip__tagline {
+  margin-top: 4px !important;
+  font-size: 0.82rem;
+  color: var(--ink-soft);
+}
+
+.tooltip__thumbs {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 6px;
+  margin-top: 10px;
+}
+
+.tooltip__thumbs img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+  border-radius: 8px;
+  border: 1px solid var(--line);
+  background: #eef5fb;
+}
+
+.tooltip__cta {
+  margin-top: 12px !important;
+  padding: 8px 12px;
+  border-radius: 999px;
+  text-align: center;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #fff;
+  background: var(--accent);
+}
+
+/* The loading screen (.intro) is styled inline in index.html so it shows before this file loads */
+
+/* ---------- Small screens ---------- */
+@media (max-width: 860px) {
+  .has-panel .valley-label.is-dimmed {
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .has-panel .dock {
+    opacity: 0;
+    pointer-events: none;
+    transform: translate(-50%, 20px);
+  }
+
+  .has-panel .topbar {
+    /* The sheet takes over; keep the bar but let it breathe */
+    opacity: 0.95;
+  }
+}
+
+@media (max-width: 640px) {
+  :root {
+    --gutter: 12px;
+  }
+
+  .search-trigger {
+    min-width: 44px;
+    padding: 0;
+  }
+
+  .search-trigger__label,
+  .search-trigger kbd,
+  .icon-btn__label {
+    display: none;
+  }
+
+  .brand__text {
+    font-size: 1rem;
+  }
+
+  .dock__label {
+    max-width: 9ch;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .hint {
+    font-size: 0.74rem;
+  }
+
+  .valley-label {
+    font-size: 0.74rem;
+    padding: 5px 9px 5px 8px;
+  }
+}

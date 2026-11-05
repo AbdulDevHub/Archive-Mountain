@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="en" class="no-3d">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <!-- %PROJECT_COUNT% and %SITE_URL% are filled in at build time by vite.config.ts -->
+    <title>Web Mountain: Abdul Khan's 3D Frontend Portfolio of %PROJECT_COUNT% Web Projects</title>
+    <meta name="description" content="Explore %PROJECT_COUNT% frontend projects by Abdul Khan on a low-poly 3D island built with Three.js: web apps, UI experiments, WebGL effects, AI tools and Chrome extensions." />
+    <meta name="keywords" content="frontend portfolio, 3D portfolio, Three.js, WebGL, TypeScript, JavaScript, web apps, UI experiments, CSS effects, AI web apps, Chrome extensions, Abdul Khan" />
+    <meta name="author" content="Abdul Khan" />
+    <meta name="robots" content="index, follow, max-image-preview:large" />
+    <meta name="theme-color" content="#8fd0f5" />
+    <link rel="canonical" href="%SITE_URL%/" />
+
+    <!-- Social previews (Open Graph for Facebook/LinkedIn/Discord/Slack, plus X/Twitter) -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Web Mountain" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:url" content="%SITE_URL%/" />
+    <meta property="og:title" content="Web Mountain: A 3D Island of %PROJECT_COUNT% Frontend Projects" />
+    <meta property="og:description" content="Fly into six valleys of web apps, portfolios, UI experiments, WebGL effects, AI tools and Chrome extensions, all on a low-poly island built with Three.js." />
+    <meta property="og:image" content="%SITE_URL%/brand/og-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="A low-poly 3D island with a snowy peak and six valleys, titled Web Mountain" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Web Mountain: A 3D Island of %PROJECT_COUNT% Frontend Projects" />
+    <meta name="twitter:description" content="Fly into six valleys of web apps, portfolios, UI experiments, WebGL effects, AI tools and Chrome extensions." />
+    <meta name="twitter:image" content="%SITE_URL%/brand/og-image.png" />
+    <meta name="twitter:image:alt" content="A low-poly 3D island with a snowy peak and six valleys, titled Web Mountain" />
+
+    <!-- Icons, manifest and social image live in /brand at the repo root (served as-is by Netlify) -->
+    <link rel="icon" type="image/png" sizes="64x64" href="/Favicon.png" />
+    <link rel="icon" type="image/svg+xml" href="/brand/icon.svg" />
+    <link rel="apple-touch-icon" href="/brand/apple-touch-icon.png" />
+    <link rel="manifest" href="/brand/manifest.webmanifest" />
+    <!--structured-data-->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@500;600;700&display=swap" rel="stylesheet" />
+    <!--
+      Decide before first paint whether the 3D island will run, so visitors see the
+      loading screen straight away instead of a flash of the plain directory.
+      Must match supportsWebGL() in world/quality.ts.
+    -->
+    <script>
+      try {
+        if (!/[?&]no3d\b/.test(location.search) && document.createElement("canvas").getContext("webgl2")) {
+          document.documentElement.classList.replace("no-3d", "has-3d")
+        }
+      } catch {}
+    </script>
+    <style>
+      /* Critical styles for the loading screen; the full stylesheet arrives with the app bundle */
+      .has-3d body { margin: 0; overflow: hidden; }
+      .has-3d #directory { display: none; }
+      .has-3d .site-title { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+      .has-3d .scene-ui > :not(.intro) { visibility: hidden; }
+      .has-3d.is-ready .scene-ui > :not(.intro) { visibility: visible; }
+      .intro { position: fixed; inset: 0; z-index: 20; display: grid; place-content: center; justify-items: center; gap: 14px; text-align: center; font-family: "Outfit", system-ui, sans-serif; background: radial-gradient(circle at 50% 40%, #fff 0%, #dff1fd 45%, #b6defa 100%); transition: opacity 0.9s ease, visibility 0.9s; }
+      .no-3d .intro { display: none; }
+      .intro.is-done { opacity: 0; visibility: hidden; pointer-events: none; }
+      .intro p { margin: 0; }
+      .intro__mark { width: 64px; height: 64px; animation: intro-bob 1.6s ease-in-out infinite; }
+      .intro__title { font-weight: 700; font-size: clamp(2.4rem, 7vw, 4.6rem); line-height: 1; letter-spacing: -0.02em; color: #2b5a73; }
+      .intro__subtitle { font-family: "Inter", system-ui, sans-serif; color: #4d5f71; }
+      .intro__bar { position: relative; width: 180px; height: 5px; margin-top: 6px; overflow: hidden; border-radius: 999px; background: rgba(43, 90, 115, 0.14); }
+      .intro__bar::after { content: ""; position: absolute; inset: 0; width: 40%; border-radius: inherit; background: #38bdf8; animation: intro-slide 1.2s ease-in-out infinite; }
+      @keyframes intro-bob { 50% { transform: translateY(-6px); } }
+      @keyframes intro-slide { from { transform: translateX(-100%); } to { transform: translateX(250%); } }
+      @media (prefers-reduced-motion: reduce) { .intro__mark, .intro__bar::after { animation: none; } }
+    </style>
+    <script type="module" src="./main.ts"></script>
+  </head>
+  <body>
+    <!-- The one page heading: visually hidden on the island, the title of the plain directory otherwise -->
+    <h1 class="site-title">Web Mountain<span class="site-title__tagline"><span class="visually-hidden">: </span>A 3D island of frontend projects by Abdul Khan</span></h1>
+
+    <!-- 3D experience: only shown once main.ts confirms WebGL works -->
+    <div class="scene-ui" id="scene-ui">
+      <div class="scene" id="scene" aria-hidden="true"></div>
+
+      <header class="topbar">
+        <a class="brand" href="#" data-route="overview" aria-label="Web Mountain, back to the island">
+          <svg class="brand__mark" viewBox="0 0 32 32" aria-hidden="true">
+            <path d="M2 27 12 9l5 8 3-5 10 15Z" fill="#4c7c5a" />
+            <path d="m12 9 3.6 5.8-2.1-1-1.5 2-1.6-2-2.2 1Z" fill="#fff" />
+          </svg>
+          <span class="brand__text">Web Mountain</span>
+        </a>
+        <div class="topbar__actions">
+          <button class="icon-btn search-trigger" id="search-open" type="button" aria-haspopup="dialog">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7" /><path d="m20 20-3.5-3.5" /></svg>
+            <span class="search-trigger__label">Search projects</span>
+            <kbd>/</kbd>
+          </button>
+          <button class="icon-btn" id="sound-toggle" type="button" aria-pressed="false" title="Ambient sound">
+            <svg class="icon-sound-on" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9h4l5-4v14l-5-4H4Z" /><path d="M16.5 8.5a5 5 0 0 1 0 7M19 6a8.5 8.5 0 0 1 0 12" /></svg>
+            <svg class="icon-sound-off" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9h4l5-4v14l-5-4H4Z" /><path d="m17 9 5 6m0-6-5 6" /></svg>
+            <span class="visually-hidden">Ambient sound</span>
+          </button>
+          <a class="icon-btn" href="https://github.com/AbdulDevHub/Web-Mountain" target="_blank" rel="noopener" title="View the source on GitHub">
+            <svg viewBox="0 0 24 24" aria-hidden="true" class="filled"><path d="M12 2a10 10 0 0 0-3.2 19.5c.5.1.7-.2.7-.5v-1.7c-2.8.6-3.4-1.3-3.4-1.3-.4-1.2-1.1-1.5-1.1-1.5-.9-.6.1-.6.1-.6 1 .1 1.5 1 1.5 1 .9 1.5 2.4 1.1 2.9.8.1-.6.4-1.1.6-1.3-2.2-.3-4.6-1.1-4.6-5 0-1.1.4-2 1-2.7-.1-.3-.4-1.3.1-2.7 0 0 .8-.3 2.8 1a9.6 9.6 0 0 1 5 0c1.9-1.3 2.8-1 2.8-1 .5 1.4.2 2.4.1 2.7.6.7 1 1.6 1 2.7 0 3.9-2.3 4.7-4.6 5 .4.3.7.9.7 1.9V21c0 .3.2.6.7.5A10 10 0 0 0 12 2Z" /></svg>
+            <span class="icon-btn__label">Source</span>
+          </a>
+        </div>
+      </header>
+
+      <nav class="dock" id="dock" aria-label="Valleys"></nav>
+      <p class="hint" id="hint">Drag to look around · click a valley to explore</p>
+
+      <aside class="panel" id="panel" aria-labelledby="panel-title" hidden>
+        <div class="panel__handle" id="panel-handle" aria-hidden="true"><span></span></div>
+        <header class="panel__header">
+          <div>
+            <p class="panel__eyebrow" id="panel-eyebrow"></p>
+            <h2 class="panel__title" id="panel-title" tabindex="-1"></h2>
+            <p class="panel__tagline" id="panel-tagline"></p>
+          </div>
+          <button class="icon-btn panel__close" id="panel-close" type="button" title="Back to the island (Esc)">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18" /></svg>
+            <span class="visually-hidden">Back to the island</span>
+          </button>
+        </header>
+        <div class="panel__content" id="panel-content"></div>
+      </aside>
+
+      <!-- Mouse-only preview; keyboard and screen-reader users get the same choices from the dock -->
+      <div class="tooltip" id="tooltip" aria-hidden="true" hidden></div>
+
+      <dialog class="search" id="search" aria-label="Search projects">
+        <form method="dialog" class="search__box" role="search">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7" /><path d="m20 20-3.5-3.5" /></svg>
+          <input id="search-input" type="search" placeholder="Search projects by name, idea or tech…" autocomplete="off" spellcheck="false" aria-controls="search-results" />
+          <kbd>Esc</kbd>
+        </form>
+        <ul class="search__results" id="search-results" role="listbox" aria-label="Results"></ul>
+      </dialog>
+
+      <div class="intro" id="intro" role="status" aria-label="Loading the island">
+        <svg class="intro__mark" viewBox="0 0 32 32" aria-hidden="true">
+          <path d="M2 27 12 9l5 8 3-5 10 15Z" fill="#4c7c5a" />
+          <path d="m12 9 3.6 5.8-2.1-1-1.5 2-1.6-2-2.2 1Z" fill="#fff" />
+        </svg>
+        <p class="intro__title">Web Mountain</p>
+        <p class="intro__subtitle">Climbing through the clouds…</p>
+        <div class="intro__bar" aria-hidden="true"></div>
+      </div>
+    </div>
+
+    <!-- Plain directory: pre-rendered at build time for crawlers, no-JS and no-WebGL visitors -->
+    <main class="directory" id="directory">
+      <header class="directory__header">
+        <p>A personal collection of frontend experiments, UI concepts and mini apps. <a href="https://github.com/AbdulDevHub/Web-Mountain">View the source on GitHub</a>.</p>
+      </header>
+      <!--project-directory-->
+    </main>
+  </body>
+</html>

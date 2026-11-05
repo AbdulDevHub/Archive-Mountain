@@ -1,0 +1,18 @@
+node_modules/
+coverage/
+Gallery/dist/
+
+# Made by build.sh on Netlify
+.build-logs/
+_redirects
+App Valley/*/dist/
+App Valley/*/out/
+App Valley/*/.next/
+App Valley/*/next-env.d.ts
+UI Experiments/*/dist/
+UI Experiments/*/out/
+UI Experiments/*/build/
+UI Experiments/*/.next/
+UI Experiments/*/next-env.d.ts
+UI Experiments/Animated CSS Login Form/public/build/
+Awesome Effects/Sky Diving Parallax Cat/dist/

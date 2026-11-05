@@ -1,0 +1,17 @@
+{
+  "name": "Web Mountain: A 3D Island of Frontend Projects",
+  "short_name": "Web Mountain",
+  "description": "Abdul Khan's frontend portfolio on a low-poly 3D island: web apps, UI experiments, WebGL effects, AI tools and Chrome extensions.",
+  "id": "/",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#cfeafb",
+  "theme_color": "#8fd0f5",
+  "categories": ["developer", "education", "entertainment"],
+  "icons": [
+    { "src": "/brand/icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" },
+    { "src": "/brand/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "/brand/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" }
+  ]
+}
