@@ -4,3 +4,9 @@
 
 [build.environment]
   NODE_VERSION = "24"
+
+# The front page is the 3D gallery, built into Gallery/dist by build.sh
+[[redirects]]
+  from = "/"
+  to = "/Gallery/dist/index.html"
+  status = 200

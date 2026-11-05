@@ -25,4 +25,10 @@ npm ci
 npm run build
 cd ..
 
+echo "Building Gallery..."
+cd "Gallery"
+npm ci
+npm run build
+cd ..
+
 echo "All builds finished successfully!"
