@@ -23,6 +23,7 @@ A portfolio monorepo of 64 small frontend projects, deployed as one static Netli
 - Netlify rewrites `/` to `/Gallery/dist/index.html`, so gallery links must be site-absolute (`toSiteUrl()` in `Gallery/src/data/projects.ts`).
 - Gallery terrain maths are pure functions in `Gallery/src/world/terrain.ts`. Landmarks, trees, the camera and picking all use `heightAt()`; never sample the mesh.
 - The gallery must work at 390px wide with no horizontal scroll, respect reduced motion, and keep the no-WebGL directory (`?no3d`) working.
+- SEO: meta tags in `Gallery/src/index.html` use `%PROJECT_COUNT%` / `%SITE_URL%` tokens. JSON-LD and `sitemap.xml` are generated from `projects.json` (`Gallery/src/data/seo.ts`), and `netlify.toml` serves the sitemap at `/sitemap.xml`. Icons, the manifest and `og-image.png` (1200×630) live in `/brand`; regenerate the OG image if the island's look changes. The canonical URL is https://modern-web-mountain.netlify.app.
 - Commit messages use gitmoji + conventional commits (e.g. `✨ feat(Gallery): ...`), with the sub-project as the scope.
 
 ## Boundaries
