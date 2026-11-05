@@ -14,7 +14,3 @@
 	path = Reddit-Data-Scrapping
 	url = https://github.com/AbdulDevHub/Reddit-Data-Scrapping
 	branch = main
-[submodule "Todoist"]
-	path = Todoist
-	url = https://github.com/AbdulDevHub/Todoist
-	branch = main
