@@ -1,4 +1,4 @@
-import rawProjects from "../../../projects.json"
+import rawProjects from "../../../projects.json" with { type: "json" }
 import { isSectionId, SECTIONS, type SectionId } from "./sections.ts"
 
 /** One entry of the repo-root projects.json, the single source of truth for the gallery */

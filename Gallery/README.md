@@ -22,6 +22,7 @@ Built with **TypeScript, Three.js, Vite and camera-controls**. There are no mode
 - **Hover previews**: hovering a valley makes it glow and shows a tooltip with its count and three screenshots.
 - **A living island**: drifting clouds, circling gulls, a hot-air balloon, a sailboat, a waving summit flag, chimney smoke and a turning windmill. The sun follows your local time but stays in daylight.
 - **Optional soundscape**: wind, birdsong and a whoosh on each flight, all made with the Web Audio API. It's off by default and your choice is remembered.
+- **Search-friendly**: the build fills in the meta and Open Graph/Twitter tags, generates JSON-LD structured data (`WebSite` plus an `ItemList` of every project) and writes a sitemap, all from `projects.json` (`src/data/seo.ts`). Icons, the web manifest and the 1200×630 social image live in `/brand` at the repo root.
 - **Works everywhere**: phones get a lighter quality tier. A frame-rate watchdog drops post-processing if the device struggles. The reduced-motion setting turns flights into cuts. Browsers without WebGL (or `?no3d`) get a plain, pre-rendered project directory, which is also what crawlers see.
 
 ## How it works

@@ -3,6 +3,7 @@ import { resolve } from "node:path"
 import sirv from "sirv"
 import { defineConfig, type Plugin } from "vite"
 import { PROJECTS } from "./src/data/projects.ts"
+import { SITE_URL, sitemapXml, structuredDataHtml } from "./src/data/seo.ts"
 import { renderDirectoryHtml } from "./src/ui/directory.ts"
 
 const galleryDir = import.meta.dirname
@@ -40,11 +41,31 @@ function prerenderDirectory(): Plugin {
   }
 }
 
+/**
+ * SEO from the same project data: fills %PROJECT_COUNT% / %SITE_URL% in the
+ * meta tags, inlines JSON-LD structured data, and emits sitemap.xml (served at
+ * /Gallery/dist/sitemap.xml; netlify.toml serves it at /sitemap.xml for robots.txt).
+ */
+function seo(): Plugin {
+  return {
+    name: "seo",
+    transformIndexHtml: (html) =>
+      html
+        .replaceAll("%PROJECT_COUNT%", String(PROJECTS.length))
+        .replaceAll("%SITE_URL%", SITE_URL)
+        .replace("<!--structured-data-->", structuredDataHtml(PROJECTS)),
+    generateBundle() {
+      const today = new Date().toISOString().slice(0, 10)
+      this.emitFile({ type: "asset", fileName: "sitemap.xml", source: sitemapXml(PROJECTS, today) })
+    },
+  }
+}
+
 export default defineConfig(({ command }) => ({
   root: resolve(galleryDir, "src"),
   // Netlify rewrites "/" to the built page, which lives in Gallery/dist/
   base: command === "build" ? "/Gallery/dist/" : "/",
-  plugins: [serveRepoFiles(), prerenderDirectory()],
+  plugins: [serveRepoFiles(), prerenderDirectory(), seo()],
   build: {
     outDir: resolve(galleryDir, "dist"),
     emptyOutDir: true,

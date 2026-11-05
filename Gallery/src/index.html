@@ -3,14 +3,38 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-    <title>Web Mountain</title>
-    <meta name="description" content="Abdul Khan's frontend portfolio as a 3D island: every valley holds a section of web apps, UI experiments, effects, AI tools and Chrome extensions." />
+    <!-- %PROJECT_COUNT% and %SITE_URL% are filled in at build time by vite.config.ts -->
+    <title>Web Mountain: Abdul Khan's 3D Frontend Portfolio of %PROJECT_COUNT% Web Projects</title>
+    <meta name="description" content="Explore %PROJECT_COUNT% frontend projects by Abdul Khan on a low-poly 3D island built with Three.js: web apps, UI experiments, WebGL effects, AI tools and Chrome extensions." />
+    <meta name="keywords" content="frontend portfolio, 3D portfolio, Three.js, WebGL, TypeScript, JavaScript, web apps, UI experiments, CSS effects, AI web apps, Chrome extensions, Abdul Khan" />
+    <meta name="author" content="Abdul Khan" />
+    <meta name="robots" content="index, follow, max-image-preview:large" />
     <meta name="theme-color" content="#8fd0f5" />
-    <meta property="og:title" content="Web Mountain" />
-    <meta property="og:description" content="A portfolio of frontend projects, explored as a low-poly 3D island." />
+    <link rel="canonical" href="%SITE_URL%/" />
+
+    <!-- Social previews (Open Graph for Facebook/LinkedIn/Discord/Slack, plus X/Twitter) -->
     <meta property="og:type" content="website" />
-    <meta property="og:image" content="https://modern-web-mountain.netlify.app/Screenshot.png" />
-    <link rel="icon" type="image/png" href="/Favicon.png" />
+    <meta property="og:site_name" content="Web Mountain" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:url" content="%SITE_URL%/" />
+    <meta property="og:title" content="Web Mountain: A 3D Island of %PROJECT_COUNT% Frontend Projects" />
+    <meta property="og:description" content="Fly into five valleys of web apps, UI experiments, WebGL effects, AI tools and Chrome extensions, all on a low-poly island built with Three.js." />
+    <meta property="og:image" content="%SITE_URL%/brand/og-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="A low-poly 3D island with a snowy peak and five valleys, titled Web Mountain" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Web Mountain: A 3D Island of %PROJECT_COUNT% Frontend Projects" />
+    <meta name="twitter:description" content="Fly into five valleys of web apps, UI experiments, WebGL effects, AI tools and Chrome extensions." />
+    <meta name="twitter:image" content="%SITE_URL%/brand/og-image.png" />
+    <meta name="twitter:image:alt" content="A low-poly 3D island with a snowy peak and five valleys, titled Web Mountain" />
+
+    <!-- Icons, manifest and social image live in /brand at the repo root (served as-is by Netlify) -->
+    <link rel="icon" type="image/png" sizes="64x64" href="/Favicon.png" />
+    <link rel="icon" type="image/svg+xml" href="/brand/icon.svg" />
+    <link rel="apple-touch-icon" href="/brand/apple-touch-icon.png" />
+    <link rel="manifest" href="/brand/manifest.webmanifest" />
+    <!--structured-data-->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@500;600;700&display=swap" rel="stylesheet" />
@@ -30,6 +54,7 @@
       /* Critical styles for the loading screen; the full stylesheet arrives with the app bundle */
       .has-3d body { margin: 0; overflow: hidden; }
       .has-3d #directory { display: none; }
+      .has-3d .site-title { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
       .has-3d .scene-ui > :not(.intro) { visibility: hidden; }
       .has-3d.is-ready .scene-ui > :not(.intro) { visibility: visible; }
       .intro { position: fixed; inset: 0; z-index: 20; display: grid; place-content: center; justify-items: center; gap: 14px; text-align: center; font-family: "Outfit", system-ui, sans-serif; background: radial-gradient(circle at 50% 40%, #fff 0%, #dff1fd 45%, #b6defa 100%); transition: opacity 0.9s ease, visibility 0.9s; }
@@ -48,9 +73,11 @@
     <script type="module" src="./main.ts"></script>
   </head>
   <body>
+    <!-- The one page heading: visually hidden on the island, the title of the plain directory otherwise -->
+    <h1 class="site-title">Web Mountain<span class="site-title__tagline"><span class="visually-hidden">: </span>A 3D island of frontend projects by Abdul Khan</span></h1>
+
     <!-- 3D experience: only shown once main.ts confirms WebGL works -->
     <div class="scene-ui" id="scene-ui">
-      <h1 class="visually-hidden">Web Mountain: a 3D island of frontend projects</h1>
       <div class="scene" id="scene" aria-hidden="true"></div>
 
       <header class="topbar">
@@ -124,7 +151,6 @@
     <!-- Plain directory: pre-rendered at build time for crawlers, no-JS and no-WebGL visitors -->
     <main class="directory" id="directory">
       <header class="directory__header">
-        <h1>🏔️ Web Mountain</h1>
         <p>A personal collection of frontend experiments, UI concepts and mini apps. <a href="https://github.com/AbdulDevHub/Web-Mountain">View the source on GitHub</a>.</p>
       </header>
       <!--project-directory-->
