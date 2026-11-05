@@ -1,10 +1,12 @@
-# Web Mountain 🏔️
+# Web Mountain: A Low-Poly 3D Island of Frontend Projects 🏔️
 
-![Screenshot](Screenshot.png)
+**[Explore the live site →](https://modern-web-mountain.netlify.app/)**
+
+[![Web Mountain: a low-poly 3D island with five valleys of frontend projects](Screenshot.png)](https://modern-web-mountain.netlify.app/)
 
 ## Project Overview
 
-A comprehensive repository showcasing frontend experiments, UI concepts, and interactive web applications. Each project demonstrates different aspects of modern web development, from accessibility best practices to advanced animations and interactive experiences.
+A frontend portfolio of 64 projects by Abdul Khan: web apps, UI experiments, WebGL and CSS effects, AI tools and Chrome extensions. Each project shows a different side of modern web development, from accessibility best practices to shaders, animations and on-device AI.
 
 The front page is a **low-poly 3D island** built with TypeScript and Three.js. The summit holds every project, and each of the five valleys around it is one section below, with its own landmark. Click a valley to fly in and browse its projects. See [Gallery/README.md](./Gallery/README.md) for how it's built. Project data lives in [`projects.json`](./projects.json).
 
