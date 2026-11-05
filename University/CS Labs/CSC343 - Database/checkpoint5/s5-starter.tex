@@ -1,0 +1,415 @@
+% ============================================================
+%  CSC343H5 Sprint 5: Transactions & Concurrency
+%  Student Submission Template
+% ============================================================
+\documentclass[11pt, a4paper]{article}
+
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{xcolor}
+\usepackage{titlesec}
+\usepackage{enumitem}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{hyperref}
+\usepackage{fontenc}
+\usepackage{inputenc}
+\usepackage{parskip}
+\usepackage{fancyhdr}
+\usepackage{listings}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usetikzlibrary{positioning, arrows.meta}
+
+\definecolor{navydark}{HTML}{1A1A2E}
+\definecolor{navyaccent}{HTML}{0F3460}
+\definecolor{midgray}{HTML}{7F8C8D}
+\definecolor{rulecolor}{HTML}{BDC3C7}
+\definecolor{codebg}{HTML}{F4F6F8}
+
+\hypersetup{colorlinks=true, linkcolor=navyaccent}
+
+\titleformat{\section}
+  {\color{navydark}\Large\bfseries}{\thesection.}{0.6em}{}
+  [\color{rulecolor}\titlerule]
+\titleformat{\subsection}
+  {\color{navyaccent}\large\bfseries}{\thesubsection.}{0.5em}{}
+
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0.4pt}
+\fancyhead[L]{\small\color{midgray}\textbf{CSC343} $\cdot$ Sprint 5 Submission}
+\fancyhead[R]{\small\color{midgray}Due: Aug 9 at 5\,PM ET}
+\fancyfoot[C]{\small\color{midgray}\thepage}
+
+\lstdefinestyle{sqlstyle}{
+  language=SQL,
+  backgroundcolor=\color{codebg},
+  basicstyle=\ttfamily\small,
+  keywordstyle=\color{navyaccent}\bfseries,
+  commentstyle=\color{midgray}\itshape,
+  frame=single, rulecolor=\color{rulecolor},
+  breaklines=true, showstringspaces=false, tabsize=2,
+}
+\lstset{style=sqlstyle}
+
+% ── Schedule notation macro ───────────────────────────────────
+% Use \sched{...} for any schedule or operation, e.g. \sched{R1(A)}
+\newcommand{\sched}[1]{\texttt{#1}}
+
+% ── Precedence graph macros ───────────────────────────────────
+% Nodes are drawn with the "pg" style, edges with "pgedge".
+% See the worked example below Question 1 for how to use them.
+\tikzset{
+  pg/.style={draw, circle, minimum size=8mm, inner sep=1pt, font=\small},
+  pgedge/.style={-{Stealth[length=2mm]}, thick},
+}
+
+\setlist[itemize]{leftmargin=1.4em, itemsep=2pt, topsep=4pt}
+\setlist[enumerate]{leftmargin=1.4em, itemsep=2pt, topsep=4pt}
+
+\newcommand{\divider}{\par\noindent\rule{\linewidth}{0.3pt}\smallskip}
+
+% ─────────────────────────────────────────────────────────────
+\begin{document}
+
+% ── STUDENT INFORMATION ───────────────────────────────────────
+\begin{tabular}{ll}
+  \textbf{Full Name:}      & \textit{TODO: Your full name} \\[3pt]
+  \textbf{Student Number:} & \textit{TODO: Your student number} \\[3pt]
+  \textbf{UTORid:}         & \textit{TODO: Your UTORid} \\[3pt]
+  \textbf{Course:}         & CSC343H5 $\cdot$ Introduction to Databases \\[3pt]
+  \textbf{Sprint:}         & 5 - Transactions \& Concurrency \\[3pt]
+  \textbf{Submission:}     & First submission \\
+\end{tabular}
+
+\bigskip
+
+% ════════════════════════════════════════════════════════════
+\section{Precedence Graphs and Serializability}
+% ════════════════════════════════════════════════════════════
+
+% ── HOW TO DRAW A PRECEDENCE GRAPH ───────────────────────────
+% Copy the tikzpicture below and edit it. Positions are (x,y) in cm.
+% To add an edge from T1 to T2 labelled with object A, write:
+%     \draw[pgedge] (t1) -- node[above, font=\scriptsize] {A} (t2);
+% If you ever need two edges between the same pair of nodes, bend them apart
+% so they do not overlap:
+%     \draw[pgedge] (n1) to[bend left=28] node[above,font=\scriptsize] {obj} (n2);
+% If you would rather draw by hand, photograph it and use:
+%     \includegraphics[width=0.4\linewidth]{my_graph.png}
+% Either is fine, as long as it is legible in the PDF.
+
+\subsection{Schedule S1}
+
+\noindent\sched{S1 = R1(A) R2(B) W1(A) R3(C) W2(B) R1(B) W3(C) W1(B)}
+
+\bigskip
+\textbf{(i) Conflicting pairs}
+\divider
+
+% Use as many rows as you need. The number of rows printed here carries no
+% information about the answer: add rows with \\ and delete the ones you
+% do not use.
+\begin{center}
+\begin{tabular}{@{}llll@{}}
+\toprule
+\textbf{Object} & \textbf{Pair, in schedule order} & \textbf{Type} & \textbf{Edge} \\
+\midrule
+\textit{TODO} & \textit{TODO} & \textit{TODO} & \textit{TODO} \\
+\textit{TODO} & \textit{TODO} & \textit{TODO} & \textit{TODO} \\
+\textit{TODO} & \textit{TODO} & \textit{TODO} & \textit{TODO} \\
+\textit{TODO} & \textit{TODO} & \textit{TODO} & \textit{TODO} \\
+\textit{TODO} & \textit{TODO} & \textit{TODO} & \textit{TODO} \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\bigskip
+\textbf{(ii) Precedence graph}
+\divider
+
+\begin{center}
+\begin{tikzpicture}
+  % TODO: position your nodes and draw your edges.
+  \node[pg] (t1) at (0,0)   {T1};
+  \node[pg] (t2) at (2.4,0) {T2};
+  \node[pg] (t3) at (4.8,0) {T3};
+  % \draw[pgedge] (t1) -- node[above, font=\scriptsize] {?} (t2);
+\end{tikzpicture}
+\end{center}
+
+\bigskip
+\textbf{(iii) Verdict}
+\divider
+
+\textit{TODO: Is S1 conflict serializable? If yes, give an equivalent serial
+order and state whether it is unique, with a reason. If no, name the cycle
+and explain in one sentence why no serial order can exist.}
+
+\bigskip\bigskip
+
+% ─────────────────────────────────────────────────────────────
+\subsection{Schedule S2}
+
+\noindent\sched{S2 = R1(A) W2(A) R2(B) W3(B) R3(C) W1(C)}
+
+\bigskip
+\textbf{(i) Conflicting pairs}
+\divider
+
+\begin{center}
+\begin{tabular}{@{}llll@{}}
+\toprule
+\textbf{Object} & \textbf{Pair, in schedule order} & \textbf{Type} & \textbf{Edge} \\
+\midrule
+\textit{TODO} & \textit{TODO} & \textit{TODO} & \textit{TODO} \\
+\textit{TODO} & \textit{TODO} & \textit{TODO} & \textit{TODO} \\
+\textit{TODO} & \textit{TODO} & \textit{TODO} & \textit{TODO} \\
+\textit{TODO} & \textit{TODO} & \textit{TODO} & \textit{TODO} \\
+\textit{TODO} & \textit{TODO} & \textit{TODO} & \textit{TODO} \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\bigskip
+\textbf{(ii) Precedence graph}
+\divider
+
+\begin{center}
+\begin{tikzpicture}
+  % TODO. Move the nodes wherever makes your graph clearest.
+  \node[pg] (t1) at (0,0)   {T1};
+  \node[pg] (t2) at (2.4,0) {T2};
+  \node[pg] (t3) at (4.8,0) {T3};
+\end{tikzpicture}
+\end{center}
+
+\bigskip
+\textbf{(iii) Verdict}
+\divider
+
+\textit{TODO: Same three things as for S1.}
+
+% ════════════════════════════════════════════════════════════
+\section{Aborts and Recoverability}
+% ════════════════════════════════════════════════════════════
+
+\noindent
+\sched{S3 = W1(A) R2(A) W2(B) C1 C2} \qquad
+\sched{S4 = W1(A) R2(A) W2(B) C2 C1}\\[3pt]
+\sched{S5 = W1(A) W2(A) C1 C2} \qquad
+\sched{S6 = W1(A) R2(A) W2(B) R3(B) W3(C) A1}
+
+\bigskip
+\textbf{(i) Classification}
+\divider
+
+% Write yes or no in each cell. In the last column name the single pair of
+% operations that decides the row, e.g. "W1(A) then R2(A)".
+\begin{center}
+\begin{tabularx}{\linewidth}{@{}lcccX@{}}
+\toprule
+\textbf{Schedule} & \textbf{Recoverable?} & \textbf{ACA?} & \textbf{Strict?} & \textbf{Deciding pair} \\
+\midrule
+S3 & \textit{TODO} & \textit{TODO} & \textit{TODO} & \textit{TODO} \\
+\addlinespace
+S4 & \textit{TODO} & \textit{TODO} & \textit{TODO} & \textit{TODO} \\
+\addlinespace
+S5 & \textit{TODO} & \textit{TODO} & \textit{TODO} & \textit{TODO} \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\bigskip
+\textbf{(ii) S5: which property fails, and why undo gets harder}
+\divider
+
+\textit{TODO: Two sentences.}
+
+\bigskip
+\textbf{(iii) The cascade in S6}
+\divider
+
+\textit{TODO: List every transaction that must be rolled back, in order,
+with a reason for each. Then name the property from part (i) that would
+have made this cascade impossible.}
+
+% ════════════════════════════════════════════════════════════
+\section{Locking and Two-Phase Locking}
+% ════════════════════════════════════════════════════════════
+
+\noindent{\small
+\sched{S7 = X1(A) R1(A) W1(A) U1(A) X2(A) R2(A) W2(A) X2(B) R2(B) W2(B)}\\
+\sched{\phantom{S7 = }U2(A) U2(B) X1(B) R1(B) W1(B) U1(B) C1 C2}}
+
+\bigskip
+\textbf{(i) The cycle}
+\divider
+
+\begin{center}
+\begin{tikzpicture}
+  % TODO.
+  \node[pg] (t1) at (0,0)   {T1};
+  \node[pg] (t2) at (2.4,0) {T2};
+\end{tikzpicture}
+\end{center}
+
+\textit{TODO: State the conflicting pairs behind each edge and name the cycle.}
+
+\bigskip
+\textbf{(ii) 2PL and Strict 2PL verdicts}
+\divider
+
+\begin{center}
+\begin{tabularx}{\linewidth}{@{}lccX@{}}
+\toprule
+\textbf{Transaction} & \textbf{2PL?} & \textbf{Strict 2PL?} & \textbf{Deciding operation, and why} \\
+\midrule
+T1 & \textit{TODO} & \textit{TODO} & \textit{TODO} \\
+\addlinespace
+T2 & \textit{TODO} & \textit{TODO} & \textit{TODO} \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\bigskip
+\textbf{(iii) Strict 2PL rewrite}
+\divider
+
+% Keep the same operations. Only the lock placement changes.
+% Mark clearly where a transaction is DENIED a lock and waits, and the
+% operation that later releases it.
+\begin{center}
+\begin{tabularx}{0.95\linewidth}{@{}XX@{}}
+\toprule
+\textbf{T1} & \textbf{T2} \\
+\midrule
+\textit{TODO} & \textit{TODO} \\
+\addlinespace
+\textit{TODO} & \textit{TODO} \\
+\addlinespace
+\textit{TODO} & \textit{TODO} \\
+\addlinespace
+\textit{TODO} & \textit{TODO} \\
+\addlinespace
+\textit{TODO} & \textit{TODO} \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\noindent\textbf{Equivalent serial order:} \textit{TODO}
+
+\bigskip
+\textbf{(iv) Deadlock under Strict 2PL}
+\divider
+
+\textit{TODO: Two sentences. Describe a two-object situation in which two
+Strict 2PL transactions deadlock, and state what the DBMS does about it.}
+
+% ════════════════════════════════════════════════════════════
+\section{Choosing an Isolation Level}
+% ════════════════════════════════════════════════════════════
+
+% State the WEAKEST safe level, and justify in ONE sentence. Name the
+% anomaly you are defending against, or say why none applies.
+% Refer to your own Sprint 2 table names.
+
+\begin{center}
+\begin{tabularx}{\linewidth}{@{}p{5.4cm}p{3.1cm}X@{}}
+\toprule
+\textbf{Operation} & \textbf{Isolation level} & \textbf{One-sentence justification} \\
+\midrule
+1. Add one Researcher to one Project & \textit{TODO} & \textit{TODO} \\
+\addlinespace
+2. Move a Researcher from one Project to another & \textit{TODO} & \textit{TODO} \\
+\addlinespace
+3. Award a Grant to the Project with the smallest total allocation & \textit{TODO} & \textit{TODO} \\
+\addlinespace
+4. Report Publications per Project, writing nothing & \textit{TODO} & \textit{TODO} \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+% ════════════════════════════════════════════════════════════
+\section{A Read--Decide--Write Hazard}
+% ════════════════════════════════════════════════════════════
+
+\noindent The booking transaction from the handout, for reference:
+
+\begin{lstlisting}
+BEGIN;
+SELECT slots_remaining FROM equipment_slot WHERE equipment_id = 7;
+-- application checks the value is > 0, and computes the new value itself
+UPDATE equipment_slot SET slots_remaining = 0 WHERE equipment_id = 7;
+INSERT INTO booking (equipment_id, lab_name) VALUES (7, 'Ecology Lab');
+COMMIT;
+\end{lstlisting}
+
+\bigskip
+\textbf{(i) An interleaving that leaves two bookings}
+\divider
+
+\noindent Schedule over the single object \texttt{S}:
+
+\smallskip
+\noindent\textit{TODO}
+
+\smallskip
+\begin{center}
+\begin{tabular}{@{}lll@{}}
+\toprule
+\textbf{Pair} & \textbf{Type} & \textbf{Edge} \\
+\midrule
+\textit{TODO} & \textit{TODO} & \textit{TODO} \\
+\textit{TODO} & \textit{TODO} & \textit{TODO} \\
+\textit{TODO} & \textit{TODO} & \textit{TODO} \\
+\textit{TODO} & \textit{TODO} & \textit{TODO} \\
+\textit{TODO} & \textit{TODO} & \textit{TODO} \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\noindent\textbf{Conflict serializable?} \textit{TODO}
+
+\bigskip
+\textbf{(ii) Which invariant is violated, and which is not}
+\divider
+
+\textit{TODO: Be precise. The counter itself never goes negative.}
+
+\bigskip
+\textbf{(iii) The isolation-level fix}
+\divider
+
+\textit{TODO: Name the level. Under it the second transaction is not blocked,
+it fails, so say what the application must then do and what it must not
+reuse when it does.}
+
+\bigskip
+\textbf{(iv) \texttt{SELECT ... FOR UPDATE}}
+\divider
+
+\textit{TODO: Which lock mode from lecture is this, why is the shared-mode
+version insufficient, and at which step does the second transaction wait?}
+
+\bigskip
+\textbf{(v) Reducing contention on this row}
+\divider
+
+\textit{TODO: Name one of the three levers, describe the concrete change,
+and state its cost.}
+
+% ── AI USAGE DECLARATION ─────────────────────────────────────
+\section{AI Usage Declaration}
+
+\textit{TODO: Declare any AI tool use as per the course policy. If none,
+write: ``I did not use any AI tools in completing this sprint.''}
+
+\begin{itemize}
+  \item \textbf{Tool:} \textit{e.g., ChatGPT-4o} \\
+        \textbf{What I asked:} \textit{...} \\
+        \textbf{What I understood and applied:} \textit{...}
+\end{itemize}
+
+\end{document}

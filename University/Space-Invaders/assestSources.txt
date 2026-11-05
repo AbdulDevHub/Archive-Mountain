@@ -1,0 +1,24 @@
+                                    -----------------
+                                      ASSET SOURCES
+                                    -----------------
+
+asteroid.png: https://www.seekpng.com/ipng/u2w7e6t4w7o0q8w7_size-of-asteroid-comet/
+laserBullet.png: http://pixelartmaker.com/art/8c8b1d81151796e
+normalBullet.png: https://opengameart.org/content/bullet-collection-1-m484
+enemyBullet.png: https://m.minecraft.novaskin.me/skin/4893156152/Plasma-bullet
+scatterBullet.png: https://opengameart.org/content/bullet-collection-1-m484
+
+playerHealth.png: https://pixabay.com/images/search/heart%20png/
+galaxyBackground.jpg: https://unsplash.com/photos/fUnfEz3VLv4
+
+enemyShip.png: https://opengameart.org/content/alien-spaceship-sprite-pack
+bossShip.png: https://opengameart.org/content/alien-spaceship-sprite-pack
+playerShip.png: https://www.pngitem.com/middle/hwoJTwT_space-invaders-ship-transparent-hd-png-download/
+
+bulletPowerUp.png: https://pngtree.com/freepng/bullet-ammunition-icon-flat-style_5223032.html
+shieldPowerUp.png: https://www.vectorstock.com/royalty-free-vector/shield-icon-blue-round-on-white-background-vector-19164561
+healthPowerUp.png: https://www.pixilart.com/art/health-pack-666fcf99543169a
+asteroidPowerUp.png: https://www.flaticon.com/free-icon/meteorite_547409
+
+gameMusic.mp3: https://www.chosic.com/download-audio/45420/
+bossMusic.mp3: https://www.chosic.com/download-audio/28979/

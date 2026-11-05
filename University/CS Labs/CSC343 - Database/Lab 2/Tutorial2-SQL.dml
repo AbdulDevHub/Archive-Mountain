@@ -1,0 +1,68 @@
+-- ============================================================
+--  CSC343HY -- Tutorial 2 Sample Data
+--  Populates `branch`, `member`, and `book_copy` with rows for
+--  the DML exercises. Assumes the Community Library schema from
+--  Tutorial 1 (practical.ddl) is already loaded.
+--
+--  Run with:
+--    psql -h mcsdb.utm.utoronto.ca -U yourutorid -d yourutorid_343 \
+--         -f tut2_sample_data.dml
+-- ============================================================
+
+-- Wrap everything in a single transaction so the deferred FKs
+-- between member and branch are only checked at COMMIT, not
+-- after each individual INSERT.
+BEGIN;
+
+-- ------------------------------------------------------------
+-- Three members. We assign explicit member_id values so we can
+-- refer to them as branch managers below. SERIAL columns accept
+-- explicit values just fine.
+-- ------------------------------------------------------------
+INSERT INTO member (member_id, first_name, last_name, email,
+                    membership_type, join_date,
+                    branch_name, branch_manager_id)
+VALUES
+  (1, 'Ada',   'Lovelace', 'ada@example.ca',   'adult',
+                              '2020-03-15', 'Lakeside', 1),
+  (2, 'Alan',  'Turing',   'alan@example.ca',  'senior',
+                              '2018-09-01', 'Hilltop',  2),
+  (3, 'Grace', 'Hopper',   'grace@example.ca', 'student',
+                              '2024-01-10', 'Lakeside', 1);
+
+-- ------------------------------------------------------------
+-- Two branches, each managed by one of the members above.
+-- ------------------------------------------------------------
+INSERT INTO branch (branch_name, street_address, city,
+                    opening_year, specialty_description,
+                    manager_member_id)
+VALUES
+  ('Lakeside', '12 Shore Rd',  'Mississauga', 1998,
+   'children and graphic novels', 1),
+  ('Hilltop',  '344 Crest Ln', 'Mississauga', 2015,
+   'science and history',         2);
+
+-- ------------------------------------------------------------
+-- Eight book copies spread across the two branches. These are
+-- the rows the Tutorial 2 exercises operate on.
+--
+-- We let book_copy_id auto-increment (it's SERIAL), but the
+-- exercise text assumes IDs 101..108, so we set the sequence
+-- explicitly first.
+-- ------------------------------------------------------------
+SELECT setval('book_copy_book_copy_id_seq', 100, true);
+
+INSERT INTO book_copy (title, isbn, acquisition_date, condition,
+                       replacement_cost,
+                       owning_branch_name, owning_branch_manager_id)
+VALUES
+  ('The Bell Jar',            '9780571268863', '2019-04-12', 'worn',    22.50, 'Lakeside', 1),
+  ('A Brief History of Time', '9780553380163', '2021-11-03', 'good',    28.00, 'Hilltop',  2),
+  ('Beloved',                 '9781400033416', '2017-06-22', 'good',    19.95, 'Lakeside', 1),
+  ('Sapiens',                 '9780062316097', '2023-02-14', 'new',     34.50, 'Hilltop',  2),
+  ('The Road',                '9780307387899', '2018-09-30', 'damaged', 18.00, 'Lakeside', 1),
+  ('Hyperion',                '9780553283686', '2020-01-08', 'worn',    16.75, 'Hilltop',  2),
+  ('Cosmos',                  '9780345539434', '2016-05-19', 'good',    24.00, 'Hilltop',  2),
+  ('Educated',                '9780399590504', '2024-08-01', 'new',     32.00, 'Lakeside', 1);
+
+COMMIT;

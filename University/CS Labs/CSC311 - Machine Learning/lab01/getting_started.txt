@@ -1,0 +1,5 @@
+Here are the steps to open a ipynb file on Google Colab.
+
+    1. Download lab01.ipynb, available from the Quercus course website.
+    2. Enter the following link in a web browser to open Google Colab: https://colab.research.google.com/
+    3. Click "Upload", then choose the file which has been downloaded in step 1.

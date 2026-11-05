@@ -1,0 +1,52 @@
+q0  (1)  q1  (BLANK)  (RIGHT)
+q0  (BLANK)  q2  (BLANK)  (LEFT)
+
+q1  (1)  q1  (1)  (RIGHT)
+q1  (BLANK)  q3  (BLANK)  (RIGHT)
+
+q3  (1)  q3  (1)  (RIGHT)
+q3  (BLANK)  q4  (1)  (LEFT)
+
+q4  (1)  q4  (1)  (LEFT)
+q4  (BLANK)  q5  (BLANK)  (LEFT)
+
+q5  (1)  q5  (1)  (LEFT)
+q5  (BLANK)  q0  (1)  (RIGHT)
+
+q2  (1)  q2  (1)  (LEFT)
+q2  (BLANK)  q6  (BLANK)  (RIGHT)
+
+q6  (1)  q7  (BLANK)  (RIGHT)
+q6  (BLANK)  q8  (BLANK)  (RIGHT)
+
+q7  (1)  q7  (1)  (RIGHT)
+q7  (BLANK)  q9  (BLANK)  (RIGHT)
+
+q9   (1)  q10  (BLANK)  (RIGHT)
+q9   (BLANK)  q11  (BLANK)  (LEFT)
+
+q10  (1)  q10  (1)  (RIGHT)
+q10  (BLANK)  q12  (BLANK)  (RIGHT)
+
+q12  (1)  q12  (1)  (RIGHT)
+q12  (BLANK)  q13  (1)  (LEFT)
+
+q13  (1)  q13  (1)  (LEFT)
+q13  (BLANK)  q14  (BLANK)  (LEFT)
+
+q14  (1)  q14  (1)  (LEFT)
+q14  (BLANK)  q9   (1)  (RIGHT)
+
+q11  (1)  q11  (1)  (LEFT)
+q11  (BLANK)  q15  (BLANK)  (LEFT)
+
+q15  (1)  q15  (1)  (LEFT)
+q15  (BLANK)  q6   (BLANK)  (RIGHT)
+
+q8   (1)  q8   (1)  (RIGHT)
+q8   (BLANK)  q16  (1)  (RIGHT)
+
+q16  (1)  q16  (1)  (RIGHT)
+q16  (BLANK)  q17  (BLANK)  (LEFT)
+
+q17  (1)  qh   (BLANK)  (LEFT)

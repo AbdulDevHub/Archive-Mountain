@@ -1,0 +1,20 @@
+// Step 1: Move to the far right of the string
+// If we see 0 or 1, keep moving RIGHT.
+start   (0)      start    (0)     (RIGHT)
+start   (1)      start    (1)     (RIGHT)
+
+// When we hit a BLANK, we've passed the number. 
+// Move LEFT back onto the last digit and switch to 'carry' mode.
+start   (BLANK)  carry    (BLANK) (LEFT)
+
+
+// Step 2: Perform the addition
+// Case A: Found a '1'. Flip to '0' and keep carrying left.
+carry   (1)      carry    (0)     (LEFT)
+
+// Case B: Found a '0'. Flip to '1'. No more carry needed. Halt.
+carry   (0)      halt     (1)     (STAY)
+
+// Case C: Found a BLANK. This means we overflowed (e.g. 11 + 1 = 100).
+// Write the final '1' and Halt.
+carry   (BLANK)  halt     (1)     (STAY)

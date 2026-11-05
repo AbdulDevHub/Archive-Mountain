@@ -1,0 +1,28 @@
+# sample_workload.txt
+# Each line is one command sent to OrderService.
+# Lines starting with # are ignored.
+# All commands use the same JSON API as the services.
+
+# Create some users
+{"command": "create", "id": 10, "username": "carol", "email": "carol@example.com", "password": "pass1"}
+{"command": "create", "id": 11, "username": "dave", "email": "dave@example.com", "password": "pass2"}
+{"command": "create", "id": 12, "username": "eve", "email": "eve@example.com", "password": "pass3"}
+
+# Create some products
+{"command": "create", "id": 10, "productname": "Gadget", "price": 9.99, "quantity": 500}
+{"command": "create", "id": 11, "productname": "Doohickey", "price": 1.49, "quantity": 1000}
+{"command": "create", "id": 12, "productname": "Thingamajig", "price": 24.99, "quantity": 50}
+
+# Place some orders
+{"command": "place order", "user_id": 10, "product_id": 10, "quantity": 5}
+{"command": "place order", "user_id": 11, "product_id": 11, "quantity": 10}
+{"command": "place order", "user_id": 12, "product_id": 12, "quantity": 2}
+
+# Try to oversell (should return 409)
+{"command": "place order", "user_id": 10, "product_id": 12, "quantity": 9999}
+
+# Update a user
+{"command": "update", "id": 10, "email": "carol-new@example.com"}
+
+# Update a product price
+{"command": "update", "id": 10, "price": 12.99}
