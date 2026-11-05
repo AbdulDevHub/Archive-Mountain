@@ -69,11 +69,11 @@ export class World {
 
     // Environment
     const light = daylightAt(new Date().getHours() + new Date().getMinutes() / 60)
-    this.scene.fog = new THREE.Fog(light.skyHorizon, 260, 900)
+    this.scene.fog = new THREE.Fog(light.skyHorizon, 200, 720)
     this.scene.add(createSky(light), createLights(light, quality.shadowMapSize).group)
 
     const water = createWater(quality.waterSegments)
-    this.scene.add(water.mesh)
+    this.scene.add(water.mesh, ...water.extras)
     this.updaters.push((_dt, t) => water.update(t))
 
     // The island and everything on it

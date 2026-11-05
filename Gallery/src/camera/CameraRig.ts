@@ -19,7 +19,7 @@ export interface PanelLayout {
 
 export const NO_PANEL: PanelLayout = { right: 0, bottom: 0 }
 
-const OVERVIEW = { distance: 150, polar: THREE.MathUtils.degToRad(58), target: new THREE.Vector3(0, 7, 0) }
+const OVERVIEW = { distance: 178, polar: THREE.MathUtils.degToRad(64), target: new THREE.Vector3(0, 9, 0) }
 /** How far behind (towards the sea) and above a valley's landmark the camera sits */
 const VALLEY_VIEW = { back: 46, up: 26 }
 const IDLE_DELAY = 8 // seconds without input before the island starts turning
