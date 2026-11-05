@@ -1,0 +1,140 @@
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  width: 100%;
+  font-family: "Poppins", sans-serif;
+  margin: 0;
+  padding: 0;
+  cursor: url("../assets/cursors/Cursor.svg"), auto;
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+
+  background-size: 400% 400%;
+  animation: gradientShift 15s ease infinite;
+}
+
+.intro-text {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+  animation: fadeInUp 1.5s ease forwards;
+}
+
+.title {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: min(35vw, 28vh); /* scale dynamically with both width and height */
+  line-height: 1.2em;
+  letter-spacing: 0.15em;
+  font-weight: 800;
+  color: rgba(255, 255, 255, 0.2);
+  text-transform: uppercase;
+  text-align: center;
+  user-select: none;
+  animation: titlePulse 2s ease-in-out infinite alternate;
+}
+
+@keyframes titlePulse {
+  from {
+    opacity: 0.75;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animation-wrapper {
+  width: 100%;
+  max-width: 300px;
+  height: 300px;
+  position: relative;
+}
+
+.sphere-animation {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.sphere-animation svg {
+  width: 100%;
+  height: 100%;
+}
+
+.sphere path {
+  fill: url(#sphereGradient);
+  stroke-width: 1px;
+  stroke: rgba(80, 80, 80, 0.35);
+  backface-visibility: hidden;
+}
+
+@media (min-width: 500px) {
+  .sphere path {
+    stroke-width: 0.4px;
+  }
+
+  .animation-wrapper {
+    max-width: 380px;
+    height: 380px;
+  }
+}
+
+@media (min-width: 768px) {
+  .animation-wrapper {
+    max-width: 550px;
+    height: 550px;
+  }
+}
+
+.button-container {
+  text-align: center;
+  z-index: 10;
+  margin-top: 40px;
+}
+
+.view-button {
+  display: inline-block;
+  padding: 15px 30px;
+  font-size: 1.1em;
+  background: linear-gradient(135deg, #ffd700 0%, #e6c401 100%);
+  color: white;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  text-decoration: none;
+}
+
+.view-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px rgba(255, 215, 0, 0.4);
+}
