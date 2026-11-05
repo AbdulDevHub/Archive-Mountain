@@ -1,0 +1,17 @@
+# Local tools / binaries
+ffmpeg.exe
+ffprobe.exe
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Python
+__pycache__/
+.venv/
+.ruff_cache/
+
+# Node
+node_modules/

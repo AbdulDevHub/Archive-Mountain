@@ -1,0 +1,17 @@
+{
+  "name": "fiery-passages-generation",
+  "description": "Batch text-to-speech narration for plain-text stories using Kokoro-82M (kokoro-js, local ONNX).",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "generate": "node generate.mjs",
+    "voices": "node voice-comparison.mjs"
+  },
+  "dependencies": {
+    "kokoro-js": "^1.2.1"
+  },
+  "trustedDependencies": [
+    "onnxruntime-node",
+    "protobufjs"
+  ]
+}
