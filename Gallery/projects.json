@@ -747,5 +747,241 @@
     ],
     "href": "AI Valley/Face-Detection/index.html",
     "image": "AI Valley/Face-Detection/images/Cover.png"
+  },
+  {
+    "name": "Filmverse",
+    "category": "apps",
+    "description": "Movie and TV discovery app with TMDB data, voice navigation, watchlists and a Firestore watch tracker",
+    "tags": [
+      "React",
+      "TypeScript",
+      "Redux Toolkit",
+      "Firebase"
+    ],
+    "href": "https://filmverse-azure.vercel.app",
+    "image": "App Valley/Filmverse/Screenshot.png"
+  },
+  {
+    "name": "CaseCobra",
+    "category": "apps",
+    "description": "Full-stack shop for designing and ordering custom phone cases",
+    "tags": [
+      "Next.js",
+      "TypeScript",
+      "Prisma",
+      "Stripe"
+    ],
+    "href": "https://mycasecobra.vercel.app",
+    "image": "App Valley/CaseCobra/Screenshot.png"
+  },
+  {
+    "name": "Modern AliExpress",
+    "category": "apps",
+    "description": "E-commerce store with Google and GitHub sign-in, a cart and Stripe checkout",
+    "tags": [
+      "Nuxt",
+      "Vue",
+      "Prisma",
+      "Supabase"
+    ],
+    "href": "https://modern-aliexpress.vercel.app",
+    "image": "App Valley/Modern AliExpress/Screenshot.png"
+  },
+  {
+    "name": "Anime Vault",
+    "category": "apps",
+    "description": "Infinite-scrolling anime catalogue with staggered card animations",
+    "tags": [
+      "Next.js",
+      "TypeScript",
+      "Framer Motion",
+      "Tailwind CSS"
+    ],
+    "href": "/projects/anime-vault/",
+    "image": "App Valley/Anime Vault/Screenshot.png"
+  },
+  {
+    "name": "Job Board",
+    "category": "apps",
+    "description": "Job listings app with add, edit and delete flows, saved in the browser",
+    "tags": [
+      "Vue",
+      "Vue Router",
+      "Tailwind CSS",
+      "Axios"
+    ],
+    "href": "/projects/job-board/",
+    "image": "App Valley/Job Board/Screenshot.png"
+  },
+  {
+    "name": "Angular Webshop",
+    "category": "apps",
+    "description": "Product store with categories, sorting and a cart built on Angular services",
+    "tags": [
+      "Angular",
+      "Angular Material",
+      "RxJS",
+      "Tailwind CSS"
+    ],
+    "href": "/projects/angular-webshop/",
+    "image": "App Valley/Angular Webshop/Screenshot1.png"
+  },
+  {
+    "name": "Glisten AI",
+    "category": "ui",
+    "description": "Dark, Linear-style SaaS landing page with GSAP animations and Prismic content",
+    "tags": [
+      "Next.js",
+      "GSAP",
+      "Prismic",
+      "Tailwind CSS"
+    ],
+    "href": "https://glisten-ai-dark.vercel.app",
+    "image": "UI Experiments/Glisten AI/Screenshot.png"
+  },
+  {
+    "name": "MacBook Homepage",
+    "category": "ui",
+    "description": "Apple-style product page with a 3D MacBook and scroll-driven GSAP animations",
+    "tags": [
+      "React",
+      "Three.js",
+      "GSAP",
+      "Tailwind CSS"
+    ],
+    "href": "/projects/macbook-homepage/",
+    "image": "UI Experiments/MacBook Homepage/Screenshot.png"
+  },
+  {
+    "name": "GSAP Drinks",
+    "category": "ui",
+    "description": "Cocktail bar landing page with scroll-triggered GSAP animations and video",
+    "tags": [
+      "React",
+      "GSAP",
+      "Tailwind CSS"
+    ],
+    "href": "/projects/gsap-drinks/",
+    "image": "UI Experiments/GSAP Drinks/Screenshot.png"
+  },
+  {
+    "name": "Black Hole",
+    "category": "ui",
+    "description": "Space-themed portfolio with a black hole video hero, motion and 3D stars",
+    "tags": [
+      "Next.js",
+      "Three.js",
+      "Framer Motion",
+      "Tailwind CSS"
+    ],
+    "href": "/projects/black-hole/",
+    "image": "UI Experiments/Black Hole/Screenshot.png"
+  },
+  {
+    "name": "Techno Explosion",
+    "category": "ui",
+    "description": "Multi-page animated portfolio with page transitions and testimonial sliders",
+    "tags": [
+      "Next.js",
+      "Framer Motion",
+      "Swiper",
+      "Tailwind CSS"
+    ],
+    "href": "/projects/techno-explosion/",
+    "image": "UI Experiments/Techno Explosion/Screenshot.png"
+  },
+  {
+    "name": "Fancy Green",
+    "category": "ui",
+    "description": "Green one-page portfolio with scroll animations, counters and a project carousel",
+    "tags": [
+      "React",
+      "Vite",
+      "AOS"
+    ],
+    "href": "/projects/fancy-green/",
+    "image": "UI Experiments/Fancy Green/Screenshot.png"
+  },
+  {
+    "name": "3D Solar Portfolio",
+    "category": "ui",
+    "description": "Scroll-driven portfolio template orbiting a Three.js solar system",
+    "tags": [
+      "Three.js",
+      "JavaScript",
+      "Vite"
+    ],
+    "href": "/projects/3d-solar-portfolio/",
+    "image": "UI Experiments/3D Solar Portfolio/Screenshot.png"
+  },
+  {
+    "name": "Pay Card",
+    "category": "ui",
+    "description": "Credit card form with a live card preview, card type detection and flip animations",
+    "tags": [
+      "React",
+      "Sass"
+    ],
+    "href": "/projects/pay-card/",
+    "image": "UI Experiments/Pay Card Component/demo.gif"
+  },
+  {
+    "name": "Vuetify Image Gallery",
+    "category": "ui",
+    "description": "Responsive image gallery with sidebar navigation built on Vuetify components",
+    "tags": [
+      "Vue",
+      "Vuetify"
+    ],
+    "href": "/projects/vuetify-image-gallery/",
+    "image": "UI Experiments/Vuetify Image Gallery/Screenshot.png"
+  },
+  {
+    "name": "Animated CSS Login Form",
+    "category": "ui",
+    "description": "Login form with floating labels and underlines that sweep in on focus",
+    "tags": [
+      "Svelte",
+      "CSS",
+      "Rollup"
+    ],
+    "href": "UI Experiments/Animated CSS Login Form/public/index.html",
+    "image": "UI Experiments/Animated CSS Login Form/Screenshot.png"
+  },
+  {
+    "name": "Sky Diving Parallax Cat",
+    "category": "effects",
+    "description": "Layered parallax scene of a cat skydiving through the sky as you scroll",
+    "tags": [
+      "React",
+      "React Spring",
+      "Vite"
+    ],
+    "href": "/projects/sky-diving-parallax-cat/",
+    "image": "Awesome Effects/Sky Diving Parallax Cat/Screenshot.png"
+  },
+  {
+    "name": "Flappy Bird",
+    "category": "websites",
+    "description": "Flappy-style arcade game with sprites and sound effects, made with Kaboom",
+    "tags": [
+      "JavaScript",
+      "Kaboom",
+      "esbuild"
+    ],
+    "href": "Awesome Websites/Flappy Bird/www/index.html",
+    "image": "Awesome Websites/Flappy Bird/Screenshot.png"
+  },
+  {
+    "name": "PWA Notes",
+    "category": "websites",
+    "description": "Installable offline notes app that caches its shell with a service worker",
+    "tags": [
+      "JavaScript",
+      "PWA",
+      "Service Worker"
+    ],
+    "href": "Awesome Websites/PWA Notes/index.html",
+    "image": "Awesome Websites/PWA Notes/Screenshot.png"
   }
 ]
