@@ -1,8 +1,8 @@
-# 🏔️ Framework Mountain
+# 🏔️ Archive Mountain
 
 <img src="./Screenshot.jpg" />
 
-**Framework Mountain** is a curated collection of web development projects organized into themed **Valleys**. Each Valley represents a focused area of exploration such as UI components, creative experiments, full web apps, backend systems, games, portfolios, and data scraping.
+**Archive Mountain** is a curated collection of web development projects organized into themed **Valleys**. Each Valley represents a focused area of exploration such as UI components, creative experiments, full web apps, backend systems, games, portfolios, and data scraping.
 
 All projects are **self-contained**, framework-diverse, and built for hands-on learning.
 
@@ -290,7 +290,7 @@ Refer to individual project READMEs for project-specific setup.
   <img src="Images/git_nesting_approaches_overview.svg" width="250">
 </div>
 
-Framework Mountain is a **monorepo** — a single Git repository that houses multiple independent projects, organized into category folders called Valleys. One `.git` folder at the root tracks all of them.
+Archive Mountain is a **monorepo** — a single Git repository that houses multiple independent projects, organized into category folders called Valleys. One `.git` folder at the root tracks all of them.
 
 ### Why a Monorepo?
 
@@ -302,7 +302,7 @@ Framework Mountain is a **monorepo** — a single Git repository that houses mul
 
 ### Cloning This Repo
 
-Some projects inside Framework Mountain are **Git Submodules** — separate repositories linked into this one by a commit pointer. A plain `git clone` will leave those folders empty.
+Some projects inside Archive Mountain are **Git Submodules** — separate repositories linked into this one by a commit pointer. A plain `git clone` will leave those folders empty.
 
 Always clone with:
 
@@ -320,7 +320,7 @@ git submodule update --init --recursive
 
 ### Git Submodules
 
-A submodule is a pointer from this repo to a specific commit in another repo. The submodule folder exists inside Framework Mountain, but its contents are managed by the external repository. Best used for external repos you don't own or that other projects also depend on.
+A submodule is a pointer from this repo to a specific commit in another repo. The submodule folder exists inside Archive Mountain, but its contents are managed by the external repository. Best used for external repos you don't own or that other projects also depend on.
 
 **Submodule projects in this repo:**
 
@@ -362,11 +362,11 @@ git submodule update --recursive
 
 ### Git Subtrees
 
-A subtree absorbs another repository's code into this repo. Unlike submodules, there is no external dependency — the code and a squashed snapshot of its history are fully merged into Framework Mountain. Best used for projects you own locally that have their own Git history.
+A subtree absorbs another repository's code into this repo. Unlike submodules, there is no external dependency — the code and a squashed snapshot of its history are fully merged into Archive Mountain. Best used for projects you own locally that have their own Git history.
 
 **How it works:**
 
-- The absorbed project's `.git` folder is removed — Framework Mountain's root `.git` takes over
+- The absorbed project's `.git` folder is removed — Archive Mountain's root `.git` takes over
 - With `--squash`, all original commits are collapsed into two merge commits in the monorepo log, keeping history clean
 - Branches from the original repo are not carried over — only the specified branch is pulled in
 
@@ -414,7 +414,7 @@ git subtree split --prefix="Project-A" -b split-project-a
 git subtree split --prefix="Project-B" -b split-project-b
 cd ..
 
-# Back in Framework Mountain
+# Back in Archive Mountain
 git remote add multi-project-repo "./multi-project-repo"   # or its GitHub URL
 git fetch multi-project-repo
 git subtree add --prefix="Valley/Project-A" multi-project-repo split-project-a --squash
@@ -433,4 +433,4 @@ git push
 
 ---
 
-**Welcome to Framework Mountain — explore the Valleys 🏔️**
+**Welcome to Archive Mountain — explore the Valleys 🏔️**
