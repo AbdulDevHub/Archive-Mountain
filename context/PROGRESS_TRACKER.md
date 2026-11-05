@@ -12,13 +12,20 @@ When old log entries stop being useful, fold them into "Earlier history" instead
 - 24 Vitest tests pass. The build is about 930 kB JS (237 kB gzip).
 
 ## In progress
-- Nothing active. The owner is reviewing the live site on `main`.
+- **Archive → Web Mountain migration: paused 2026-11-05 at the owner's request (a bigger merge is planned). Committed locally, not pushed.**
+  - Done: 15 projects merged in with history (merge commit `🔀 merge: Move 15 projects…`); Archive's 5 submodules and the DhikrForest submodule removed; link-only cards for Filmverse, CaseCobra, Modern AliExpress, Glisten AI, DhikrForest; App Valley (6th valley, castle landmark) and the "UI & Portfolios" relabel; `projects.json` (83 entries), READMEs and agent docs updated; Netflix copied to the Filmverse repo as `todo/netflix-card-ui/`.
+  - Build: `build.sh` now builds in parallel, records each job's exit code, accepts task labels (`bash build.sh job-board Gallery`), and writes `_redirects` for `/projects/<slug>/`. `tools/relocate.mjs` fixes root-absolute paths (skips paths already under the base).
+  - Verified in a local preview: Job Board (mock API, hash routes), Anime Vault (infinite scroll from shikimori.io), PWA Notes (service worker). Built OK but not yet clicked through: Angular Webshop, MacBook Homepage, GSAP Drinks, Techno Explosion, Animated CSS Login Form.
+  - Still to do: rebuild and check black-hole (its first build was double-prefixed before the relocate fix), fancy-green, 3d-solar-portfolio, pay-card, sky-diving-parallax-cat, vuetify-image-gallery and Flappy Bird (`allowBuilds: esbuild` added for pnpm 11). Then take a Pay Card screenshot (it uses `demo.gif` for now), look at the castle on the island, regenerate `Screenshot.png` and `brand/og-image.png` (they still show five valleys), and run one full Netlify deploy preview. Full local build takes about 25 min on Windows; Netlify build minutes will rise, so consider caching unchanged apps.
+  - Stayed in Archive: 3D Apple Homepage (its `webgi` package is a raw tarball URL, blocked by the local npm `allow-remote` policy), 3D Svelte Portfolio (its Prismic repo returns no content), plus server, desktop and practice projects.
+  - Later (owner): polish the moved tutorial clones; decide whether to absorb NoteMark/CaseCobra as subtrees and delete their repos.
 
 ## Next steps
 - Spot-check the subagent-drafted blurbs and tags for the projects that weren't verified against code: Gitmoji Helper, the AI Valley apps, the extensions, and several effects.
 - Optional: load `postprocessing` only on the high quality tier to cut the bundle for phones.
 
 ## Session log
+- **2026-11-05 (migration)**: Grill session on Archive vs Web Mountain, then most of the migration (see In progress). Decisions: any project with a live demo belongs here; no new standalone deploys; repos with their own live site are linked, not submoduled; Gallery-Viewer, Local-Video-Player, Linkest and Hydration-Hero stay submodules; history is kept when moving projects.
 - **2026-11-05 (later)**: Made the island read as an island and added SEO.
   - Sea: a lagoon-to-deep-water gradient per pixel, animated surf around the shoreline, distant islets, horizon haze, and a lower, further-back default camera (polar 64°, distance 178).
   - SEO: a full meta/OG/Twitter set, JSON-LD (`WebSite` + `CollectionPage`/`ItemList`), a generated sitemap, `robots.txt`, a web manifest, icons and an OG image in `/brand`, and a single h1. The GitHub repo description, homepage and topics are updated (the unused `firebase` topic was removed).

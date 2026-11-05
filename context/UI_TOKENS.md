@@ -17,8 +17,9 @@ The source of truth is `Gallery/src/styles/theme.css` (`:root`) and `Gallery/src
 | --- | --- | --- |
 | Awesome Effects | `#8b5cf6` | `#7cc49a` |
 | Awesome Websites | `#e07a5f` | `#96c96b` |
+| App Valley | `#2f6fe0` | `#8cc47e` |
 | AI Valley | `#0e9f9f` | `#b9c968` |
-| UI Experiments | `#e9a800` | `#a8d46f` |
+| UI & Portfolios | `#e9a800` | `#a8d46f` |
 | Chrome Extensions | `#ef476f` | `#7fb86c` |
 
 ## World palette

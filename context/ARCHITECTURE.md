@@ -5,7 +5,8 @@ Read this before changing the deploy setup, `projects.json`'s shape, or gallery 
 `Gallery/README.md` has the longer, reader-facing version.
 
 ## Deploy layout
-- Netlify publishes the **repo root** as-is (`netlify.toml`: `publish = "."`), after `bash build.sh` builds the sub-projects that need it: Bulk File Renamer, Gitmoji Helper, Midnight Passages, AI Valley and the Gallery.
+- Netlify publishes the **repo root** as-is (`netlify.toml`: `publish = "."`), after `bash build.sh` builds the sub-projects that need it, in parallel: Bulk File Renamer, Gitmoji Helper, Midnight Passages, Flappy Bird, Animated CSS Login Form, AI Valley, the Gallery and the framework apps in its `APPS` table.
+- Framework apps (`App Valley/*`, most moved `UI Experiments/*`, Sky Diving Parallax Cat) are served at `/projects/<slug>/`. `build.sh` sets `BASE_PATH=/projects/<slug>/` for each build, runs `tools/relocate.mjs` on the output to fix root-absolute public paths, and writes `_redirects` lines (`/projects/<slug>/*` → the output folder, status 200). Netlify applies `_redirects` before `netlify.toml`.
 - `/` is rewritten (status 200) to `/Gallery/dist/index.html`. The Vite build uses `base: "/Gallery/dist/"`, so its assets resolve there. Project links and screenshots are site-absolute paths into the repo.
 - `netlify/functions/*.mts` are served at `/api/<name>` (used by AI Valley).
 

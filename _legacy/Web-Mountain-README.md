@@ -2,13 +2,13 @@
 
 **[Explore the live site →](https://modern-web-mountain.netlify.app/)**
 
-[![Web Mountain: a low-poly 3D island with five valleys of frontend projects](Screenshot.png)](https://modern-web-mountain.netlify.app/)
+[![Web Mountain: a low-poly 3D island with six valleys of frontend projects](Screenshot.png)](https://modern-web-mountain.netlify.app/)
 
 ## Project Overview
 
-A frontend portfolio of 64 projects by Abdul Khan: web apps, UI experiments, WebGL and CSS effects, AI tools and Chrome extensions. Each project shows a different side of modern web development, from accessibility best practices to shaders, animations and on-device AI.
+A frontend portfolio of 83 projects by Abdul Khan: full web apps, portfolios, UI experiments, WebGL and CSS effects, AI tools and Chrome extensions. Each project shows a different side of modern web development, from accessibility best practices to shaders, animations and on-device AI.
 
-The front page is a **low-poly 3D island** built with TypeScript and Three.js. The summit holds every project, and each of the five valleys around it is one section below, with its own landmark. Click a valley to fly in and browse its projects. See [Gallery/README.md](./Gallery/README.md) for how it's built. Project data lives in [`projects.json`](./projects.json).
+The front page is a **low-poly 3D island** built with TypeScript and Three.js. The summit holds every project, and each of the six valleys around it is one section below, with its own landmark. Click a valley to fly in and browse its projects. See [Gallery/README.md](./Gallery/README.md) for how it's built. Project data lives in [`projects.json`](./projects.json).
 
 ## Project Categories
 
@@ -29,18 +29,41 @@ Complete website projects ranging from interactive games to practical utilities.
 - **[Face Bomp](./Awesome%20Websites/Face%20Bomp)** - Whack-a-mole style reaction game
 - **[War](./Awesome%20Websites/War)** - Classic card game implementation
 - **[UNO](./Awesome%20Websites/UNO)** - Another Classic card game implementation
-- **[DhikrForest](./Awesome%20Websites/DhikrForest)** - Offline-first dhikr (Islamic remembrance) counter that visualizes worship as a growing forest, with Laylatul Qadr mode and milestone notifications
+- **[DhikrForest](https://dhikrforest.netlify.app/)** ([repo](https://github.com/AbdulDevHub/DhikrForest)) - Offline-first dhikr (Islamic remembrance) counter that visualizes worship as a growing forest, with Laylatul Qadr mode and milestone notifications
 - **[Gitmoji Helper](./Awesome%20Websites/Gitmoji-Helper)** - Finds the top 5 Gitmoji and Conventional Commit matches from plain English using vector embeddings and ONNX/WASM cosine similarity—100% local, zero backend.
+- **[Flappy Bird](./Awesome%20Websites/Flappy%20Bird)** - Flappy-style arcade game with sprites and sound, made with Kaboom
+- **[PWA Notes](./Awesome%20Websites/PWA%20Notes)** - Installable offline notes app with a service worker app-shell cache
 
-### UI Experiments
+### App Valley
 
-Creative UI concepts and experimental interface designs.
+Full apps built with frameworks, served as static builds at `/projects/<name>/`, or linked when they live in their own repo.
+
+- **[Filmverse](https://filmverse-azure.vercel.app)** ([repo](https://github.com/AbdulDevHub/Filmverse)) - Movie and TV discovery with TMDB, voice navigation, watchlists and a Firestore watch tracker
+- **[CaseCobra](https://mycasecobra.vercel.app)** ([repo](https://github.com/AbdulDevHub/Case-Cobra)) - Full-stack custom phone case shop with Next.js, Prisma and Stripe
+- **[Modern AliExpress](https://modern-aliexpress.vercel.app)** ([repo](https://github.com/AbdulDevHub/Modern-AliExpress)) - Nuxt e-commerce store with OAuth sign-in, Supabase and Stripe
+- **[Anime Vault](./App%20Valley/Anime%20Vault)** - Infinite-scrolling anime catalogue (Next.js static export)
+- **[Job Board](./App%20Valley/Job%20Board)** - Vue job listings with add/edit/delete; the static build keeps data in the browser
+- **[Angular Webshop](./App%20Valley/Angular%20Webshop)** - Angular Material store with filters, sorting and a cart (checkout needs its Node server)
+
+### UI & Portfolios
+
+Landing pages, portfolios and interface components (folder: `UI Experiments`).
 
 - **[Skynet Eats](./UI%20Experiments/Skynet%20Eats)** - Food delivery app UI concept
 - **[Drone Series](./UI%20Experiments/Drone%20Series)** - Drone product showcase interface
 - **[Scenic Forests](./UI%20Experiments/Scenic%20Forests)** - Nature photography gallery interface
 - **[Momentum](./UI%20Experiments/Momentum)** - Minimalist productivity dashboard
 - **[Video Background Website](./UI%20Experiments/Video%20Background%20Website)** - Immersive video-based landing page
+- **[Glisten AI](https://glisten-ai-dark.vercel.app)** ([repo](https://github.com/AbdulDevHub/Glisten-AI)) - Dark SaaS landing page with GSAP and Prismic
+- **[MacBook Homepage](./UI%20Experiments/MacBook%20Homepage)** - Apple-style product page with a 3D MacBook and GSAP scroll animations
+- **[GSAP Drinks](./UI%20Experiments/GSAP%20Drinks)** - Cocktail landing page with scroll-triggered GSAP animations
+- **[Black Hole](./UI%20Experiments/Black%20Hole)** - Space-themed Next.js portfolio with motion and 3D stars
+- **[Techno Explosion](./UI%20Experiments/Techno%20Explosion)** - Multi-page animated Next.js portfolio
+- **[Fancy Green](./UI%20Experiments/Fancy%20Green)** - One-page React portfolio with scroll animations and a carousel
+- **[3D Solar Portfolio](./UI%20Experiments/3D%20Solar%20Portfolio)** - Scroll-driven Three.js solar system portfolio template
+- **[Pay Card](./UI%20Experiments/Pay%20Card%20Component)** - Credit card form with a live, flipping card preview
+- **[Vuetify Image Gallery](./UI%20Experiments/Vuetify%20Image%20Gallery)** - Responsive Vuetify image gallery with sidebar navigation
+- **[Animated CSS Login Form](./UI%20Experiments/Animated%20CSS%20Login%20Form)** - Svelte login form with floating labels and sweeping underlines
 
 ### Awesome Effects
 
@@ -77,6 +100,7 @@ Interactive visual effects and animations that demonstrate creative uses of CSS,
 - **[Shine Animation](./Awesome%20Effects/Shine%20Animation.html)** - Animated shine sweep effect
 - **[Shine Effect](./Awesome%20Effects/Shine%20Effect.html)** - Glossy shine overlay effect
 - **[Balloon Spawn Effect](./Awesome%20Effects/Balloon%20Spawn%20Effect)** - Interactive balloon spawn animation
+- **[Sky Diving Parallax Cat](./Awesome%20Effects/Sky%20Diving%20Parallax%20Cat)** - Layered React Spring parallax of a skydiving cat
 
 ### Chrome Extensions
 
@@ -133,7 +157,6 @@ Several projects in this repo are Git submodules pointing to their own standalon
 | Linkest | `Chrome Extensions/Linkest` | [AbdulDevHub/Linkest](https://github.com/AbdulDevHub/Linkest) |
 | Hydration Hero | `Chrome Extensions/Hydration-Hero` | [AbdulDevHub/Hydration-Hero](https://github.com/AbdulDevHub/Hydration-Hero) |
 | Local Video Player | `Chrome Extensions/Local-Video-Player` | [AbdulDevHub/Local-Video-Player](https://github.com/AbdulDevHub/Local-Video-Player) |
-| DhikrForest | `Awesome Websites/DhikrForest` | [AbdulDevHub/DhikrForest](https://github.com/AbdulDevHub/DhikrForest) |
 
 ### Cloning this repo with all submodules
 
@@ -209,7 +232,7 @@ git commit -m "Remove Project-Name submodule"
 
 ## Technologies Used
 
-- **Frameworks & Tooling**: React, TypeScript, Vite, Tailwind CSS
+- **Frameworks & Tooling**: React, Next.js, Vue, Angular, Svelte, TypeScript, Vite, Tailwind CSS
 - **Core**: HTML5, CSS3, JavaScript (ES6+)
 - **Animation**: Anime.js, CSS animations, Canvas API
 - **Graphics**: WebGL, GPU.js, SVG
