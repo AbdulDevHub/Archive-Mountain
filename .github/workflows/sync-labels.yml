@@ -48,4 +48,4 @@ jobs:
         run: |
           args=(--only-outdated)
           [ "$SINCE" != "all" ] && args+=(--since "$SINCE")
-          bash "GitHub Valley/update-all-labels.sh" "${args[@]}"
+          bash "Automation/GitHub Valley/update-all-labels.sh" "${args[@]}"

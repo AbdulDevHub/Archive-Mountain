@@ -1,4 +1,34 @@
 node_modules/
+coverage/
+.env
+.env.local
+.DS_Store
+
+# Made by build.sh (Netlify runs it)
+_site/
+.build-logs/
+Gallery/dist/
+AI/AI Toolkit/apps/
+
+# Framework build output
 dist/
 build/
-.env
+out/
+.next/
+next-env.d.ts
+.svelte-kit/
+.nuxt/
+.output/
+.angular/
+.vercel/
+.netlify/
+
+# Built in place by build.sh for the gallery
+Websites/Bulk File Renamer/file-renamer/
+Websites/Gitmoji-Helper/gitmoji-helper/
+Websites/Midnight Passages/midnight-passages/
+Websites/Flappy Bird/www/main.js
+Designs/Animated CSS Login Form/public/build/
+
+# Vendored library, not build output
+!Effects/Ink Fluid/dist/

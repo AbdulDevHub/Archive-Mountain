@@ -1,5 +1,5 @@
 <p align="center">
-  <img src=".github/assets/social-preview.png" alt="Automation Mountain: Python scripts, local text-to-speech, Tampermonkey userscripts and GitHub label automation" width="100%">
+  <img src="social-preview.png" alt="Automation Mountain: Python scripts, local text-to-speech, Tampermonkey userscripts and GitHub label automation" width="100%">
 </p>
 
 # Automation Mountain: Python Scripts, Local Text-to-Speech, Userscripts and GitHub Label Automation
