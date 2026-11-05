@@ -16,47 +16,31 @@ The repository is organized into several major projects, external repositories, 
 - **Inventory Server** — Distributed microservice-style backend system  
 - **Map Plotting & Search** — Python-based data visualization and filtering system  
 - **The Twine Interview** — Interactive narrative game exploring bias and decision-making
-- **External Submodules** — Highlights across full-stack applications, game development in Unity & Pygame, data scraping, and systems utility tools
+- **Merged-In Projects** — Smaller standalone projects (Pygame arcade game, interactive web exhibition, compression tool, data scraping, task manager) merged in with their full commit history
 
-Each section below links directly to its folder or submodule and explains its technical focus.
+Each section below links directly to its folder and explains its technical focus.
 
 ---
 
-## 🔗 External Repositories & Submodules
+## 🔗 Merged-In Projects
 
-This repository aggregates several standalone projects as submodules:
+These projects started as their own GitHub repositories and were merged into this one with `git subtree`, keeping every original commit, author and date:
 
-- **[Space-Invaders](https://github.com/AbdulDevHub/Space-Invaders)** — An enhanced Python/Pygame arcade shooter with dynamic music, boss fights, and power-ups.
-- **[Console-Wars](https://github.com/AbdulDevHub/Console-Wars)** — Interactive digital exhibition exploring the historic video game console competition (1989–2005).
-- **[Huffman-Zip](https://github.com/AbdulDevHub/Huffman-Zip)** — CLI file compression tool implementing Huffman binary trees for lossless file compression/decompression in Python.
-- **[Reddit-Data-Scrapping](https://github.com/AbdulDevHub/Reddit-Data-Scrapping)** — Data analysis pipeline extracting Reddit data via PRAW with Jupyter notebook visualizations and findings.
-- **[Todoist](./Todoist)** — Python task management tool with CRUD capabilities, reminders, and activity tracking graphs. _(merged in directly with full history, no longer a submodule)_
+- **[Space-Invaders](./Space-Invaders)** — An enhanced Python/Pygame arcade shooter with dynamic music, boss fights, and power-ups.
+- **[Console-Wars](./Console-Wars)** — Interactive digital exhibition exploring the historic video game console competition (1989–2005).
+- **[Huffman-Zip](./Huffman-Zip)** — CLI file compression tool implementing Huffman binary trees for lossless file compression/decompression in Python.
+- **[Reddit-Data-Scrapping](./Reddit-Data-Scrapping)** — Data analysis pipeline extracting Reddit data via PRAW with Jupyter notebook visualizations and findings.
+- **[Todoist](./Todoist)** — Python task management tool with CRUD capabilities, reminders, and activity tracking graphs.
 
-### ⚙️ Cloning & Updating Submodules
+### ⚙️ Merging In Another Project
 
-To add a submodule configured to track its `main` branch (e.g., for `Reddit-Data-Scrapping`):
-
-```bash
-git submodule add -b main https://github.com/AbdulDevHub/Repository-Name
-```
-
-To clone this repository alongside all submodules in a single command:
+To merge another repository into its own folder with its full history:
 
 ```bash
-git clone --recurse-submodules <your-main-repo-url>
+git subtree add --prefix=Repository-Name https://github.com/AbdulDevHub/Repository-Name main
 ```
 
-If you already cloned the repository without submodules, initialize them using:
-
-```bash
-git submodule update --init --recursive
-```
-
-To fetch and pull the latest updates from the tracked `main` branches of all submodules:
-
-```bash
-git submodule update --remote --merge
-```
+Leave out `--squash` so the original commits (and their dates on the contribution graph) are kept.
 
 ---
 
@@ -368,7 +352,7 @@ An **interactive narrative game** built with Twine and HTML that explores **bias
 - **Machine Learning:** k-NN, Regression, Decision Trees, SVMs, Ensemble Methods, Clustering, PCA
 - **Computer Architecture:** Pipelining, Memory Management, Cache Performance
 - **Theory of Computation:** Turing Machines (single- and multi-tape), State-Transition Design
-- **Software Engineering:** Testing, Debugging, Documentation, Version Control (Git Submodules)
+- **Software Engineering:** Testing, Debugging, Documentation, Version Control (Git Subtrees)
 - **System Design:** Microservices, Distributed Systems, Load Balancing, Docker
 - **Interactive Media:** Game Design, Narrative Development, Audio Engineering
 
@@ -390,7 +374,7 @@ Contains reference materials used throughout coursework:
 ## 📌 Notes
 
 - Each project folder contains its **own README** with implementation-specific details.
-- External projects are linked via Git submodules tracking their respective default branches.
+- Former standalone projects are merged in with `git subtree`, keeping their full commit history.
 - This repository is intended for **academic, learning, and portfolio** purposes.
 - Code reflects iterative learning and increasing complexity over time.
 
