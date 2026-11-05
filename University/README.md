@@ -30,7 +30,7 @@ This repository aggregates several standalone projects as submodules:
 - **[Console-Wars](https://github.com/AbdulDevHub/Console-Wars)** — Interactive digital exhibition exploring the historic video game console competition (1989–2005).
 - **[Huffman-Zip](https://github.com/AbdulDevHub/Huffman-Zip)** — CLI file compression tool implementing Huffman binary trees for lossless file compression/decompression in Python.
 - **[Reddit-Data-Scrapping](https://github.com/AbdulDevHub/Reddit-Data-Scrapping)** — Data analysis pipeline extracting Reddit data via PRAW with Jupyter notebook visualizations and findings.
-- **[Todoist](https://github.com/AbdulDevHub/Todoist)** — Python task management tool with CRUD capabilities, reminders, and activity tracking graphs.
+- **[Todoist](./Todoist)** — Python task management tool with CRUD capabilities, reminders, and activity tracking graphs. _(merged in directly with full history, no longer a submodule)_
 
 ### ⚙️ Cloning & Updating Submodules
 
