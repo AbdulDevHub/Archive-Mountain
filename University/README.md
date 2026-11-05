@@ -1,6 +1,6 @@
 # Exceptional University Projects 🎓💻
 
-This repository is a curated collection of **notable software projects, labs, and assignments** completed during my time at the **University of Toronto Mississauga**. It highlights my work across **Java, Python, C#, C++, RISC-V Assembly, Next.js, Go, object-oriented design, software architecture, data structures, algorithms, machine learning, theory of computation, and interactive media**.
+This repository is a curated collection of **notable software projects, labs, and assignments** completed during my time at the **University of Toronto Mississauga**. It highlights my work across **Java, Python, SQL, RISC-V Assembly, HTML/CSS/JavaScript, object-oriented design, design patterns, data structures, algorithms, databases, distributed systems, machine learning, theory of computation, and interactive media**.
 
 Rather than serving as a single application, this repo acts as a **portfolio of academic and technical growth**, showcasing both small foundational exercises and larger, system-level projects.
 
@@ -8,15 +8,15 @@ Rather than serving as a single application, this repo acts as a **portfolio of 
 
 ## 📂 Repository Overview
 
-The repository is organized into several major projects, external repositories, and collections:
+The repository is organized into several major projects and collections:
 
-- **Boggle Game** — Full Java implementation of the Boggle word game  
-- **Computer Science Labs & Assignments** — Java, Python, and RISC-V Assembly labs covering OOP, design patterns, algorithms, data structures, computer architecture, machine learning, and theory of computation  
-- **Shadow In The Dark** — Full-featured survival game written entirely in RISC-V assembly  
-- **Inventory Server** — Distributed microservice-style backend system  
-- **Map Plotting & Search** — Python-based data visualization and filtering system  
+- **Boggle Game** — Full Java implementation of the Boggle word game
+- **Computer Science Labs & Assignments** — Python, Java, RISC-V Assembly, SQL, and Turing machine labs covering OOP, design patterns, data structures, computer architecture, databases, machine learning, and theory of computation
+- **Shadow In The Dark** — Full-featured survival game written entirely in RISC-V assembly
+- **Inventory Server** — Distributed microservice backend with load balancing, caching, and persistence
+- **Map Plotting & Search** — Python-based data visualization and filtering system
 - **The Twine Interview** — Interactive narrative game exploring bias and decision-making
-- **Merged-In Projects** — Smaller standalone projects (Pygame arcade game, interactive web exhibition, compression tool, data scraping, task manager) merged in with their full commit history
+- **Merged-In Projects** — Pygame arcade shooter, interactive web exhibition, Huffman compression tool, Reddit data analysis, and Tkinter task manager
 
 Each section below links directly to its folder and explains its technical focus.
 
@@ -24,23 +24,21 @@ Each section below links directly to its folder and explains its technical focus
 
 ## 🔗 Merged-In Projects
 
-These projects started as their own GitHub repositories and were merged into this one with `git subtree`, keeping every original commit, author and date:
+These projects started as their own GitHub repositories and were merged into this one with `git subtree`, keeping every original commit, author, and date. Each folder has its own README.
 
-- **[Space-Invaders](./Space-Invaders)** — An enhanced Python/Pygame arcade shooter with dynamic music, boss fights, and power-ups.
-- **[Console-Wars](./Console-Wars)** — Interactive digital exhibition exploring the historic video game console competition (1989–2005).
-- **[Huffman-Zip](./Huffman-Zip)** — CLI file compression tool implementing Huffman binary trees for lossless file compression/decompression in Python.
-- **[Reddit-Data-Scrapping](./Reddit-Data-Scrapping)** — Data analysis pipeline extracting Reddit data via PRAW with Jupyter notebook visualizations and findings.
-- **[Todoist](./Todoist)** — Python task management tool with CRUD capabilities, reminders, and activity tracking graphs.
+| Project | What it is | Tech |
+| --- | --- | --- |
+| **[Space-Invaders](./Space-Invaders)** | Enhanced arcade shooter with spawning enemies, a giant final boss, dynamic music, and power-ups | Python, Pygame |
+| **[Console-Wars](./Console-Wars)** | Interactive digital exhibition on the console wars between Nintendo, Sega, Sony, and Microsoft (1989–2005) | HTML, CSS, JavaScript, Anime.js, Plyr.js |
+| **[Huffman-Zip](./Huffman-Zip)** | Command-line tool for lossless compression and decompression of any file using Huffman binary trees | Python |
+| **[Reddit-Data-Scrapping](./Reddit-Data-Scrapping)** | Research project on public sentiment about Canadian housing, with sentiment analysis and topic modelling of Reddit data | Python, PRAW, Pandas, NLTK, Gensim, pyLDAvis, Jupyter |
+| **[Todoist](./Todoist)** | Desktop task manager with create/edit/delete, saving, reminders, and activity-tracking graphs | Python, Tkinter, Matplotlib |
 
-### ⚙️ Merging In Another Project
-
-To merge another repository into its own folder with its full history:
+To merge in another project with its full history (leave out `--squash` so the original commits and their contribution-graph dates are kept):
 
 ```bash
 git subtree add --prefix=Repository-Name https://github.com/AbdulDevHub/Repository-Name main
 ```
-
-Leave out `--squash` so the original commits (and their dates on the contribution graph) are kept.
 
 ---
 
@@ -178,22 +176,23 @@ Python labs applying core machine learning algorithms to real-world data (includ
 
 ### 📁 CSC343 - Database
 
-Relational database design, implementation, and query execution using **PostgreSQL**, focusing on the full database lifecycle—from ER modeling and schema constraints to complex SQL queries, transaction logic, and query visualization.
+Relational database design and theory using **PostgreSQL**, from writing schemas and queries to normalization and transaction processing.
 
 #### Topics Covered
 
-- Entity-Relationship (ER) modeling and converting ER diagrams to relational schemas
-- Data Definition Language (DDL) design with integrity constraints, primary/foreign keys, and `CHECK` conditions
-- Structured Query Language (SQL): complex multi-table joins, aggregations, subqueries, and window functions
-- Database testing methodologies using bash automation scripts and test data validation
-- Schema normalization, query optimization, and structural database refinement
+- Schema definition (DDL) with primary/foreign keys and `CHECK` constraints
+- Data manipulation (DML) and SQL queries run through `psql`
+- Functional dependencies, attribute closure, and candidate keys
+- Normalization: minimal covers, BCNF decomposition, and 3NF
+- Transactions: serializability, recoverability, two-phase locking, and isolation levels
 
 #### Notable Highlights
 
-- **Schema Design & ER Modeling** (Checkpoints 1 & 2) — Built and refined ER diagrams (`.drawio`/PDF) alongside corresponding DDL scripts (`s1.ddl`, `s2.ddl`) enforce domain constraints and relational integrity.
-- **SQL Query & Data Analysis** (Checkpoint 3) — Developed non-trivial relational queries (`s3.sql`) and implemented a custom Python query execution visualizer (`visualizer.py`) to trace data flow.
-- **Automated Verification Suite** — Executed comprehensive test suites (`run_tests.sh`, `test_constraints.sql`, `test_data.sql`, `test_structure.sql`) across all iterations to validate schema correctness and data integrity.
-- **Coursework & Exam Archive** — Comprehensive reference repository featuring lecture slides, tutorial exercises, practical assignments, and legacy final exams (Fall 2019, Winter 2019, Winter 2023).
+- **Community Library Schema** (Lab 1) — DDL for a library domain (`starter.ddl`) with tables, keys, and integrity constraints
+- **Sample Data & DML** (Lab 2) — populating and querying the library schema (`Tutorial2-SQL.dml`)
+- **Normalization Report** (Checkpoint 4) — closure and candidate key, minimal cover, BCNF decomposition, and a 3NF dependency-preservation check, written in LaTeX
+- **Transactions Report** (Checkpoint 5) — precedence graphs and serializability, aborts and recoverability, two-phase locking, choosing an isolation level, and a read–decide–write hazard
+- **Course Archive** (`Documentation/`) — lecture slides and handouts, tutorials, practice midterm questions, and past final exams (Fall 2019, Winter 2019, Winter 2023)
 
 ---
 
@@ -245,7 +244,7 @@ See the [project README](./Shadow%20In%20The%20Dark/README.md) for full technica
 
 ## 🧾 Inventory Server (Distributed Systems Project)
 
-📁 `Inventory Server/`
+📁 `Inventory-Server/`
 
 A large-scale **inventory management backend** built as a distributed microservices system, rebuilt from scratch with a focus on correctness, scalability, and persistence.
 
@@ -342,25 +341,26 @@ An **interactive narrative game** built with Twine and HTML that explores **bias
 
 ## 🛠️ Skills Demonstrated Across This Repository
 
-- **Languages:** Java, Python, C#, C++, Go, TypeScript, RISC-V Assembly
-- **Web & Frameworks:** Next.js, FastAPI, Unity, Pygame, HTML
+- **Languages:** Java, Python, SQL, RISC-V Assembly, HTML, CSS, JavaScript
+- **Frameworks & Libraries:** FastAPI, Pygame, Tkinter, Twine, Anime.js
 - **Databases & Caching:** PostgreSQL, Redis
 - **Paradigms:** Object-Oriented Design, Procedural Programming, Low-Level Programming
 - **Design Patterns:** Observer, Decorator, Adapter, Visitor
-- **Data Structures & Data Science:** Trees, BSTs, Linked Lists, Stacks, Arrays, PRAW, Pandas, NumPy
-- **Algorithms:** Sorting, Pathfinding, Huffman Binary Trees, Recursion, Cache Optimization
+- **Data Structures & Algorithms:** Trees, BSTs, Linked Lists, Stacks, Sorting, Recursion, Pathfinding, Huffman Coding
+- **Data Science & NLP:** Pandas, NumPy, Scikit-Learn, Matplotlib, Jupyter, PRAW, NLTK, Gensim (topic modelling)
 - **Machine Learning:** k-NN, Regression, Decision Trees, SVMs, Ensemble Methods, Clustering, PCA
-- **Computer Architecture:** Pipelining, Memory Management, Cache Performance
+- **Database Theory:** ER Modeling, Normalization (BCNF, 3NF), Serializability, Two-Phase Locking
+- **Computer Architecture:** Datapath & Control, Pipelining, Cache Performance, Memory Management
 - **Theory of Computation:** Turing Machines (single- and multi-tape), State-Transition Design
-- **Software Engineering:** Testing, Debugging, Documentation, Version Control (Git Subtrees)
-- **System Design:** Microservices, Distributed Systems, Load Balancing, Docker
-- **Interactive Media:** Game Design, Narrative Development, Audio Engineering
+- **Software Engineering:** Testing, Debugging, Documentation, Version Control (Git, Git Subtrees)
+- **System Design:** Microservices, Distributed Systems, Load Balancing, Caching, Docker
+- **Interactive Media:** Game Design, Narrative Design, Digital Exhibitions
 
 ---
 
 ## 📚 Reference Materials
 
-📁 `CS Documentation/`
+📁 `CS Documentaion/`
 
 Contains reference materials used throughout coursework:
 
@@ -373,8 +373,8 @@ Contains reference materials used throughout coursework:
 
 ## 📌 Notes
 
-- Each project folder contains its **own README** with implementation-specific details.
-- Former standalone projects are merged in with `git subtree`, keeping their full commit history.
+- Most project folders include their **own README** with implementation-specific details.
+- Former standalone repositories are merged in with `git subtree`, so their full commit history lives here.
 - This repository is intended for **academic, learning, and portfolio** purposes.
 - Code reflects iterative learning and increasing complexity over time.
 

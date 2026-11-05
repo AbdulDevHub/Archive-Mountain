@@ -1,9 +1,9 @@
 # Task Management Application
 
 <div style="display=flex">
-  <img height="250" src="https://github.com/AbdulDevHub/Tkinter-To-Do-List/blob/main/Screenshots/Example%20View%201.PNG?raw=true">
-  <img height="250" src="https://github.com/AbdulDevHub/Tkinter-To-Do-List/blob/main/Screenshots/Example%20View%202.PNG?raw=true">
-  <img height="250" src="https://github.com/AbdulDevHub/Tkinter-To-Do-List/blob/main/Screenshots/Example%20View%203.PNG?raw=true">
+  <img height="250" src="Screenshots/Example%20View%201.PNG">
+  <img height="250" src="Screenshots/Example%20View%202.PNG">
+  <img height="250" src="Screenshots/Example%20View%203.PNG">
 </div>
 
 ## Overview
