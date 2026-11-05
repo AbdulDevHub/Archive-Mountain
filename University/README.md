@@ -26,13 +26,7 @@ Each section below links directly to its folder or submodule and explains its te
 
 This repository aggregates several standalone projects as submodules:
 
-- **[Opal-Labs-Frontend](https://github.com/AbdulDevHub/Opal-Labs-Frontend)** — Frontend for a Notion-like productivity platform built using Next.js, TypeScript, and Google OAuth.
-- **[Opal-Labs-Backend](https://github.com/AbdulDevHub/Opal-Labs-Backend)** — Backend microservices for the Opal Labs productivity platform built with Go, PostgreSQL, and Redis.
-- **[UTM-Student-Portal](https://github.com/AbdulDevHub/UTM-Student-Portal)** — A centralized portal designed to streamline academic access and resources for UTM students.
 - **[Space-Invaders](https://github.com/AbdulDevHub/Space-Invaders)** — An enhanced Python/Pygame arcade shooter with dynamic music, boss fights, and power-ups.
-- **[Shadow-of-a-Doubt](https://github.com/AbdulDevHub/Shadow-of-a-Doubt)** — A first-person magic shooter created in Unity featuring elemental spells and wave survival.
-- **[SurfNTurf](https://github.com/AbdulDevHub/SurfNTurf)** — Strategic tower defense game created in Unity centered around defending water sources from radioactive fish.
-- **[Sunken-Secrets](https://github.com/AbdulDevHub/Sunken-Secrets)** — Immersive 3D underwater treasure hunting game built with Unity, C#, Maya, and Adobe Audition.
 - **[Console-Wars](https://github.com/AbdulDevHub/Console-Wars)** — Interactive digital exhibition exploring the historic video game console competition (1989–2005).
 - **[Huffman-Zip](https://github.com/AbdulDevHub/Huffman-Zip)** — CLI file compression tool implementing Huffman binary trees for lossless file compression/decompression in Python.
 - **[Reddit-Data-Scrapping](https://github.com/AbdulDevHub/Reddit-Data-Scrapping)** — Data analysis pipeline extracting Reddit data via PRAW with Jupyter notebook visualizations and findings.
