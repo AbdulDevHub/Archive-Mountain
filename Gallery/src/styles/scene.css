@@ -297,8 +297,21 @@
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
   box-shadow: var(--shadow);
-  pointer-events: none;
+  cursor: pointer;
   z-index: 5;
+  animation: tooltip-in 0.18s var(--ease-out);
+  transition: box-shadow 0.2s, border-color 0.2s;
+}
+
+.tooltip:hover {
+  border-color: color-mix(in srgb, var(--accent) 50%, white);
+  box-shadow: 0 16px 40px color-mix(in srgb, var(--accent) 28%, transparent);
+}
+
+@keyframes tooltip-in {
+  from {
+    opacity: 0;
+  }
 }
 
 .tooltip[hidden] {
@@ -349,46 +362,17 @@
 }
 
 .tooltip__cta {
-  margin-top: 10px !important;
-  font-size: 0.75rem;
-  font-weight: 600;
-  color: color-mix(in srgb, var(--accent) 75%, var(--ink));
-}
-
-/* ---------- Intro ---------- */
-.intro {
-  position: absolute;
-  inset: 0;
-  display: grid;
-  place-content: center;
+  margin-top: 12px !important;
+  padding: 8px 12px;
+  border-radius: 999px;
   text-align: center;
-  background: radial-gradient(circle at 50% 40%, #ffffff 0%, #dff1fd 45%, #b6defa 100%);
-  pointer-events: none;
-  animation: intro-out 1s ease 0.5s forwards;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #fff;
+  background: var(--accent);
 }
 
-.intro__title {
-  margin: 0;
-  font: 700 clamp(2.4rem, 7vw, 4.6rem) / 1 var(--font-display);
-  letter-spacing: -0.02em;
-  color: #2b5a73;
-}
-
-.intro__subtitle {
-  margin: 10px 0 0;
-  color: var(--ink-soft);
-}
-
-.intro.is-done {
-  visibility: hidden;
-}
-
-@keyframes intro-out {
-  to {
-    opacity: 0;
-    visibility: hidden;
-  }
-}
+/* The loading screen (.intro) is styled inline in index.html so it shows before this file loads */
 
 /* ---------- Small screens ---------- */
 @media (max-width: 860px) {

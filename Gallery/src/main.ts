@@ -29,12 +29,16 @@ const grouped = groupBySection(PROJECTS)
 const counts = new Map<SectionId, number>([...grouped].map(([id, list]) => [id, list.length]))
 
 function startIsland() {
+  // index.html usually did this already, before first paint
   document.documentElement.classList.replace("no-3d", "has-3d")
   byId("directory").hidden = true
 
   const reducedMotion = prefersReducedMotion()
   const ambience = new Ambience()
-  const tooltip = createTooltip()
+  const tooltip = createTooltip({
+    select: (key) => router.navigate(key === "summit" ? { view: "all" } : { view: "section", id: key as SectionId }),
+    preview: (key) => world.previewSection(key === "summit" ? null : key),
+  })
   const panel = new Panel(() => router.navigate({ view: "overview" }))
   let introDone = false
 
@@ -53,7 +57,7 @@ function startIsland() {
     },
     onHover(part, point) {
       // On phones the sheet covers the island, and there is no hover anyway
-      if (!part || !point || part.kind === "sea" || panel.isSheet) return tooltip.hide()
+      if (!part || !point || part.kind === "sea" || panel.isSheet) return tooltip.hideSoon()
       if (part.kind === "summit") tooltip.show("summit", "All projects", "#38bdf8", "The summit: every valley at once", PROJECTS, point)
       else tooltip.showSection(getSection(part.id), grouped.get(part.id) ?? [], point)
     },
@@ -136,11 +140,18 @@ function startIsland() {
   }
 
   world.start()
+  const intro = world.rig.playIntro()
+  // Once the first frames are on screen, fade the loading screen out to reveal the descent
+  requestAnimationFrame(() =>
+    requestAnimationFrame(() => {
+      document.documentElement.classList.add("is-ready")
+      byId("intro").classList.add("is-done")
+    }),
+  )
   // The intro can be cut short by dragging; never let it block the page
   const timeout = new Promise((resolve) => setTimeout(resolve, 4500))
-  Promise.race([world.rig.playIntro(), timeout]).then(() => {
+  Promise.race([intro, timeout]).then(() => {
     introDone = true
-    byId("intro").classList.add("is-done")
     // Open a deep link (#ai) now, unless the visitor already navigated during the intro
     if (!routeApplied && router.current.view !== "overview") applyRoute(router.current)
   })
@@ -148,7 +159,9 @@ function startIsland() {
 
 /** No WebGL (or ?no3d): the pre-rendered directory is the whole page */
 function startDirectory() {
+  document.documentElement.classList.replace("has-3d", "no-3d")
   byId("scene-ui").remove()
+  byId("directory").hidden = false
 }
 
 /** Swap any screenshot that fails to load for a soft mountain placeholder */

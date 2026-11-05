@@ -14,10 +14,9 @@ export function escapeHtml(text: string): string {
 
 export function renderCardHtml(project: Project, section: Section): string {
   const tags = project.tags.map((t) => `<li>${escapeHtml(t)}</li>`).join("")
-  // Projects hosted elsewhere (e.g. extension repos on GitHub) open in a new tab
-  const external = /^https?:/.test(project.href) ? ' target="_blank" rel="noopener"' : ""
+  // Projects open in a new tab, so the island keeps its place instead of reloading on Back
   return `
-    <a class="card" href="${project.href}"${external} data-slug="${project.slug}" style="--accent:${section.accent}">
+    <a class="card" href="${project.href}" target="_blank" rel="noopener" data-slug="${project.slug}" style="--accent:${section.accent}">
       <img class="card__image" src="${project.image}" alt="" loading="lazy" decoding="async" width="640" height="400" />
       <span class="card__body">
         <span class="card__name">${escapeHtml(project.name)}</span>

@@ -21,9 +21,8 @@ describe("projects.json", () => {
   })
 
   it("points at screenshots that exist in the repo", () => {
-    // Known gap: the Discord Thread Extractor screenshot was never committed
     const missing = PROJECTS.filter((p) => !existsSync(resolve(repoRoot, "." + decodeURIComponent(p.image))))
-    expect(missing.map((p) => p.name)).toEqual(["Discord Thread Extractor"])
+    expect(missing.map((p) => p.name)).toEqual([])
   })
 
   it("rejects bad entries with a helpful message", () => {
@@ -48,7 +47,7 @@ describe("url helpers", () => {
 })
 
 describe("card html", () => {
-  it("escapes text and opens external links in a new tab", () => {
+  it("escapes text and opens projects in a new tab", () => {
     const section = SECTIONS[0]
     const html = renderCardHtml(
       { name: "<b>Hi</b>", slug: "hi", section: section.id, description: "x & y", tags: ["A"], href: "https://example.com", image: "/a.png" },
