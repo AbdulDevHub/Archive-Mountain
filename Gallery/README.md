@@ -2,16 +2,17 @@
 
 ![Web Mountain island](../Screenshot.png)
 
-The front page of [Web Mountain](https://github.com/AbdulDevHub/Web-Mountain). It shows all 64 projects as a daytime island. The summit means "all projects", and each of the five valleys around it is one section of the portfolio, with its own landmark. Click a valley and the camera flies in while that section's cards slide out beside it.
+The front page of [Web Mountain](https://github.com/AbdulDevHub/Web-Mountain). It shows all 83 projects as a daytime island. The summit means "all projects", and each of the six valleys around it is one section of the portfolio, with its own landmark. Click a valley and the camera flies in while that section's cards slide out beside it.
 
 Built with **TypeScript, Three.js, Vite and camera-controls**. There are no model or texture files: the terrain, buildings, trees, birds and even the sound are generated in code.
 
 | Valley | Landmark | Section |
 | --- | --- | --- |
 | Awesome Effects | Waterfall, glowing crystals, flowers | Shaders, cursors, loaders |
-| Awesome Websites | Village with smoking chimneys | Full apps, tools and games |
+| Awesome Websites | Village with smoking chimneys | Browser tools, utilities and games |
+| App Valley | Castle with corner towers and waving pennants | Full framework apps (React, Next.js, Vue, Angular) |
 | AI Valley | Observatory, radio dish, orbiting orbs | LLM agents and on-device models |
-| UI Experiments | Windmill over tulip fields | Landing pages and UI concepts |
+| UI & Portfolios | Windmill over tulip fields | Landing pages, portfolios and components |
 | Chrome Extensions | Lighthouse, pier, rope bridge | Browser extensions |
 
 ## Features
@@ -37,7 +38,7 @@ src/data ──► src/main.ts ──► router (URL hash) ──► applyRoute(
                  └─ Dock, Search, Labels, clicks on the island ──► router.navigate()
 ```
 
-- **Terrain is a pure function.** `world/terrain.ts` exports `heightAt(x, z)`: a cone-shaped mountain, a beach shelf, ridges raised everywhere, then five valleys carved down to gently sloping floors along their axes, plus fractal simplex noise. The same function places landmarks and trees, aims the camera, and handles picking, so the code doesn't need the mesh to answer questions about the island.
+- **Terrain is a pure function.** `world/terrain.ts` exports `heightAt(x, z)`: a cone-shaped mountain, a beach shelf, ridges raised everywhere, then six valleys carved down to gently sloping floors along their axes, plus fractal simplex noise. The same function places landmarks and trees, aims the camera, and handles picking, so the code doesn't need the mesh to answer questions about the island.
 - **Low-poly look.** `world/island.ts` displaces a grid with `heightAt` and splits it into separate triangles. Each face gets one colour (sand, then a valley-tinted meadow, then rock, then snow). Hover glow is a small `onBeforeCompile` patch to three's standard material, driven by a per-face "which valley" attribute.
 - **Picking without raycasting 100k triangles.** `world/picking.ts` marches the pointer ray against `heightAt` and refines the hit by bisection. `partAt()` then turns the hit point into summit, valley or sea using its angle around the island.
 - **Camera.** `camera/CameraRig.ts` wraps camera-controls. It handles the intro descent through the clouds, overview, fly-to-valley, idle auto-rotate, and a focal offset that keeps the subject centred in the part of the screen the panel leaves free.
@@ -57,7 +58,7 @@ src/
     island.ts          terrain mesh, face colours, hover glow shader patch
     picking.ts         pointer ray -> summit / valley / sea
     lighting.ts sky.ts water.ts quality.ts labels.ts
-    landmarks/         waterfall, village, observatory, windmill, lighthouse (+ kit.ts helpers)
+    landmarks/         waterfall, village, castle, observatory, windmill, lighthouse (+ kit.ts helpers)
     ambient/           trees (instanced), clouds, birds, balloon / sailboat / summit flag
   ui/                  panel, dock, search (+ searchIndex), tooltip, directory renderer
   audio/ambience.ts    Web Audio soundscape

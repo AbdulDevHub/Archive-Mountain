@@ -1,6 +1,7 @@
 import type { LandmarkKind, Section } from "../../data/sections.ts"
 import { LANDMARK_T } from "../terrain.ts"
 import type { Landmark } from "./kit.ts"
+import { createCastle } from "./castle.ts"
 import { createLighthouse } from "./lighthouse.ts"
 import { createObservatory } from "./observatory.ts"
 import { createVillage } from "./village.ts"
@@ -12,6 +13,7 @@ export type { Landmark } from "./kit.ts"
 const BUILDERS: Record<LandmarkKind, { build: (angle: number, t: number) => Landmark; t: number }> = {
   waterfall: { build: createWaterfall, t: LANDMARK_T - 0.04 },
   village: { build: createVillage, t: LANDMARK_T },
+  castle: { build: createCastle, t: LANDMARK_T },
   observatory: { build: createObservatory, t: LANDMARK_T },
   windmill: { build: createWindmill, t: LANDMARK_T },
   lighthouse: { build: createLighthouse, t: 0.86 },

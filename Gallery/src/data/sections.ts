@@ -1,12 +1,12 @@
 /**
- * The five portfolio sections, one per valley of the island.
+ * The six portfolio sections, one per valley of the island.
  * Everything that differs between valleys (colours, landmark, position)
  * lives here, so adding a section is a one-object change.
  */
 
-export type SectionId = "effects" | "websites" | "ai" | "ui" | "extensions"
+export type SectionId = "effects" | "websites" | "apps" | "ai" | "ui" | "extensions"
 
-export type LandmarkKind = "waterfall" | "village" | "observatory" | "windmill" | "lighthouse"
+export type LandmarkKind = "waterfall" | "village" | "castle" | "observatory" | "windmill" | "lighthouse"
 
 export interface Section {
   id: SectionId
@@ -24,7 +24,7 @@ export interface Section {
 const TAU = Math.PI * 2
 /** The camera starts looking from +z, so the first section faces the visitor */
 const FRONT = Math.PI / 2
-const step = TAU / 5
+const step = TAU / 6
 
 export const SECTIONS: readonly Section[] = [
   {
@@ -39,11 +39,20 @@ export const SECTIONS: readonly Section[] = [
   {
     id: "websites",
     label: "Awesome Websites",
-    tagline: "Complete apps, tools and games",
+    tagline: "Browser tools, utilities and games",
     accent: "#e07a5f",
     grass: "#96c96b",
     angle: FRONT + step,
     landmark: "village",
+  },
+  {
+    id: "apps",
+    label: "App Valley",
+    tagline: "Full apps built with React, Next.js, Vue and Angular",
+    accent: "#2f6fe0",
+    grass: "#8cc47e",
+    angle: FRONT + step * 2,
+    landmark: "castle",
   },
   {
     id: "ai",
@@ -51,16 +60,16 @@ export const SECTIONS: readonly Section[] = [
     tagline: "LLM agents, on-device models and computer vision",
     accent: "#0e9f9f",
     grass: "#b9c968",
-    angle: FRONT + step * 2,
+    angle: FRONT + step * 3,
     landmark: "observatory",
   },
   {
     id: "ui",
-    label: "UI Experiments",
-    tagline: "Landing pages and interface concepts",
+    label: "UI & Portfolios",
+    tagline: "Landing pages, portfolios and interface components",
     accent: "#e9a800",
     grass: "#a8d46f",
-    angle: FRONT + step * 3,
+    angle: FRONT + step * 4,
     landmark: "windmill",
   },
   {
@@ -69,7 +78,7 @@ export const SECTIONS: readonly Section[] = [
     tagline: "Tools that live in the browser toolbar",
     accent: "#ef476f",
     grass: "#7fb86c",
-    angle: FRONT + step * 4,
+    angle: FRONT + step * 5,
     landmark: "lighthouse",
   },
 ]

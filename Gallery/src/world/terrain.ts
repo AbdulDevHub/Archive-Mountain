@@ -5,7 +5,7 @@
  *
  * Shape recipe:
  *   1. a cone-like mountain that falls to a beach shelf and then under the sea
- *   2. ridges pushed up everywhere except along the five valley axes
+ *   2. ridges pushed up everywhere except along the six valley axes
  *   3. each valley carved down to a gently sloping floor
  *   4. a little fractal noise for low-poly character (less on valley floors)
  */
@@ -19,7 +19,7 @@ export const PEAK_HEIGHT = 31
 export const SUMMIT_RADIUS = 9
 export const SNOW_LINE = 26
 /** Angular half-width of a valley, in radians */
-const VALLEY_WIDTH = 0.42
+const VALLEY_WIDTH = 0.36
 /** Where along a valley (0 = summit, 1 = coast) its landmark sits */
 export const LANDMARK_T = 0.6
 

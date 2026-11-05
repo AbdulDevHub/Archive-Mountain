@@ -25,13 +25,13 @@ function jitter(x: number, z: number): number {
   return (h - Math.floor(h) - 0.5) * 0.07
 }
 
-/** Soft blend of the five valley grasses by direction, fading to alpine grass near the peak */
+/** Soft blend of the valley grasses by direction, fading to alpine grass near the peak */
 function grassAt(x: number, z: number, target: THREE.Color): THREE.Color {
   const theta = Math.atan2(z, x)
   target.setRGB(0, 0, 0)
   let total = 0
   SECTIONS.forEach((s, i) => {
-    const d = angleDiff(theta, s.angle) / 0.55
+    const d = angleDiff(theta, s.angle) / 0.47
     const w = Math.exp(-d * d)
     target.r += GRASS[i].r * w
     target.g += GRASS[i].g * w
