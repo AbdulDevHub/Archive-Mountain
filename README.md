@@ -6,14 +6,14 @@
 
 All projects are **self-contained**, framework-diverse, and built for hands-on learning.
 
+Projects with a live browser demo moved to [Web Mountain](https://github.com/AbdulDevHub/Web-Mountain) (with their commit history) and are playable on its [3D island](https://modern-web-mountain.netlify.app/). What stays here needs a server, API keys or a desktop runtime, or is a learning exercise.
+
 ---
 
 ## 🗺️ Valley Overview
 
 - 🧠 **Backend Valley** — Backend & full-stack foundations
-- 🧩 **Component Valley** — Reusable UI components
 - 🕷️ **Data Scrape Valley** — Web scraping & automation
-- 🎮 **Game Valley** — Browser-based games
 - 🌌 **Portfolio Valley** — Portfolio & personal showcase sites
 - 🔬 **Tech Experiments** — Tooling, CI/CD pipelines, and developer workflow setups
 - 🕸️ **App Valley** — Full web & desktop applications and clones
@@ -46,29 +46,6 @@ All projects are **self-contained**, framework-diverse, and built for hands-on l
 
 ---
 
-## 🧩 Component Valley
-
-<div align="center">
-  <img src="./Component%20Valley/Animated%20CSS%20Login%20Form/Screenshot.png" width="220" />
-  <img src="./Component%20Valley/Pay%20Card%20Component/demo.gif" width="220" />
-  <img src="./Component%20Valley/Vuetify%20Image%20Gallery/Screenshot.png" width="220" />
-</div>
-
-### Projects
-
-- **Animated CSS Login Form**  
-  Animated login form built with Svelte and Rollup.
-
-- **Pay Card Component**  
-  Interactive credit card form with live preview and theming.
-
-- **Vuetify Image Gallery**  
-  Responsive image gallery with sidebar navigation.
-
-**Tech:** Svelte, React, Vue 2, Vuetify, SCSS, Rollup
-
----
-
 ## 🕷️ Data Scrape Valley
 
 <div align="center">
@@ -92,46 +69,23 @@ All projects are **self-contained**, framework-diverse, and built for hands-on l
 
 ---
 
-## 🎮 Game Valley
-
-### Flappy Bird
-
-📁 `Game Valley/Flappy Bird`
-
-<img src="./Game%20Valley/Flappy%20Bird/Screenshot.png" width="220" />
-
-A browser-based **Flappy Bird clone** with sound effects and sprite animations.
-
-**Tech:** JavaScript, HTML, Canvas
-
----
-
 ## 🌌 Portfolio Valley
 
 <div align="center">
-  <img src="./Portfolio%20Valley/3D%20Solar%20Portfolio/Screenshot.png" width="220" />
   <img src="./Portfolio%20Valley/3D%20Svlete%20Porfolio/Screenshot.png" width="220" />
-  <img src="./Portfolio%20Valley/Black%20Hole/Screenshot.png" width="220" />
-  <img src="./Portfolio%20Valley/Fancy%20Green/Screenshot.png" width="220" />
-  <img src="./Portfolio%20Valley/Techno%20Explosion/Screenshot.png" width="220" />
 </div>
 
 ### Projects
 
-- **3D Solar Portfolio** — Three.js solar-system themed portfolio  
 - **3D Svelte Portfolio** — CMS-driven SvelteKit portfolio with slices  
-- **Black Hole** — Next.js portfolio with motion & video backgrounds  
-- **Fancy Green** — Clean React + Vite portfolio concept  
-- **Techno Explosion** — High-energy animated Next.js portfolio  
 
-**Tech:** SvelteKit, React, Next.js, Tailwind CSS, Three.js
+**Tech:** SvelteKit, Prismic, Three.js
 
 ---
 
 ## 🔬 Tech Experiments
 
 <div align="center">
-  <img src="./Tech%20Experiments/Sky%20Diving%20Parallax%20Cat/Screenshot.png" width="220" />
   <img src="./Tech%20Experiments/Github-Actions-Reference/Screenshot.png" width="220" />
   <img src="./Tech%20Experiments/VitestTesting/Screenshot.png" width="220" />
   <img src="./Tech%20Experiments/Nextjs-OAuth/Screenshot.png" width="220" />
@@ -143,8 +97,6 @@ A browser-based **Flappy Bird clone** with sound effects and sprite animations.
 
 ### Projects
 
-- **Sky Diving Parallax Cat**  
-  Fun parallax animation experiment with layered assets.
 - **Github Actions Reference** — CI/CD pipeline with type-checking, testing, linting, and Docker builds wired into GitHub Actions
 - **Vitest Testing** — Unit & integration testing with Vitest
 - **Nextjs OAuth** — GitHub OAuth login with Auth.js (NextAuth v5)
@@ -162,7 +114,6 @@ A browser-based **Flappy Bird clone** with sound effects and sprite animations.
 - **GSAP-Practice** —  Hands-on learning exploring GSAP (Built with React, Vite, and Tailwind CSS)
 - **ASCII Terminal Player** — A terminal-based video player that plays videos using **colorful ASCII art**, OpenCV, NumPy, and Python
 - **OpenTelemetry-Demo** — A hands-on learning project exploring OpenTelemetry (Built with Hono and Jaeger)
-- **PWA Notes** — A tiny offline-capable notes app, built to explore Progressive Web Apps.
 
 **Tech:** React, Vite, Vitest, JavaScript, TypeScript, GitHub Actions, Docker, Next.js, Auth.js, GitHub OAuth, Ollama, Anthropic, Python, Postgres, Redis, BullMQ, Pino, Git, Stripe CLI, Node.js, MCP SDK, Zod, Husky, Dependabot, Snyk, Bun, N8N, LangChain, Streamlit, GSAP, OpenCV, NumPy, Hono, Jaeger
 
@@ -171,27 +122,17 @@ A browser-based **Flappy Bird clone** with sound effects and sprite animations.
 ## 🕸️ App Valley
 
 <div align="center">
-  <img src="./App%20Valley/Angular%20Webshop/Screenshot1.png" width="220" />
   <img src="./App%20Valley/Digital%20Hippo/Screenshot.png" width="220" />
   <img src="./App%20Valley/3D%20Apple%20Homepage/Screenshot.png" width="220" />
-  <img src="./App%20Valley/Job%20Board/Screenshot.png" width="220" />
-  <img src="./App%20Valley/Netflix/Screenshot.png" width="220" />
   <img src="./App%20Valley/Vercel-AI-Chat/Screenshot.png" width="220" />
   <img src="./App%20Valley/Job-Pilot/context/designs/find-jobs.png" width="220" />
-  <img src="https://github.com/AbdulDevHub/Filmverse/blob/2dd550ae7c2cb23437bc1252460ef3859c758bd6/src/assets/images/Filmverse.png" width="220" />
-  <img src="./App%20Valley/GSAP%20Drinks/Screenshot.png" width="220" />
   <img src="./App%20Valley/NoteMark/Screenshot.png" width="220" />
   <img src="./App%20Valley/Screen%20Recorder/Screenshot.png" width="220" />
   <img src="./App%20Valley/Image%20Resizer/assets/screen.png" width="220" />
   <img src="./App Valley/CareerFlow/screenshots/Screenshot - Dashboard.png" width="220" />
-  <img src="./App Valley/MacBook Homepage/Screenshot.png" width="220" />
-  <img src="./App Valley/Anime_Vault/Screenshot.png" width="220" />
 </div>
 
 ### Projects
-
-- **Angular Webshop**  
-  E-commerce demo with cart services and Node.js checkout server.
 
 - **Digital Hippo**  
   Full-featured e-commerce platform with authentication, payments, and CMS.
@@ -199,37 +140,13 @@ A browser-based **Flappy Bird clone** with sound effects and sprite animations.
 - **3D Apple Homepage**  
   3D product-style homepage using React and Vite with GLB models.
 
-- **Job Board**  
-  Vue-based CRUD job listing application with routing.
-
-- **Netflix**  
-  Netflix-style UI clone using API-driven rows.
-
 - **Vercel AI Chat**
   A local, cost-free streaming chat app built with Next.js 16, Vercel AI SDK v6, OpenAI provider, and Ollama -> Demonstrates `useChat`, streaming API routes, and tool calling.
 
 - **Job Pilot**
   AI-powered job search assistance for matching roles, tailored resumes, and faster applications.
 
-- **Filmverse**
-  A modern React movie discovery app with TMDB integration, voice-enabled navigation (Alan AI), favorites & watchlists, and light/dark mode.
-
-- **GSAP Drinks**
-  A modern drinks website built with React and TailwindCSS, featuring smooth GSAP animations such as SplitText reveals, scroll-triggered effects, parallax scrolling, and a custom carousel.
-
-- **CaseCobra**  
-  A full-stack e-commerce shop for custom phone cases. Features a drag-and-drop phone case configurator, secret admin dashboard for order management, Stripe payments, Kinde authentication, and transactional thank-you emails. Built on Next.js 14 App Router with shadcn-ui.  
-  **Tech:** Next.js 14, TypeScript, PostgreSQL, Tailwind CSS, shadcn-ui, Stripe, Kinde Auth, drag-and-drop file uploads
-
-- **Glisten AI**  
-  A sleek, dark, animated marketing website in the style of Linear, Raycast, and Clerk. Features GSAP scroll and load animations, and Prismic as a headless CMS for content management.  
-  **Tech:** Next.js 14, TypeScript, GSAP, Prismic (headless CMS), Tailwind CSS, Vercel
-
-- **Modern AliExpress**  
-  A full-stack e-commerce web app cloning AliExpress with a modernized UI. Includes Google and GitHub OAuth, Stripe payment integration, and a Supabase-backed PostgreSQL database managed via Prisma ORM.  
-  **Tech:** Vue.js, Nuxt.js, Tailwind CSS, Prisma ORM, Supabase (PostgreSQL), Stripe, OAuth (Google, GitHub), Vercel
-
-- **NoteMark**  
+- **[NoteMark](https://github.com/AbdulDevHub/NoteMark)** (own repo)  
   A cross-platform desktop note-taking app with native Markdown support. Installable on Mac, Windows, and Linux.  
   **Tech:** Electron, React, TypeScript/JavaScript, Markdown, yarn
 
@@ -244,14 +161,6 @@ A browser-based **Flappy Bird clone** with sound effects and sprite animations.
 - **Career Flow**
   A job application tracker that tracks job applications per authenticated user, matches resume text against job postings, queues background jobs (reminders) via BullMQ, and is instrumented with OpenTelemetry so the queue and API can be traced end to end.
   **Tech:** tRPC, Prisma ORM, PostgreSQL, BullMQ, OpenTelemetry, Vitest
-
-- **MacBook Homepage**
-  Apple-style 3D website built with React, Three.js, GSAP, and TailwindCSS! Showcase products in immersive 3D scenes, scroll-animated models, and pinned sections. Featuring responsive design, smooth timeline animations, and visually striking image transitions—perfect for developers creating interactive, modern web experiences.
-  **Tech:** React, Three.js, GSAP, Tailwind CSS, Vite, Zustand
-
-- **Anime Vault**
-  A modern anime discovery platform with a sleek UI, infinite scroll, and detailed anime cards. Built with Next.js, TypeScript, and Tailwind CSS.
-  **Tech:** Next.js, TypeScript, Tailwind CSS, Vercel, Framer Motion
 
 **Tech:** Angular, Vue 3, React, Vite, Next.js, Tailwind CSS, Node.js, Vercel AI SDK, Ollama, OpenAI, Claude, Open Router, InsForge, PostHog, Adzuna, BrowserBase, GSAP, PostgreSQL, shadcn-ui, Stripe, Kinde Auth, Prismic, Nuxt.js, Prisma ORM, Supabase, OAuth, Electron, Markdown, yarn, tRPC, BullMQ, OpenTelemetry, vitest
 
@@ -300,63 +209,16 @@ Archive Mountain is a **monorepo** — a single Git repository that houses multi
 
 ---
 
-### Cloning This Repo
+### Projects With Their Own Repos
 
-Some projects inside Archive Mountain are **Git Submodules** — separate repositories linked into this one by a commit pointer. A plain `git clone` will leave those folders empty.
+Archive Mountain no longer uses Git submodules. Projects that have their own repo are simply linked:
 
-Always clone with:
+| Project | Source |
+| --- | --- |
+| NoteMark | [AbdulDevHub/NoteMark](https://github.com/AbdulDevHub/NoteMark) |
+| Filmverse, CaseCobra, Glisten AI, Modern AliExpress | Live demos in [Web Mountain](https://modern-web-mountain.netlify.app/), each with its own repo |
 
-```bash
-git clone --recurse-submodules https://github.com/AbdulDevHub/Framework-Mountain.git
-```
-
-If you already cloned without that flag, run:
-
-```bash
-git submodule update --init --recursive
-```
-
----
-
-### Git Submodules
-
-A submodule is a pointer from this repo to a specific commit in another repo. The submodule folder exists inside Archive Mountain, but its contents are managed by the external repository. Best used for external repos you don't own or that other projects also depend on.
-
-**Submodule projects in this repo:**
-
-| Project | Valley | Source |
-| --- | --- | --- |
-| Filmverse | App Valley | [AbdulDevHub/Filmverse](https://github.com/AbdulDevHub/Filmverse) |
-| CaseCobra | App Valley | [AbdulDevHub/Case-Cobra](https://github.com/AbdulDevHub/Case-Cobra) |
-| Glisten AI | App Valley | [AbdulDevHub/Glisten-AI](https://github.com/AbdulDevHub/Glisten-AI) |
-| Modern AliExpress | App Valley | [AbdulDevHub/Modern-AliExpress](https://github.com/AbdulDevHub/Modern-AliExpress) |
-| NoteMark | App Valley | [AbdulDevHub/NoteMark](https://github.com/AbdulDevHub/NoteMark) |
-
-**Adding a new submodule:**
-
-```bash
-git submodule add https://github.com/username/repo-name.git "Valley/Project-Name"
-git commit -m "Add repo-name as submodule in Valley"
-git push
-```
-
-**Updating a submodule to its latest version:**
-
-```bash
-cd "App Valley/Filmverse"
-git pull origin main
-cd ../..
-git add "App Valley/Filmverse"
-git commit -m "Update Filmverse submodule to latest"
-git push
-```
-
-**Pulling submodule updates after someone else updated the pointer:**
-
-```bash
-git pull
-git submodule update --recursive
-```
+A plain `git clone https://github.com/AbdulDevHub/Archive-Mountain.git` gets everything.
 
 ---
 
