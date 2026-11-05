@@ -1,0 +1,28 @@
+{
+  "name": "web-mountain-gallery",
+  "private": true,
+  "version": "1.0.0",
+  "description": "The 3D island front page of Web Mountain: every valley is a section of the portfolio",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "typecheck": "tsc",
+    "test": "vitest run",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "camera-controls": "^3.1.2",
+    "postprocessing": "^6.39.6",
+    "simplex-noise": "^4.0.3",
+    "three": "^0.187.0"
+  },
+  "devDependencies": {
+    "@types/node": "^26.6.6",
+    "@types/three": "^0.187.0",
+    "sirv": "^3.0.2",
+    "typescript": "~6.0.2",
+    "vite": "^8.3.5",
+    "vitest": "^5.1.0"
+  }
+}
