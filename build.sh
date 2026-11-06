@@ -47,8 +47,9 @@ APPS=(
 build_app() {
   local slug dir out args
   IFS="|" read -r slug dir out args <<<"$1"
+  # CI=false: Netlify sets CI=true, which makes Create React App (Pay Card) fail on lint warnings
   # shellcheck disable=SC2086 # args are deliberately split into words
-  BASE_PATH="/projects/$slug/" PUBLIC_URL="/projects/$slug" install_and_build "$dir" $args
+  CI=false BASE_PATH="/projects/$slug/" PUBLIC_URL="/projects/$slug" install_and_build "$dir" $args
   node "$ROOT/Gallery/tools/relocate.mjs" "$ROOT/$dir/$out" "/projects/$slug/"
 }
 
