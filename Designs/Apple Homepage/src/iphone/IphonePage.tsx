@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import clsx from "clsx"
 import { useMediaQuery } from "react-responsive"
 import Jumbotron from "./Jumbotron.jsx"
@@ -11,6 +11,12 @@ import "./iphone.css"
 const IphonePage = () => {
   const [preview, setPreview] = useState(false)
   const isMobile = useMediaQuery({ query: "(max-width: 990px)" })
+
+  // The shared footer sits outside this page, so hide it from the body while the phone is in close-up
+  useEffect(() => {
+    document.body.classList.toggle("iphone-previewing", preview)
+    return () => document.body.classList.remove("iphone-previewing")
+  }, [preview])
 
   return (
     <div className={clsx("iphone-page", isMobile && "mobile-or-tablet")}>

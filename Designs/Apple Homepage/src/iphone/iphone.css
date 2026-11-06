@@ -232,6 +232,12 @@
   opacity: 0;
 }
 
+body.iphone-previewing footer {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
 @media (max-width: 990px) {
   .iphone-page .jumbotron-section .iphone-img {
     display: none;

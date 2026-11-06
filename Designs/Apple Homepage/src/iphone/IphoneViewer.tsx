@@ -55,6 +55,9 @@ const IphoneViewer = ({ isMobile, preview, onExit }: Props) => {
 
   // Scroll-driven shots
   useEffect(() => {
+    // The scrubbed tweens record their start values when created, so build them at the top of
+    // the page; a restored or leftover scroll position would bake the wrong shot into them
+    window.scrollTo({ top: 0, behavior: "instant" })
     const start = shot("start", isMobile)
     position.set(start.position.x, start.position.y, start.position.z)
     target.set(start.target.x, start.target.y, start.target.z)
