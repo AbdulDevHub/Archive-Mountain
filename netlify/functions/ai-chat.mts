@@ -1,4 +1,4 @@
-// Free LLM proxy for AI Valley apps: forwards chat requests to OpenRouter's free
+// Free LLM proxy for the AI Toolkit apps: forwards chat requests to OpenRouter's free
 // models using the site's key (OPENROUTER_API_KEY env var), so visitors can try
 // the apps without an account. The model list is fixed here, never taken from
 // the client, and inputs are validated and size-capped.
@@ -124,7 +124,7 @@ export default async (req: Request) => {
           Authorization: `Bearer ${apiKey}`,
           "Content-Type": "application/json",
           "HTTP-Referer": new URL(req.url).origin,
-          "X-Title": "AI Valley",
+          "X-Title": "AI Toolkit",
         },
         body: JSON.stringify({
           model: order[0],

@@ -58,7 +58,7 @@ body {
   font-family: "Poppins" !important;
   background-color: var(--main-bg-color) !important;
   transition: all ease 0.2s;
-  cursor: url("../../assets/img/cursor/cursor.svg"), auto;
+  cursor: auto;
 }
 
 #fullname {
