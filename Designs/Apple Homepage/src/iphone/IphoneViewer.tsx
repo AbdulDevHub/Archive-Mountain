@@ -51,7 +51,12 @@ const IphoneViewer = ({ isMobile, preview, onExit }: Props) => {
   const [target] = useState(() => new Vector3())
   const [orbiting, setOrbiting] = useState(false)
   const camera = useRef<Camera | null>(null)
-  const firstRun = useRef(true)
+  // The flight effect reacts only to `preview` changing; these refs let it read the rest
+  const lastPreview = useRef(preview)
+  const isMobileNow = useRef(isMobile)
+  useEffect(() => {
+    isMobileNow.current = isMobile
+  }, [isMobile])
 
   // Scroll-driven shots
   useEffect(() => {
@@ -65,23 +70,23 @@ const IphoneViewer = ({ isMobile, preview, onExit }: Props) => {
     return () => ctx.revert()
   }, [isMobile, position, target])
 
-  // Flights into and out of the close-up preview
+  // Flights into and out of the close-up preview. Only a real change of `preview` starts one,
+  // so mounting (twice under StrictMode) and crossing the mobile breakpoint never trigger a flight.
   useEffect(() => {
-    if (firstRun.current) {
-      firstRun.current = false
-      return
-    }
-    setOrbiting(false)
+    if (lastPreview.current === preview) return
+    lastPreview.current = preview
     // Leaving the preview starts from wherever the visitor orbited to
     if (!preview && camera.current) position.copy(camera.current.position)
-    const next = shot(preview ? "preview" : "display", isMobile)
+    const next = shot(preview ? "preview" : "display", isMobileNow.current)
     const flight = gsap.timeline({ onComplete: () => setOrbiting(preview) })
     flight.to(position, { ...next.position, duration: 2, ease: "power2.inOut" }, 0)
     flight.to(target, { ...next.target, duration: 2, ease: "power2.inOut" }, 0)
     return () => {
+      // A newer flight (or unmount) takes over: hand the camera back to the rig
       flight.kill()
+      setOrbiting(false)
     }
-  }, [preview, isMobile, position, target])
+  }, [preview, position, target])
 
   return (
     <div className={preview ? "iphone-canvas is-preview" : "iphone-canvas"}>
@@ -97,8 +102,8 @@ const IphoneViewer = ({ isMobile, preview, onExit }: Props) => {
         <Suspense fallback={null}>
           <Iphone />
         </Suspense>
-        <CameraRig position={position} target={target} orbiting={orbiting} />
-        {orbiting && <OrbitControls target={target} enablePan={false} minDistance={4} maxDistance={24} />}
+        <CameraRig position={position} target={target} orbiting={orbiting && preview} />
+        {orbiting && preview && <OrbitControls target={target} enablePan={false} minDistance={4} maxDistance={24} />}
       </Canvas>
       {preview && (
         <button type="button" className="iphone-exit" onClick={onExit}>

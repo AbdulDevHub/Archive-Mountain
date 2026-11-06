@@ -12,10 +12,15 @@ const IphonePage = () => {
   const [preview, setPreview] = useState(false)
   const isMobile = useMediaQuery({ query: "(max-width: 990px)" })
 
-  // The shared footer sits outside this page, so hide it from the body while the phone is in close-up
+  // While the phone is in close-up: hide the shared footer (it sits outside this page) and lock
+  // scrolling, so the scroll-scrubbed camera tweens can't fight the preview flight and OrbitControls
   useEffect(() => {
     document.body.classList.toggle("iphone-previewing", preview)
-    return () => document.body.classList.remove("iphone-previewing")
+    document.documentElement.style.overflow = preview ? "hidden" : ""
+    return () => {
+      document.body.classList.remove("iphone-previewing")
+      document.documentElement.style.overflow = ""
+    }
   }, [preview])
 
   return (
