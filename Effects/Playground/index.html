@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Effects Playground · Archive Mountain</title>
+    <meta name="description" content="Try 26 cursor, WebGL fluid, loader, hover and layout effects live, one click each. Every effect is a self-contained folder you can copy into your own site." />
+    <link rel="icon" type="image/svg+xml" href="/brand/icon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="app">
+      <aside class="sidebar" aria-label="Effects">
+        <header class="sidebar__head">
+          <a class="back" href="/#design">← Archive Mountain</a>
+          <h1 class="title">Effects Playground</h1>
+          <p class="subtitle"><span id="count">26</span> effects, each one a folder you can reuse</p>
+          <label class="search">
+            <span class="visually-hidden">Filter effects</span>
+            <input id="filter" type="search" placeholder="Filter by name or tech…" autocomplete="off" />
+          </label>
+        </header>
+        <nav id="list" class="list"></nav>
+      </aside>
+
+      <main class="stage">
+        <div class="stage__bar">
+          <div class="stage__info">
+            <p class="stage__group" id="group"></p>
+            <h2 class="stage__name" id="name">Pick an effect</h2>
+            <p class="stage__desc" id="desc"></p>
+            <ul class="tags" id="tags"></ul>
+          </div>
+          <div class="stage__actions">
+            <button class="btn btn--icon" id="prev" type="button" aria-label="Previous effect" title="Previous (←)">‹</button>
+            <button class="btn btn--icon" id="next" type="button" aria-label="Next effect" title="Next (→)">›</button>
+            <button class="btn" id="reload" type="button" title="Restart the effect">Restart</button>
+            <a class="btn" id="open" href="#" target="_blank" rel="noopener">Full screen ↗</a>
+            <a class="btn" id="source" href="#" target="_blank" rel="noopener">Source ↗</a>
+          </div>
+        </div>
+        <div class="stage__frame">
+          <iframe id="frame" title="Effect preview" loading="lazy" allow="fullscreen; autoplay"></iframe>
+          <p class="stage__hint" id="hint">Move your mouse, hover, click or scroll inside the preview.</p>
+        </div>
+      </main>
+    </div>
+    <script type="module" src="main.js"></script>
+  </body>
+</html>

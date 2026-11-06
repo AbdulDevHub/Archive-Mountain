@@ -1,0 +1,299 @@
+[
+  {
+    "name": "Grid Spotlight Effect",
+    "slug": "grid-spotlight-effect",
+    "group": "Cursor & pointer",
+    "description": "Grid of cells lit up by a spotlight that follows the cursor",
+    "tags": [
+      "CSS",
+      "JavaScript"
+    ],
+    "folder": "Effects/Grid Spotlight Effect"
+  },
+  {
+    "name": "Anthony V1 Website Effects",
+    "slug": "anthony-v1-website-effects",
+    "group": "Cursor & pointer",
+    "description": "Custom cursor and mouse-follow effects recreated from a personal site",
+    "tags": [
+      "JavaScript",
+      "CSS"
+    ],
+    "folder": "Effects/Anthony V1 Website Effects"
+  },
+  {
+    "name": "Spotlight Effect",
+    "slug": "spotlight-effect",
+    "group": "Cursor & pointer",
+    "description": "Mouse-tracking spotlight that reveals a background image",
+    "tags": [
+      "CSS",
+      "JavaScript"
+    ],
+    "folder": "Effects/Spotlight Effect"
+  },
+  {
+    "name": "Fire Cursor",
+    "slug": "fire-cursor",
+    "group": "Cursor & pointer",
+    "description": "Cursor trail that emits fire-like particles as you move",
+    "tags": [
+      "JavaScript",
+      "Canvas",
+      "CSS"
+    ],
+    "folder": "Effects/Fire Cursor"
+  },
+  {
+    "name": "Magical Hover Effect",
+    "slug": "magical-hover-effect",
+    "group": "Cursor & pointer",
+    "description": "Hover interaction that spawns glowing particles around elements",
+    "tags": [
+      "JavaScript",
+      "CSS"
+    ],
+    "folder": "Effects/Magical Hover Effect"
+  },
+  {
+    "name": "Blue Techno Fluid",
+    "slug": "blue-techno-fluid",
+    "group": "WebGL & canvas",
+    "description": "Blue WebGL fluid simulation that swirls with mouse movement",
+    "tags": [
+      "WebGL",
+      "JavaScript",
+      "GLSL"
+    ],
+    "folder": "Effects/Blue Techno Fluid"
+  },
+  {
+    "name": "Fluid Flame Effect",
+    "slug": "fluid-flame-effect",
+    "group": "WebGL & canvas",
+    "description": "Interactive WebGL fluid simulation rendered as flowing flames",
+    "tags": [
+      "WebGL",
+      "Canvas",
+      "JavaScript"
+    ],
+    "folder": "Effects/Fluid Flame Effect"
+  },
+  {
+    "name": "Ink Fluid",
+    "slug": "ink-fluid",
+    "group": "WebGL & canvas",
+    "description": "GPU-accelerated ink dispersion simulation that reacts to your cursor",
+    "tags": [
+      "WebGL",
+      "Canvas",
+      "GLSL"
+    ],
+    "folder": "Effects/Ink Fluid"
+  },
+  {
+    "name": "Particles",
+    "slug": "particles",
+    "group": "WebGL & canvas",
+    "description": "Interactive particle system drawn on an HTML canvas",
+    "tags": [
+      "Canvas",
+      "JavaScript"
+    ],
+    "folder": "Effects/Particles"
+  },
+  {
+    "name": "Anime.js Sphere",
+    "slug": "anime-js-sphere",
+    "group": "WebGL & canvas",
+    "description": "Rotating 3D sphere of points animated with Anime.js",
+    "tags": [
+      "Anime.js",
+      "JavaScript",
+      "SVG"
+    ],
+    "folder": "Effects/Anime.js Sphere"
+  },
+  {
+    "name": "3D Image Transition",
+    "slug": "3d-image-transition",
+    "group": "WebGL & canvas",
+    "description": "WebGL image transitions with 3D perspective driven by GSAP",
+    "tags": [
+      "Three.js",
+      "WebGL",
+      "GSAP"
+    ],
+    "folder": "Effects/3D Image Transition"
+  },
+  {
+    "name": "Loading Animation 2",
+    "slug": "loading-animation-2",
+    "group": "Loaders",
+    "description": "Looping CSS loading spinner animation",
+    "tags": [
+      "CSS",
+      "HTML"
+    ],
+    "folder": "Effects/Loading Animation 2"
+  },
+  {
+    "name": "3D Cube Loader",
+    "slug": "3d-cube-loader",
+    "group": "Loaders",
+    "description": "Pure CSS loader of rotating 3D cubes",
+    "tags": [
+      "CSS",
+      "HTML"
+    ],
+    "folder": "Effects/3D Cube Loader"
+  },
+  {
+    "name": "Escalade Loader",
+    "slug": "escalade-loader",
+    "group": "Loaders",
+    "description": "Loader with squares climbing a staircase in SVG and CSS",
+    "tags": [
+      "CSS",
+      "SVG"
+    ],
+    "folder": "Effects/Escalade Loader"
+  },
+  {
+    "name": "Gemini Loader",
+    "slug": "gemini-loader",
+    "group": "Loaders",
+    "description": "Loading animation inspired by the Google Gemini gradient sparkle",
+    "tags": [
+      "CSS",
+      "Three.js",
+      "JavaScript"
+    ],
+    "folder": "Effects/Gemini Loader"
+  },
+  {
+    "name": "Redirecting Loader",
+    "slug": "redirecting-loader",
+    "group": "Loaders",
+    "description": "Animated loading screen shown before a page redirect",
+    "tags": [
+      "CSS",
+      "JavaScript"
+    ],
+    "folder": "Effects/Redirecting Loader"
+  },
+  {
+    "name": "Button Gallery",
+    "slug": "button-gallery",
+    "group": "Hover, buttons & text",
+    "description": "Collection of creative button hover effects built in pure CSS",
+    "tags": [
+      "CSS",
+      "HTML"
+    ],
+    "folder": "Effects/Button Gallery"
+  },
+  {
+    "name": "Hover Shine Effect",
+    "slug": "hover-shine-effect",
+    "group": "Hover, buttons & text",
+    "description": "Metallic shine sweeping across elements on hover",
+    "tags": [
+      "CSS",
+      "HTML"
+    ],
+    "folder": "Effects/Hover Shine Effect"
+  },
+  {
+    "name": "Shine Animation",
+    "slug": "shine-animation",
+    "group": "Hover, buttons & text",
+    "description": "Shine sweep animation across an image or button",
+    "tags": [
+      "CSS",
+      "HTML"
+    ],
+    "folder": "Effects/Shine Animation"
+  },
+  {
+    "name": "Navigation Bar",
+    "slug": "navigation-bar",
+    "group": "Hover, buttons & text",
+    "description": "Animated navigation bar with hover indicator effects",
+    "tags": [
+      "CSS",
+      "JavaScript"
+    ],
+    "folder": "Effects/Navigation Bar"
+  },
+  {
+    "name": "Jump And Slide",
+    "slug": "jump-and-slide",
+    "group": "Hover, buttons & text",
+    "description": "Playful bouncing and sliding text animation",
+    "tags": [
+      "CSS",
+      "HTML"
+    ],
+    "folder": "Effects/Jump And Slide"
+  },
+  {
+    "name": "Diamond Photo Gallery",
+    "slug": "diamond-photo-gallery",
+    "group": "Layout & media",
+    "description": "Photo gallery arranged in a diamond-shaped layout using CSS clip-path",
+    "tags": [
+      "CSS",
+      "HTML"
+    ],
+    "folder": "Effects/Diamond Photo Gallery"
+  },
+  {
+    "name": "Split Screen Slider",
+    "slug": "split-screen-slider",
+    "group": "Layout & media",
+    "description": "Two-panel split screen slider that expands on hover",
+    "tags": [
+      "CSS",
+      "JavaScript"
+    ],
+    "folder": "Effects/Split Screen Slider"
+  },
+  {
+    "name": "Touch Slider",
+    "slug": "touch-slider",
+    "group": "Layout & media",
+    "description": "Vanilla JavaScript image slider with touch and drag support",
+    "tags": [
+      "JavaScript",
+      "CSS",
+      "Touch Events"
+    ],
+    "folder": "Effects/Touch Slider"
+  },
+  {
+    "name": "Video.js",
+    "slug": "video-js",
+    "group": "Layout & media",
+    "description": "Customized HTML5 video player themed with Video.js",
+    "tags": [
+      "Video.js",
+      "JavaScript",
+      "CSS"
+    ],
+    "folder": "Effects/Video.js"
+  },
+  {
+    "name": "Sky Diving Parallax Cat",
+    "slug": "sky-diving-parallax-cat",
+    "group": "Layout & media",
+    "description": "Layered parallax scene of a cat skydiving through the sky as you scroll",
+    "tags": [
+      "React",
+      "React Spring",
+      "Vite"
+    ],
+    "src": "/projects/sky-diving-parallax-cat/",
+    "source": "Effects/Sky Diving Parallax Cat"
+  }
+]
