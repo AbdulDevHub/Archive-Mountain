@@ -5,7 +5,7 @@ let contentData = null
 // Load JSON file
 async function loadContent() {
   try {
-    const response = await fetch("../content.json")
+    const response = await fetch("content.json")
     contentData = await response.json()
     initializeSlides()
   } catch (error) {

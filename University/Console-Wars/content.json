@@ -1,7 +1,7 @@
 {
   "title": "The Console Wars: The Battle For The Future Of Gaming (1989–2005)",
   "intro": "The late 1980s through the early 2000s marked a period of intense competition that fundamentally shaped the modern video game industry. The \"console wars\", often remembered as the battles between Nintendo, Sega, and later Sony (and eventually Microsoft), were more than just rivalries for retail shelf space. These were contests over technological standards (cartridges vs. CDs), marketing identities (family-friendly vs. \"edgy\" youth culture), corporate strategies (first-party exclusives, third-party licensing, and platform control), and, ultimately, who would define gaming’s cultural relevance for an entire generation. This exhibit argues that the console wars transformed consoles into cultural artifacts: devices crafted and marketed with distinct identities that not only influenced what games were made and how they were played, but also shaped how players viewed and interacted with the medium itself.\n\nTo illustrate this story, the exhibit focuses on a sequence of key moments and artifacts from roughly 1989 through 2005 — a period that encompasses Sega’s bold 16-bit campaign, Nintendo’s solidified ecosystem, Sony’s disruptive PlayStation entry, and the rise of Microsoft’s Xbox. The selected artifacts (advertisements, hardware, iconic games, magazine coverage, and sales data) are organized to reveal a recurring pattern: when a new player or technology emerged, competitors responded with more than just new hardware, they launched rhetorical and aesthetic campaigns that repositioned their platforms and redefined player expectations. For example, Sega’s blunt “Genesis does what Nintendon’t” slogan rebranded Nintendo’s family-friendly image into something more rebellious and adolescent, while Sony’s use of CD-ROMs and mature marketing rhetoric pushed the notion of games as cinematic and adult.\n\nThis exhibit also examines how these strategic business and marketing decisions had direct design consequences: from control schemes to media formats, memory strategies to production workflows for cinematic cutscenes. The artifacts on display are not only evocative, capturing the look and tone of 1990s marketing and magazines, but also analytical, linking marketing copy and hardware specifications to the way games were designed and experienced. Ultimately, the console wars did more than determine which company dominated a generation; they created templates for how platforms would compete across the decades that followed, patterns still visible in the way Nintendo, Sony, and Microsoft engage with players and developers today.",
-  "introImage": "../assets/artifacts/Intro Image.jpg",
+  "introImage": "assets/artifacts/Intro Image.jpg",
   "artifacts": [
     {
       "title": "Nintendo Entertainment System (NES): The Post-Crash Revival",
@@ -10,7 +10,7 @@
         "Wikimedia Foundation. (2025e, October 28). Nintendo Entertainment System. Wikipedia. https://en.wikipedia.org/wiki/Nintendo_Entertainment_System",
         "Computer History Museum. (1996–2025). The Video Game Crash of 1983. Retrieved from https://www.computerhistory.org/revolution/computer-games/16/192/790"
       ],
-      "link": "../assets/artifacts/Artifact 1 - Nes Box Art.jpg"
+      "link": "assets/artifacts/Artifact 1 - Nes Box Art.jpg"
     },
     {
       "title": "Sega Genesis: Technology And 'Edgy' Marketing",
@@ -21,7 +21,7 @@
         "Chicago Retro Gamer. (2023, July 4). Genesis Does what Nintendon't Commercial (1990) [Video]. YouTube. https://www.youtube.com/watch?v=ZDnZDXHuC_w",
         "Wikipedia. (2025). Sega Genesis. https://en.wikipedia.org/wiki/Sega_Genesis"
       ],
-      "link": "../assets/artifacts/Artifact 2 - Genesis Does What Nintendont Commercial.mp4"
+      "link": "assets/artifacts/Artifact 2 - Genesis Does What Nintendont Commercial.mp4"
     },
     {
       "title": "Super Nintendo (SNES): Nintendo’s 16-bit Counterattack",
@@ -29,7 +29,7 @@
       "citations": [
         "Wikimedia Foundation. (2025b, October 24). Super Nintendo Entertainment System. Wikipedia. https://en.wikipedia.org/wiki/Super_Nintendo_Entertainment_System"
       ],
-      "link": "../assets/artifacts/Artifact 3 - SNES Console.jpeg"
+      "link": "assets/artifacts/Artifact 3 - SNES Console.jpeg"
     },
     {
       "title": "Sonic The Hedgehog: A Market Weapon Mascot",
@@ -39,7 +39,7 @@
         "Wikipedia. (2025). Sonic the Hedgehog (video game). Retrieved from https://en.wikipedia.org/wiki/Sonic_the_Hedgehog_(1991_video_game)",
         "SEGA-16. (2006, August 1). Sega Genesis marketing history. Retrieved from https://www.sega-16.com/2006/08/marketing-the-genesis-segas-advertising-1989-1996/"
       ],
-      "link": "../assets/artifacts/Artifact 4 - Sonic The Hedgehog 1991 Box Art.png"
+      "link": "assets/artifacts/Artifact 4 - Sonic The Hedgehog 1991 Box Art.png"
     },
     {
       "title": "Super Mario World: Nintendo’s Platforming Flagship",
@@ -47,7 +47,7 @@
       "citations": [
         "Wikipedia. (2025). Super Mario World. Retrieved from https://en.wikipedia.org/wiki/Super_Mario_World"
       ],
-      "link": "../assets/artifacts/Artifact 5 - Super Mario World SNES Box Art.jpg"
+      "link": "assets/artifacts/Artifact 5 - Super Mario World SNES Box Art.jpg"
     },
     {
       "title": "Sony PlayStation (PS1): The Disruptive Outsider",
@@ -56,7 +56,7 @@
         "Wikimedia Foundation. (2025c, October 27). PlayStation (console). Wikipedia. https://en.wikipedia.org/wiki/PlayStation_(console)",
         "Sony Interactive Entertainment. (2025). Sony Interactive Entertainment - Business Data & Sales. Retrieved from https://sonyinteractive.com/en/our-company/business-data-sales/"
       ],
-      "link": "../assets/artifacts/Artifact 6 - Sony PlayStation Original Console.jpg"
+      "link": "assets/artifacts/Artifact 6 - Sony PlayStation Original Console.jpg"
     },
     {
       "title": "Final Fantasy VII: Sony's Cinematic Spectacle",
@@ -67,7 +67,7 @@
         "Polygon. (2020, April 10). How making Final Fantasy 7 changed over two decades. Retrieved from https://www.polygon.com/features/2020/4/10/21215315/making-final-fantasy-7-1997-2020/",
         "The Lifestream. (2014, August 11). Final Fantasy 7 Commercials from 1997 | TheLifestream.net [Video]. YouTube. https://www.youtube.com/watch?v=QDz9A4ByHIQ"
       ],
-      "link": "../assets/artifacts/Artifact 7 - Final Fantasy VII Original Commercial.mp4"
+      "link": "assets/artifacts/Artifact 7 - Final Fantasy VII Original Commercial.mp4"
     },
     {
       "title": "Nintendo 64 (N64): Cartridges, 3D, And A Divergent Design Path",
@@ -75,7 +75,7 @@
       "citations": [
         "Wikipedia. (2025). Nintendo 64. Retrieved from https://en.wikipedia.org/wiki/Nintendo_64"
       ],
-      "link": "../assets/artifacts/Artifact 8 - Nintendo 64 Console And Controller.jpg"
+      "link": "assets/artifacts/Artifact 8 - Nintendo 64 Console And Controller.jpg"
     },
     {
       "title": "GoldenEye 007: Pioneering Local Multiplayer",
@@ -84,7 +84,7 @@
         "Wikipedia. (2025). GoldenEye 007. Retrieved from https://en.wikipedia.org/wiki/GoldenEye_007_(video_game)",
         "Bloomberg. (2023, January 30). GoldenEye 007 coverage: Historical commentary on multiplayer prominence. Retrieved from https://www.bloomberg.com/news/newsletters/2023-01-30/goldeneye-online-multiplayer-is-not-as-good-as-split-screen"
       ],
-      "link": "../assets/artifacts/Artifact 9 - GoldenEye 007 Game Cartridge.jpeg"
+      "link": "assets/artifacts/Artifact 9 - GoldenEye 007 Game Cartridge.jpeg"
     },
     {
       "title": "Sega Dreamcast: A Final Brilliant Gamble",
@@ -93,7 +93,7 @@
         "Wikipedia. (2025). Dreamcast. Retrieved from https://en.wikipedia.org/wiki/Dreamcast",
         "Wired. (2001, January 31). Bye-Bye Dreamcast, Bye-Bye. Retrieved from https://www.wired.com/2001/01/bye-bye-dreamcast-bye-bye/"
       ],
-      "link": "../assets/artifacts/Artifact 10 - Dreamcast Console.jpg"
+      "link": "assets/artifacts/Artifact 10 - Dreamcast Console.jpg"
     },
     {
       "title": "PlayStation 2 (PS2): Market Consolidation",
@@ -103,7 +103,7 @@
         "Sony Interactive Entertainment. (2025). Sony Interactive Entertainment - Business Data & Sales. Retrieved from https://sonyinteractive.com/en/our-company/business-data-sales/",
         "de Jeu, R. [Pulp-o-Rama]. (2017, July 11). Sony PlayStation 2 (PS2) \"Elevator\" Theatrical Ad (2000), 1080p24 [Video]. YouTube. https://www.youtube.com/watch?v=71wqgRvnNlU"
       ],
-      "link": "../assets/artifacts/Artifact 11 - PS2 Launch Commercial.mp4"
+      "link": "assets/artifacts/Artifact 11 - PS2 Launch Commercial.mp4"
     },
     {
       "title": "Microsoft Xbox (Original): A Newcomer’s Strategy",
@@ -111,7 +111,7 @@
       "citations": [
         "Wikimedia Foundation. (2025a, October 19). Xbox (console). Wikipedia. https://en.wikipedia.org/wiki/Xbox_(console)"
       ],
-      "link": "../assets/artifacts/Artifact 12 - Xbox Console.jpg"
+      "link": "assets/artifacts/Artifact 12 - Xbox Console.jpg"
     },
     {
       "title": "GameCube: Nintendo’s Compact Gamble",
@@ -119,7 +119,7 @@
       "citations": [
         "Wikipedia. (2025). GameCube. Retrieved from https://en.wikipedia.org/wiki/Nintendo_GameCube"
       ],
-      "link": "../assets/artifacts/Artifact 13 - GameCube Console And Controller.jpg"
+      "link": "assets/artifacts/Artifact 13 - GameCube Console And Controller.jpg"
     },
     {
       "title": "Hardware Accessories: Small Tech With Big Impact",
@@ -128,7 +128,7 @@
         "Wikipedia. (2025). Dreamcast (VMU) details. Retrieved from https://en.wikipedia.org/wiki/Dreamcast#VMU",
         "Wikipedia. (2025). DualShock history. Retrieved from https://en.wikipedia.org/wiki/DualShock"
       ],
-      "link": "../assets/artifacts/Artifact 14 - Sony DualShock 2 Analog Controller.jpg"
+      "link": "assets/artifacts/Artifact 14 - Sony DualShock 2 Analog Controller.jpg"
     },
     {
       "title": "Magazine Coverage & Ads: How Media Framed The Console Wars Rivalry",
@@ -138,7 +138,7 @@
         "Wikimedia Foundation. (2025d, October 28). Console war. Wikipedia. https://en.wikipedia.org/wiki/Console_war",
         "Morning Brew. (2020, September 22). Sega and Nintendo's console war: A brief history. Retrieved from https://www.morningbrew.com/stories/2020/09/22/sega-nintendos-console-war-brief-history"
       ],
-      "link": "../assets/artifacts/Artifact 15 - Magazine Pages Showing Console Comparison.jpg"
+      "link": "assets/artifacts/Artifact 15 - Magazine Pages Showing Console Comparison.jpg"
     },
     {
       "title": "Sales Data: A Quantitative View Of The Console Wars",
@@ -148,7 +148,7 @@
         "Sony. (2025). Sony Interactive Entertainment - Business Data & Sales. Retrieved from https://sonyinteractive.com/en/our-company/business-data-sales/",
         "Wired. (2001, January 31). Dreamcast discontinuation. Retrieved from https://www.wired.com/2001/01/bye-bye-dreamcast-bye-bye/"
       ],
-      "link": "../assets/artifacts/Artifact 16 - Console Sales By Generation Chart (1975–2025).png"
+      "link": "assets/artifacts/Artifact 16 - Console Sales By Generation Chart (1975–2025).png"
     }
   ]
 }
