@@ -10,7 +10,7 @@ const hint = $("hint")
 
 const encodePath = (path) => path.split("/").map(encodeURIComponent).join("/")
 /** Where the effect runs: its folder's index.html, or a built app's own URL */
-const srcOf = (e) => e.src ?? `/${encodePath(e.folder)}/`
+const srcOf = (e) => e.src ?? `/${encodePath(e.folder)}/index.html`
 const sourceOf = (e) => REPO + encodePath(e.folder ?? e.source)
 
 let effects = []
