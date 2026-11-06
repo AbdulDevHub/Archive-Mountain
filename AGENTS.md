@@ -28,7 +28,7 @@ One monorepo holding every project, merged from seven repos with full history (W
 - The gallery is the site root (Vite `base: "/"`, `Gallery/public/` holds `brand/` and `robots.txt`). Gallery links are site-absolute (`toSiteUrl()` in `Gallery/src/data/projects.ts`).
 - Gallery terrain maths are pure functions in `Gallery/src/world/terrain.ts`. Landmarks, trees, the camera and picking all use `heightAt()`; never sample the mesh.
 - The gallery must work at 390px wide with no horizontal scroll, respect reduced motion, and keep the no-WebGL directory (`?no3d`) working.
-- SEO: meta tags in `Gallery/src/index.html` use `%PROJECT_COUNT%` / `%SITE_URL%` tokens. JSON-LD and `sitemap.xml` come from `projects.json` (`Gallery/src/data/seo.ts`). Regenerate `Gallery/public/brand/og-image.png` (1200×630) if the island's look changes.
+- SEO: meta tags in `Gallery/src/index.html` use `%PROJECT_COUNT%` / `%SITE_URL%` tokens. JSON-LD and `sitemap.xml` come from `projects.json` (`Gallery/src/data/seo.ts`). Regenerate `Gallery/public/brand/og-image.png` (1200×630) if the island's look changes: run `npm run dev -- --port 5199`, then `uv run --with playwright Gallery/tools/og-image.py Gallery/public/brand/og-image.png` (update the project count in the script first).
 - Commits: gitmoji + conventional commits with the project folder as scope (e.g. `✨ feat(Gallery): ...`).
 
 ## Boundaries

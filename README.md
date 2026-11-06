@@ -1,6 +1,4 @@
-# Archive Mountain: Every Project I've Built, in One Repo 🏔️
-
-**[Explore the live gallery →](https://archive-mountain.netlify.app/)**
+# 🏔️ Archive Mountain: Every Project I've Built, In One Repo
 
 [![Archive Mountain: a low-poly 3D island with four valleys of web projects](Gallery/Screenshot.png)](https://archive-mountain.netlify.app/)
 
