@@ -1,35 +1,33 @@
-# Web Mountain Gallery: A Low-Poly 3D Island Portfolio
+# Archive Mountain Gallery: A Low-Poly 3D Island Portfolio
 
-![Web Mountain island](../Screenshot.png)
+![Archive Mountain island](./Screenshot.png)
 
-The front page of [Web Mountain](https://github.com/AbdulDevHub/Web-Mountain). It shows all 83 projects as a daytime island. The summit means "all projects", and each of the six valleys around it is one section of the portfolio, with its own landmark. Click a valley and the camera flies in while that section's cards slide out beside it.
+The front page of [Archive Mountain](https://github.com/AbdulDevHub/Archive-Mountain). It shows the projects worth opening in a browser as a daytime island. The summit means "all projects", and each of the four valleys around it is one section of the portfolio, with its own landmark. Click a valley and the camera flies in while that section's cards slide out beside it.
 
 Built with **TypeScript, Three.js, Vite and camera-controls**. There are no model or texture files: the terrain, buildings, trees, birds and even the sound are generated in code.
 
 | Valley | Landmark | Section |
 | --- | --- | --- |
-| Awesome Effects | Waterfall, glowing crystals, flowers | Shaders, cursors, loaders |
-| Awesome Websites | Village with smoking chimneys | Browser tools, utilities and games |
-| App Valley | Castle with corner towers and waving pennants | Full framework apps (React, Next.js, Vue, Angular) |
-| AI Valley | Observatory, radio dish, orbiting orbs | LLM agents and on-device models |
-| UI & Portfolios | Windmill over tulip fields | Landing pages, portfolios and components |
-| Chrome Extensions | Lighthouse, pier, rope bridge | Browser extensions |
+| Tools Valley | Village with smoking chimneys | Browser tools that do one job well |
+| Design Valley | Windmill over tulip fields | The Effects Playground, landing pages and portfolios |
+| App Valley | Castle with corner towers and waving pennants | The AI Toolkit, full-stack shops and API-driven apps |
+| Game Valley | Lighthouse, pier, rope bridge | Card games and an arcade game |
 
 ## Features
 
 - **Fly-to navigation**: valleys, labels, the dock and the arrow keys all move the camera. The side panel (a draggable bottom sheet on phones) shows that section's cards, and the camera shifts so the panel never covers what you're looking at.
-- **Deep links and Back**: `#ai` opens a valley and `#effects/ink-fluid` also highlights a card. The browser's Back button flies you back out.
+- **Deep links and Back**: `#apps` opens a valley and `#tools/dupehunt` also highlights a card. The browser's Back button flies you back out.
 - **Search** (`/` or `Ctrl+K`): ranked across names, blurbs and tech tags. Picking a result flies to the project and highlights its card.
 - **Hover previews**: hovering a valley makes it glow and shows a tooltip with its count and three screenshots.
 - **A living island**: drifting clouds, circling gulls, a hot-air balloon, a sailboat, a waving summit flag, chimney smoke and a turning windmill. The sun follows your local time but stays in daylight.
 - **Optional soundscape**: wind, birdsong and a whoosh on each flight, all made with the Web Audio API. It's off by default and your choice is remembered.
-- **Search-friendly**: the build fills in the meta and Open Graph/Twitter tags, generates JSON-LD structured data (`WebSite` plus an `ItemList` of every project) and writes a sitemap, all from `projects.json` (`src/data/seo.ts`). Icons, the web manifest and the 1200×630 social image live in `/brand` at the repo root.
+- **Search-friendly**: the build fills in the meta and Open Graph/Twitter tags, generates JSON-LD structured data (`WebSite` plus an `ItemList` of every project) and writes a sitemap, all from `projects.json` (`src/data/seo.ts`). Icons, the web manifest and the 1200×630 social image live in `public/brand/` (served at `/brand`).
 - **Works everywhere**: phones get a lighter quality tier. A frame-rate watchdog drops post-processing if the device struggles. The reduced-motion setting turns flights into cuts. Browsers without WebGL (or `?no3d`) get a plain, pre-rendered project directory, which is also what crawlers see.
 
 ## How it works
 
 ```
-projects.json (repo root)
+Gallery/projects.json
       │  validated + normalised
       ▼
 src/data ──► src/main.ts ──► router (URL hash) ──► applyRoute()
@@ -38,7 +36,7 @@ src/data ──► src/main.ts ──► router (URL hash) ──► applyRoute(
                  └─ Dock, Search, Labels, clicks on the island ──► router.navigate()
 ```
 
-- **Terrain is a pure function.** `world/terrain.ts` exports `heightAt(x, z)`: a cone-shaped mountain, a beach shelf, ridges raised everywhere, then six valleys carved down to gently sloping floors along their axes, plus fractal simplex noise. The same function places landmarks and trees, aims the camera, and handles picking, so the code doesn't need the mesh to answer questions about the island.
+- **Terrain is a pure function.** `world/terrain.ts` exports `heightAt(x, z)`: a cone-shaped mountain, a beach shelf, ridges raised everywhere, then four valleys carved down to gently sloping floors along their axes, plus fractal simplex noise. The same function places landmarks and trees, aims the camera, and handles picking, so the code doesn't need the mesh to answer questions about the island.
 - **Low-poly look.** `world/island.ts` displaces a grid with `heightAt` and splits it into separate triangles. Each face gets one colour (sand, then a valley-tinted meadow, then rock, then snow). Hover glow is a small `onBeforeCompile` patch to three's standard material, driven by a per-face "which valley" attribute.
 - **Picking without raycasting 100k triangles.** `world/picking.ts` marches the pointer ray against `heightAt` and refines the hit by bisection. `partAt()` then turns the hit point into summit, valley or sea using its angle around the island.
 - **Camera.** `camera/CameraRig.ts` wraps camera-controls. It handles the intro descent through the clouds, overview, fly-to-valley, idle auto-rotate, and a focal offset that keeps the subject centred in the part of the screen the panel leaves free.
@@ -49,7 +47,7 @@ src/data ──► src/main.ts ──► router (URL hash) ──► applyRoute(
 ```
 src/
   main.ts              wiring: WebGL check, routes, shortcuts, sound toggle
-  router.ts            hash routes (#ai, #effects/ink-fluid, #all)
+  router.ts            hash routes (#apps, #tools/dupehunt, #all)
   data/                sections.ts (valley config), projects.ts (typed, validated projects.json)
   camera/CameraRig.ts  every camera move
   world/

@@ -1,298 +1,50 @@
-# 🏔️ Archive Mountain
+# Archive Mountain: Every Project I've Built, in One Repo 🏔️
 
-<img src="./Screenshot.jpg" />
+**[Explore the live gallery →](https://archive-mountain.netlify.app/)**
 
-**Archive Mountain** is a curated collection of web development projects organized into themed **Valleys**. Each Valley represents a focused area of exploration such as UI components, creative experiments, full web apps, backend systems, games, portfolios, and data scraping.
+[![Archive Mountain: a low-poly 3D island with four valleys of web projects](Gallery/Screenshot.png)](https://archive-mountain.netlify.app/)
 
-All projects are **self-contained**, framework-diverse, and built for hands-on learning.
+## Project Overview
 
-Projects with a live browser demo moved to [Web Mountain](https://github.com/AbdulDevHub/Web-Mountain) (with their commit history) and are playable on its [3D island](https://modern-web-mountain.netlify.app/). What stays here needs a server, API keys or a desktop runtime, or is a learning exercise.
+This repo holds all of my projects in one place: web apps, browser tools, designs and effects, AI tools, mobile apps, automation scripts, backend experiments and university coursework. It used to be seven repos (Web Mountain, University Mountain, Automation Mountain, Mobile Mountain, Case-Cobra, Modern-AliExpress and the original Archive Mountain). They were merged with their full commit history, so every commit keeps its original author and date.
 
----
+The front page is a **low-poly 3D island** built with TypeScript and Three.js. It shows only the projects worth opening in a browser, across four valleys:
 
-## 🗺️ Valley Overview
-
-- 🧠 **Backend Valley** — Backend & full-stack foundations
-- 🕷️ **Data Scrape Valley** — Web scraping & automation
-- 🌌 **Portfolio Valley** — Portfolio & personal showcase sites
-- 🔬 **Tech Experiments** — Tooling, CI/CD pipelines, and developer workflow setups
-- 🕸️ **App Valley** — Full web & desktop applications and clones
-
----
-
-## 🧠 Backend Valley
-
-<div align="center">
-  <img src="./Backend%20Valley/FastAPI/Screenshot.png" width="220" />
-  <img src="./Backend%20Valley/Hono-Practice/Screenshot.png" width="220" />
-  <img src="./Backend%20Valley/Redis-Learning/Screenshot.png" width="220" />
-</div>
-
-### Projects
-
-- **FastAPI**  
-  A modern Next.js-based project integrating backend concepts and API configuration, structured for scalable full-stack development.
-
-- **Hono Practice**  
-  REST API covering routing, validation, HTTPS security, auth middleware, tRPC, Next.js Frontend, Prisma + Supabase database integration (or Docker/PostgreSQL for local), and Vitest testing.
-
-- **Redis Learning**  
-  Learning and experimentation with Redis, a distributed in-memory key-value store.
-
-- **Hackathon-Nestjs-Backend**  
-  A scalable API built with NestJS and Agentic Coding for managing hackathons
-
-**Tech:** Next.js, TypeScript, PostCSS, pnpm, Hono, Prisma, Supabase, Zod, Vitest, Redis, IoRedis, Docker, NestJS
-
----
-
-## 🕷️ Data Scrape Valley
-
-<div align="center">
-  <img src="./Data%20Scrape%20Valley/Scrapping%20A%20Bookstore%20With%20Puppeteer/Screenshot.png" width="220" />
-  <img src="./Data%20Scrape%20Valley/Scrapping%20Blogs%20Wtih%20Puppeteer/Screenshot%201.png" width="220" />
-  <img src="./Data%20Scrape%20Valley/Scrapping%20Dental%20PMS%20Sites%20With%20Puppeteer/screenshots/dentrix-payer-list.png" width="220" />
-</div>
-
-### Projects
-
-- **Scrapping A Bookstore With Puppeteer**  
-  Book data extraction using Puppeteer and TypeScript.
-
-- **Scrapping Blogs With Puppeteer**  
-  Blog scraping scripts with extracted JSON datasets.
-
-- **Scrapping Dental PMS Sites With Puppeteer**  
-  Advanced scraping and comparison tooling for PMS platforms.
-
-**Tech:** Node.js, Puppeteer, TypeScript, JavaScript
-
----
-
-## 🌌 Portfolio Valley
-
-<div align="center">
-  <img src="./Portfolio%20Valley/3D%20Svlete%20Porfolio/Screenshot.png" width="220" />
-</div>
-
-### Projects
-
-- **3D Svelte Portfolio** — CMS-driven SvelteKit portfolio with slices  
-
-**Tech:** SvelteKit, Prismic, Three.js
-
----
-
-## 🔬 Tech Experiments
-
-<div align="center">
-  <img src="./Tech%20Experiments/Github-Actions-Reference/Screenshot.png" width="220" />
-  <img src="./Tech%20Experiments/VitestTesting/Screenshot.png" width="220" />
-  <img src="./Tech%20Experiments/Nextjs-OAuth/Screenshot.png" width="220" />
-  <img src="./Tech%20Experiments/My MCP Server/Screenshot.png" width="220" />
-  <img src="./Tech%20Experiments/N8N Workflows/Screenshot.png" width="220" />
-  <img src="./Tech%20Experiments/GSAP-Practice/public/preview.png" width="220" />
-  <img src="./Tech%20Experiments/OpenTelemetry-Demo/Screenshot.png" width="220" />
-</div>
-
-### Projects
-
-- **Github Actions Reference** — CI/CD pipeline with type-checking, testing, linting, and Docker builds wired into GitHub Actions
-- **Vitest Testing** — Unit & integration testing with Vitest
-- **Nextjs OAuth** — GitHub OAuth login with Auth.js (NextAuth v5)
-- **Cli-Chat** —  Terminal chat app with streaming responses, role-based history, and persistent conversations for Ollama and Anthropic.
-- **Rag-Demo** —  A from-scratch implementation of Retrieval-Augmented Generation (RAG) using Ollama, Docker, Postgres, PGVector, and Python
-- **Bull-MQ-Demo** —  A from-scratch implementation of a production-ready email queue system using BullMQ, Docker, Redis, and JavaScript
-- **Pino-Demo** — Compared Using `console.log` and `pino`
-- **Git-Practice** — Practiced Git Merge/Rebase Strategies and Conflicts
-- **Webhook-Demo** — Received and verified webhooks using Stripe CLI and HMAC-SHA256 signature verification
-- **My MCP Server** — A simple Model Context Protocol (MCP) server built with TypeScript, Node.js, Zod and MCP SDK.
-- **Bots-And-Hooks** — A practice repository for learning three essential tools that keep a codebase healthy and secure: **Husky**, **Dependabot**, and **Snyk**.
-- **Bun-Playground** — A hands-on learning project exploring [Bun](https://bun.sh)
-- **N8N Workflows** — A hands-on learning project exploring [N8N](https://n8n.io) and automated workflows
-- **LangChain-Practice** — Hands-on learning projects exploring LangChain (Built with Python and Streamlit)
-- **GSAP-Practice** —  Hands-on learning exploring GSAP (Built with React, Vite, and Tailwind CSS)
-- **ASCII Terminal Player** — A terminal-based video player that plays videos using **colorful ASCII art**, OpenCV, NumPy, and Python
-- **OpenTelemetry-Demo** — A hands-on learning project exploring OpenTelemetry (Built with Hono and Jaeger)
-
-**Tech:** React, Vite, Vitest, JavaScript, TypeScript, GitHub Actions, Docker, Next.js, Auth.js, GitHub OAuth, Ollama, Anthropic, Python, Postgres, Redis, BullMQ, Pino, Git, Stripe CLI, Node.js, MCP SDK, Zod, Husky, Dependabot, Snyk, Bun, N8N, LangChain, Streamlit, GSAP, OpenCV, NumPy, Hono, Jaeger
-
----
-
-## 🕸️ App Valley
-
-<div align="center">
-  <img src="./App%20Valley/Digital%20Hippo/Screenshot.png" width="220" />
-  <img src="./App%20Valley/3D%20Apple%20Homepage/Screenshot.png" width="220" />
-  <img src="./App%20Valley/Vercel-AI-Chat/Screenshot.png" width="220" />
-  <img src="./App%20Valley/Job-Pilot/context/designs/find-jobs.png" width="220" />
-  <img src="./App%20Valley/NoteMark/Screenshot.png" width="220" />
-  <img src="./App%20Valley/Screen%20Recorder/Screenshot.png" width="220" />
-  <img src="./App%20Valley/Image%20Resizer/assets/screen.png" width="220" />
-  <img src="./App Valley/CareerFlow/screenshots/Screenshot - Dashboard.png" width="220" />
-</div>
-
-### Projects
-
-- **Digital Hippo**  
-  Full-featured e-commerce platform with authentication, payments, and CMS.
-
-- **3D Apple Homepage**  
-  3D product-style homepage using React and Vite with GLB models.
-
-- **Vercel AI Chat**
-  A local, cost-free streaming chat app built with Next.js 16, Vercel AI SDK v6, OpenAI provider, and Ollama -> Demonstrates `useChat`, streaming API routes, and tool calling.
-
-- **Job Pilot**
-  AI-powered job search assistance for matching roles, tailored resumes, and faster applications.
-
-- **[NoteMark](https://github.com/AbdulDevHub/NoteMark)** (own repo)  
-  A cross-platform desktop note-taking app with native Markdown support. Installable on Mac, Windows, and Linux.  
-  **Tech:** Electron, React, TypeScript/JavaScript, Markdown, yarn
-
-- **Screen Recorder**  
-  A versatile cross-platform desktop screen recorder. Lets users select a specific screen, window, or stream to record. Compatible with macOS, Windows, and Linux.  
-  **Tech:** Electron.js, JavaScript, HTML, CSS
-
-- **Image Resizer**  
-  A desktop tool for selecting an image and easily changing its width and/or height.  
-  **Tech:** Electron.js, JavaScript, HTML, CSS
-
-- **Career Flow**
-  A job application tracker that tracks job applications per authenticated user, matches resume text against job postings, queues background jobs (reminders) via BullMQ, and is instrumented with OpenTelemetry so the queue and API can be traced end to end.
-  **Tech:** tRPC, Prisma ORM, PostgreSQL, BullMQ, OpenTelemetry, Vitest
-
-**Tech:** Angular, Vue 3, React, Vite, Next.js, Tailwind CSS, Node.js, Vercel AI SDK, Ollama, OpenAI, Claude, Open Router, InsForge, PostHog, Adzuna, BrowserBase, GSAP, PostgreSQL, shadcn-ui, Stripe, Kinde Auth, Prismic, Nuxt.js, Prisma ORM, Supabase, OAuth, Electron, Markdown, yarn, tRPC, BullMQ, OpenTelemetry, vitest
-
----
-
-## 🛠️ Skills Demonstrated
-
-- **Frameworks & Platforms:** React, Svelte, SvelteKit, Vue, Angular, Next.js, Nuxt.js, Electron (desktop)
-- **Styling:** Tailwind CSS, SCSS, Vuetify, CSS animations, shadcn-ui
-- **Backend & Data:** Node.js, Puppeteer, API integration, PostgreSQL, Prisma ORM, Supabase
-- **3D & Motion:** Three.js, asset-driven animation, GSAP
-- **Auth & Payments:** Stripe, Kinde Auth, OAuth (Google, GitHub)
-- **Architecture:** Component-based design, modular folders
-
----
-
-## 🚀 Getting Started
-
-Each project is self-contained.
-
-```bash
-cd Valley/Project-Name
-pnpm import
-pnpm install
-pnpm dev
-```
-
-Refer to individual project READMEs for project-specific setup.
-
----
-
-## 🗂️ Repository Structure & Git Concepts
-
-<div align="center">
-  <img src="Images/framework_mountain_structure.svg" width="250">
-  <img src="Images/git_nesting_approaches_overview.svg" width="250">
-</div>
-
-Archive Mountain is a **monorepo** — a single Git repository that houses multiple independent projects, organized into category folders called Valleys. One `.git` folder at the root tracks all of them.
-
-### Why a Monorepo?
-
-- One place to clone, one place to push
-- Shared config (`.gitignore`, `.gitattributes`, `.vscode/`) applies across all projects
-- Easy cross-referencing between projects
-
----
-
-### Projects With Their Own Repos
-
-Archive Mountain no longer uses Git submodules. Projects that have their own repo are simply linked:
-
-| Project | Source |
+| Valley | What's there |
 | --- | --- |
-| NoteMark | [AbdulDevHub/NoteMark](https://github.com/AbdulDevHub/NoteMark) |
-| Filmverse, CaseCobra, Glisten AI, Modern AliExpress | Live demos in [Web Mountain](https://modern-web-mountain.netlify.app/), each with its own repo |
+| **Tools Valley** | Browser tools that do one job well: a bulk file renamer, a duplicate finder, an on-device story narrator, a Gitmoji matcher, QR codes and more |
+| **Design Valley** | The Effects Playground (26 effects in one site), the Apple homepage, landing pages, portfolios and the Console Wars exhibit |
+| **App Valley** | The AI Toolkit (seven AI tools in one site), two full-stack shops, an anime catalogue and a Pokédex |
+| **Game Valley** | UNO, War and a Flappy-style arcade game |
 
-A plain `git clone https://github.com/AbdulDevHub/Archive-Mountain.git` gets everything.
+The gallery reads its list from [`Gallery/projects.json`](./Gallery/projects.json). See [Gallery/README.md](./Gallery/README.md) for how the island is built.
 
----
+## What's in the repo
 
-### Git Subtrees
+Folders are grouped by kind of project. Everything else that isn't in the gallery (practice projects, server-only code, desktop apps, coursework) still lives here with its history.
 
-A subtree absorbs another repository's code into this repo. Unlike submodules, there is no external dependency — the code and a squashed snapshot of its history are fully merged into Archive Mountain. Best used for projects you own locally that have their own Git history.
+| Folder | Contents |
+| --- | --- |
+| [`Gallery/`](./Gallery) | The 3D island front page and its project list |
+| [`Websites/`](./Websites) | Static sites, browser tools and games |
+| [`Designs/`](./Designs) | Landing pages, portfolios and UI experiments, including the [Apple Homepage](./Designs/Apple%20Homepage) |
+| [`Effects/`](./Effects) | The [Effects Playground](./Effects/Playground) plus one self-contained folder per effect, ready to copy into another site |
+| [`Web Apps/`](./Web%20Apps) | Framework apps: [Case-Cobra](./Web%20Apps/Case-Cobra), [Modern-AliExpress](./Web%20Apps/Modern-AliExpress), CareerFlow, Digital Hippo, Anime Vault and more |
+| [`AI/`](./AI) | The [AI Toolkit](./AI/AI%20Toolkit) and AI experiments (RAG, LangChain, an MCP server, a Vercel AI chat) |
+| [`Desktop Apps/`](./Desktop%20Apps) | Electron apps: an image resizer and a screen recorder |
+| [`Chrome Extensions/`](./Chrome%20Extensions) | Gallery Bookmark Viewer, plus links to the extensions that have their own repos |
+| [`Backend/`](./Backend) | FastAPI, NestJS, Hono and Redis projects, and Puppeteer scrapers |
+| [`Experiments/`](./Experiments) | Tooling and workflow practice: Bun, BullMQ, OpenTelemetry, GitHub Actions, webhooks and more |
+| [`Mobile/`](./Mobile) | Android (Kotlin, Jetpack Compose) codelabs and Recurrly, an Expo app |
+| [`Automation/`](./Automation) | Python scripts, Tampermonkey userscripts and GitHub label automation |
+| [`University/`](./University) | University of Toronto Mississauga coursework: games, data tools, labs and papers |
 
-**How it works:**
+## Run it locally
 
-- The absorbed project's `.git` folder is removed — Archive Mountain's root `.git` takes over
-- With `--squash`, all original commits are collapsed into two merge commits in the monorepo log, keeping history clean
-- Branches from the original repo are not carried over — only the specified branch is pulled in
+- Gallery: `cd Gallery && npm install && npm run dev`. The dev server also serves the rest of the repo, so gallery links work.
+- Any single project: open its folder and follow its own README.
+- Full deploy build: `bash build.sh`. It builds every gallery project in parallel, then copies only those into `_site/`, which is what Netlify publishes.
 
-**Subtree projects in this repo:**
+## Tech
 
-| Project | Valley | Original Branch |
-| --- | --- | --- |
-| Git-Practice | Tech Experiments | master |
-| Screen Recorder | App Valley | split-screen-recorder (from Electron-Mountain) |
-| Image Resizer | App Valley | split-image-resizer (from Electron-Mountain) |
-
-**Adding a new subtree from a local project:**
-
-```bash
-# Step 1 — Register the local project as a temporary remote
-git remote add Project-Name "C:\path\to\local\project"
-
-# Step 2 — Pull its history into a subfolder
-git subtree add --prefix="Valley/Project-Name" Project-Name branch-name --squash
-
-# Step 3 — Remove the temporary remote (no longer needed)
-git remote remove Project-Name
-
-# Step 4 — Push to GitHub
-git push
-```
-
-**Adding a new subtree from a GitHub repo:**
-
-```bash
-git remote add Project-Name https://github.com/username/repo-name.git
-git subtree add --prefix="Valley/Project-Name" Project-Name main --squash
-git remote remove Project-Name
-```
-
-**Adding subtrees from a source repo that contains multiple projects:**
-
-A plain `subtree add` pulls in the *entire* source repo's tree at the given prefix — fine for a single-project repo, but wrong if the source repo bundles several independent projects in subfolders (each would need its own prefix). In that case, split each subfolder into its own history first, then add each split separately:
-
-```bash
-# In a local clone of the source repo
-git clone https://github.com/username/multi-project-repo.git
-cd multi-project-repo
-git subtree split --prefix="Project-A" -b split-project-a
-git subtree split --prefix="Project-B" -b split-project-b
-cd ..
-
-# Back in Archive Mountain
-git remote add multi-project-repo "./multi-project-repo"   # or its GitHub URL
-git fetch multi-project-repo
-git subtree add --prefix="Valley/Project-A" multi-project-repo split-project-a --squash
-git subtree add --prefix="Valley/Project-B" multi-project-repo split-project-b --squash
-git remote remove multi-project-repo
-git push
-```
-
----
-
-## 📌 Notes
-
-- Focused on **learning, experimentation, and real implementations**
-- Valleys group projects by **intent**, not just framework
-- Clean separation between UI, apps, backend, and experiments
-
----
-
-**Welcome to Archive Mountain — explore the Valleys 🏔️**
+TypeScript, JavaScript, React, Next.js, Vue, Nuxt, Angular, Svelte, Three.js, GSAP, Tailwind CSS, Node.js, Python, Kotlin, Java and RISC-V assembly, deployed on Netlify (the gallery) and Vercel (the full-stack shops).

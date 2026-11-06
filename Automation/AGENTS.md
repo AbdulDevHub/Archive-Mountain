@@ -4,13 +4,13 @@ AI coding agents read this file for project rules, commands and pointers. Keep i
 After any meaningful change to this project, update this file, `context/PROGRESS_TRACKER.md`, and the "Project Overview" section of `README.md` to reflect the current state. Do this proactively, without being asked.
 
 ## Overview
-A monorepo of unrelated personal automation tools, one folder ("valley") per kind of tool. Nothing is shared between valleys except the root README and `.github/`.
+A monorepo of unrelated personal automation tools, one folder ("valley") per kind of tool. It lives in Archive Mountain; its label sync workflow is the root `.github/workflows/sync-labels.yml`.
 
 ## Stack
 - `Script Valley/`: Python 3.12 uv project (requests, bs4, opencv-python, numpy, pdf2image, pillow; ruff for dev). Poppler and ffmpeg are external binaries.
 - `Project Valley/Audio Generation/`: Node ESM run with bun or node, `kokoro-js` (Kokoro-82M ONNX q8). There's also a Colab notebook port in Python.
 - `Tampermonkey Valley/`: standalone `.user.js` userscripts.
-- `GitHub Valley/`: Bash + `gh` CLI. `.github/workflows/sync-labels.yml` runs it daily using the `LABELS_TOKEN` secret.
+- `GitHub Valley/`: Bash + `gh` CLI. The root `.github/workflows/sync-labels.yml` runs it daily using the `LABELS_TOKEN` secret.
 
 ## Commands
 - Python: `cd "Script Valley" && uv sync && uv run <script>.py --help`; lint with `uv run ruff check .`

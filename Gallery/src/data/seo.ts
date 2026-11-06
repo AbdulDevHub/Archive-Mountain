@@ -7,7 +7,7 @@ import type { Project } from "./projects.ts"
 import { getSection } from "./sections.ts"
 
 export const SITE_URL = "https://archive-mountain.netlify.app"
-export const REPO_URL = "https://github.com/AbdulDevHub/Web-Mountain"
+export const REPO_URL = "https://github.com/AbdulDevHub/Archive-Mountain"
 
 const AUTHOR = {
   "@type": "Person",

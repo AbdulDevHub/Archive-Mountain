@@ -146,7 +146,7 @@ A full-stack subscription management app built with React Native and Expo. Recur
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/your-username/Mobile-Mountain.git
+   git clone https://github.com/AbdulDevHub/Archive-Mountain.git && cd "Archive-Mountain/Mobile"
    ```
 
 2. **For native Android projects:**

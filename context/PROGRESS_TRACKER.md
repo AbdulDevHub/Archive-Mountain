@@ -1,41 +1,31 @@
 # Progress Tracker
 
-The running status of Web Mountain for AI coding sessions and the owner.
+The running status of Archive Mountain for AI coding sessions and the owner.
 Update it after meaningful work: refresh "Current state", move finished items out of "In progress", and add a dated session-log entry (newest first).
 When old log entries stop being useful, fold them into "Earlier history" instead of deleting them.
 
 ## Current state
-- The 3D island gallery (`Gallery/`) is the live front page on `main`. It is built by `build.sh`, and `netlify.toml` rewrites `/` to it. The old flat grid `index.html` is gone.
-- All 64 projects in `projects.json` have a one-line description, 1–4 tech tags and a screenshot.
-- SEO: meta/OG/Twitter tags, JSON-LD, a generated sitemap at `/sitemap.xml`, `robots.txt`, a manifest, icons and an OG image (`/brand`).
-- Gallery features: a loading screen (shown before first paint by an inline script in `index.html`), valley fly-in with a side panel or bottom sheet, deep links (`#ai`, `#effects/ink-fluid`), search (`/`), clickable hover previews, ambient life, an optional Web Audio soundscape, a no-WebGL directory, and quality tiers. Project cards open in a new tab.
-- 24 Vitest tests pass. The build is about 930 kB JS (237 kB gzip).
+- One repo for everything: Web Mountain, University Mountain, Automation Mountain, Mobile Mountain, Case-Cobra and Modern-AliExpress were merged into Archive Mountain with full history (every commit keeps its author and date; 33 duplicate commits from an earlier Archive→Web move were dropped so nothing counts twice on the contribution graph).
+- Folders are grouped by type (see `README.md`). The gallery (`Gallery/`) is the front page at https://archive-mountain.netlify.app and shows 27 approved projects in four valleys: Tools, Design, Apps, Games.
+- New combined sites: the Effects Playground (`Effects/Playground/`, 26 effects), the AI Toolkit (`AI/AI Toolkit/`, hub + 7 tools) and the Apple Homepage (`Designs/Apple Homepage/`, Mac + iPhone pages, the iPhone page ported from WebGi to React Three Fiber).
+- Deploy: `build.sh` builds everything, then `Gallery/tools/assemble-site.mjs` copies only gallery projects into `_site/` (Netlify's publish dir).
 
 ## In progress
-- **Archive → Web Mountain migration: paused 2026-11-05 at the owner's request (a bigger merge is planned). Committed locally, not pushed.**
-  - Done: 15 projects merged in with history (merge commit `🔀 merge: Move 15 projects…`); Archive's 5 submodules and the DhikrForest submodule removed; link-only cards for Filmverse, CaseCobra, Modern AliExpress, Glisten AI, DhikrForest; App Valley (6th valley, castle landmark) and the "UI & Portfolios" relabel; `projects.json` (83 entries), READMEs and agent docs updated; Netflix copied to the Filmverse repo as `todo/netflix-card-ui/`.
-  - Build: `build.sh` now builds in parallel, records each job's exit code, accepts task labels (`bash build.sh job-board Gallery`), and writes `_redirects` for `/projects/<slug>/`. `tools/relocate.mjs` fixes root-absolute paths (skips paths already under the base).
-  - Verified in a local preview: Job Board (mock API, hash routes), Anime Vault (infinite scroll from shikimori.io), PWA Notes (service worker). Built OK but not yet clicked through: Angular Webshop, MacBook Homepage, GSAP Drinks, Techno Explosion, Animated CSS Login Form.
-  - Still to do: rebuild and check black-hole (its first build was double-prefixed before the relocate fix), fancy-green, 3d-solar-portfolio, pay-card, sky-diving-parallax-cat, vuetify-image-gallery and Flappy Bird (`allowBuilds: esbuild` added for pnpm 11). Then take a Pay Card screenshot (it uses `demo.gif` for now), look at the castle on the island, regenerate `Screenshot.png` and `brand/og-image.png` (they still show five valleys), and run one full Netlify deploy preview. Full local build takes about 25 min on Windows; Netlify build minutes will rise, so consider caching unchanged apps.
-  - Stayed in Archive: 3D Apple Homepage (its `webgi` package is a raw tarball URL, blocked by the local npm `allow-remote` policy), 3D Svelte Portfolio (its Prismic repo returns no content), plus server, desktop and practice projects.
-  - Later (owner): polish the moved tutorial clones; decide whether to absorb NoteMark/CaseCobra as subtrees and delete their repos.
+- Hosting: relink the Netlify site and the Case-Cobra / Modern-AliExpress Vercel projects to this repo.
+- Issues from the merged repos are being transferred here; the owner deletes the old repos by hand afterwards.
 
 ## Next steps
-- Spot-check the subagent-drafted blurbs and tags for the projects that weren't verified against code: Gitmoji Helper, the AI Valley apps, the extensions, and several effects.
-- Optional: load `postprocessing` only on the high quality tier to cut the bundle for phones.
+- 3D Svelte Portfolio: its Prismic repo only has two starter pages and no `settings` document, so it can't render. It is set up to prerender statically under `/projects/3d-svelte-portfolio/`; it needs its content recreated (or moved into local files) before it can join Design Valley.
+- CareerFlow and Digital Hippo: deploy on Vercel from their folders once the owner provides env vars (CareerFlow: `DATABASE_URL`, `REDIS_URL`, `AUTH_SECRET`, GitHub OAuth; Digital Hippo: Payload secret, MongoDB URL, Stripe, Resend), then add them to App Valley.
+- Video.js effect: build out more variations (tracked as a GitHub issue).
+- `LABELS_TOKEN` secret must be added to this repo for the daily label sync workflow.
+- Roll the Stripe test key that is in the public history of `Web Apps/Angular Webshop`.
+- Optional: add `@types/three` to the Apple Homepage so `tsc -b` passes (the MacBook code had type errors before the merge).
 
 ## Session log
-- **2026-11-05 (migration)**: Grill session on Archive vs Web Mountain, then most of the migration (see In progress). Decisions: any project with a live demo belongs here; no new standalone deploys; repos with their own live site are linked, not submoduled; Gallery-Viewer, Local-Video-Player, Linkest and Hydration-Hero stay submodules; history is kept when moving projects.
-- **2026-11-05 (later)**: Made the island read as an island and added SEO.
-  - Sea: a lagoon-to-deep-water gradient per pixel, animated surf around the shoreline, distant islets, horizon haze, and a lower, further-back default camera (polar 64°, distance 178).
-  - SEO: a full meta/OG/Twitter set, JSON-LD (`WebSite` + `CollectionPage`/`ItemList`), a generated sitemap, `robots.txt`, a web manifest, icons and an OG image in `/brand`, and a single h1. The GitHub repo description, homepage and topics are updated (the unused `firebase` topic was removed).
-  - The GitHub social preview image must be uploaded by hand (Settings → Social preview → `brand/og-image.png`); there is no API for it.
-- **2026-11-05**: Feedback fixes after the first live look.
-  - The page showed the plain directory before switching to the island. Now an inline head script picks 3D before first paint and shows a loader until the first frames render.
-  - The hover card followed the cursor and said "click", so it was chased. It now stays where it appeared and is itself clickable ("Explore …").
-  - Project cards open in a new tab, so the island doesn't reload on Back.
-  - Added the missing Discord Thread Extractor screenshot.
-- **2026-11-04**: Planned the gallery redesign (grill session) and built `Gallery/`. Decisions: the mountain is the navigation layer, not a fully 3D gallery. It's low-poly and daytime, with one peak and five radial valleys, each with its own biome and landmark. Cards open in a side panel (a bottom sheet on phones). The stack is Vite + TS + Three.js. Cards show a blurb and tags, and there's a GitHub "Source" link. The user wanted daytime, not night, and gave free rein on colours and extras. Pushed straight to `main` at the user's request.
+- **2026-11-05 (consolidation)**: Grill session, then the merge. Decisions: one public repo; flat layout by type; the gallery keeps only projects the owner approved one by one ("quality over quantity"); effects and AI apps each become one site; 3D Apple + MacBook pages merged; Console Wars added; rebranded to Archive Mountain on the renamed Netlify site; issues transferred with all states, no extra labels; the owner deletes old repos manually. Cut from the gallery (still in the repo): Rename Files, Face Bomp, PWA Notes, DhikrForest, Skynet Eats, Drone Series, Scenic Forests, Momentum, Video Background Website, Glisten AI, Vuetify Image Gallery, Animated CSS Login Form, Ghost Eyes, Moving Squares, Animated Input Border, Magic Card, Shine Effect, Balloon Spawn, Filmverse, Job Board, Angular Webshop and all Chrome extensions.
+- **2026-11-05 (earlier, Web Mountain)**: Moved 15 Archive projects into Web Mountain, added App Valley, SEO, loader and hover-card fixes.
+- **2026-11-04 (Web Mountain)**: Built the 3D island gallery (Vite + TS + Three.js, daytime low-poly, radial valleys, side panel / bottom sheet).
 
 ## Earlier history
-- The repo began as a static grid (`index.html` + `projects.json`) over the project folders. AI Valley was rebuilt into 6 Vite apps (see `AI Valley/AGENTS.md`).
+- Web Mountain began as a static grid (`index.html` + `projects.json`) over the project folders. AI Valley was rebuilt from 18 Scrimba course projects into 6 Vite apps, now the AI Toolkit.

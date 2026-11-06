@@ -1,14 +1,16 @@
 # Architecture
 
-How Web Mountain is deployed and how the 3D gallery is put together, so code lands in the right layer.
+How Archive Mountain is deployed and how the 3D gallery is put together, so code lands in the right layer.
 Read this before changing the deploy setup, `projects.json`'s shape, or gallery modules. Update it when those boundaries change.
 `Gallery/README.md` has the longer, reader-facing version.
 
 ## Deploy layout
-- Netlify publishes the **repo root** as-is (`netlify.toml`: `publish = "."`), after `bash build.sh` builds the sub-projects that need it, in parallel: Bulk File Renamer, Gitmoji Helper, Midnight Passages, Flappy Bird, Animated CSS Login Form, AI Valley, the Gallery and the framework apps in its `APPS` table.
-- Framework apps (`App Valley/*`, most moved `UI Experiments/*`, Sky Diving Parallax Cat) are served at `/projects/<slug>/`. `build.sh` sets `BASE_PATH=/projects/<slug>/` for each build, runs `tools/relocate.mjs` on the output to fix root-absolute public paths, and writes `_redirects` lines (`/projects/<slug>/*` → the output folder, status 200). Netlify applies `_redirects` before `netlify.toml`.
-- `/` is rewritten (status 200) to `/Gallery/dist/index.html`. The Vite build uses `base: "/Gallery/dist/"`, so its assets resolve there. Project links and screenshots are site-absolute paths into the repo.
-- `netlify/functions/*.mts` are served at `/api/<name>` (used by AI Valley).
+- Netlify runs `bash build.sh` and publishes `_site/` (`netlify.toml`). Nothing outside `_site/` is deployed, so University, Mobile, backend and cut projects are never published.
+- `build.sh` builds in parallel: Bulk File Renamer, Gitmoji Helper, Midnight Passages and Flappy Bird (in place), the Gallery, and the framework apps in its `APPS` table (AI Toolkit, Anime Vault, Apple Homepage, the Design Valley apps, Sky Diving Parallax Cat). Each app builds with `BASE_PATH=/projects/<slug>/`; `Gallery/tools/relocate.mjs` fixes root-absolute public paths in the output.
+- Then `Gallery/tools/assemble-site.mjs` copies `Gallery/dist/` to the root of `_site/`, plus, for every `Gallery/projects.json` entry, the folder holding its static `href` and its `image`, and every effect folder in `Effects/Playground/effects.json`. `build.sh` copies each app's output to `_site/projects/<slug>/`. No rewrites or `_redirects` are needed.
+- The gallery builds with `base: "/"`. `Gallery/public/` (brand icons, manifest, OG image, `robots.txt`) lands at the site root next to the generated `sitemap.xml`. Project links and screenshots are site-absolute repo paths.
+- `netlify/functions/*.mts` are served at `/api/<name>` (used by the AI Toolkit).
+- Case-Cobra and Modern-AliExpress are separate Vercel projects built from their folders in this repo; the gallery links to their live URLs.
 
 ## Gallery data flow
 ```

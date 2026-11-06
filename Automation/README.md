@@ -4,7 +4,7 @@
 
 # Automation Mountain: Python Scripts, Local Text-to-Speech, Userscripts and GitHub Label Automation
 
-[![Sync Labels](https://github.com/AbdulDevHub/Automation-Mountain/actions/workflows/sync-labels.yml/badge.svg)](https://github.com/AbdulDevHub/Automation-Mountain/actions/workflows/sync-labels.yml)
+[![Sync Labels](https://github.com/AbdulDevHub/Archive-Mountain/actions/workflows/sync-labels.yml/badge.svg)](https://github.com/AbdulDevHub/Archive-Mountain/actions/workflows/sync-labels.yml)
 ![Python](https://img.shields.io/badge/Python-3.12+-3776AB?logo=python&logoColor=white)
 ![uv](https://img.shields.io/badge/uv-managed-DE5FE9?logo=uv&logoColor=white)
 ![Bun](https://img.shields.io/badge/Bun-Kokoro_TTS-000000?logo=bun&logoColor=white)
