@@ -1,25 +1,19 @@
-import React from "react";
+const scrollToTop = () => window.scrollTo({ top: 0, left: 0, behavior: "smooth" })
 
-function DisplaySection({ triggerPreview }) {
-  const handleScrollToTop = () => {
-    window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
-  };
-
+const DisplaySection = ({ onPreview }: { onPreview: () => void }) => {
   return (
-    <div className="display-section wrapper">
+    <section className="display-section wrapper">
       <h2 className="title">New</h2>
       <p className="text">Brilliant.</p>
-      <span className="description">
-        A display that's up to 2x brighter in the sun.
-      </span>
-      <button className="button" onClick={triggerPreview}>
+      <span className="description">A display that's up to 2x brighter in the sun.</span>
+      <button type="button" className="button" onClick={onPreview}>
         Try me!
       </button>
-      <button className="back-button" onClick={handleScrollToTop}>
-        TOP
+      <button type="button" className="back-button" onClick={scrollToTop}>
+        Top
       </button>
-    </div>
-  );
+    </section>
+  )
 }
 
-export default DisplaySection;
+export default DisplaySection

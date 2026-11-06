@@ -1,184 +1,112 @@
-import React, {
-  useRef,
-  useState,
-  useCallback,
-  forwardRef,
-  useImperativeHandle,
-  useEffect,
-} from "react";
-import {
-  ViewerApp,
-  AssetManagerPlugin,
-  GBufferPlugin,
-  ProgressivePlugin,
-  TonemapPlugin,
-  SSRPlugin,
-  SSAOPlugin,
-  BloomPlugin,
-  GammaCorrectionPlugin,
-  mobileAndTabletCheck,
-} from "webgi";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { scrollAnimation } from "../lib/scroll-animation";
+import { Suspense, useEffect, useRef, useState } from "react"
+import { Canvas, useFrame, useThree, type RootState } from "@react-three/fiber"
+import { OrbitControls, useGLTF, useProgress } from "@react-three/drei"
+import { Vector3, type Camera } from "three"
+import gsap from "gsap"
+import StudioLights from "../components/three/StudioLights.jsx"
+import { scrollAnimation, shot } from "./scrollAnimation"
+import AnimatedLogo from "./assets/logo-animated.gif"
 
-gsap.registerPlugin(ScrollTrigger);
+const MODEL = `${import.meta.env.BASE_URL}models/iphone-14-pro.glb`
 
-const WebgiViewer = forwardRef((props, ref) => {
-  const canvasRef = useRef(null);
-  const [viewerRef, setViewerRef] = useState(null);
-  const [targetRef, setTargetRef] = useState(null);
-  const [cameraRef, setCameraRef] = useState(null);
-  const [positionRef, setPositionRef] = useState(null);
-  const canvasContainerRef = useRef(null);
-  const [previewMode, setPreviewMode] = useState(false);
-  const [isMobile, setIsMobile] = useState(null);
+const Iphone = () => {
+  // The model is Draco-compressed; drei loads the decoder on demand
+  const { scene } = useGLTF(MODEL, true)
+  return <primitive object={scene} />
+}
 
-  useImperativeHandle(ref, () => ({
-    triggerPreview() {
-      setPreviewMode(true);
-      canvasContainerRef.current.style.PointerEvents = "all";
-      props.contentRef.current.style.opacity = "0";
+/** Points the camera from `position` at `target` every frame, unless the visitor is orbiting it */
+const CameraRig = ({ position, target, orbiting }: { position: Vector3; target: Vector3; orbiting: boolean }) => {
+  const camera = useThree((state) => state.camera)
+  useFrame(() => {
+    if (orbiting) return
+    camera.position.copy(position)
+    camera.lookAt(target)
+  })
+  return null
+}
 
-      gsap.to(positionRef, {
-        x: 13.04,
-        y: -2.01,
-        z: 2.29,
-        duration: 2,
-        onUpdate: () => {
-          viewerRef.setDirty();
-          cameraRef.positionTargetUpdated(true);
-        },
-      });
+const Loader = () => {
+  const { active, progress } = useProgress()
+  const done = !active && progress === 100
+  return (
+    <div className={done ? "iphone-loader is-done" : "iphone-loader"} aria-hidden="true">
+      <img src={AnimatedLogo} alt="" />
+    </div>
+  )
+}
 
-      gsap.to(targetRef, { x: 0.11, y: 0.0, z: 0.0, duration: 2 });
-      viewerRef.scene.activeCamera.setCameraOptions({ controlsEnabled: true });
-    },
-  }));
+interface Props {
+  isMobile: boolean
+  preview: boolean
+  onExit: () => void
+}
 
-  const memoizedScrollAnimation = useCallback(
-    (position, target, isMobile, onUpdate) => {
-      if (position && target && onUpdate) {
-        scrollAnimation(position, target, isMobile, onUpdate);
-      }
-    },
-    []
-  );
+/**
+ * The 3D iPhone in front of the page. Scrolling flies the camera between shots; "Try me"
+ * flies it to a close-up and hands control to OrbitControls until "Exit".
+ */
+const IphoneViewer = ({ isMobile, preview, onExit }: Props) => {
+  const [position] = useState(() => new Vector3())
+  const [target] = useState(() => new Vector3())
+  const [orbiting, setOrbiting] = useState(false)
+  const camera = useRef<Camera | null>(null)
+  const firstRun = useRef(true)
 
-  const setupViewer = useCallback(async () => {
-    // Initialize the viewer
-    const viewer = new ViewerApp({
-      canvas: canvasRef.current,
-    });
-
-    setViewerRef(viewer);
-    const isMobileOrTablet = mobileAndTabletCheck();
-    setIsMobile(isMobileOrTablet);
-
-    const manager = await viewer.addPlugin(AssetManagerPlugin);
-    const camera = viewer.scene.activeCamera;
-    const position = camera.position;
-    const target = camera.target;
-
-    setCameraRef(camera);
-    setPositionRef(position);
-    setTargetRef(target);
-
-    // Add plugins
-    await viewer.addPlugin(GBufferPlugin);
-    await viewer.addPlugin(new ProgressivePlugin(32));
-    await viewer.addPlugin(new TonemapPlugin(true));
-    await viewer.addPlugin(GammaCorrectionPlugin);
-    await viewer.addPlugin(SSRPlugin);
-    await viewer.addPlugin(SSAOPlugin);
-    await viewer.addPlugin(BloomPlugin);
-
-    // This must be called once after all plugins are added.
-    viewer.renderer.refreshPipeline();
-
-    // Import and add a GLB file.
-    await manager.addFromPath("scene-black.glb");
-
-    viewer.getPlugin(TonemapPlugin).config.clipBackground = true;
-
-    viewer.scene.activeCamera.setCameraOptions({ controlsEnabled: false });
-
-    if (isMobileOrTablet) {
-      position.set(-16.7, 1.17, 11.7);
-      target.set(0, 1.37, 0);
-      props.contentRef.current.className = "mobile-or-tablet";
-    }
-
-    window.scrollTo(0, 0);
-
-    let needsUpdate = true;
-
-    const onUpdate = () => {
-      needsUpdate = true;
-      viewer.setDirty();
-    };
-
-    viewer.addEventListener("preFrame", () => {
-      if (needsUpdate) {
-        camera.positionTargetUpdated(true);
-        needsUpdate = false;
-      }
-    });
-
-    memoizedScrollAnimation(position, target, isMobileOrTablet, onUpdate);
-  }, []);
-
+  // Scroll-driven shots
   useEffect(() => {
-    setupViewer();
-  }, []);
+    const start = shot("start", isMobile)
+    position.set(start.position.x, start.position.y, start.position.z)
+    target.set(start.target.x, start.target.y, start.target.z)
+    const ctx = gsap.context(() => scrollAnimation(position, target, isMobile))
+    return () => ctx.revert()
+  }, [isMobile, position, target])
 
-  const handleExit = useCallback(() => {
-    canvasContainerRef.current.style.pointerEvents = "none";
-    props.contentRef.current.style.opacity = "1";
-    viewerRef.scene.activeCamera.setCameraOptions({ controlsEnabled: false });
-    setPreviewMode(false);
-
-    gsap.to(positionRef, {
-      x: !isMobile ? 1.56 : 9.36,
-      y: !isMobile ? 5.0 : 10.95,
-      z: !isMobile ? 0.01 : 0.09,
-      scrollTrigger: {
-        trigger: ".display-section",
-        start: "top bottom",
-        end: "top top",
-        scrub: 2,
-        immediateRender: false,
-      },
-      onUpdate: () => {
-        viewerRef.setDirty();
-        cameraRef.positionTargetUpdated(true);
-      },
-    });
-
-    gsap.to(targetRef, {
-      x: !isMobile ? -0.55 : -1.62,
-      y: !isMobile ? 0.32 : 0.02,
-      z: !isMobile ? 0.0 : -0.06,
-      scrollTrigger: {
-        trigger: ".display-section",
-        start: "top bottom",
-        end: "top top",
-        scrub: 2,
-        immediateRender: false,
-      },
-    });
-  }, [canvasContainerRef, viewerRef, positionRef, cameraRef, targetRef]);
+  // Flights into and out of the close-up preview
+  useEffect(() => {
+    if (firstRun.current) {
+      firstRun.current = false
+      return
+    }
+    setOrbiting(false)
+    // Leaving the preview starts from wherever the visitor orbited to
+    if (!preview && camera.current) position.copy(camera.current.position)
+    const next = shot(preview ? "preview" : "display", isMobile)
+    const flight = gsap.timeline({ onComplete: () => setOrbiting(preview) })
+    flight.to(position, { ...next.position, duration: 2, ease: "power2.inOut" }, 0)
+    flight.to(target, { ...next.target, duration: 2, ease: "power2.inOut" }, 0)
+    return () => {
+      flight.kill()
+    }
+  }, [preview, isMobile, position, target])
 
   return (
-    <div ref={canvasContainerRef} id="webgi-canvas-container">
-      <canvas id="webgi-canvas" ref={canvasRef} />
-      {previewMode && (
-        <button onClick={handleExit} className="button">
+    <div className={preview ? "iphone-canvas is-preview" : "iphone-canvas"}>
+      <Canvas
+        camera={{ fov: 25, near: 0.1, far: 200 }}
+        dpr={[1, 2]}
+        gl={{ alpha: true, antialias: true }}
+        onCreated={(state: RootState) => {
+          camera.current = state.camera
+        }}
+      >
+        <StudioLights />
+        <Suspense fallback={null}>
+          <Iphone />
+        </Suspense>
+        <CameraRig position={position} target={target} orbiting={orbiting} />
+        {orbiting && <OrbitControls target={target} enablePan={false} minDistance={4} maxDistance={24} />}
+      </Canvas>
+      {preview && (
+        <button type="button" className="iphone-exit" onClick={onExit}>
           Exit
         </button>
       )}
+      <Loader />
     </div>
-  );
-});
+  )
+}
 
-export default WebgiViewer;
+useGLTF.preload(MODEL, true)
+
+export default IphoneViewer

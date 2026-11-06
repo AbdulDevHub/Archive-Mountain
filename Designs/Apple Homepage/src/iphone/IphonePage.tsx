@@ -1,31 +1,27 @@
-import Nav from "./components/Nav";
-import Jumbotron from "./components/Jumbotron";
-import SoundSection from "./components/SoundSection";
-import DisplaySection from "./components/DisplaySection";
-import WebgiViewer from "./components/WebgiViewer";
-import Loader from "./components/Loader";
-import { useRef } from "react";
+import { useState } from "react"
+import clsx from "clsx"
+import { useMediaQuery } from "react-responsive"
+import Jumbotron from "./Jumbotron.jsx"
+import SoundSection from "./SoundSection.jsx"
+import DisplaySection from "./DisplaySection.jsx"
+import IphoneViewer from "./IphoneViewer.jsx"
+import "./iphone.css"
 
-function App() {
-  const webgiViewerRef = useRef();
-  const contentRef = useRef();
-
-  const handlePreview = () => {
-    webgiViewerRef.current.triggerPreview();
-  };
+/** The iPhone 14 Pro page: copy that scrolls over a fixed 3D phone */
+const IphonePage = () => {
+  const [preview, setPreview] = useState(false)
+  const isMobile = useMediaQuery({ query: "(max-width: 990px)" })
 
   return (
-    <div className="App">
-      <Loader />
-      <div ref={contentRef} id="content">
-        <Nav />
+    <div className={clsx("iphone-page", isMobile && "mobile-or-tablet")}>
+      <div className={clsx("iphone-content", preview && "is-hidden")}>
         <Jumbotron />
         <SoundSection />
-        <DisplaySection triggerPreview={handlePreview} />
+        <DisplaySection onPreview={() => setPreview(true)} />
       </div>
-        <WebgiViewer contentRef={contentRef} ref={webgiViewerRef} />
+      <IphoneViewer isMobile={isMobile} preview={preview} onExit={() => setPreview(false)} />
     </div>
-  );
+  )
 }
 
-export default App;
+export default IphonePage

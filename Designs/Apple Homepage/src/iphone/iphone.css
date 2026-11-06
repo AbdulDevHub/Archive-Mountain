@@ -1,448 +1,272 @@
-@import url("https://fonts.cdnfonts.com/css/sf-pro-display");
+/* iPhone 14 Pro page. Every rule is scoped to .iphone-page so the Mac page's Tailwind styles never clash. */
 
-::-webkit-scrollbar {
-  display: none;
-}
-
-body {
-  margin: 0;
-  font-family: "SF Pro Display", SF Pro Icons, Helvetica Neue, Helvetica, Arial,
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  background-color: #000;
+.iphone-page {
+  --iphone-blue: #0071e3;
+  --iphone-link: #2997ff;
   color: #f5f5f7;
+  font-family: var(--font-regular), "Helvetica Neue", Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
-}
-
-body::-webkit-scrollbar-track {
-  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
-  border-radius: 10px;
-  background-color: #f5f5f5;
-}
-
-body::-webkit-scrollbar {
-  width: 12px;
-  background-color: #aaaaaa;
-}
-
-body::-webkit-scrollbar-thumb {
-  border-radius: 10px;
-  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
-  background-color: #555;
-}
-
-.App #content {
-  transition-duration: 0.3s;
-}
-
-#webgi-canvas {
-  width: 100%;
-  height: 100%;
-  background: transparent;
-}
-
-#webgi-canvas-container {
-  width: 100vw;
-  height: 100vh;
-  position: fixed;
-  display: flex;
-  justify-content: flex-end;
-  flex-direction: column;
-  align-items: center;
-  top: 0;
-  pointer-events: none;
-  min-height: 831px;
-  background: transparent;
-}
-
-#webgi-canvas-container .button {
-  background: #0071e3;
-  color: #fff;
-  cursor: pointer;
-  text-align: center;
-  white-space: nowrap;
-  font-size: 17px;
-  font-weight: 400;
-  min-width: 28px;
-  padding: 8px 16px;
-  border-radius: 980px;
-  position: absolute;
-  top: 30px;
-  border: none;
-  z-index: 1;
-  transition-duration: 0.3s;
-}
-
-.display-section.wrapper {
-  margin-left: auto;
-  margin-right: auto;
-  max-width: 980px;
-  width: 100%;
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  padding: 50px 0 400px 0;
-  height: 100vh;
-  box-sizing: border-box;
-  opacity: 0;
+.iphone-page .iphone-content {
   position: relative;
+  transition: opacity 0.3s ease;
 }
 
-.display-section .title {
+.iphone-page .iphone-content.is-hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.iphone-page .wrapper {
+  box-sizing: border-box;
+  margin-inline: auto;
+  width: 100%;
+}
+
+.iphone-page .title {
+  margin: 0;
   color: #86868b;
   font-size: 17px;
   font-weight: 400;
   letter-spacing: -0.022em;
-  margin-bottom: 0;
 }
 
-.display-section .text {
+.iphone-page .text {
   display: inline-block;
-  color: transparent;
+  margin: 16px 0 18px;
+  padding-top: 0.5px;
   background-image: linear-gradient(180deg, #ffb6ff, #b344ff);
   -webkit-background-clip: text;
   background-clip: text;
-  padding-top: 0.5px;
-  margin-top: 16px;
+  color: transparent;
+  font-family: var(--font-semibold), sans-serif;
   font-size: 48px;
-  font-weight: 600;
-  margin-bottom: 18px;
+  line-height: 1.1;
 }
 
-.display-section .description {
+.iphone-page .description {
   font-size: 21px;
-  font-weight: 400;
+  text-align: center;
 }
 
-.display-section .button {
-  background: #0071e3;
-  color: #fff;
-  cursor: pointer;
+.iphone-page .links {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 24px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.iphone-page .button {
   display: inline-block;
-  text-align: center;
-  white-space: nowrap;
-  font-size: 17px;
-  font-weight: 400;
   min-width: 28px;
+  margin: 0 14px;
   padding: 8px 16px;
+  border: none;
   border-radius: 980px;
+  background: var(--iphone-blue);
+  color: #fff;
+  font-size: 17px;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.iphone-page .link {
+  margin: 0 14px;
+  border: none;
+  background: none;
+  color: var(--iphone-link);
+  font-size: 21px;
+  cursor: pointer;
+}
+
+.iphone-page .link:hover {
+  text-decoration: underline;
+}
+
+/* Hero */
+.iphone-page .jumbotron-section {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 980px;
+  height: 100vh;
+  min-height: 831px;
+  padding-top: calc(7vh + 60px);
+}
+
+.iphone-page .jumbotron-section .logo {
+  width: 140px;
+  margin-top: 8px;
+}
+
+.iphone-page .jumbotron-section .iphone-img {
+  position: absolute;
+  bottom: 0;
+  height: 516px;
+  margin-right: -400px;
+}
+
+/* Sound: a light band the phone turns around in front of */
+.iphone-page .sound-section {
+  height: 100vh;
+  background-color: #fbfbfd;
+  color: #1d1d1f;
+}
+
+.iphone-page .sound-section .body {
+  max-width: 980px;
+  margin: 0 auto;
+}
+
+.iphone-page .sound-section .content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 490px;
+  padding: 200px 0;
+  opacity: 0;
+}
+
+.iphone-page .sound-section .title {
+  color: #1d1d1f;
+}
+
+.iphone-page .sound-section .text {
+  background-image: linear-gradient(90deg, #1e3791 0%, #2948b1 40%, #3153c6 55%, #385fda 60%);
+}
+
+/* Display */
+.iphone-page .display-section {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 980px;
+  height: 100vh;
+  padding: 50px 0 400px;
+  opacity: 0;
+}
+
+.iphone-page .display-section .button {
   margin: 15px;
 }
 
-.display-section .back-button {
-  background: white;
-  color: black;
+.iphone-page .back-button {
+  position: fixed;
+  right: 12px;
+  bottom: 12px;
+  z-index: 5;
+  padding: 10px 30px;
   border: none;
   border-radius: 50px;
-  padding: 10px 30px;
-  font-size: 0.6rem;
+  background: #fff;
+  color: #000;
+  font-size: 0.7rem;
+  letter-spacing: 0.06em;
   cursor: pointer;
-  transition: all 0.8s ease;
+}
+
+/* The 3D phone sits on top of the copy but lets clicks through until the preview starts */
+.iphone-page .iphone-canvas {
   position: fixed;
-  bottom: 10px;
-  right: 10px;
-}
-
-nav.nav-wrapper {
-  margin: 0;
-  width: 100%;
-  min-width: 320px;
-  height: 48px;
-  max-height: 44px;
-  font-size: 17px;
-  background-color: #f2f2f2;
-}
-
-nav .nav-content {
-  margin: 0 auto;
-  box-sizing: border-box;
-  width: 100%;
-  max-width: 1024px;
-  padding: 0 22px;
-}
-
-nav .list-styled {
-  cursor: default;
-  margin: 0 -9px;
-  width: auto;
-  height: 44px;
-  display: flex;
-  justify-content: space-between;
-  list-style: none;
-}
-
-nav .link-styled {
-  font-size: 12px;
-  font-weight: 400;
-  letter-spacing: -0.01em;
-  line-height: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 44px;
-  color: #000000cc;
-}
-
-.jumbotron-section.wrapper {
-  margin-left: auto;
-  margin-right: auto;
-  max-width: 980px;
-  width: 100%;
-  box-sizing: border-box;
-  height: calc(100vh - 40px);
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  padding-top: 60px;
-  position: relative;
-  z-index: 1;
-  min-height: 831px;
-}
-
-.jumbotron-section .title {
-  color: #86868b;
-  font-size: 17px;
-  font-weight: 400;
-  letter-spacing: -0.022em;
-}
-
-.jumbotron-section .logo {
-  width: 140px;
-}
-
-.jumbotron-section .text {
-  display: inline-block;
-  color: transparent;
-  background-image: linear-gradient(180deg, #ffb6ff, #b344ff);
-  -webkit-background-clip: text;
-  background-clip: text;
-  padding-top: 0.5px;
-  margin-top: 16px;
-  font-size: 48px;
-  font-weight: 600;
-  margin-bottom: 18px;
-}
-
-.jumbotron-section .description {
-  font-size: 21px;
-  font-weight: 400;
-}
-
-.jumbotron-section .links {
-  display: flex;
-  justify-content: center;
-  margin-top: 24px;
-  align-items: center;
-  margin-left: 0;
-  margin-right: 0;
-  padding-left: 0;
-  list-style: none;
-}
-
-.jumbotron-section .button {
-  background: #0071e3;
-  color: #fff;
-  cursor: pointer;
-  display: inline-block;
-  text-align: center;
-  white-space: nowrap;
-  font-size: 17px;
-  font-weight: 400;
-  min-width: 28px;
-  padding: 8px 16px;
-  border-radius: 980px;
-  margin: 0 14px;
-}
-
-.jumbotron-section .link {
-  text-decoration: none;
-  color: #2997ff;
-  font-size: 21px;
-  font-weight: 400;
-  margin: 0 14px;
-  cursor: pointer;
-}
-
-.jumbotron-section .iphone-img {
-  margin-right: -400px;
-  height: 516px;
-  position: absolute;
-  bottom: 0;
-}
-
-.mobile-or-tablet .iphone-img {
-  display: none;
-}
-
-@keyframes fadeOut {
-  from {
-    opacity: 1;
-  }
-  to {
-    opacity: 0;
-  }
-}
-
-.loader {
-  position: fixed;
+  inset: 0;
   z-index: 2;
-  background-color: white;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
-  animation-name: fadeOut;
-  animation-duration: 0.3s;
-  animation-delay: 3s;
-  animation-fill-mode: forwards;
+  justify-content: flex-end;
+  height: 100vh;
+  min-height: 600px;
   pointer-events: none;
 }
 
-.loader .logo {
-  max-width: 400px;
-  max-height: 300px;
-  width: 100%;
-  height: 100%;
+.iphone-page .iphone-canvas.is-preview {
+  pointer-events: auto;
 }
 
-.sound-section.wrapper {
-  width: 100%;
-  color: #1d1d1f;
-  background-color: #fbfbfd;
-  height: 100vh;
+.iphone-page .iphone-canvas canvas {
+  touch-action: pan-y;
 }
 
-.sound-section .body {
-  max-width: 980px;
-  margin: 0 auto;
+.iphone-page .iphone-canvas.is-preview canvas {
+  touch-action: none;
 }
 
-.sound-section .content {
-  max-width: 490px;
-  width: 100%;
-  padding: 200px 0;
-  display: flex;
-  align-items: center;
-  flex-direction: column;
+.iphone-page .iphone-exit {
+  position: absolute;
+  top: calc(7vh + 24px);
+  left: 50%;
+  z-index: 3;
+  padding: 8px 18px;
+  border: none;
+  border-radius: 980px;
+  background: var(--iphone-blue);
+  color: #fff;
+  font-size: 17px;
+  cursor: pointer;
+  transform: translateX(-50%);
+}
+
+.iphone-page .iphone-loader {
+  position: fixed;
+  inset: 0;
+  z-index: 40;
+  display: grid;
+  place-items: center;
+  background: #fff;
+  pointer-events: none;
+  transition: opacity 0.4s ease 0.3s;
+}
+
+.iphone-page .iphone-loader img {
+  width: min(400px, 80vw);
+}
+
+.iphone-page .iphone-loader.is-done {
   opacity: 0;
 }
 
-.sound-section .title {
-  color: #1d1d1f;
-  font-size: 17px;
-  font-weight: 400;
-  margin-bottom: 0;
-}
-
-.sound-section .text {
-  display: inline-block;
-  color: transparent;
-  background-image: linear-gradient(
-    90deg,
-    #1e3791 0%,
-    #2948b1 40%,
-    #3153c6 55%,
-    #385fda 60%
-  );
-  -webkit-background-clip: text;
-  background-clip: text;
-  padding-top: 0.5px;
-  margin-top: 16px;
-  font-size: 48px;
-  font-weight: 600;
-  margin-bottom: 18px;
-}
-
-.sound-section .description {
-  font-size: 21px;
-  font-weight: 400;
-}
-
-.sound-section .links {
-  display: flex;
-  justify-content: center;
-  margin-top: 24px;
-  align-items: center;
-  margin-left: 0;
-  margin-right: 0;
-  padding-left: 0;
-  list-style: none;
-}
-
-.sound-section .button {
-  background: #0071e3;
-  color: #fff;
-  cursor: pointer;
-  display: inline-block;
-  text-align: center;
-  white-space: nowrap;
-  font-size: 17px;
-  font-weight: 400;
-  min-width: 28px;
-  padding: 8px 16px;
-  border-radius: 980px;
-  margin: 0 14px;
-  border: none;
-}
-
-.sound-section .link {
-  text-decoration: none;
-  color: #2997ff;
-  font-size: 21px;
-  font-weight: 400;
-  margin: 0 14px;
-  cursor: pointer;
-}
-
-@media screen and (max-width: 990px) {
-  .jumbotron-section .iphone-img,
-  nav .link-styled {
+@media (max-width: 990px) {
+  .iphone-page .jumbotron-section .iphone-img {
     display: none;
   }
 
-  nav .list-styled {
-    padding-left: 0;
+  .iphone-page .wrapper {
+    padding-inline: 20px;
   }
 
-  .jumbotron-section.wrapper,
-  .sound-section.wrapper,
-  .display-section.wrapper {
-    padding-left: 20px;
-    padding-right: 20px;
-    box-sizing: border-box;
+  .iphone-page .description {
+    font-size: 15px;
   }
 
-  .jumbotron-section .description,
-  .sound-section .description,
-  .display-section .description {
-    font-size: 14px;
+  .iphone-page .text {
+    font-size: 40px;
   }
 
-  .jumbotron-section.wrapper,
-  .sound-section .content,
-  .display-section.wrapper {
-    padding-top: 20px;
+  .iphone-page .jumbotron-section {
+    min-height: 640px;
+    padding-top: calc(7vh + 28px);
   }
 
-  #webgi-canvas-container,
-  .jumbotron-section.wrapper {
-    min-height: 746px;
-    height: 100vh;
-  }
-
-  .sound-section.wrapper {
-    height: 100vh;
-  }
-
-  .sound-section .content {
+  .iphone-page .sound-section .content {
     max-width: 100%;
+    padding-top: 40px;
+  }
+
+  .iphone-page .display-section {
+    padding-top: 40px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .iphone-page .iphone-content,
+  .iphone-page .iphone-loader {
+    transition: none;
   }
 }

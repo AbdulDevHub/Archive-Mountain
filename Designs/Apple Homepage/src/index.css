@@ -103,10 +103,24 @@ body {
       }
 
       ul {
-        @apply flex-center gap-8;
+        @apply flex-center gap-5 md:gap-8;
+
+        /* Mac and iPhone switch pages, so they stay visible on phones; the rest are decorative */
+        a,
+        span {
+          @apply text-white opacity-80 font-regular text-sm transition-all duration-300 ease-in-out;
+        }
 
         a {
-          @apply hidden md:block text-white opacity-80 font-regular text-sm cursor-pointer hover:opacity-100 transition-all duration-300 ease-in-out;
+          @apply block cursor-pointer hover:opacity-100;
+        }
+
+        a[aria-current="page"] {
+          @apply opacity-100 underline underline-offset-8 decoration-white/40;
+        }
+
+        span {
+          @apply hidden md:block cursor-default;
         }
       }
     }
