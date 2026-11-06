@@ -231,19 +231,6 @@
     "image": "University/Console-Wars/Screenshot.png"
   },
   {
-    "name": "3D Svelte Portfolio",
-    "category": "design",
-    "description": "Portfolio with a spinning 3D shape hero, GSAP animations and content managed in Prismic",
-    "tags": [
-      "SvelteKit",
-      "Three.js",
-      "Prismic",
-      "GSAP"
-    ],
-    "href": "/projects/3d-svelte-portfolio/",
-    "image": "Designs/3D Svelte Portfolio/Screenshot.png"
-  },
-  {
     "name": "AI Toolkit",
     "category": "apps",
     "description": "Seven AI tools in one site: translator, ReAct agent, RAG movie chat, vision, stock reports, image studio and face emotions",

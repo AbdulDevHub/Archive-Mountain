@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { type Content, isFilled } from '@prismicio/client';
+	import { base } from '$app/paths';
 	import NavBarLink from './NavBarLink.svelte';
 	import Button from './Button.svelte';
 
@@ -22,7 +23,7 @@
 		>
 			<div class="flex items-center justify-between">
 				<a
-					href="/"
+					href="{base}/"
 					aria-label="Homepage"
 					class="text-xl font-extrabold tracking-tighter text-slate-900">{settings.data.name}</a
 				>

@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { type Content, isFilled } from '@prismicio/client';
+	import { base } from '$app/paths';
 	import { PrismicLink } from '@prismicio/svelte';
 	import IconGithub from '~icons/fa-brands/github';
 	import IconLinkedin from '~icons/fa-brands/linkedin';
@@ -17,7 +18,7 @@
 			class="name flex flex-col items-center justify-center gap-x-4 gap-y-2 sm:flex-row sm:justify-self-start"
 		>
 			<a
-				href="/"
+				href="{base}/"
 				class="text-xl font-extrabold tracking-tighter text-slate-100 transition-color duration-150 hover:text-yellow-400"
 			>
 				{settings.data.name}

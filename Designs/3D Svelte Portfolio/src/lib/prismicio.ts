@@ -1,5 +1,6 @@
 import * as prismic from '@prismicio/client';
 import { type CreateClientConfig, enableAutoPreviews } from '@prismicio/svelte/kit';
+import { base } from '$app/paths';
 import sm from '../../slicemachine.config.json';
 
 /**
@@ -12,12 +13,12 @@ export const repositoryName = import.meta.env.VITE_PRISMIC_ENVIRONMENT || sm.rep
  *
  * {@link https://prismic.io/docs/route-resolver#route-resolver}
  */
-// TODO: Update the routes array to match your project's route structure.
+// Paths include the deploy base path (empty in dev), so Prismic links work under /projects/<slug>/
 const routes: prismic.ClientConfig['routes'] = [
-	{ type: 'page', path: '/', uid: 'home' },
-	{ type: 'page', path: '/:uid' },
-	{ type: 'blogpost', path: '/blog/:uid' },
-	{ type: 'project', path: '/project/:uid' }
+	{ type: 'page', path: `${base}/`, uid: 'home' },
+	{ type: 'page', path: `${base}/:uid` },
+	{ type: 'blogpost', path: `${base}/blog/:uid` },
+	{ type: 'project', path: `${base}/project/:uid` }
 ];
 
 /**

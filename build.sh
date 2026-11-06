@@ -40,7 +40,6 @@ APPS=(
   "techno-explosion|Designs/Techno Explosion|out|"
   "fancy-green|Designs/Fancy Green|dist|"
   "3d-solar-portfolio|Designs/3D Solar Portfolio|dist|"
-  "3d-svelte-portfolio|Designs/3D Svelte Portfolio|build|"
   "pay-card|Designs/Pay Card Component|build|"
   "sky-diving-parallax-cat|Effects/Sky Diving Parallax Cat|dist|"
 )
