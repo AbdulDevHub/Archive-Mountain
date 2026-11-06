@@ -52,6 +52,18 @@ function describe(expressions: Record<string, number>): string {
   return `${EMOJI[name] ?? ""} ${name[0].toUpperCase()}${name.slice(1)} (${Math.round(score * 100)}%)`
 }
 
+let stream: MediaStream | null = null
+let timer = 0
+
+/** Turns the webcam off and stops detection (on errors, and when the page is left) */
+function stopCamera(): void {
+  window.clearInterval(timer)
+  timer = 0
+  stream?.getTracks().forEach((t) => t.stop())
+  stream = null
+  video.srcObject = null
+}
+
 function track(): void {
   const size = { width: video.videoWidth, height: video.videoHeight }
   overlay.width = size.width
@@ -59,8 +71,9 @@ function track(): void {
   const ctx = overlay.getContext("2d")!
   const options = new faceapi.TinyFaceDetectorOptions()
   let busy = false
-  window.setInterval(async () => {
-    if (busy || video.paused) return
+  window.clearInterval(timer)
+  timer = window.setInterval(async () => {
+    if (busy || video.paused || document.hidden) return
     busy = true
     try {
       const results = await faceapi.detectAllFaces(video, options).withFaceLandmarks().withFaceExpressions()
@@ -83,11 +96,14 @@ start.addEventListener("click", async () => {
     status.textContent = "Loading the face models (about 7 MB)…"
     await loadModels()
     status.textContent = "Waiting for camera permission…"
-    video.srcObject = await navigator.mediaDevices.getUserMedia({ video: { facingMode: "user" }, audio: false })
+    stopCamera()
+    stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: "user" }, audio: false })
+    video.srcObject = stream
     await video.play()
     placeholder.hidden = true
     track()
   } catch (err) {
+    stopCamera()
     const denied = err instanceof DOMException && err.name === "NotAllowedError"
     status.textContent = denied
       ? "Camera access was blocked. Allow it in your browser's site settings, then try again."
@@ -95,3 +111,6 @@ start.addEventListener("click", async () => {
     start.disabled = false
   }
 })
+
+// Release the webcam when the visitor leaves the page
+window.addEventListener("pagehide", stopCamera)
