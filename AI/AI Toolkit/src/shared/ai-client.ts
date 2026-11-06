@@ -1,4 +1,4 @@
-// Shared LLM access for every AI Valley app.
+// Shared LLM access for every AI Toolkit app.
 // 1. Visitors who signed in with OpenRouter call OpenRouter directly with their own key.
 // 2. Everyone else goes through the site's free proxy (/api/ai-chat).
 // 3. When the proxy is out of free quota (or not set up), callers get SignInRequired
@@ -93,7 +93,7 @@ export async function chat(request: ChatRequest): Promise<ChatResult> {
         headers: {
           Authorization: `Bearer ${userKey}`,
           "Content-Type": "application/json",
-          "X-Title": "AI Valley",
+          "X-Title": "AI Toolkit",
         },
         body,
       })
@@ -162,7 +162,7 @@ export async function startSignIn() {
   url.searchParams.set("code_challenge", base64url(digest))
   url.searchParams.set("code_challenge_method", "S256")
   url.searchParams.set("state", state)
-  url.searchParams.set("key_label", "AI Valley")
+  url.searchParams.set("key_label", "AI Toolkit")
   location.assign(url)
 }
 

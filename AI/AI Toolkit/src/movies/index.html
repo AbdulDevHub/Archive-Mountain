@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>ReelRecs · AI Valley</title>
+    <title>ReelRecs · AI Toolkit</title>
     <meta name="description" content="A movie chatbot built on retrieval-augmented generation: in-browser embeddings plus a free LLM." />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -12,7 +12,7 @@
   <body>
     <div class="page">
       <header class="valley-bar">
-        <a href="/">← AI Valley</a>
+        <nav class="toolkit-nav" data-current="movies" aria-label="AI Toolkit"></nav>
         <span id="account"></span>
       </header>
 
@@ -46,7 +46,7 @@
           <li><strong>Embeddings in the browser.</strong> Each movie is turned into a vector by <code>all-MiniLM-L6-v2</code> running on Transformers.js (downloaded once, about 23 MB). No vector database needed.</li>
           <li><strong>Retrieval.</strong> Your question is embedded the same way, and the closest movies by cosine similarity become the context.</li>
           <li><strong>Conversation memory.</strong> Follow-ups like "is it scary?" are first rewritten into a standalone question, so retrieval still finds the right film.</li>
-          <li><strong>Generation.</strong> A free OpenRouter model answers using only that context, through AI Valley's serverless proxy.</li>
+          <li><strong>Generation.</strong> A free OpenRouter model answers using only that context, through the toolkit's serverless proxy.</li>
         </ul>
       </section>
     </div>

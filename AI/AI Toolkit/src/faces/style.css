@@ -1,0 +1,83 @@
+:root {
+  --accent: #60a5fa;
+}
+
+.faces {
+  margin-top: 28px;
+  padding: 16px;
+}
+
+.faces__stage {
+  position: relative;
+  display: grid;
+  place-items: center;
+  aspect-ratio: 4 / 3;
+  max-height: 70vh;
+  margin: 0 auto;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--bg);
+}
+
+.faces__stage video,
+.faces__stage canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* Mirror the preview so it feels like a mirror; the overlay is mirrored with it */
+.faces__stage video,
+.faces__stage canvas {
+  transform: scaleX(-1);
+}
+
+.faces__placeholder {
+  position: relative;
+  display: grid;
+  justify-items: center;
+  gap: 14px;
+  padding: 24px;
+  color: var(--text-muted);
+  text-align: center;
+}
+
+.faces__placeholder p {
+  margin: 0;
+}
+
+.faces__mood {
+  min-height: 1.5em;
+  margin: 14px 0 0;
+  color: var(--text);
+  font-family: var(--font-display);
+  font-size: 18px;
+  text-align: center;
+}
+
+.how {
+  margin-top: 36px;
+  color: var(--text-muted);
+  font-size: 15px;
+}
+
+.how h2 {
+  margin: 0 0 8px;
+  color: var(--text);
+  font-family: var(--font-display);
+  font-size: 20px;
+}
+
+.how ul {
+  display: grid;
+  gap: 8px;
+  margin: 0;
+  padding-left: 20px;
+}
+
+.how strong {
+  color: var(--text);
+}

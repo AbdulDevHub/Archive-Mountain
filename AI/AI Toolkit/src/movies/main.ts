@@ -1,4 +1,5 @@
 import "../shared/theme.css"
+import "../shared/nav"
 import "../shared/chat.css"
 import "./style.css"
 import { env, pipeline, type FeatureExtractionPipeline } from "@huggingface/transformers"

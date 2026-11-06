@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>ReAct Agent · AI Valley</title>
+    <title>ReAct Agent · AI Toolkit</title>
     <meta name="description" content="An AI agent that reasons, picks tools (weather, Wikipedia, time, math, units) and shows every step." />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -12,7 +12,7 @@
   <body>
     <div class="page">
       <header class="valley-bar">
-        <a href="/">← AI Valley</a>
+        <nav class="toolkit-nav" data-current="agent" aria-label="AI Toolkit"></nav>
         <span id="account"></span>
       </header>
 
@@ -45,7 +45,7 @@
         <ul>
           <li><strong>ReAct loop.</strong> The model either calls tools or answers. Tool results go back into the conversation until it has enough to answer (up to 6 steps).</li>
           <li><strong>Function calling.</strong> Tools are described with JSON Schema and run in your browser: Open-Meteo for weather, Wikipedia's API, <code>Intl</code> for time zones, and a hand-written expression parser (no <code>eval</code>).</li>
-          <li><strong>Free models.</strong> Calls go through AI Valley's serverless proxy to OpenRouter's free tool-calling models.</li>
+          <li><strong>Free models.</strong> Calls go through the toolkit's serverless proxy to OpenRouter's free tool-calling models.</li>
         </ul>
       </section>
     </div>

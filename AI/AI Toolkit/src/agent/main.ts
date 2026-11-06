@@ -1,4 +1,5 @@
 import "../shared/theme.css"
+import "../shared/nav"
 import "../shared/chat.css"
 import "./style.css"
 import { chat, SignInRequired, type ChatMessage } from "../shared/ai-client"

@@ -4,14 +4,18 @@ import type { IncomingMessage } from "node:http"
 import { defineConfig, loadEnv, type Plugin, type ViteDevServer } from "vite"
 
 const srcDir = resolve(import.meta.dirname, "src")
-const functionsDir = resolve(import.meta.dirname, "../netlify/functions")
+const functionsDir = resolve(import.meta.dirname, "../../netlify/functions")
 
-// Every folder in src/ with an index.html is its own page (shared/ holds common code)
-const pages = Object.fromEntries(
-  readdirSync(srcDir, { withFileTypes: true })
-    .filter((d) => d.isDirectory() && existsSync(resolve(srcDir, d.name, "index.html")))
-    .map((d) => [d.name, resolve(srcDir, d.name, "index.html")]),
-)
+// src/index.html is the hub; every folder in src/ with an index.html is one tool
+// (shared/ holds common code, public/ the face-api.js bundle and models)
+const pages = {
+  index: resolve(srcDir, "index.html"),
+  ...Object.fromEntries(
+    readdirSync(srcDir, { withFileTypes: true })
+      .filter((d) => d.isDirectory() && existsSync(resolve(srcDir, d.name, "index.html")))
+      .map((d) => [d.name, resolve(srcDir, d.name, "index.html")]),
+  ),
+}
 
 async function toRequest(req: IncomingMessage): Promise<Request> {
   const chunks: Buffer[] = []
@@ -58,7 +62,7 @@ export default defineConfig(({ mode }) => {
 
   return {
     root: srcDir,
-    base: "./", // Built pages live at "AI Valley/apps/<app>/" on Netlify
+    base: "./", // build.sh serves apps/ at /projects/ai-toolkit/, so every link is relative
     envDir: import.meta.dirname,
     plugins: [netlifyFunctions()],
     build: {

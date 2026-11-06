@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Face Emotions · AI Toolkit</title>
+    <meta name="description" content="Real-time face, landmark and emotion detection from your webcam, running entirely in your browser with face-api.js." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet" />
+  </head>
+  <body>
+    <div class="page">
+      <header class="valley-bar">
+        <nav class="toolkit-nav" data-current="faces" aria-label="AI Toolkit"></nav>
+      </header>
+
+      <section class="app-hero">
+        <h1>Face Emotions</h1>
+        <p>
+          Turn on your camera and the page finds every face, traces 68 landmarks and guesses the expression, about ten
+          times a second. The models run on your device and no video leaves your browser.
+        </p>
+      </section>
+
+      <main class="card faces">
+        <div class="faces__stage" id="stage">
+          <video id="video" autoplay muted playsinline></video>
+          <canvas id="overlay"></canvas>
+          <div class="faces__placeholder" id="placeholder">
+            <p id="status">The camera stays off until you start it.</p>
+            <button class="btn btn-primary" id="start" type="button">Start camera</button>
+          </div>
+        </div>
+        <p class="faces__mood" id="mood" aria-live="polite"></p>
+      </main>
+
+      <section class="how">
+        <h2>How it works</h2>
+        <ul>
+          <li><strong>Detection.</strong> face-api.js (TensorFlow.js) runs a tiny face detector on each video frame.</li>
+          <li><strong>Landmarks and expressions.</strong> Two more small networks place 68 points per face and score seven expressions.</li>
+          <li><strong>Private.</strong> The four models (about 7 MB) load from this site once; frames are never uploaded.</li>
+        </ul>
+      </section>
+    </div>
+    <script type="module" src="./main.ts"></script>
+  </body>
+</html>

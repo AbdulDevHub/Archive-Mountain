@@ -1,4 +1,5 @@
 import "../shared/theme.css"
+import "../shared/nav"
 import "./style.css"
 import { chat, SignInRequired } from "../shared/ai-client"
 import { hideSignInNotice, initAccess, showSignInNotice } from "../shared/access"

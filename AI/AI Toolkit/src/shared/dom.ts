@@ -1,4 +1,4 @@
-// Small DOM helpers shared by the AI Valley apps
+// Small DOM helpers shared by the AI Toolkit apps
 
 export const $ = <T extends HTMLElement>(id: string) => document.getElementById(id) as T
 

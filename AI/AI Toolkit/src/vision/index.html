@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vision Lab · AI Valley</title>
+    <title>Vision Lab · AI Toolkit</title>
     <meta name="description" content="Detect objects in a photo or webcam frame in your browser, then ask a vision model about it." />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -12,7 +12,7 @@
   <body>
     <div class="page">
       <header class="valley-bar">
-        <a href="/">← AI Valley</a>
+        <nav class="toolkit-nav" data-current="vision" aria-label="AI Toolkit"></nav>
         <span id="account"></span>
       </header>
 
@@ -66,7 +66,7 @@
         <h2>How it works</h2>
         <ul>
           <li><strong>On-device detection.</strong> <code>Xenova/yolos-tiny</code> runs on Transformers.js in your browser (WebGPU when available, otherwise WebAssembly). The photo is never uploaded for detection.</li>
-          <li><strong>Vision chat.</strong> For questions, the image is shrunk to 1024 px and sent with your question to a free multimodal model on OpenRouter through AI Valley's proxy.</li>
+          <li><strong>Vision chat.</strong> For questions, the image is shrunk to 1024 px and sent with your question to a free multimodal model on OpenRouter through the toolkit's proxy.</li>
         </ul>
       </section>
     </div>

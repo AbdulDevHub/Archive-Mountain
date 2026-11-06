@@ -1,4 +1,5 @@
 import "../shared/theme.css"
+import "../shared/nav"
 import "./style.css"
 import { env, pipeline, type ObjectDetectionPipeline } from "@huggingface/transformers"
 import sampleUrl from "./sample.jpeg"
