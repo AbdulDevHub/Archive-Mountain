@@ -11,13 +11,14 @@ When old log entries stop being useful, fold them into "Earlier history" instead
 - Deploy: `build.sh` builds everything, then `Gallery/tools/assemble-site.mjs` copies only gallery projects into `_site/` (Netlify's publish dir).
 
 ## In progress
-- Hosting: relink the Netlify site and the Case-Cobra / Modern-AliExpress Vercel projects to this repo.
-- Issues from the merged repos are being transferred here; the owner deletes the old repos by hand afterwards.
+- Netlify site `archive-mountain` now builds from this repo (publish `_site`).
+- Vercel: `case-cobra` and `modern-ali-express` have Root Directory `Web Apps/<name>` and an ignored-build-step, but are still Git-connected to their old repos. The owner must swap the repo in the Vercel dashboard (Settings → Git → Disconnect, then Connect `AbdulDevHub/Archive-Mountain`); the CLI needs a confirmation the agent isn't allowed to skip.
+- All 39 issues from the merged repos are transferred here (#33–#71, labels re-applied since transfers drop them). The owner deletes the 6 old repos by hand.
 
 ## Next steps
 - 3D Svelte Portfolio: its Prismic repo only has two starter pages and no `settings` document, so it can't render. It is set up to prerender statically under `/projects/3d-svelte-portfolio/`; it needs its content recreated (or moved into local files) before it can join Design Valley.
 - CareerFlow and Digital Hippo: deploy on Vercel from their folders once the owner provides env vars (CareerFlow: `DATABASE_URL`, `REDIS_URL`, `AUTH_SECRET`, GitHub OAuth; Digital Hippo: Payload secret, MongoDB URL, Stripe, Resend), then add them to App Valley.
-- Video.js effect: build out more variations (tracked as a GitHub issue).
+- Video.js effect: build out more variations (issue #72).
 - `LABELS_TOKEN` secret must be added to this repo for the daily label sync workflow.
 - Roll the Stripe test key that is in the public history of `Web Apps/Angular Webshop`.
 - Optional: add `@types/three` to the Apple Homepage so `tsc -b` passes (the MacBook code had type errors before the merge).
