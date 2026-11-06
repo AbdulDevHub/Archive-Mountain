@@ -1,4 +1,4 @@
-/** Awesome Websites: a little village of houses with smoking chimneys around a well */
+/** Tools Valley: a little village of houses with smoking chimneys around a well */
 import * as THREE from "three"
 import { mulberry32 } from "../../utils/math.ts"
 import { createSite, mat, mesh, placeOnGround, type Landmark } from "./kit.ts"

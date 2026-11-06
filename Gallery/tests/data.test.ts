@@ -26,7 +26,7 @@ describe("projects.json", () => {
   })
 
   it("rejects bad entries with a helpful message", () => {
-    const base = { name: "X", category: "effects", description: "A thing that does stuff", tags: ["CSS"], href: "x.html", image: "x.png" }
+    const base = { name: "X", category: "tools", description: "A thing that does stuff", tags: ["CSS"], href: "x.html", image: "x.png" }
     expect(() => parseProjects([{ ...base, category: "nope" }])).toThrow(/unknown category "nope"/)
     expect(() => parseProjects([{ ...base, tags: [] }])).toThrow(/at least one tag/)
     expect(() => parseProjects([base, base])).toThrow(/duplicates the slug/)
@@ -35,7 +35,7 @@ describe("projects.json", () => {
 
 describe("url helpers", () => {
   it("encodes repo paths once and leaves full URLs alone", () => {
-    expect(toSiteUrl("Awesome Websites/UNO/uno-game.html")).toBe("/Awesome%20Websites/UNO/uno-game.html")
+    expect(toSiteUrl("Bulk File Renamer/x y.html")).toBe("/Bulk%20File%20Renamer/x%20y.html")
     expect(toSiteUrl("Chrome Extensions/X/Screenshot%201.png")).toBe("/Chrome%20Extensions/X/Screenshot%201.png")
     expect(toSiteUrl("https://github.com/AbdulDevHub/Linkest")).toBe("https://github.com/AbdulDevHub/Linkest")
   })

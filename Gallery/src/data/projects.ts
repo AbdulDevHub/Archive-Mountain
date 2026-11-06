@@ -1,10 +1,10 @@
-import rawProjects from "../../../projects.json" with { type: "json" }
+import rawProjects from "../../projects.json" with { type: "json" }
 import { isSectionId, SECTIONS, type SectionId } from "./sections.ts"
 
-/** One entry of the repo-root projects.json, the single source of truth for the gallery */
+/** One entry of Gallery/projects.json, the single source of truth for the gallery */
 export interface Project {
   name: string
-  /** URL-safe id used in deep links, e.g. #effects/ink-fluid */
+  /** URL-safe id used in deep links, e.g. #tools/dupehunt */
   slug: string
   section: SectionId
   description: string
@@ -32,8 +32,8 @@ export function slugify(name: string): string {
 }
 
 /**
- * Turns a repo-relative path like "Awesome Websites/UNO/uno-game.html" into
- * "/Awesome%20Websites/UNO/uno-game.html". Full URLs (e.g. GitHub links) pass
+ * Turns a repo-relative path like "Websites/UNO/uno-game.html" into
+ * "/Websites/UNO/uno-game.html". Full URLs (e.g. GitHub links) pass
  * through, and segments that are already encoded are not encoded twice.
  */
 export function toSiteUrl(path: string): string {

@@ -4,9 +4,9 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
     <!-- %PROJECT_COUNT% and %SITE_URL% are filled in at build time by vite.config.ts -->
-    <title>Web Mountain: Abdul Khan's 3D Frontend Portfolio of %PROJECT_COUNT% Web Projects</title>
-    <meta name="description" content="Explore %PROJECT_COUNT% frontend projects by Abdul Khan on a low-poly 3D island built with Three.js: web apps, UI experiments, WebGL effects, AI tools and Chrome extensions." />
-    <meta name="keywords" content="frontend portfolio, 3D portfolio, Three.js, WebGL, TypeScript, JavaScript, web apps, UI experiments, CSS effects, AI web apps, Chrome extensions, Abdul Khan" />
+    <title>Archive Mountain: Abdul Khan's 3D Portfolio of %PROJECT_COUNT% Web Projects</title>
+    <meta name="description" content="Explore %PROJECT_COUNT% web projects by Abdul Khan on a low-poly 3D island built with Three.js: browser tools, designs and effects, full-stack and AI apps, and games." />
+    <meta name="keywords" content="web portfolio, 3D portfolio, Three.js, WebGL, TypeScript, JavaScript, web apps, browser tools, UI design, CSS effects, AI web apps, games, Abdul Khan" />
     <meta name="author" content="Abdul Khan" />
     <meta name="robots" content="index, follow, max-image-preview:large" />
     <meta name="theme-color" content="#8fd0f5" />
@@ -14,22 +14,22 @@
 
     <!-- Social previews (Open Graph for Facebook/LinkedIn/Discord/Slack, plus X/Twitter) -->
     <meta property="og:type" content="website" />
-    <meta property="og:site_name" content="Web Mountain" />
+    <meta property="og:site_name" content="Archive Mountain" />
     <meta property="og:locale" content="en_US" />
     <meta property="og:url" content="%SITE_URL%/" />
-    <meta property="og:title" content="Web Mountain: A 3D Island of %PROJECT_COUNT% Frontend Projects" />
-    <meta property="og:description" content="Fly into six valleys of web apps, portfolios, UI experiments, WebGL effects, AI tools and Chrome extensions, all on a low-poly island built with Three.js." />
+    <meta property="og:title" content="Archive Mountain: A 3D Island of %PROJECT_COUNT% Web Projects" />
+    <meta property="og:description" content="Fly into four valleys of browser tools, designs, full-stack and AI apps, and games, all on a low-poly island built with Three.js." />
     <meta property="og:image" content="%SITE_URL%/brand/og-image.png" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
-    <meta property="og:image:alt" content="A low-poly 3D island with a snowy peak and six valleys, titled Web Mountain" />
+    <meta property="og:image:alt" content="A low-poly 3D island with a snowy peak and four valleys, titled Archive Mountain" />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Web Mountain: A 3D Island of %PROJECT_COUNT% Frontend Projects" />
-    <meta name="twitter:description" content="Fly into six valleys of web apps, portfolios, UI experiments, WebGL effects, AI tools and Chrome extensions." />
+    <meta name="twitter:title" content="Archive Mountain: A 3D Island of %PROJECT_COUNT% Web Projects" />
+    <meta name="twitter:description" content="Fly into four valleys of browser tools, designs, full-stack and AI apps, and games." />
     <meta name="twitter:image" content="%SITE_URL%/brand/og-image.png" />
-    <meta name="twitter:image:alt" content="A low-poly 3D island with a snowy peak and six valleys, titled Web Mountain" />
+    <meta name="twitter:image:alt" content="A low-poly 3D island with a snowy peak and four valleys, titled Archive Mountain" />
 
-    <!-- Icons, manifest and social image live in /brand at the repo root (served as-is by Netlify) -->
+    <!-- Icons, manifest and social image live in Gallery/public/brand (copied to /brand) -->
     <link rel="icon" type="image/png" sizes="64x64" href="/Favicon.png" />
     <link rel="icon" type="image/svg+xml" href="/brand/icon.svg" />
     <link rel="apple-touch-icon" href="/brand/apple-touch-icon.png" />
@@ -74,19 +74,19 @@
   </head>
   <body>
     <!-- The one page heading: visually hidden on the island, the title of the plain directory otherwise -->
-    <h1 class="site-title">Web Mountain<span class="site-title__tagline"><span class="visually-hidden">: </span>A 3D island of frontend projects by Abdul Khan</span></h1>
+    <h1 class="site-title">Archive Mountain<span class="site-title__tagline"><span class="visually-hidden">: </span>A 3D island of web projects by Abdul Khan</span></h1>
 
     <!-- 3D experience: only shown once main.ts confirms WebGL works -->
     <div class="scene-ui" id="scene-ui">
       <div class="scene" id="scene" aria-hidden="true"></div>
 
       <header class="topbar">
-        <a class="brand" href="#" data-route="overview" aria-label="Web Mountain, back to the island">
+        <a class="brand" href="#" data-route="overview" aria-label="Archive Mountain, back to the island">
           <svg class="brand__mark" viewBox="0 0 32 32" aria-hidden="true">
             <path d="M2 27 12 9l5 8 3-5 10 15Z" fill="#4c7c5a" />
             <path d="m12 9 3.6 5.8-2.1-1-1.5 2-1.6-2-2.2 1Z" fill="#fff" />
           </svg>
-          <span class="brand__text">Web Mountain</span>
+          <span class="brand__text">Archive Mountain</span>
         </a>
         <div class="topbar__actions">
           <button class="icon-btn search-trigger" id="search-open" type="button" aria-haspopup="dialog">
@@ -142,7 +142,7 @@
           <path d="M2 27 12 9l5 8 3-5 10 15Z" fill="#4c7c5a" />
           <path d="m12 9 3.6 5.8-2.1-1-1.5 2-1.6-2-2.2 1Z" fill="#fff" />
         </svg>
-        <p class="intro__title">Web Mountain</p>
+        <p class="intro__title">Archive Mountain</p>
         <p class="intro__subtitle">Climbing through the clouds…</p>
         <div class="intro__bar" aria-hidden="true"></div>
       </div>
@@ -151,7 +151,7 @@
     <!-- Plain directory: pre-rendered at build time for crawlers, no-JS and no-WebGL visitors -->
     <main class="directory" id="directory">
       <header class="directory__header">
-        <p>A personal collection of frontend experiments, UI concepts and mini apps. <a href="https://github.com/AbdulDevHub/Web-Mountain">View the source on GitHub</a>.</p>
+        <p>The best of a personal archive of web projects: browser tools, designs, full-stack and AI apps, and games. <a href="https://github.com/AbdulDevHub/Archive-Mountain">View the source on GitHub</a>.</p>
       </header>
       <!--project-directory-->
     </main>

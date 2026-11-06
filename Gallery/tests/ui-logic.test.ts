@@ -7,23 +7,23 @@ import { daylightAt } from "../src/world/lighting.ts"
 describe("router", () => {
   it("parses valleys, the summit and deep links to a card", () => {
     expect(parseHash("")).toEqual({ view: "overview" })
-    expect(parseHash("#ai")).toEqual({ view: "section", id: "ai", project: undefined })
-    expect(parseHash("#effects/ink-fluid")).toEqual({ view: "section", id: "effects", project: "ink-fluid" })
+    expect(parseHash("#apps")).toEqual({ view: "section", id: "apps", project: undefined })
+    expect(parseHash("#tools/dupehunt")).toEqual({ view: "section", id: "tools", project: "dupehunt" })
     expect(parseHash("#all")).toEqual({ view: "all", project: undefined })
     expect(parseHash("#not-a-valley")).toEqual({ view: "overview" })
-    expect(parseHash("#ai/%")).toEqual({ view: "overview" }) // malformed links must not crash
+    expect(parseHash("#apps/%")).toEqual({ view: "overview" }) // malformed links must not crash
   })
 
   it("round-trips routes through the hash", () => {
-    for (const hash of ["#ai", "#all", "#websites/uno"]) expect(routeToHash(parseHash(hash))).toBe(hash)
+    for (const hash of ["#apps", "#all", "#games/uno"]) expect(routeToHash(parseHash(hash))).toBe(hash)
     expect(routeToHash({ view: "overview" })).toBe("")
   })
 })
 
 describe("search", () => {
   it("ranks name matches above tag and description matches", () => {
-    const names = searchProjects("ink", PROJECTS).map((p) => p.name)
-    expect(names[0]).toBe("Ink Fluid")
+    const names = searchProjects("uno", PROJECTS).map((p) => p.name)
+    expect(names[0]).toBe("UNO")
   })
 
   it("requires every word to match", () => {

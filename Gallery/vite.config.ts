@@ -10,9 +10,10 @@ const galleryDir = import.meta.dirname
 const repoRoot = resolve(galleryDir, "..")
 
 /**
- * In production Netlify serves the whole repo, so the gallery can link to
- * "/Awesome Websites/..." and load screenshots from there. This plugin gives
- * `vite dev` the same behaviour by serving any repo file that exists on disk.
+ * In production build.sh copies each gallery project into _site/ at its repo
+ * path, so the gallery can link to "/Websites/..." and load screenshots from
+ * there. This plugin gives `vite dev` the same behaviour by serving any repo
+ * file that exists on disk.
  */
 function serveRepoFiles(): Plugin {
   const serve = sirv(repoRoot, { dev: true, etag: true })
@@ -43,8 +44,7 @@ function prerenderDirectory(): Plugin {
 
 /**
  * SEO from the same project data: fills %PROJECT_COUNT% / %SITE_URL% in the
- * meta tags, inlines JSON-LD structured data, and emits sitemap.xml (served at
- * /Gallery/dist/sitemap.xml; netlify.toml serves it at /sitemap.xml for robots.txt).
+ * meta tags, inlines JSON-LD structured data, and emits sitemap.xml at the site root.
  */
 function seo(): Plugin {
   return {
@@ -61,10 +61,12 @@ function seo(): Plugin {
   }
 }
 
-export default defineConfig(({ command }) => ({
+export default defineConfig(() => ({
   root: resolve(galleryDir, "src"),
-  // Netlify rewrites "/" to the built page, which lives in Gallery/dist/
-  base: command === "build" ? "/Gallery/dist/" : "/",
+  // build.sh copies dist/ to the root of _site/, so the gallery is the front page
+  base: "/",
+  // Icons, the manifest and robots.txt are copied as-is to the site root
+  publicDir: resolve(galleryDir, "public"),
   plugins: [serveRepoFiles(), prerenderDirectory(), seo()],
   build: {
     outDir: resolve(galleryDir, "dist"),

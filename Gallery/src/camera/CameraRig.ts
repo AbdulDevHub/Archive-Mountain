@@ -63,7 +63,7 @@ export class CameraRig {
     }
     c.setLookAt(0, 120, 40, 0, 0, 0, false)
     c.smoothTime = 1.4
-    // Azimuth 0 faces the first section (Awesome Effects), which sits towards +z
+    // Azimuth 0 faces the first section (Tools Valley), which sits towards +z
     await c.setLookAt(...this.overviewPosition(0), ...OVERVIEW.target.toArray(), true)
     c.smoothTime = 0.7
     // The visitor may already have flown into a valley while the intro played

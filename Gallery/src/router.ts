@@ -1,5 +1,5 @@
 /**
- * URL hash <-> view state. Deep links like `#ai` or `#effects/ink-fluid`
+ * URL hash <-> view state. Deep links like `#apps` or `#tools/dupehunt`
  * open straight into a valley (and highlight a card), and the browser's
  * Back button flies you back out.
  */

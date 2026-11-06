@@ -6,7 +6,7 @@
 import type { Project } from "./projects.ts"
 import { getSection } from "./sections.ts"
 
-export const SITE_URL = "https://modern-web-mountain.netlify.app"
+export const SITE_URL = "https://archive-mountain.netlify.app"
 export const REPO_URL = "https://github.com/AbdulDevHub/Web-Mountain"
 
 const AUTHOR = {
@@ -17,7 +17,7 @@ const AUTHOR = {
   sameAs: ["https://github.com/AbdulDevHub", "https://www.linkedin.com/in/abdul-hadi-khan"],
 }
 
-/** Site-absolute paths ("/Awesome%20Websites/...") become full URLs; external links pass through */
+/** Site-absolute paths ("/Websites/...") become full URLs; external links pass through */
 export const absoluteUrl = (href: string) => (/^https?:/.test(href) ? href : SITE_URL + href)
 
 export function structuredData(projects: readonly Project[]): object[] {
@@ -25,9 +25,9 @@ export function structuredData(projects: readonly Project[]): object[] {
     "@context": "https://schema.org",
     "@type": "WebSite",
     "@id": `${SITE_URL}/#website`,
-    name: "Web Mountain",
+    name: "Archive Mountain",
     url: `${SITE_URL}/`,
-    description: `A frontend portfolio of ${projects.length} projects, explored as a low-poly 3D island.`,
+    description: `A web portfolio of ${projects.length} projects, explored as a low-poly 3D island.`,
     inLanguage: "en",
     author: AUTHOR,
   }
@@ -35,11 +35,11 @@ export function structuredData(projects: readonly Project[]): object[] {
   const collection = {
     "@context": "https://schema.org",
     "@type": "CollectionPage",
-    name: "Web Mountain: a 3D island of frontend projects",
+    name: "Archive Mountain: a 3D island of web projects",
     url: `${SITE_URL}/`,
     isPartOf: { "@id": `${SITE_URL}/#website` },
     author: AUTHOR,
-    keywords: "frontend portfolio, Three.js, WebGL, TypeScript, web apps, UI experiments, Chrome extensions",
+    keywords: "web portfolio, Three.js, WebGL, TypeScript, web apps, browser tools, UI design, AI tools, games",
     codeRepository: REPO_URL,
     mainEntity: {
       "@type": "ItemList",

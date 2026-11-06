@@ -5,7 +5,7 @@
  *
  * Shape recipe:
  *   1. a cone-like mountain that falls to a beach shelf and then under the sea
- *   2. ridges pushed up everywhere except along the six valley axes
+ *   2. ridges pushed up everywhere except along the four valley axes
  *   3. each valley carved down to a gently sloping floor
  *   4. a little fractal noise for low-poly character (less on valley floors)
  */

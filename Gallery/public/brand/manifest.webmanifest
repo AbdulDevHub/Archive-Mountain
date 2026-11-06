@@ -1,7 +1,7 @@
 {
-  "name": "Web Mountain: A 3D Island of Frontend Projects",
-  "short_name": "Web Mountain",
-  "description": "Abdul Khan's frontend portfolio on a low-poly 3D island: web apps, UI experiments, WebGL effects, AI tools and Chrome extensions.",
+  "name": "Archive Mountain: A 3D Island of Web Projects",
+  "short_name": "Archive Mountain",
+  "description": "Abdul Khan's web portfolio on a low-poly 3D island: browser tools, designs and effects, full-stack and AI apps, and games.",
   "id": "/",
   "start_url": "/",
   "scope": "/",

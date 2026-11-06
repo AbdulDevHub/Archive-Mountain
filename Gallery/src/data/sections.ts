@@ -1,12 +1,12 @@
 /**
- * The six portfolio sections, one per valley of the island.
+ * The four portfolio sections, one per valley of the island.
  * Everything that differs between valleys (colours, landmark, position)
  * lives here, so adding a section is a one-object change.
  */
 
-export type SectionId = "effects" | "websites" | "apps" | "ai" | "ui" | "extensions"
+export type SectionId = "tools" | "design" | "apps" | "games"
 
-export type LandmarkKind = "waterfall" | "village" | "castle" | "observatory" | "windmill" | "lighthouse"
+export type LandmarkKind = "village" | "windmill" | "castle" | "lighthouse"
 
 export interface Section {
   id: SectionId
@@ -24,61 +24,43 @@ export interface Section {
 const TAU = Math.PI * 2
 /** The camera starts looking from +z, so the first section faces the visitor */
 const FRONT = Math.PI / 2
-const step = TAU / 6
+const step = TAU / 4
 
 export const SECTIONS: readonly Section[] = [
   {
-    id: "effects",
-    label: "Awesome Effects",
-    tagline: "Shaders, cursors, loaders and other small delights",
-    accent: "#8b5cf6",
-    grass: "#7cc49a",
-    angle: FRONT,
-    landmark: "waterfall",
-  },
-  {
-    id: "websites",
-    label: "Awesome Websites",
-    tagline: "Browser tools, utilities and games",
+    id: "tools",
+    label: "Tools Valley",
+    tagline: "Browser tools that do one job well",
     accent: "#e07a5f",
     grass: "#96c96b",
-    angle: FRONT + step,
+    angle: FRONT,
     landmark: "village",
+  },
+  {
+    id: "design",
+    label: "Design Valley",
+    tagline: "Landing pages, portfolios and a playground of effects",
+    accent: "#8b5cf6",
+    grass: "#a8d46f",
+    angle: FRONT + step,
+    landmark: "windmill",
   },
   {
     id: "apps",
     label: "App Valley",
-    tagline: "Full apps built with React, Next.js, Vue and Angular",
+    tagline: "Full-stack shops, AI tools and API-driven apps",
     accent: "#2f6fe0",
     grass: "#8cc47e",
     angle: FRONT + step * 2,
     landmark: "castle",
   },
   {
-    id: "ai",
-    label: "AI Valley",
-    tagline: "LLM agents, on-device models and computer vision",
-    accent: "#0e9f9f",
-    grass: "#b9c968",
-    angle: FRONT + step * 3,
-    landmark: "observatory",
-  },
-  {
-    id: "ui",
-    label: "UI & Portfolios",
-    tagline: "Landing pages, portfolios and interface components",
-    accent: "#e9a800",
-    grass: "#a8d46f",
-    angle: FRONT + step * 4,
-    landmark: "windmill",
-  },
-  {
-    id: "extensions",
-    label: "Chrome Extensions",
-    tagline: "Tools that live in the browser toolbar",
+    id: "games",
+    label: "Game Valley",
+    tagline: "Card games and an arcade classic",
     accent: "#ef476f",
     grass: "#7fb86c",
-    angle: FRONT + step * 5,
+    angle: FRONT + step * 3,
     landmark: "lighthouse",
   },
 ]

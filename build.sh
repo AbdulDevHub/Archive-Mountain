@@ -1,12 +1,14 @@
 #!/usr/bin/env bash
-# The full deploy build. Netlify runs this (netlify.toml); the publish dir is the repo root.
+# The full deploy build. Netlify runs this (netlify.toml) and publishes _site/.
 # Every sub-project builds in parallel, each with its own log; a failure prints that log and fails the deploy.
+# Then Gallery/tools/assemble-site.mjs copies only what the gallery shows into _site/.
 set -euo pipefail
 # Git Bash on Windows would turn "/projects/x/" into a Windows path; no effect on Linux
 export MSYS2_ARG_CONV_EXCL="/projects/" MSYS2_ENV_CONV_EXCL="BASE_PATH;PUBLIC_URL"
 cd "$(dirname "$0")"
 ROOT="$PWD"
 LOGS="$ROOT/.build-logs"
+SITE="$ROOT/_site"
 JOBS="${BUILD_JOBS:-4}"
 rm -rf "$LOGS" && mkdir -p "$LOGS"
 
@@ -25,23 +27,22 @@ install_and_build() {
   fi
 }
 
-# Moved framework apps are served at /projects/<slug>/ through a rewrite to their build output.
-# Each one reads BASE_PATH (CRA reads PUBLIC_URL) so its own asset links point there, and
-# tools/relocate.mjs fixes the root-absolute public paths ("/images/x.png") left in the code.
+# Framework apps are served at /projects/<slug>/. Each one reads BASE_PATH (CRA reads PUBLIC_URL)
+# so its own asset links point there, and Gallery/tools/relocate.mjs fixes the root-absolute
+# public paths ("/images/x.png") left in the code.
 # slug|folder|output dir|extra build args
 APPS=(
-  "job-board|App Valley/Job Board|dist|"
-  "angular-webshop|App Valley/Angular Webshop|dist/ecommerce-store|--base-href /projects/angular-webshop/"
-  "anime-vault|App Valley/Anime Vault|out|"
-  "macbook-homepage|UI Experiments/MacBook Homepage|dist|"
-  "gsap-drinks|UI Experiments/GSAP Drinks|dist|"
-  "black-hole|UI Experiments/Black Hole|out|"
-  "techno-explosion|UI Experiments/Techno Explosion|out|"
-  "fancy-green|UI Experiments/Fancy Green|dist|"
-  "3d-solar-portfolio|UI Experiments/3D Solar Portfolio|dist|"
-  "pay-card|UI Experiments/Pay Card Component|build|"
-  "vuetify-image-gallery|UI Experiments/Vuetify Image Gallery|dist|"
-  "sky-diving-parallax-cat|Awesome Effects/Sky Diving Parallax Cat|dist|"
+  "ai-toolkit|AI/AI Toolkit|apps|"
+  "anime-vault|Web Apps/Anime Vault|out|"
+  "apple-homepage|Designs/Apple Homepage|dist|"
+  "gsap-drinks|Designs/GSAP Drinks|dist|"
+  "black-hole|Designs/Black Hole|out|"
+  "techno-explosion|Designs/Techno Explosion|out|"
+  "fancy-green|Designs/Fancy Green|dist|"
+  "3d-solar-portfolio|Designs/3D Solar Portfolio|dist|"
+  "3d-svelte-portfolio|Designs/3D Svelte Portfolio|build|"
+  "pay-card|Designs/Pay Card Component|build|"
+  "sky-diving-parallax-cat|Effects/Sky Diving Parallax Cat|dist|"
 )
 
 build_app() {
@@ -49,29 +50,20 @@ build_app() {
   IFS="|" read -r slug dir out args <<<"$1"
   # shellcheck disable=SC2086 # args are deliberately split into words
   BASE_PATH="/projects/$slug/" PUBLIC_URL="/projects/$slug" install_and_build "$dir" $args
-  node "$ROOT/tools/relocate.mjs" "$ROOT/$dir/$out" "/projects/$slug/"
+  node "$ROOT/Gallery/tools/relocate.mjs" "$ROOT/$dir/$out" "/projects/$slug/"
 }
-
-# Write the rewrites for the apps above (Netlify reads _redirects before netlify.toml)
-: >"$ROOT/_redirects"
-for app in "${APPS[@]}"; do
-  IFS="|" read -r slug dir out _ <<<"$app"
-  printf '/projects/%s/*  /%s/%s/:splat  200\n' "$slug" "${dir// /%20}" "$out" >>"$ROOT/_redirects"
-done
 
 # Every job: "label|command" — run in parallel, JOBS at a time
 TASKS=(
-  "Bulk File Renamer|install_and_build 'Awesome Websites/Bulk File Renamer'"
-  "Gitmoji Helper|install_and_build 'Awesome Websites/Gitmoji-Helper'"
-  "Midnight Passages|install_and_build 'Awesome Websites/Midnight Passages'"
-  "Flappy Bird|install_and_build 'Awesome Websites/Flappy Bird'"
-  "Animated CSS Login Form|install_and_build 'UI Experiments/Animated CSS Login Form'"
-  "AI Valley|install_and_build 'AI Valley'"
+  "Bulk File Renamer|install_and_build 'Websites/Bulk File Renamer'"
+  "Gitmoji Helper|install_and_build 'Websites/Gitmoji-Helper'"
+  "Midnight Passages|install_and_build 'Websites/Midnight Passages'"
+  "Flappy Bird|install_and_build 'Websites/Flappy Bird'"
   "Gallery|install_and_build Gallery"
 )
 for app in "${APPS[@]}"; do TASKS+=("${app%%|*}|build_app '$app'"); done
 
-# Optional arguments pick tasks by label (e.g. `bash build.sh job-board Gallery`); none builds everything
+# Optional arguments pick tasks by label (e.g. `bash build.sh anime-vault Gallery`); none builds everything
 if [ "$#" -gt 0 ]; then
   picked=()
   for task in "${TASKS[@]}"; do
@@ -105,4 +97,14 @@ for task in "${TASKS[@]}"; do
   fi
 done
 [ "$failed" -eq 0 ] || exit 1
-echo "All builds finished successfully!"
+
+# Partial builds (task arguments) stop here; only a full build assembles the site
+[ "$#" -eq 0 ] || { echo "Built: $*"; exit 0; }
+
+node "$ROOT/Gallery/tools/assemble-site.mjs" "$ROOT" "$SITE"
+for app in "${APPS[@]}"; do
+  IFS="|" read -r slug dir out _ <<<"$app"
+  mkdir -p "$SITE/projects"
+  cp -r "$ROOT/$dir/$out" "$SITE/projects/$slug"
+done
+echo "All builds finished; _site/ is ready."

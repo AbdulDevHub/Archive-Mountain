@@ -1,4 +1,4 @@
-/** Chrome Extensions: a lighthouse on the point, a pier reaching into the sea and a rope bridge */
+/** Game Valley: a lighthouse on the point, a pier reaching into the sea and a rope bridge */
 import * as THREE from "three"
 import { createSite, glow, mat, mesh, placeOnGround, type Landmark } from "./kit.ts"
 

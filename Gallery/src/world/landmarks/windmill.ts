@@ -1,4 +1,4 @@
-/** UI Experiments: a windmill above striped tulip fields, like a colour palette laid on the ground */
+/** Design Valley: a windmill above striped tulip fields, like a colour palette laid on the ground */
 import * as THREE from "three"
 import { mulberry32 } from "../../utils/math.ts"
 import { createSite, mat, mesh, placeOnGround, type Landmark } from "./kit.ts"
